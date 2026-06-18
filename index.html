@@ -137,6 +137,110 @@
   }
   </script>
   <style>
+    /* ── HERO COM MOSAICO DE PRODUTOS ── */
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      width: 100%;
+    }
+    .hero-mosaic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      height: 520px;
+    }
+    .hero-mosaic-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-mosaic-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform .5s ease;
+      filter: brightness(.85);
+    }
+    .hero-mosaic-item:hover img { transform: scale(1.05); filter: brightness(1); }
+    .hero-mosaic-item--tall {
+      grid-row: span 2;
+    }
+    .hero-mosaic-item--accent::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 3px solid #e8ff00;
+      pointer-events: none;
+    }
+    @media (max-width: 900px) {
+      .hero-container { grid-template-columns: 1fr; }
+      .hero-mosaic { display: none; }
+    }
+
+    /* ── FOTO NA SEÇÃO SOBRE ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .about-img-col { grid-column: 1; }
+    .about-text { grid-column: 2; }
+    .about-differentials { grid-column: 3; }
+    .about-img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 130%;
+      overflow: hidden;
+      background: #111;
+    }
+    .about-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .about-img-badge {
+      position: absolute;
+      bottom: 0; right: 0;
+      background: #e8ff00;
+      padding: .9rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .about-img-badge-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #0a0a0a;
+    }
+    .about-img-badge-txt {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #0a0a0a;
+    }
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .about-img-col { grid-column: 1 / -1; padding-top: 0; }
+      .about-img-wrap { padding-top: 55%; }
+      .about-text { grid-column: 1; }
+      .about-differentials { grid-column: 2; }
+    }
+    @media (max-width: 640px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img-col, .about-text, .about-differentials { grid-column: 1; }
+      .about-img-wrap { padding-top: 75%; }
+    }
+
     /* ── CORREÇÕES E MELHORIAS ESPECÍFICAS ── */
 
     /* Categorias */
@@ -649,7 +753,7 @@
   <section id="inicio" class="hero">
     <div class="hero-bg"><div class="hero-bg"></div></div>
     <canvas id="heroBg" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.55;"></canvas>
-    <div class="container" style="position:relative;z-index:1;">
+    <div class="container hero-container">
       <div class="hero-content">
         <p class="hero-eyebrow">— Fabricação B2B desde 2014</p>
         <h1 class="hero-title">Sua marca.<br><span class="outline">Nossa</span><br><em>produção.</em></h1>
@@ -660,6 +764,20 @@
             Falar com representante
           </a>
           <a href="produtos.html" class="btn btn-outline">Ver Catálogo</a>
+        </div>
+      </div>
+      <div class="hero-mosaic" aria-hidden="true">
+        <div class="hero-mosaic-item hero-mosaic-item--tall">
+          <img src="imagens/produto-10.jpg" alt="Produto LS Confecções" loading="eager">
+        </div>
+        <div class="hero-mosaic-item">
+          <img src="imagens/produto-03.jpg" alt="Produto LS Confecções" loading="eager">
+        </div>
+        <div class="hero-mosaic-item">
+          <img src="imagens/produto-07.jpg" alt="Produto LS Confecções" loading="eager">
+        </div>
+        <div class="hero-mosaic-item hero-mosaic-item--accent">
+          <img src="imagens/produto-15.jpg" alt="Produto LS Confecções" loading="eager">
         </div>
       </div>
     </div>
@@ -957,9 +1075,18 @@
   <section id="sobre" class="section" style="background:#fff; padding-block:5rem;">
     <div class="container">
       <div class="about-grid">
+        <div class="about-img-col fade-up">
+          <div class="about-img-wrap">
+            <img src="imagens/produto-22.jpg" alt="Produtos LS Confecções — fabricação B2B de bolsas e mochilas" loading="lazy">
+            <div class="about-img-badge">
+              <span class="about-img-badge-num">+500</span>
+              <span class="about-img-badge-txt">clientes<br>atendidos</span>
+            </div>
+          </div>
+        </div>
         <div class="about-text fade-up">
-          <span class="eyebrow" style="display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:800; letter-spacing:.3em; text-transform:uppercase; color:#e8ff00; background:#0a0a0a; padding:2px 8px; margin-bottom:1rem;">Nossa história</span>
-          <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:900; text-transform:uppercase; line-height:1; margin-bottom:1.25rem;">Sobre a<br>LS Confecções</h2>
+          <span class="eyebrow" style="display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:800; letter-spacing:.3em; text-transform:uppercase; color:#e8ff00; background:#0a0a0a; padding:2px 8px; margin-bottom:1rem;">Sobre nós</span>
+          <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:900; text-transform:uppercase; line-height:1; margin-bottom:1.25rem;">A fábrica por<br>trás da sua marca</h2>
           <p style="color:#555; line-height:1.8;">A LS Confecções nasceu da paixão por qualidade e do compromisso com cada cliente. Há mais de 10 anos somos parceiros de empresas que buscam diferenciar suas marcas com produtos de alto padrão.</p>
           <p style="color:#555; line-height:1.8; margin-top:1rem;">Atendemos marcas de moda, empresas corporativas, lojistas e distribuidores em todo o Brasil. Trabalhamos lado a lado com nossos clientes desde o conceito até a entrega.</p>
           <a href="https://wa.me/5511999370418?text=Ol%C3%A1%2C%20Gustavo!%20Gostaria%20de%20conhecer%20mais%20sobre%20a%20LS%20Confec%C3%A7%C3%B5es." class="btn btn-primary" style="display:inline-flex; margin-top:2rem; align-items:center; gap:.5rem;" target="_blank" rel="noopener">Fale conosco</a>
