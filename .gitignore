@@ -1,9 +1,9 @@
-node_modules/
-imagens-teste/
-
-# Ignora imagens soltas na raiz (baixadas pelo scraper)
+# Imagens soltas na raiz (não fazem parte do site)
 /*.jpg
 /*.jpeg
 /*.png
 /*.webp
 /*.gif
+
+# Node (não é mais usado neste repositório)
+node_modules/
