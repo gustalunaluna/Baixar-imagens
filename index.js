@@ -66,7 +66,16 @@ async function scrapeAndDownload(url, destDir) {
   const page = await browser.newPage();
   await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36');
 
-  await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+  // Tenta networkidle2 primeiro; se timeout, continua com o que já carregou
+  try {
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
+  } catch (e) {
+    if (e.message.includes('timeout')) {
+      console.log('Aviso: timeout ao aguardar rede quieta, continuando com o que carregou...');
+    } else {
+      throw e;
+    }
+  }
 
   // Scroll para carregar imagens lazy-loaded
   await page.evaluate(async () => {
