@@ -1,7 +1,9 @@
 node_modules/
-imagens/
-*.jpg
-*.jpeg
-*.png
-*.webp
-*.gif
+imagens-teste/
+
+# Ignora imagens soltas na raiz (baixadas pelo scraper)
+/*.jpg
+/*.jpeg
+/*.png
+/*.webp
+/*.gif
