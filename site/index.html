@@ -113,59 +113,57 @@
     }
     .product-card:hover .product-img img { transform: scale(1.08); filter: grayscale(0%); }
     .product-info {
-      padding: 1.25rem 1.25rem 1.5rem;
+      padding: 1.1rem 1.25rem 1.4rem;
       flex: 1;
       display: flex;
       flex-direction: column;
-      border-top: 1px solid #1e1e1e;
+      border-top: 1px solid #222;
     }
     .product-info .prod-tag {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .65rem;
+      font-size: .7rem;
       font-weight: 800;
-      letter-spacing: .22em;
+      letter-spacing: .2em;
       text-transform: uppercase;
       color: #e8ff00;
       background: transparent;
-      border: 1px solid #2a2a2a;
+      border: 1px solid #333;
       display: inline-block;
       padding: 2px 8px;
-      margin-bottom: .75rem;
+      margin-bottom: .6rem;
       align-self: flex-start;
     }
     .product-info h3 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 900;
       text-transform: uppercase;
       color: #fff;
-      margin-bottom: .4rem;
+      margin-bottom: .3rem;
       letter-spacing: .02em;
-      line-height: 1.1;
     }
     .product-info p {
       font-size: .8rem;
-      color: #555;
-      line-height: 1.6;
+      color: #666;
+      line-height: 1.55;
       flex: 1;
-      margin-bottom: 1.1rem;
+      margin-bottom: 1rem;
     }
     .product-info .prod-btn {
       display: inline-flex;
       align-items: center;
-      gap: .4rem;
+      gap: .45rem;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .72rem;
+      font-size: .78rem;
       font-weight: 800;
-      letter-spacing: .2em;
+      letter-spacing: .18em;
       text-transform: uppercase;
       color: #000;
       background: #e8ff00;
-      padding: .5rem 1.1rem;
+      padding: .5rem 1rem;
       text-decoration: none;
-      transition: background .2s, box-shadow .2s, transform .2s;
+      transition: background .2s, color .2s, box-shadow .2s, transform .2s;
       align-self: flex-start;
-      margin-top: auto;
     }
     .product-info .prod-btn:hover {
       background: #fff;
@@ -375,118 +373,34 @@
     }
     .footer-bottom p { font-size: .78rem; color: #333; margin: 0; }
 
-    /* ── SEÇÃO SOBRE ── */
-    .about-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 600px;
-      background: #0a0a0a;
-      padding: 0 !important;
-    }
-    .about-image-col {
-      position: relative;
-      overflow: hidden;
-      background: #111;
-      min-height: 500px;
-    }
-    .about-image-col img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: brightness(.75);
-    }
-    .about-image-tag {
-      position: absolute;
-      bottom: 2.5rem; right: -1px;
-      background: #e8ff00;
-      padding: 1rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      line-height: 1;
-    }
-    .about-tag-number {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 2.8rem;
-      font-weight: 900;
-      color: #0a0a0a;
-      line-height: 1;
-    }
-    .about-tag-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .75rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .15em;
-      color: #0a0a0a;
-    }
-    .about-content-col {
-      padding: 5rem 4rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .about-eyebrow {
-      display: inline-block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .75rem;
-      font-weight: 800;
-      letter-spacing: .35em;
-      text-transform: uppercase;
-      color: #e8ff00;
-      margin-bottom: 1rem;
-    }
-    .about-heading {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 1;
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
-    .about-body {
-      color: #777;
-      font-size: .9rem;
-      line-height: 1.8;
-      margin-bottom: .75rem;
-    }
-    .about-diff-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: .75rem;
-      margin: 1.75rem 0 2rem;
-    }
+    /* Diferenciais na seção Sobre */
+    .about-differentials { display: flex; flex-direction: column; gap: 1.25rem; }
     .about-diff-item {
       display: flex;
       align-items: flex-start;
-      gap: .75rem;
-      padding: .9rem 1rem;
-      background: #111;
-      border-left: 3px solid #e8ff00;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid #eee;
+      border-left: 4px solid #e8ff00;
     }
     .about-diff-icon {
-      font-size: .75rem;
+      font-size: 1rem;
       color: #e8ff00;
+      background: #0a0a0a;
+      padding: 4px 6px;
+      line-height: 1;
       flex-shrink: 0;
-      margin-top: 3px;
+      margin-top: 2px;
     }
     .about-diff-item h4 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .95rem;
+      font-size: 1.05rem;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: .04em;
-      color: #fff;
-      margin: 0 0 .2rem;
+      letter-spacing: .05em;
+      margin: 0 0 .25rem;
     }
-    .about-diff-item p { color: #555; font-size: .78rem; line-height: 1.5; margin: 0; }
-    @media (max-width: 900px) {
-      .about-section { grid-template-columns: 1fr; }
-      .about-image-col { min-height: 300px; }
-      .about-content-col { padding: 3rem 2rem; }
-      .about-diff-grid { grid-template-columns: 1fr; }
-    }
+    .about-diff-item p { color: #666; font-size: .88rem; line-height: 1.6; margin: 0; }
 
     /* Card "+50 categorias" — integrado ao padrão dos outros cards */
     .category-card--more .category-thumb {
@@ -906,50 +820,47 @@
   </div>
 
   <!-- SOBRE -->
-  <section id="sobre" class="section about-section">
-    <div class="about-image-col fade-up">
-      <img src="imagens/produto-20.jpg" alt="LS Confecções produção" onerror="this.parentElement.style.background='#1a1a1a';this.style.display='none'">
-      <div class="about-image-tag">
-        <span class="about-tag-number">+10</span>
-        <span class="about-tag-label">anos de produção</span>
-      </div>
-    </div>
-    <div class="about-content-col fade-up">
-      <span class="about-eyebrow">Sobre nós</span>
-      <h2 class="about-heading">A fábrica por trás<br>da sua marca</h2>
-      <p class="about-body">A LS Confecções nasceu da paixão por qualidade e do compromisso com cada cliente. Há mais de 10 anos somos parceiros de empresas que buscam diferenciar suas marcas com produtos de alto padrão.</p>
-      <p class="about-body">Atendemos marcas de moda, empresas corporativas, lojistas e distribuidores em todo o Brasil — do conceito à entrega.</p>
-      <div class="about-diff-grid">
-        <div class="about-diff-item">
-          <span class="about-diff-icon">✦</span>
-          <div>
-            <h4>Produção própria</h4>
-            <p>Fábrica estruturada com maquinário moderno e equipe especializada.</p>
-          </div>
+  <section id="sobre" class="section" style="background:#fff; padding-block:5rem;">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text fade-up">
+          <span class="eyebrow" style="display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:800; letter-spacing:.3em; text-transform:uppercase; color:#e8ff00; background:#0a0a0a; padding:2px 8px; margin-bottom:1rem;">Nossa história</span>
+          <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:900; text-transform:uppercase; line-height:1; margin-bottom:1.25rem;">Sobre a<br>LS Confecções</h2>
+          <p style="color:#555; line-height:1.8;">A LS Confecções nasceu da paixão por qualidade e do compromisso com cada cliente. Há mais de 10 anos somos parceiros de empresas que buscam diferenciar suas marcas com produtos de alto padrão.</p>
+          <p style="color:#555; line-height:1.8; margin-top:1rem;">Atendemos marcas de moda, empresas corporativas, lojistas e distribuidores em todo o Brasil. Trabalhamos lado a lado com nossos clientes desde o conceito até a entrega.</p>
+          <a href="https://wa.me/5511999370418?text=Ol%C3%A1%2C%20Gustavo!%20Gostaria%20de%20conhecer%20mais%20sobre%20a%20LS%20Confec%C3%A7%C3%B5es." class="btn btn-primary" style="display:inline-flex; margin-top:2rem; align-items:center; gap:.5rem;" target="_blank" rel="noopener">Fale conosco</a>
         </div>
-        <div class="about-diff-item">
-          <span class="about-diff-icon">✦</span>
-          <div>
-            <h4>A partir de 20 unidades</h4>
-            <p>Atendemos marcas em crescimento sem exigir grandes volumes.</p>
+        <div class="about-differentials fade-up">
+          <div class="about-diff-item">
+            <span class="about-diff-icon">✦</span>
+            <div>
+              <h4>Produção própria</h4>
+              <p>Fábrica estruturada com maquinário moderno e equipe especializada.</p>
+            </div>
           </div>
-        </div>
-        <div class="about-diff-item">
-          <span class="about-diff-icon">✦</span>
-          <div>
-            <h4>Personalização total</h4>
-            <p>Bordado, silk, tag e embalagem com a identidade da sua marca.</p>
+          <div class="about-diff-item">
+            <span class="about-diff-icon">✦</span>
+            <div>
+              <h4>Mínimo de 20 unidades</h4>
+              <p>Atendemos marcas em crescimento sem exigir grandes volumes.</p>
+            </div>
           </div>
-        </div>
-        <div class="about-diff-item">
-          <span class="about-diff-icon">✦</span>
-          <div>
-            <h4>Entrega nacional</h4>
-            <p>Mais de 500 clientes em todos os estados do Brasil.</p>
+          <div class="about-diff-item">
+            <span class="about-diff-icon">✦</span>
+            <div>
+              <h4>Personalização total</h4>
+              <p>Bordado, silk, tag, etiqueta e embalagem com a identidade da sua marca.</p>
+            </div>
+          </div>
+          <div class="about-diff-item">
+            <span class="about-diff-icon">✦</span>
+            <div>
+              <h4>Entrega para todo o Brasil</h4>
+              <p>Mais de 500 clientes atendidos em todos os estados do país.</p>
+            </div>
           </div>
         </div>
       </div>
-      <a href="https://wa.me/5511999370418?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20mais%20sobre%20a%20LS%20Confec%C3%A7%C3%B5es." class="btn btn-primary" target="_blank" rel="noopener">Fale conosco</a>
     </div>
   </section>
 
