@@ -15,7 +15,7 @@
     /* Categorias */
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1.5rem;
     }
     .category-card {
@@ -363,9 +363,48 @@
     }
     .footer-bottom p { font-size: .78rem; color: #333; margin: 0; }
 
+    /* Card "e mais 50 categorias" */
+    .category-card--more {
+      border: 2px solid #e8ff00 !important;
+      background: #0a0a0a !important;
+    }
+    .category-thumb--more {
+      background: #0a0a0a !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+    .more-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #e8ff00;
+      line-height: 1;
+    }
+    .more-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .category-card--more h3 { color: #fff; }
+    .category-card--more p { color: #aaa; }
+    .cat-btn--whats {
+      background: #25d366 !important;
+      color: #000 !important;
+      border-color: #25d366 !important;
+    }
+    .category-card--more:hover {
+      box-shadow: 6px 6px 0 #e8ff00 !important;
+    }
+
     /* Responsivo */
     @media (max-width: 1024px) {
-      .categories-grid { grid-template-columns: repeat(2, 1fr); }
+      .categories-grid { grid-template-columns: repeat(3, 1fr); }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid .stat-item:nth-child(2) { border-right: none; }
@@ -373,7 +412,7 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
-      .categories-grid { grid-template-columns: 1fr; }
+      .categories-grid { grid-template-columns: 1fr 1fr; }
       .products-grid { grid-template-columns: 1fr 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
@@ -485,21 +524,9 @@
         <span class="eyebrow">Nosso portfólio</span>
         <h2 style="color:#fff;">Linhas de Produto</h2>
         <span class="divider"></span>
-        <p style="color:#666;">Quatro categorias, infinitas possibilidades de personalização para sua marca.</p>
+        <p style="color:#666;">Do básico ao personalizado — mais de 50 categorias disponíveis para sua marca.</p>
       </div>
       <div class="categories-grid">
-
-        <a href="produtos.html" class="category-card fade-up">
-          <div class="category-thumb">
-            <img src="imagens/produto-01.jpg" alt="Bolsas" onerror="this.style.display='none'">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#e8ff00" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          </div>
-          <div class="category-info">
-            <h3>Bolsas</h3>
-            <p>Tote, executiva, transversal e clutch. Design elegante e funcional para todos os estilos.</p>
-            <span class="cat-btn">Ver modelos →</span>
-          </div>
-        </a>
 
         <a href="produtos.html" class="category-card fade-up">
           <div class="category-thumb">
@@ -508,7 +535,7 @@
           </div>
           <div class="category-info">
             <h3>Mochilas</h3>
-            <p>Notebook, urbana, esportiva e casual. Para todos os perfis profissionais e estilos de vida.</p>
+            <p>Notebook, urbana, esportiva e casual. Para todos os perfis e estilos de vida.</p>
             <span class="cat-btn">Ver modelos →</span>
           </div>
         </a>
@@ -527,13 +554,37 @@
 
         <a href="produtos.html" class="category-card fade-up">
           <div class="category-thumb">
-            <img src="imagens/produto-14.jpg" alt="Acessórios" onerror="this.style.display='none'">
+            <img src="imagens/produto-01.jpg" alt="Shoulder Bag" onerror="this.style.display='none'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e8ff00" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div class="category-info">
+            <h3>Shoulder Bag</h3>
+            <p>Transversal, compacta e versátil. O item coringa do streetwear urbano.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="produtos.html" class="category-card fade-up">
+          <div class="category-thumb">
+            <img src="imagens/produto-14.jpg" alt="Ecobag" onerror="this.style.display='none'">
             <svg viewBox="0 0 24 24" fill="none" stroke="#e8ff00" stroke-width="1"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
           </div>
           <div class="category-info">
-            <h3>Acessórios</h3>
-            <p>Necessaires, porta-documentos e organizadores. Complementos perfeitos para qualquer coleção.</p>
+            <h3>Ecobag</h3>
+            <p>Sustentável e estilosa. Perfeita para ações de marca, eventos e brindes corporativos.</p>
             <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="https://wa.me/5511999370418?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20conhecer%20todas%20as%20categorias%20da%20LS%20Confec%C3%A7%C3%B5es." class="category-card category-card--more fade-up" target="_blank" rel="noopener">
+          <div class="category-thumb category-thumb--more">
+            <span class="more-number">+50</span>
+            <span class="more-label">categorias</span>
+          </div>
+          <div class="category-info">
+            <h3>E muito mais</h3>
+            <p>Bolsas executivas, totes, necessaires, porta-documentos e dezenas de outros modelos exclusivos.</p>
+            <span class="cat-btn cat-btn--whats">Saiba mais →</span>
           </div>
         </a>
 
