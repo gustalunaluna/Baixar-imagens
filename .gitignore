@@ -1,0 +1,7 @@
+node_modules/
+imagens/
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
