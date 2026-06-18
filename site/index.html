@@ -15,7 +15,7 @@
     /* Categorias */
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
     }
     .category-card {
@@ -363,13 +363,43 @@
     }
     .footer-bottom p { font-size: .78rem; color: #333; margin: 0; }
 
-    /* Card "e mais 50 categorias" */
-    .category-card--more {
-      border: 2px solid #e8ff00 !important;
-      background: #0a0a0a !important;
+    /* Diferenciais na seção Sobre */
+    .about-differentials { display: flex; flex-direction: column; gap: 1.25rem; }
+    .about-diff-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid #eee;
+      border-left: 4px solid #e8ff00;
     }
-    .category-thumb--more {
-      background: #0a0a0a !important;
+    .about-diff-icon {
+      font-size: 1rem;
+      color: #e8ff00;
+      background: #0a0a0a;
+      padding: 4px 6px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .about-diff-item h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin: 0 0 .25rem;
+    }
+    .about-diff-item p { color: #666; font-size: .88rem; line-height: 1.6; margin: 0; }
+
+    /* Card "+50 categorias" — integrado ao padrão dos outros cards */
+    .category-card--more .category-thumb {
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .more-inner {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -378,33 +408,34 @@
     }
     .more-number {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 3.5rem;
+      font-size: clamp(3rem, 5vw, 4.5rem);
       font-weight: 900;
       color: #e8ff00;
       line-height: 1;
+      letter-spacing: -0.02em;
     }
     .more-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
+      font-size: .95rem;
       font-weight: 700;
       color: #fff;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
     }
+    .category-card--more { border-color: #0a0a0a; }
+    .category-card--more .category-info { background: #0a0a0a; }
     .category-card--more h3 { color: #fff; }
-    .category-card--more p { color: #aaa; }
-    .cat-btn--whats {
-      background: #25d366 !important;
-      color: #000 !important;
-      border-color: #25d366 !important;
+    .category-card--more p { color: #888; }
+    .category-card--more .cat-btn {
+      background: #e8ff00;
+      color: #000;
+      border-color: #e8ff00;
     }
-    .category-card--more:hover {
-      box-shadow: 6px 6px 0 #e8ff00 !important;
-    }
+    .category-card--more:hover { box-shadow: 6px 6px 0 #e8ff00; }
 
     /* Responsivo */
     @media (max-width: 1024px) {
-      .categories-grid { grid-template-columns: repeat(3, 1fr); }
+      .categories-grid { grid-template-columns: repeat(2, 1fr); }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid .stat-item:nth-child(2) { border-right: none; }
@@ -554,18 +585,6 @@
 
         <a href="produtos.html" class="category-card fade-up">
           <div class="category-thumb">
-            <img src="imagens/produto-01.jpg" alt="Shoulder Bag" onerror="this.style.display='none'">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#e8ff00" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          </div>
-          <div class="category-info">
-            <h3>Shoulder Bag</h3>
-            <p>Transversal, compacta e versátil. O item coringa do streetwear urbano.</p>
-            <span class="cat-btn">Ver modelos →</span>
-          </div>
-        </a>
-
-        <a href="produtos.html" class="category-card fade-up">
-          <div class="category-thumb">
             <img src="imagens/produto-14.jpg" alt="Ecobag" onerror="this.style.display='none'">
             <svg viewBox="0 0 24 24" fill="none" stroke="#e8ff00" stroke-width="1"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
           </div>
@@ -577,14 +596,16 @@
         </a>
 
         <a href="https://wa.me/5511999370418?text=Ol%C3%A1%2C%20Gustavo!%20Quero%20conhecer%20todas%20as%20categorias%20da%20LS%20Confec%C3%A7%C3%B5es." class="category-card category-card--more fade-up" target="_blank" rel="noopener">
-          <div class="category-thumb category-thumb--more">
-            <span class="more-number">+50</span>
-            <span class="more-label">categorias</span>
+          <div class="category-thumb">
+            <div class="more-inner">
+              <span class="more-number">+50</span>
+              <span class="more-label">categorias</span>
+            </div>
           </div>
           <div class="category-info">
             <h3>E muito mais</h3>
-            <p>Bolsas executivas, totes, necessaires, porta-documentos e dezenas de outros modelos exclusivos.</p>
-            <span class="cat-btn cat-btn--whats">Saiba mais →</span>
+            <p>Shoulder bags, totes, necessaires e dezenas de outros modelos exclusivos.</p>
+            <span class="cat-btn">Saiba mais →</span>
           </div>
         </a>
 
@@ -780,18 +801,34 @@
           <p style="color:#555; line-height:1.8; margin-top:1rem;">Atendemos marcas de moda, empresas corporativas, lojistas e distribuidores em todo o Brasil. Trabalhamos lado a lado com nossos clientes desde o conceito até a entrega.</p>
           <a href="https://wa.me/5511999370418?text=Ol%C3%A1%2C%20Gustavo!%20Gostaria%20de%20conhecer%20mais%20sobre%20a%20LS%20Confec%C3%A7%C3%B5es." class="btn btn-primary" style="display:inline-flex; margin-top:2rem; align-items:center; gap:.5rem;" target="_blank" rel="noopener">Fale com Gustavo</a>
         </div>
-        <div class="about-values fade-up">
-          <div class="value-item" style="border-left:4px solid #e8ff00; padding-left:1.5rem; margin-bottom:1.75rem;">
-            <h4 style="font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:900; text-transform:uppercase; margin-bottom:.4rem;">Nossa Missão</h4>
-            <p style="color:#666; font-size:.9rem; line-height:1.7;">Produzir bolsas, mochilas e acessórios de alta qualidade que fortaleçam a identidade das marcas dos nossos clientes.</p>
+        <div class="about-differentials fade-up">
+          <div class="about-diff-item">
+            <span class="about-diff-icon">✦</span>
+            <div>
+              <h4>Produção própria</h4>
+              <p>Fábrica estruturada com maquinário moderno e equipe especializada.</p>
+            </div>
           </div>
-          <div class="value-item" style="border-left:4px solid #e8ff00; padding-left:1.5rem; margin-bottom:1.75rem;">
-            <h4 style="font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:900; text-transform:uppercase; margin-bottom:.4rem;">Nossa Visão</h4>
-            <p style="color:#666; font-size:.9rem; line-height:1.7;">Ser referência nacional em fabricação B2B de artigos de moda, reconhecidos pela qualidade e pontualidade.</p>
+          <div class="about-diff-item">
+            <span class="about-diff-icon">✦</span>
+            <div>
+              <h4>Mínimo de 20 unidades</h4>
+              <p>Atendemos marcas em crescimento sem exigir grandes volumes.</p>
+            </div>
           </div>
-          <div class="value-item" style="border-left:4px solid #e8ff00; padding-left:1.5rem;">
-            <h4 style="font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:900; text-transform:uppercase; margin-bottom:.4rem;">Nossos Valores</h4>
-            <p style="color:#666; font-size:.9rem; line-height:1.7;">Qualidade, transparência, parceria e compromisso com o sucesso de cada cliente que confia em nós.</p>
+          <div class="about-diff-item">
+            <span class="about-diff-icon">✦</span>
+            <div>
+              <h4>Personalização total</h4>
+              <p>Bordado, silk, tag, etiqueta e embalagem com a identidade da sua marca.</p>
+            </div>
+          </div>
+          <div class="about-diff-item">
+            <span class="about-diff-icon">✦</span>
+            <div>
+              <h4>Entrega para todo o Brasil</h4>
+              <p>Mais de 500 clientes atendidos em todos os estados do país.</p>
+            </div>
           </div>
         </div>
       </div>
