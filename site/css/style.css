@@ -3,28 +3,33 @@
    ============================================================ */
 
 /* ── 1. Google Fonts import ─────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap');
 
 /* ── 2. CSS Custom Properties ───────────────────────────── */
 :root {
   /* Colors */
   --color-black:       #0a0a0a;
-  --color-dark:        #1a1a1a;
-  --color-dark-mid:    #242424;
-  --color-dark-light:  #2e2e2e;
-  --color-gold:        #c9a96e;
-  --color-gold-light:  #d4b87a;
-  --color-gold-dark:   #a8883a;
+  --color-dark:        #111111;
+  --color-dark-mid:    #1c1c1c;
+  --color-dark-light:  #2a2a2a;
+  --color-accent:      #e8ff00;       /* amarelo neon — acento streetwear */
+  --color-accent-dim:  #c8db00;
   --color-white:       #ffffff;
-  --color-light:       #f5f5f5;
-  --color-gray:        #888888;
-  --color-gray-light:  #cccccc;
+  --color-off-white:   #f0f0f0;
+  --color-light:       #f4f4f4;
+  --color-gray:        #777777;
+  --color-gray-light:  #bbbbbb;
   --color-whatsapp:    #25d366;
   --color-whatsapp-dk: #1da851;
 
+  /* backwards compat — partes do HTML ainda usam --color-gold */
+  --color-gold:        var(--color-accent);
+  --color-gold-light:  var(--color-accent-dim);
+  --color-gold-dark:   var(--color-accent-dim);
+
   /* Typography */
-  --font-body:     'Montserrat', sans-serif;
-  --font-heading:  'Playfair Display', serif;
+  --font-body:     'Barlow', sans-serif;
+  --font-heading:  'Barlow Condensed', sans-serif;
 
   /* Spacing */
   --space-xs:   0.5rem;
@@ -109,14 +114,16 @@ input, textarea, select {
 /* ── 4. Typography Scale ────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  line-height: 1.2;
-  font-weight: 700;
+  line-height: 1.05;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
-h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
-h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
-h4 { font-size: 1.2rem; }
+h1 { font-size: clamp(3rem, 7vw, 6rem); }
+h2 { font-size: clamp(2.2rem, 4.5vw, 3.8rem); }
+h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+h4 { font-size: 1.3rem; }
 h5 { font-size: 1rem; }
 
 p { margin-bottom: var(--space-sm); }
@@ -140,12 +147,12 @@ p:last-child { margin-bottom: 0; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.85rem 2rem;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  padding: 0.8rem 2rem;
+  border-radius: 0;                   /* streetwear: sem bordas arredondadas */
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: all var(--transition-base);
   line-height: 1;
@@ -153,14 +160,14 @@ p:last-child { margin-bottom: 0; }
 }
 
 .btn-primary {
-  background: var(--color-gold);
+  background: var(--color-accent);
   color: var(--color-black);
 }
 
 .btn-primary:hover {
-  background: var(--color-gold-light);
-  box-shadow: var(--shadow-gold);
+  background: var(--color-white);
   transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--color-accent);
 }
 
 .btn-outline {
@@ -177,12 +184,12 @@ p:last-child { margin-bottom: 0; }
 
 .btn-outline-gold {
   background: transparent;
-  color: var(--color-gold);
-  border: 2px solid var(--color-gold);
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
 }
 
 .btn-outline-gold:hover {
-  background: var(--color-gold);
+  background: var(--color-accent);
   color: var(--color-black);
   transform: translateY(-2px);
 }
@@ -238,12 +245,12 @@ p:last-child { margin-bottom: 0; }
 
 .section-header .eyebrow {
   display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-accent);
   margin-bottom: var(--space-xs);
 }
 
@@ -266,10 +273,10 @@ p:last-child { margin-bottom: 0; }
 .divider {
   display: block;
   width: 56px;
-  height: 3px;
-  background: var(--color-gold);
+  height: 4px;
+  background: var(--color-accent);
   margin: var(--space-sm) auto;
-  border-radius: var(--radius-full);
+  border-radius: 0;
 }
 
 /* ── 8. Header ──────────────────────────────────────────── */
@@ -301,15 +308,16 @@ p:last-child { margin-bottom: 0; }
 /* Logo */
 .logo {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 900;
   color: var(--color-white);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   flex-shrink: 0;
 }
 
 .logo span {
-  color: var(--color-gold);
+  color: var(--color-accent);
 }
 
 /* Nav */
@@ -403,31 +411,31 @@ p:last-child { margin-bottom: 0; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,169,110,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(201,169,110,0.05) 0%, transparent 50%),
-    linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d0d0d 100%);
+  background: var(--color-black);
 }
 
+/* Textura de grão — streetwear feel */
 .hero-bg::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 80px,
-      rgba(201,169,110,0.03) 80px,
-      rgba(201,169,110,0.03) 81px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 80px,
-      rgba(201,169,110,0.03) 80px,
-      rgba(201,169,110,0.03) 81px
-    );
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.5;
+}
+
+/* Linha diagonal de acento */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: 8%;
+  width: 3px;
+  height: 140%;
+  background: var(--color-accent);
+  opacity: 0.15;
+  transform: rotate(15deg);
+  transform-origin: top center;
 }
 
 .hero-content {
@@ -440,33 +448,40 @@ p:last-child { margin-bottom: 0; }
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.25em;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-accent);
   margin-bottom: var(--space-md);
 }
 
-.hero-eyebrow::before,
-.hero-eyebrow::after {
+.hero-eyebrow::before {
   content: '';
   display: block;
-  width: 30px;
-  height: 1px;
-  background: var(--color-gold);
+  width: 40px;
+  height: 2px;
+  background: var(--color-accent);
 }
 
 .hero h1 {
   color: var(--color-white);
   margin-bottom: var(--space-md);
-  font-style: italic;
-  font-weight: 600;
+  font-weight: 900;
+  line-height: 0.95;
 }
 
 .hero h1 em {
   font-style: normal;
-  color: var(--color-gold);
+  color: var(--color-accent);
+  -webkit-text-stroke: 0;
+}
+
+/* Palavra de destaque apenas com contorno (outline text) */
+.hero h1 .outline {
+  -webkit-text-stroke: 2px var(--color-white);
+  color: transparent;
 }
 
 .hero-sub {
@@ -528,65 +543,65 @@ p:last-child { margin-bottom: 0; }
 }
 
 .differential-card {
-  text-align: center;
-  padding: var(--space-xl) var(--space-md);
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(0,0,0,0.07);
+  text-align: left;
+  padding: var(--space-xl) var(--space-lg);
+  border-radius: 0;
+  border: 2px solid var(--color-off-white);
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
 }
 
-.differential-card::before {
+.differential-card::after {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   width: 0;
-  height: 3px;
-  background: var(--color-gold);
+  height: 4px;
+  background: var(--color-accent);
   transition: width var(--transition-slow);
-  border-radius: var(--radius-full);
 }
 
 .differential-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-6px);
+  border-color: var(--color-black);
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0 var(--color-black);
 }
 
-.differential-card:hover::before {
-  width: 60%;
+.differential-card:hover::after {
+  width: 100%;
 }
 
 .differential-icon {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--space-md);
-  background: linear-gradient(135deg, var(--color-black), var(--color-dark-mid));
-  border-radius: var(--radius-md);
+  width: 52px;
+  height: 52px;
+  margin-bottom: var(--space-md);
+  background: var(--color-black);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .differential-icon svg {
-  width: 32px;
-  height: 32px;
-  color: var(--color-gold);
+  width: 28px;
+  height: 28px;
+  color: var(--color-accent);
   stroke: currentColor;
 }
 
 .differential-card h3 {
-  font-size: 1.05rem;
+  font-size: 1.4rem;
   margin-bottom: var(--space-xs);
   color: var(--color-black);
+  letter-spacing: 0.02em;
 }
 
 .differential-card p {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: var(--color-gray);
-  line-height: 1.6;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 /* ── 11. Categories ─────────────────────────────────────── */
@@ -707,17 +722,18 @@ p:last-child { margin-bottom: 0; }
 
 .product-card {
   background: var(--color-white);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
   transition: all var(--transition-base);
   display: flex;
   flex-direction: column;
 }
 
 .product-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-8px);
+  border-color: var(--color-black);
+  transform: translateY(-6px);
+  box-shadow: 6px 6px 0 var(--color-accent);
 }
 
 .product-img-wrap {
@@ -813,26 +829,26 @@ p:last-child { margin-bottom: 0; }
 .step-number {
   width: 64px;
   height: 64px;
-  border-radius: 50%;
+  border-radius: 0;
   background: var(--color-black);
-  color: var(--color-gold);
+  color: var(--color-accent);
   font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.6rem;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--space-md);
   position: relative;
   z-index: 1;
-  border: 3px solid var(--color-gold);
+  border: 3px solid var(--color-accent);
   transition: all var(--transition-base);
 }
 
 .step-card:hover .step-number {
-  background: var(--color-gold);
+  background: var(--color-accent);
   color: var(--color-black);
-  box-shadow: var(--shadow-gold);
+  box-shadow: 4px 4px 0 rgba(232,255,0,0.3);
 }
 
 .step-card h3 {
@@ -883,19 +899,21 @@ p:last-child { margin-bottom: 0; }
 
 .stat-value {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  color: var(--color-gold);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--color-accent);
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.02em;
 }
 
 .stat-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.5);
 }
 
 /* ── 15. Testimonials ───────────────────────────────────── */
@@ -911,16 +929,17 @@ p:last-child { margin-bottom: 0; }
 
 .testimonial-card {
   background: var(--color-white);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   padding: var(--space-xl) var(--space-lg);
-  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-off-white);
   position: relative;
   transition: all var(--transition-base);
 }
 
 .testimonial-card:hover {
-  box-shadow: var(--shadow-md);
+  border-color: var(--color-black);
   transform: translateY(-4px);
+  box-shadow: 5px 5px 0 var(--color-accent);
 }
 
 .testimonial-card::before {
@@ -1212,28 +1231,29 @@ p:last-child { margin-bottom: 0; }
 }
 
 .filter-btn {
-  padding: 0.55rem 1.4rem;
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  padding: 0.6rem 1.6rem;
+  border-radius: 0;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   background: var(--color-white);
   color: var(--color-dark);
-  border: 2px solid transparent;
+  border: 2px solid var(--color-off-white);
   transition: all var(--transition-base);
   cursor: pointer;
-  box-shadow: var(--shadow-sm);
 }
 
 .filter-btn:hover {
-  border-color: var(--color-gold);
-  color: var(--color-gold);
+  border-color: var(--color-black);
+  background: var(--color-black);
+  color: var(--color-accent);
 }
 
 .filter-btn.active {
   background: var(--color-black);
-  color: var(--color-gold);
+  color: var(--color-accent);
   border-color: var(--color-black);
 }
 
@@ -1245,17 +1265,18 @@ p:last-child { margin-bottom: 0; }
 
 .catalog-product-card {
   background: var(--color-white);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
   transition: all var(--transition-base);
   display: flex;
   flex-direction: column;
 }
 
 .catalog-product-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-8px);
+  border-color: var(--color-black);
+  transform: translateY(-6px);
+  box-shadow: 6px 6px 0 var(--color-accent);
 }
 
 .catalog-product-card.hidden {
