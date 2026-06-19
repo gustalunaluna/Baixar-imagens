@@ -1618,6 +1618,19 @@ p:last-child { margin-bottom: 0; }
     grid-template-columns: 1fr 1fr;
   }
 
+  .catalog-body {
+    padding: 0.6rem 0.5rem 0.7rem;
+  }
+
+  .catalog-body .btn.btn-sm {
+    font-size: 0.62rem;
+    padding: 0.45rem 0.5rem;
+    letter-spacing: 0.04em;
+    width: 100%;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
   .hero-actions .btn {
     width: 100%;
     justify-content: center;
