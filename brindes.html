@@ -43,8 +43,10 @@
       max-width: 100%;
       margin: 0 auto;
     }
+    .hero-mobile { display: none; }
     @media (max-width: 768px) {
-      .brindes-hero-bg img { max-height: none; width: 100%; }
+      .hero-desktop { display: none; }
+      .hero-mobile { display: block; width: 100%; max-height: none; }
     }
 
     /* ── Diferenciais ── */
@@ -288,7 +290,8 @@
   <!-- ══════════════════════════ HERO ══════════════════════════ -->
   <section class="brindes-hero">
     <div class="brindes-hero-bg">
-      <img src="imagens/brindes-hero.png" alt="Kit de brindes corporativos personalizados" fetchpriority="high">
+      <img class="hero-desktop" src="imagens/brindes-hero.png" alt="Kit de brindes corporativos personalizados" fetchpriority="high">
+      <img class="hero-mobile" src="imagens/brindes-hero-mobile.jpeg" alt="Ecobag personalizada com sua marca" fetchpriority="high">
     </div>
   </section>
 
