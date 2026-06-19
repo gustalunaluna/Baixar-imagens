@@ -4,6 +4,7 @@
 /*.png
 /*.webp
 /*.gif
+!favicon.png
 
 # Node (não é mais usado neste repositório)
 node_modules/
