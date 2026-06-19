@@ -11,6 +11,13 @@
   const nav       = document.querySelector('.nav');
   const navLinks  = document.querySelectorAll('.nav-links a');
 
+  /* ── Header load animation ─────────────────────────────── */
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      if (header) header.classList.add('header-ready');
+    });
+  });
+
   /* ── 2. Header scroll behaviour ───────────────────────── */
   function onScroll () {
     if (window.scrollY > 80) {

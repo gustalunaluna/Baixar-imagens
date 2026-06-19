@@ -5,6 +5,46 @@
 /* ── 1. Google Fonts import ─────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap');
 
+/* ── Header load animation ─────────────────────────────── */
+@keyframes headerSlideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+@keyframes logoReveal {
+  from { opacity: 0; transform: translateX(-18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes navItemDrop {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ctaFade {
+  from { opacity: 0; transform: scale(.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Estado inicial — invisível até JS adicionar .header-ready */
+.header { opacity: 0; }
+
+.header.header-ready {
+  animation: headerSlideDown .55s cubic-bezier(.22,.68,0,1.2) forwards;
+}
+.header.header-ready .logo {
+  animation: logoReveal .5s cubic-bezier(.22,.68,0,1.1) .25s both;
+}
+.header.header-ready .nav-links li {
+  animation: navItemDrop .4s ease both;
+}
+.header.header-ready .nav-links li:nth-child(1) { animation-delay: .32s; }
+.header.header-ready .nav-links li:nth-child(2) { animation-delay: .40s; }
+.header.header-ready .nav-links li:nth-child(3) { animation-delay: .48s; }
+.header.header-ready .nav-links li:nth-child(4) { animation-delay: .56s; }
+.header.header-ready .nav-links li:nth-child(5) { animation-delay: .64s; }
+.header.header-ready .nav-links li:nth-child(6) { animation-delay: .72s; }
+.header.header-ready .header-cta {
+  animation: ctaFade .45s ease .75s both;
+}
+
 /* ── 2. CSS Custom Properties ───────────────────────────── */
 :root {
   /* Colors */
