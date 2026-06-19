@@ -629,16 +629,37 @@
       .more-inner { padding: 2rem 1rem; }
       .more-number { font-size: 3rem; }
 
-      /* Oculta descrição nos cards de produto no mobile — mantém imagem, título e botão */
+      /* Cards de produto no mobile — compactos e sutis */
       .product-info p { display: none; }
-      .product-info { padding: .75rem 1rem 1rem; }
+      .product-info { padding: .5rem .6rem .65rem; border-top: 1px solid #1a1a1a; }
       .product-img { padding-top: 100%; }
+      .product-info .prod-tag {
+        font-size: .6rem;
+        letter-spacing: .08em;
+        padding: .15rem .4rem;
+        margin-bottom: .25rem;
+        background: transparent;
+        color: #888;
+        border: none;
+      }
+      .product-info h3 { font-size: .85rem; margin-bottom: .4rem; line-height: 1.2; }
+      .prod-btn {
+        font-size: .65rem;
+        padding: .3rem .6rem;
+        letter-spacing: .06em;
+        background: transparent;
+        color: #e8ff00;
+        border: 1px solid #e8ff0055;
+        box-shadow: none;
+      }
+      .prod-btn:hover { background: #e8ff00; color: #000; }
 
-      /* Oculta descrição nos cards de categoria no mobile */
+      /* Cards de categoria no mobile */
       .category-info p { display: none; }
-      .category-info { padding: .75rem 1rem 1rem; }
-      .category-info h3 { font-size: 1.1rem; margin-bottom: .5rem; }
+      .category-info { padding: .5rem .75rem .75rem; }
+      .category-info h3 { font-size: 1rem; margin-bottom: .4rem; }
       .category-thumb { aspect-ratio: 1/1; }
+      .cat-btn { font-size: .65rem; padding: .3rem 0; letter-spacing: .06em; }
     }
     @media (max-width: 640px) {
       .categories-grid { grid-template-columns: 1fr 1fr; }
@@ -650,8 +671,7 @@
       .hero-actions { flex-direction: column; width: 100%; }
       .hero-actions .btn { width: 100%; text-align: center; justify-content: center; }
       .section { padding-block: 3rem; }
-      .product-info h3 { font-size: 1rem; }
-      .prod-btn { font-size: .7rem; padding: .45rem .9rem; }
+      .product-info h3 { font-size: .8rem; }
     }
   </style>
 </head>
