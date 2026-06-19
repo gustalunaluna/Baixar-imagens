@@ -1664,17 +1664,20 @@ p:last-child { margin-bottom: 0; }
     grid-template-columns: 1fr !important;
   }
 
-  /* Hero btn */
+  /* Hero btn — lado a lado no mobile */
   .hero-actions {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
   }
 
-  /* Btn full on mobile */
   .hero-actions .btn {
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
     justify-content: center;
+    padding: .55rem .9rem;
+    font-size: .75rem;
   }
 
   /* Oculta btn header no mobile, fica dentro do nav */
@@ -1715,13 +1718,17 @@ p:last-child { margin-bottom: 0; }
   }
 
   .hero-actions .btn {
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
     justify-content: center;
+    padding: .5rem .8rem;
+    font-size: .72rem;
   }
 
   .hero-actions {
-    flex-direction: column;
-    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .5rem;
   }
 
   .cta-actions .btn {
