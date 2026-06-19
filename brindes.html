@@ -38,34 +38,33 @@
       display: flex;
       align-items: center;
       overflow: hidden;
-      background: #f5c518;
-    }
-    /* Imagem de fundo */
-    .brindes-hero-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .brindes-hero-bg img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: right center;
-      background: #f5c518;
-    }
-    /* Gradiente escuro da esquerda para cobrir o texto */
-    .brindes-hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.75) 45%, rgba(10,10,10,0.1) 100%);
+      background: #0a0a0a;
     }
     .brindes-hero .container {
       position: relative;
       z-index: 1;
       padding-top: 120px;
       padding-bottom: 80px;
-      max-width: 580px;
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .brindes-hero-text {
+      flex: 0 0 45%;
+      max-width: 45%;
+    }
+    .brindes-hero-img {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .brindes-hero-img img {
+      max-height: 75vh;
+      max-width: 100%;
+      object-fit: contain;
     }
     .brindes-hero-text .eyebrow {
       display: inline-block;
@@ -301,15 +300,17 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .brindes-hero-bg::after { background: linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.6) 60%, rgba(10,10,10,0.85) 100%); }
-      .brindes-hero-bg img { object-position: 65% center; }
+      .brindes-hero .container { flex-direction: column; padding-top: 100px; padding-bottom: 0; gap: 0; }
+      .brindes-hero-text { flex: none; max-width: 100%; }
+      .brindes-hero-img { justify-content: center; width: 100%; }
+      .brindes-hero-img img { max-height: 50vh; }
       .brindes-diffs-grid { grid-template-columns: repeat(2, 1fr); }
       .brindes-grid { grid-template-columns: repeat(2, 1fr); }
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 540px) {
-      .brindes-hero { min-height: 70vh; }
-      .brindes-hero .container { padding-top: 100px; padding-bottom: 60px; }
+      .brindes-hero { min-height: unset; }
+      .brindes-hero-img img { max-height: 40vh; }
       .brindes-grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
       .brindes-diffs-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .steps-grid { grid-template-columns: 1fr 1fr; }
@@ -346,11 +347,6 @@
 
   <!-- ══════════════════════════ HERO ══════════════════════════ -->
   <section class="brindes-hero">
-    <!-- Imagem de fundo -->
-    <div class="brindes-hero-bg">
-      <img src="imagens/brindes-hero.png" alt="Kit de brindes corporativos personalizados — ecobag, mochila e estojo com sua marca" fetchpriority="high">
-    </div>
-
     <div class="container">
       <div class="brindes-hero-text">
         <span class="eyebrow">Brindes Corporativos &amp; Marketing</span>
@@ -360,10 +356,10 @@
           <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Tenho%20interesse%20em%20brindes%20corporativos%20personalizados." class="btn btn-primary" target="_blank" rel="noopener">
             Pedir Orçamento Agora
           </a>
-          <a href="produtos.html" class="btn btn-secondary">
-            Ver Catálogo Completo
-          </a>
         </div>
+      </div>
+      <div class="brindes-hero-img">
+        <img src="imagens/brindes-hero.png" alt="Kit de brindes corporativos personalizados — ecobag, mochila e estojo com sua marca" fetchpriority="high">
       </div>
     </div>
   </section>
