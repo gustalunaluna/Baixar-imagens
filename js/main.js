@@ -131,7 +131,15 @@
     });
   }
 
-  /* ── 7. onerror fallback already inline in HTML ───────── */
+  /* ── 7. Scroll hint arrow — hide after scrolling down ─── */
+  const scrollHint = document.querySelector('.scroll-hint');
+  if (scrollHint) {
+    window.addEventListener('scroll', function () {
+      scrollHint.classList.toggle('hidden', window.scrollY > 80);
+    }, { passive: true });
+  }
+
+  /* ── 8. onerror fallback already inline in HTML ───────── */
   /* (handled via onerror attribute on each img tag)         */
 
 })();
