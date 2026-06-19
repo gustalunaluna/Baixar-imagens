@@ -220,6 +220,12 @@
       gap: 0;
       border: 2px solid #1a1a1a;
     }
+    @media (max-width: 900px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    }
     .product-card {
       background: #111;
       border: 1px solid #1e1e1e;
@@ -816,7 +822,7 @@
         <span class="divider"></span>
         <p style="color:#555;">Alguns dos nossos modelos mais procurados — todos personalizáveis com a sua marca.</p>
       </div>
-      <div class="products-grid" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="products-grid">
 
         <div class="product-card fade-up">
           <div class="product-img">
