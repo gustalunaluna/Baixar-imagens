@@ -1564,21 +1564,54 @@ p:last-child { margin-bottom: 0; }
 
   .filter-bar {
     gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* About */
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-img {
+    min-height: 280px;
+  }
+
+  /* Contact */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Hero btn */
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  /* Btn full on mobile */
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Oculta btn header no mobile, fica dentro do nav */
+  .header > .container > .btn {
+    display: none;
   }
 }
 
 /* ── 24. Responsive — 480px ─────────────────────────────── */
 @media (max-width: 480px) {
   .differentials-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .categories-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .products-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .catalog-grid {
@@ -1590,6 +1623,11 @@ p:last-child { margin-bottom: 0; }
     justify-content: center;
   }
 
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
   .cta-actions .btn {
     width: 100%;
     justify-content: center;
@@ -1598,6 +1636,72 @@ p:last-child { margin-bottom: 0; }
   .cta-actions {
     flex-direction: column;
     align-items: center;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 14vw, 4rem);
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-item {
+    border-right: none !important;
+    border-bottom: 1px solid #222;
+  }
+
+  .filter-bar {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .filter-btn {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding-block: 3rem;
+  }
+}
+
+/* ── 24b. Responsive — 360px (telas muito pequenas) ─────── */
+@media (max-width: 360px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .differentials-grid {
+    grid-template-columns: 1fr;
   }
 }
 
