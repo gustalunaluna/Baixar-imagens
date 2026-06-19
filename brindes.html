@@ -86,26 +86,17 @@
       flex-wrap: wrap;
     }
 
-    /* Mosaic de imagens hero */
-    .brindes-hero-mosaic {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 220px 220px;
-      gap: 8px;
+    /* Imagem hero */
+    .brindes-hero-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .brindes-hero-mosaic .mosaic-img {
-      overflow: hidden;
-      border-radius: 2px;
-    }
-    .brindes-hero-mosaic .mosaic-img img {
+    .brindes-hero-img img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .5s ease;
-    }
-    .brindes-hero-mosaic .mosaic-img:hover img { transform: scale(1.05); }
-    .brindes-hero-mosaic .mosaic-img:first-child {
-      grid-row: span 2;
+      max-width: 520px;
+      border-radius: 4px;
+      object-fit: contain;
     }
 
     /* ── Diferenciais ── */
@@ -308,14 +299,12 @@
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .brindes-hero .container { grid-template-columns: 1fr; gap: 2rem; }
-      .brindes-hero-mosaic { grid-template-rows: 160px 160px; }
       .brindes-diffs-grid { grid-template-columns: repeat(2, 1fr); }
       .brindes-grid { grid-template-columns: repeat(2, 1fr); }
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 540px) {
       .brindes-hero { padding: 110px 0 60px; }
-      .brindes-hero-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 130px 130px; }
       .brindes-grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
       .brindes-diffs-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .steps-grid { grid-template-columns: 1fr 1fr; }
@@ -367,16 +356,8 @@
         </div>
       </div>
 
-      <div class="brindes-hero-mosaic">
-        <div class="mosaic-img">
-          <img src="imagens/categoria-ecobag.jpeg" alt="Ecobag personalizada para brinde corporativo" fetchpriority="high">
-        </div>
-        <div class="mosaic-img">
-          <img src="imagens/produto-tote-azul.webp" alt="Tote bag azul com estampa corporativa">
-        </div>
-        <div class="mosaic-img">
-          <img src="imagens/destaque-tote-jeans.webp" alt="Tote bag jeans personalizada brinde">
-        </div>
+      <div class="brindes-hero-img">
+        <img src="imagens/brindes-hero.png" alt="Brindes corporativos personalizados — ecobag, mochila e estojo com sua marca" fetchpriority="high">
       </div>
     </div>
   </section>
