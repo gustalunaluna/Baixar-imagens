@@ -205,6 +205,15 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+    /* Botão secundário visível sobre fundo preto */
+    .brindes-cta-actions .btn-secondary {
+      color: #fff;
+      border-color: #fff;
+    }
+    .brindes-cta-actions .btn-secondary:hover {
+      background: #fff;
+      color: #0a0a0a;
+    }
 
     /* ── Como funciona ── */
     .como-funciona-brindes {
@@ -216,9 +225,12 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
       margin-top: 3rem;
+      position: relative;
     }
     .step {
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
     .step-num {
       width: 52px;
@@ -232,6 +244,8 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto 1rem;
+      position: relative;
+      z-index: 2;
     }
     .step h4 {
       font-family: 'Barlow Condensed', sans-serif;
@@ -245,6 +259,14 @@
       font-size: .83rem;
       color: #666;
       line-height: 1.55;
+    }
+
+    /* Linha conectora dos steps — atrás dos números */
+    .como-funciona-brindes .steps-grid { position: relative; }
+    .como-funciona-brindes .steps-grid::before {
+      top: 26px; /* centraliza na altura do quadrado de 52px */
+      z-index: 0;
+      background: #ccc;
     }
 
     /* ── Responsive ── */
