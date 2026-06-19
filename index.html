@@ -681,6 +681,35 @@
       .section { padding-block: 3rem; }
       .product-info h3 { font-size: .8rem; }
     }
+
+    /* ── Seta de scroll ── */
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0);   opacity: .9; }
+      50%       { transform: translateX(-50%) translateY(10px); opacity: .4; }
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1.5px solid rgba(255,255,255,.35);
+      border-radius: 50%;
+      color: #fff;
+      text-decoration: none;
+      animation: scrollBounce 1.8s ease-in-out infinite;
+      transition: opacity .4s, visibility .4s;
+      z-index: 10;
+    }
+    .scroll-hint svg { width: 22px; height: 22px; }
+    .scroll-hint.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
   </style>
 </head>
 <body>
@@ -735,6 +764,13 @@
         </div>
       </div>
     </div>
+
+    <!-- Seta scroll -->
+    <a class="scroll-hint" href="#diferenciais" aria-label="Rolar para baixo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </a>
   </section>
 
   <!-- DIFERENCIAIS -->
