@@ -33,62 +33,12 @@
   <style>
     /* ── Hero Brindes ── */
     .brindes-hero {
-      min-height: 100vh;
-      display: flex;
-      overflow: hidden;
-    }
-    /* Painel escuro à esquerda com o texto */
-    .brindes-hero-panel {
-      flex: 0 0 38%;
-      background: #0a0a0a;
-      display: flex;
-      align-items: center;
-      padding: 130px 3rem 80px;
-    }
-    /* Imagem ocupa o restante — sem nenhum overlay */
-    .brindes-hero-bg {
-      flex: 1;
-      overflow: hidden;
+      display: block;
+      line-height: 0;
     }
     .brindes-hero-bg img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
       display: block;
-    }
-    .brindes-hero-text .eyebrow {
-      display: inline-block;
-      background: #e8ff00;
-      color: #000;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      padding: .3rem .85rem;
-      margin-bottom: 1.75rem;
-    }
-    .brindes-hero-text h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(2.4rem, 3.5vw, 4rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 1.0;
-      color: #fff;
-      margin-bottom: 1.25rem;
-    }
-    .brindes-hero-text h1 span { color: #e8ff00; }
-    .brindes-hero-text p {
-      color: #999;
-      font-size: .95rem;
-      line-height: 1.7;
-      margin-bottom: 2.25rem;
-    }
-    .brindes-hero-actions {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
     }
 
     /* ── Diferenciais ── */
@@ -290,15 +240,11 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .brindes-hero { flex-direction: column; min-height: unset; }
-      .brindes-hero-panel { flex: none; width: 100%; padding: 110px 1.5rem 2.5rem; }
-      .brindes-hero-bg { min-height: 55vw; }
       .brindes-diffs-grid { grid-template-columns: repeat(2, 1fr); }
       .brindes-grid { grid-template-columns: repeat(2, 1fr); }
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 540px) {
-      .brindes-hero-bg { min-height: 70vw; }
       .brindes-grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
       .brindes-diffs-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .steps-grid { grid-template-columns: 1fr 1fr; }
@@ -335,18 +281,6 @@
 
   <!-- ══════════════════════════ HERO ══════════════════════════ -->
   <section class="brindes-hero">
-    <div class="brindes-hero-panel">
-      <div class="brindes-hero-text">
-        <span class="eyebrow">Brindes Corporativos &amp; Marketing</span>
-        <h1>Transforme seus<br>clientes em<br><span>mídia</span> para<br>sua marca</h1>
-        <p>Ecobags, mochilas e pochetes personalizadas com a identidade visual da sua empresa. A partir de 20 unidades.</p>
-        <div class="brindes-hero-actions">
-          <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Tenho%20interesse%20em%20brindes%20corporativos%20personalizados." class="btn btn-primary" target="_blank" rel="noopener">
-            Pedir Orçamento Agora
-          </a>
-        </div>
-      </div>
-    </div>
     <div class="brindes-hero-bg">
       <img src="imagens/brindes-hero.png" alt="Kit de brindes corporativos personalizados" fetchpriority="high">
     </div>
