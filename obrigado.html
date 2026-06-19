@@ -125,7 +125,9 @@
   </a>
 
   <script>
-    window.location.href = 'https://wa.me/5511999370418?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.';
+    const params = new URLSearchParams(window.location.search);
+    const dest = params.get('r') || 'https://wa.me/5511999370418?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.';
+    window.location.href = dest;
   </script>
 
 </body>
