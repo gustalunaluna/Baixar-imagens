@@ -138,10 +138,19 @@
     Abrir WhatsApp agora
   </a>
 
+  <p class="redirect-msg">Redirecionando em <span id="counter">3</span>s…</p>
+
   <script>
     const params = new URLSearchParams(window.location.search);
     const dest = params.get('r') || 'https://wa.me/5511999370418?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.';
-    window.location.href = dest;
+    const counterEl = document.getElementById('counter');
+    let t = 3;
+    const iv = setInterval(function () {
+      t--;
+      if (counterEl) counterEl.textContent = t;
+      if (t <= 0) { clearInterval(iv); window.location.href = dest; }
+    }, 1000);
+    document.getElementById('waBtn').href = dest;
   </script>
 
 </body>
