@@ -559,7 +559,7 @@
       letter-spacing: .05em;
       margin: 0 0 .25rem;
     }
-    .about-diff-item p { color: #666; font-size: .88rem; line-height: 1.6; margin: 0; }
+    .about-diff-item p { color: #555; font-size: .88rem; line-height: 1.6; margin: 0; }
 
     /* Card "+50 categorias" — integrado ao padrão dos outros cards */
     .category-card--more .category-thumb {
@@ -1310,9 +1310,16 @@
         if (s.x > 1.1)  s.x = -0.1;
       }
 
-      requestAnimationFrame(draw);
+      animId = requestAnimationFrame(draw);
     }
-    draw();
+    let animId = requestAnimationFrame(draw);
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        cancelAnimationFrame(animId);
+      } else {
+        animId = requestAnimationFrame(draw);
+      }
+    });
   })();
   </script>
 </body>

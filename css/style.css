@@ -378,7 +378,7 @@ p:last-child { margin-bottom: 0; }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.92);
   position: relative;
   padding-bottom: 2px;
 }
@@ -527,7 +527,7 @@ p:last-child { margin-bottom: 0; }
 .hero-sub,
 .hero-subtitle {
   font-size: 1.1rem;
-  color: rgba(255,255,255,0.85);
+  color: rgba(255,255,255,0.92);
   max-width: 540px;
   margin-bottom: var(--space-xl);
   font-weight: 400;
