@@ -1850,7 +1850,11 @@ section[id] {
 
 /* Focus visible */
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid #e8ff00;
+  outline-offset: 3px;
+}
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 2px solid #e8ff00;
   outline-offset: 3px;
 }
 
