@@ -532,34 +532,54 @@
     }
     .footer-bottom p { font-size: .78rem; color: #333; margin: 0; }
 
-    /* Diferenciais na seção Sobre */
-    .about-differentials { display: flex; flex-direction: column; gap: 1.25rem; }
-    .about-diff-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.1rem 1.25rem;
-      border: 1px solid #eee;
-      border-left: 4px solid #e8ff00;
+    /* Seção Clientes */
+    .clients-section { background: #0a0a0a; }
+    .clients-section .section-header h2 { color: #fff; }
+    .clients-section .eyebrow { color: #e8ff00; }
+    .clients-section .section-sub { color: rgba(255,255,255,.5); }
+    .clients-section .divider { background: #e8ff00; }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: #1c1c1c;
+      border: 1px solid #1c1c1c;
+      margin-top: 3rem;
     }
-    .about-diff-icon {
-      font-size: 1rem;
-      color: #e8ff00;
+    .client-item {
       background: #0a0a0a;
-      padding: 4px 6px;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: 2.25rem 1rem;
+      min-height: 110px;
+      transition: background .25s;
     }
-    .about-diff-item h4 {
+    .client-item:hover { background: #141414; }
+    .client-name {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 900;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      letter-spacing: .05em;
-      margin: 0 0 .25rem;
+      color: rgba(255,255,255,.38);
+      text-align: center;
+      line-height: 1.2;
+      transition: color .25s;
     }
-    .about-diff-item p { color: #555; font-size: .88rem; line-height: 1.6; margin: 0; }
+    .client-item:hover .client-name { color: #fff; }
+    .client-item--crest svg { width: 42px; height: 52px; opacity: .45; transition: opacity .25s; }
+    .client-item--crest:hover svg { opacity: 1; }
+    .client-item--crest .client-name { font-size: .7rem; letter-spacing: .1em; }
+    @media (max-width: 900px) { .clients-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 480px) {
+      .clients-grid { grid-template-columns: repeat(2, 1fr); }
+      .client-item { padding: 1.5rem .75rem; }
+      .client-name { font-size: .9rem; }
+    }
 
     /* Card "+50 categorias" — integrado ao padrão dos outros cards */
     .category-card--more .category-thumb {
@@ -1055,46 +1075,56 @@
     </div>
   </div>
 
-  <!-- SOBRE -->
-  <section id="sobre" class="section" style="background:#fff; padding-block:5rem;">
+  <!-- CLIENTES -->
+  <section id="sobre" class="section clients-section">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-text fade-up">
-          <span class="eyebrow" style="display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:800; letter-spacing:.3em; text-transform:uppercase; color:#e8ff00; background:#0a0a0a; padding:2px 8px; margin-bottom:1rem;">Nossa história</span>
-          <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3.5rem); font-weight:900; text-transform:uppercase; line-height:1; margin-bottom:1.25rem;">Sobre a<br>LS Confecções</h2>
-          <p style="color:#555; line-height:1.8;">A LS Confecções nasceu da paixão por qualidade e do compromisso com cada cliente. Há mais de 10 anos somos parceiros de empresas que buscam diferenciar suas marcas com produtos de alto padrão.</p>
-          <p style="color:#555; line-height:1.8; margin-top:1rem;">Atendemos marcas de moda, empresas corporativas, lojistas e distribuidores em todo o Brasil. Trabalhamos lado a lado com nossos clientes desde o conceito até a entrega.</p>
-          <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%25C3%25A1%252C%2520Gustavo%21%2520Gostaria%2520de%2520conhecer%2520mais%2520sobre%2520a%2520LS%2520Confec%25C3%25A7%25C3%25B5es." class="btn btn-primary" style="display:inline-flex; margin-top:2rem; align-items:center; gap:.5rem;" target="_blank" rel="noopener noreferrer">Fale conosco</a>
+      <div class="section-header fade-up">
+        <span class="eyebrow">Quem confia na gente</span>
+        <h2>Clientes que confiam<br>na LS Confecções</h2>
+        <span class="divider"></span>
+        <p class="section-sub" style="max-width:520px; margin:1rem auto 0;">Marcas de moda, clubes de futebol e empresas que escolheram qualidade e parceria.</p>
+      </div>
+      <div class="clients-grid fade-up">
+        <div class="client-item">
+          <span class="client-name">THUG NINE</span>
         </div>
-        <div class="about-differentials fade-up">
-          <div class="about-diff-item">
-            <span class="about-diff-icon">✦</span>
-            <div>
-              <h4>Produção própria</h4>
-              <p>Fábrica estruturada com maquinário moderno e equipe especializada.</p>
-            </div>
-          </div>
-          <div class="about-diff-item">
-            <span class="about-diff-icon">✦</span>
-            <div>
-              <h4>Mínimo de 20 unidades</h4>
-              <p>Atendemos marcas em crescimento sem exigir grandes volumes.</p>
-            </div>
-          </div>
-          <div class="about-diff-item">
-            <span class="about-diff-icon">✦</span>
-            <div>
-              <h4>Personalização total</h4>
-              <p>Bordado, silk, tag, etiqueta e embalagem com a identidade da sua marca.</p>
-            </div>
-          </div>
-          <div class="about-diff-item">
-            <span class="about-diff-icon">✦</span>
-            <div>
-              <h4>Entrega para todo o Brasil</h4>
-              <p>Mais de 500 clientes atendidos em todos os estados do país.</p>
-            </div>
-          </div>
+        <div class="client-item">
+          <span class="client-name">DUBS</span>
+        </div>
+        <div class="client-item">
+          <span class="client-name">BOLOVO</span>
+        </div>
+        <div class="client-item">
+          <span class="client-name">CARNAN</span>
+        </div>
+        <div class="client-item">
+          <span class="client-name">COROA<br>CLOTHING</span>
+        </div>
+        <div class="client-item">
+          <span class="client-name">SEABIRD</span>
+        </div>
+        <div class="client-item">
+          <span class="client-name">DISTURB</span>
+        </div>
+        <div class="client-item client-item--crest">
+          <svg viewBox="0 0 64 80" aria-label="Vasco da Gama" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 4 L60 16 L60 44 C60 60 46 74 32 78 C18 74 4 60 4 44 L4 16 Z" fill="#fff" stroke="#ccc" stroke-width="1.5"/>
+            <path d="M32 12 L54 22 L54 44 C54 57 43 69 32 72 C21 69 10 57 10 44 L10 22 Z" fill="#0a0a0a"/>
+            <text x="32" y="38" text-anchor="middle" font-family="serif" font-size="9" font-weight="bold" fill="#fff" letter-spacing="1">VASCO</text>
+            <text x="32" y="50" text-anchor="middle" font-family="serif" font-size="6" fill="#fff" letter-spacing="1">DA GAMA</text>
+            <line x1="16" y1="58" x2="48" y2="58" stroke="#e8ff00" stroke-width="1"/>
+          </svg>
+          <span class="client-name">VASCO</span>
+        </div>
+        <div class="client-item client-item--crest">
+          <svg viewBox="0 0 64 80" aria-label="Flamengo" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 4 L60 16 L60 44 C60 60 46 74 32 78 C18 74 4 60 4 44 L4 16 Z" fill="#fff" stroke="#ccc" stroke-width="1.5"/>
+            <path d="M32 12 L54 22 L54 44 C54 57 43 69 32 72 C21 69 10 57 10 44 L10 22 Z" fill="#cc0000"/>
+            <path d="M10 38 L54 38 L54 50 L10 50 Z" fill="#0a0a0a"/>
+            <text x="32" y="32" text-anchor="middle" font-family="serif" font-size="8" font-weight="bold" fill="#fff" letter-spacing="1">CRF</text>
+            <text x="32" y="62" text-anchor="middle" font-family="serif" font-size="5.5" fill="#cc0000" letter-spacing="1">FLAMENGO</text>
+          </svg>
+          <span class="client-name">FLAMENGO</span>
         </div>
       </div>
     </div>
