@@ -1517,14 +1517,14 @@ p:last-child { margin-bottom: 0; }
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
-    width: min(320px, 85vw);
+    width: min(240px, 72vw);
+    height: 100dvh;
     background: #0a0a0a;
     border-left: 1px solid #1c1c1c;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
-    padding: calc(var(--header-h) + 2rem) 2rem 3rem;
+    padding: calc(var(--header-h) + 1.25rem) 1.25rem 1.5rem;
     gap: 0;
     transform: translateX(100%);
     transition: transform .35s cubic-bezier(.4,0,.2,1);
@@ -1542,7 +1542,7 @@ p:last-child { margin-bottom: 0; }
     content: '';
     position: fixed;
     inset: 0;
-    right: min(320px, 85vw);
+    right: min(240px, 72vw);
     background: rgba(0,0,0,.55);
     opacity: 0;
     pointer-events: none;
@@ -1563,24 +1563,25 @@ p:last-child { margin-bottom: 0; }
   .nav-links li {
     width: 100%;
     border-bottom: 1px solid #1c1c1c;
-    /* Sobrescreve a animação de entrada do header no mobile */
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
 
   .nav-links a {
-    font-size: 1.15rem;
-    padding: 1rem 0;
+    font-size: .95rem;
+    padding: .7rem 0;
     display: block;
     width: 100%;
   }
 
   /* Botão de orçamento dentro do nav mobile */
   .nav .btn {
-    margin-top: 2rem;
+    margin-top: 1.25rem;
     width: 100%;
     justify-content: center;
+    font-size: .8rem;
+    padding: .6rem 1rem;
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
