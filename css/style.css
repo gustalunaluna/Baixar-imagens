@@ -1695,6 +1695,16 @@ p:last-child { margin-bottom: 0; }
     grid-template-columns: 1fr 1fr;
   }
 
+  .differential-card {
+    padding: .9rem .75rem;
+  }
+
+  .differential-card h3 {
+    font-size: 1rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
   .categories-grid {
     grid-template-columns: 1fr 1fr;
   }
