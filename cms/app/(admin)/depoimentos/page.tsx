@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import { toast } from 'sonner'
-import { Plus, Pencil, Trash2, X, Star } from 'lucide-react'
+import { Plus, Pencil, Trash2, X } from 'lucide-react'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import ImageUploader from '@/components/admin/ImageUploader'
 import type { Depoimento } from '@/types'
