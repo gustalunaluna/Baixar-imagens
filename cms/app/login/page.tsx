@@ -1,41 +1,56 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { createClient } from '@/lib/supabase'
-import { loginSchema, type LoginForm } from '@/lib/validations'
 
 export default function LoginPage() {
   const router = useRouter()
-  const supabase = createClient()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [showPass, setShowPass] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema),
-  })
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setError('')
 
-  async function onSubmit(data: LoginForm) {
-    const { error } = await supabase.auth.signInWithPassword({
-      email: data.email,
-      password: data.password,
-    })
-    if (error) {
-      toast.error(error.message === 'Invalid login credentials'
-        ? 'E-mail ou senha incorretos.'
-        : error.message)
+    if (!email || !password) {
+      setError('Preencha e-mail e senha.')
       return
     }
-    router.push('/dashboard')
-    router.refresh()
+    if (password.length < 6) {
+      setError('Senha deve ter pelo menos 6 caracteres.')
+      return
+    }
+
+    setLoading(true)
+    try {
+      const supabase = createClient()
+      const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
+      if (authError) {
+        setError(
+          authError.message === 'Invalid login credentials'
+            ? 'E-mail ou senha incorretos.'
+            : authError.message
+        )
+        setLoading(false)
+        return
+      }
+      toast.success('Login realizado!')
+      router.push('/dashboard')
+      router.refresh()
+    } catch (err) {
+      setError('Erro ao conectar. Verifique sua conexão.')
+      setLoading(false)
+    }
   }
 
   return (
     <div className="min-h-screen bg-[#080808] flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
-        {/* Logo */}
         <div className="text-center mb-10">
           <span className="text-2xl font-black uppercase tracking-widest">
             LS <span className="text-[#e8ff00]">Confecções</span>
@@ -43,7 +58,13 @@ export default function LoginPage() {
           <p className="text-[#888] text-sm mt-2">Painel Administrativo</p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {error && (
+            <div className="bg-red-500/10 border border-red-500/30 text-red-400 text-sm px-4 py-3">
+              {error}
+            </div>
+          )}
+
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">
               E-mail
@@ -52,12 +73,10 @@ export default function LoginPage() {
               type="email"
               autoComplete="email"
               placeholder="seu@email.com"
-              className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-3 text-sm focus:border-[#e8ff00] transition-colors"
-              {...register('email')}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-3 text-sm focus:border-[#e8ff00] transition-colors outline-none"
             />
-            {errors.email && (
-              <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>
-            )}
           </div>
 
           <div>
@@ -69,8 +88,9 @@ export default function LoginPage() {
                 type={showPass ? 'text' : 'password'}
                 autoComplete="current-password"
                 placeholder="••••••••"
-                className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-3 text-sm focus:border-[#e8ff00] transition-colors pr-10"
-                {...register('password')}
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-3 text-sm focus:border-[#e8ff00] transition-colors outline-none pr-10"
               />
               <button
                 type="button"
@@ -80,18 +100,15 @@ export default function LoginPage() {
                 {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
             </div>
-            {errors.password && (
-              <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>
-            )}
           </div>
 
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={loading}
             className="w-full bg-[#e8ff00] text-black font-bold uppercase tracking-widest text-sm py-3 flex items-center justify-center gap-2 hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed mt-2"
           >
-            {isSubmitting ? <Loader2 size={16} className="animate-spin" /> : null}
-            {isSubmitting ? 'Entrando…' : 'Entrar'}
+            {loading && <Loader2 size={16} className="animate-spin" />}
+            {loading ? 'Entrando…' : 'Entrar'}
           </button>
         </form>
 
