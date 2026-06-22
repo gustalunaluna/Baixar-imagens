@@ -24,6 +24,7 @@ export async function GET() {
   const authCookies = allCookies.filter(c => c.name.includes('supabase') || c.name.includes('sb-'))
 
   let userResult: unknown = null
+  let sessionResult: unknown = null
   try {
     const supabase = createServerClient(url, anon, {
       cookies: {
@@ -31,8 +32,10 @@ export async function GET() {
         setAll() {},
       },
     })
-    const { data, error } = await supabase.auth.getUser()
-    userResult = error ? { error: error.message } : { user: data.user?.email, id: data.user?.id }
+    const { data: ud, error: ue } = await supabase.auth.getUser()
+    userResult = ue ? { error: ue.message } : { email: ud.user?.email, id: ud.user?.id }
+    const { data: sd, error: se } = await supabase.auth.getSession()
+    sessionResult = se ? { error: se.message } : { hasSession: !!sd.session, email: sd.session?.user?.email }
   } catch (e) {
     userResult = { exception: String(e) }
   }
@@ -40,7 +43,9 @@ export async function GET() {
   return NextResponse.json({
     envStatus,
     authCookiesFound: authCookies.map(c => c.name),
+    cookieValues: authCookies.map(c => ({ name: c.name, length: c.value.length, preview: c.value.slice(0, 50) })),
     totalCookies: allCookies.length,
     supabaseGetUser: userResult,
+    supabaseGetSession: sessionResult,
   })
 }
