@@ -52,7 +52,6 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-8">
-      {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard title="Produtos" value={stats.total_produtos} icon={Package} />
         <StatsCard title="Leads" value={stats.total_leads} icon={Users} />
@@ -60,27 +59,25 @@ export default function DashboardPage() {
         <StatsCard title="Em Destaque" value={stats.produtos_destaque} icon={Star} />
       </div>
 
-      {/* Recent leads */}
       <div>
         <h2 className="text-xs font-bold uppercase tracking-widest text-[#888] mb-4">Últimos leads recebidos</h2>
         <div className="bg-[#111] border border-[#1c1c1c] overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-[#1c1c1c]">
-                {['Nome', 'Empresa', 'WhatsApp', 'Interesse', 'Status', 'Data'].map(h => (
+                {['Nome', 'Empresa', 'Telefone', 'Status', 'Data'].map(h => (
                   <th key={h} className="text-left px-4 py-3 text-xs uppercase tracking-wider text-[#888] font-semibold">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {recentLeads.length === 0 ? (
-                <tr><td colSpan={6} className="px-4 py-8 text-center text-[#888] text-xs">Nenhum lead ainda</td></tr>
+                <tr><td colSpan={5} className="px-4 py-8 text-center text-[#888] text-xs">Nenhum lead ainda</td></tr>
               ) : recentLeads.map(lead => (
                 <tr key={lead.id} className="border-b border-[#1c1c1c] hover:bg-white/5 transition-colors">
                   <td className="px-4 py-3 font-medium">{lead.nome}</td>
                   <td className="px-4 py-3 text-[#888]">{lead.empresa ?? '—'}</td>
-                  <td className="px-4 py-3 text-[#888]">{lead.whatsapp}</td>
-                  <td className="px-4 py-3 text-[#888]">{lead.interesse ?? '—'}</td>
+                  <td className="px-4 py-3 text-[#888]">{lead.telefone}</td>
                   <td className="px-4 py-3"><StatusBadge status={lead.status} /></td>
                   <td className="px-4 py-3 text-[#888] text-xs">{formatDate(lead.criado_em)}</td>
                 </tr>
@@ -90,7 +87,6 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Recent products */}
       <div>
         <h2 className="text-xs font-bold uppercase tracking-widest text-[#888] mb-4">Produtos recentes</h2>
         <div className="bg-[#111] border border-[#1c1c1c] overflow-x-auto">

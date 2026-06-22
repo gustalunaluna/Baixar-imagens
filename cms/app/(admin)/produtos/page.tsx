@@ -102,9 +102,9 @@ export default function ProdutosPage() {
             ) : filtered.map(p => (
               <tr key={p.id} className="border-b border-[#1c1c1c] hover:bg-white/5 transition-colors">
                 <td className="px-4 py-3">
-                  {p.imagem_principal ? (
+                  {p.imagem ? (
                     <div className="w-10 h-10 relative bg-[#1c1c1c] overflow-hidden flex-shrink-0">
-                      <Image src={p.imagem_principal} alt={p.nome} fill className="object-cover" />
+                      <Image src={p.imagem} alt={p.nome} fill className="object-cover" />
                     </div>
                   ) : <div className="w-10 h-10 bg-[#1c1c1c]" />}
                 </td>

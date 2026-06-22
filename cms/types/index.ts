@@ -1,12 +1,11 @@
-export type NivelAcesso = 'admin' | 'editor' | 'vendedor'
+export type Role = 'admin' | 'editor' | 'viewer'
 export type LeadStatus = 'novo' | 'atendido' | 'arquivado'
 
 export interface Profile {
   id: string
-  nome: string
-  email: string
-  nivel_acesso: NivelAcesso
-  avatar_url: string | null
+  nome: string | null
+  email: string | null
+  role: Role
   criado_em: string
 }
 
@@ -15,8 +14,6 @@ export interface Categoria {
   nome: string
   slug: string
   descricao: string | null
-  imagem: string | null
-  ordem: number
   ativo: boolean
   criado_em: string
 }
@@ -27,15 +24,12 @@ export interface Produto {
   slug: string
   categoria_id: string | null
   descricao: string | null
-  descricao_curta: string | null
-  imagem_principal: string | null
-  imagens_secundarias: string[]
-  caracteristicas: { chave: string; valor: string }[]
+  imagem: string | null
+  caracteristicas: string[]
   destaque: boolean
   ativo: boolean
-  ordem: number
-  seo_title: string | null
-  seo_description: string | null
+  meta_titulo: string | null
+  meta_descricao: string | null
   criado_em: string
   atualizado_em: string
   categoria?: Categoria
@@ -80,20 +74,20 @@ export interface Depoimento {
 export interface Lead {
   id: string
   nome: string
-  empresa: string | null
-  whatsapp: string
   email: string | null
-  interesse: string | null
+  telefone: string
+  empresa: string | null
   mensagem: string | null
+  origem: string
   status: LeadStatus
   observacoes: string | null
   criado_em: string
+  atualizado_em: string
 }
 
 export interface Configuracao {
   chave: string
   valor: string | null
-  tipo: string
   label: string | null
   grupo: string
 }
@@ -102,10 +96,9 @@ export interface Midia {
   id: string
   nome: string
   url: string
-  tipo: string
+  tipo: string | null
   tamanho: number | null
   pasta: string
-  alt: string | null
   criado_em: string
 }
 

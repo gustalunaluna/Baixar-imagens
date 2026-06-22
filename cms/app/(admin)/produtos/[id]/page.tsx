@@ -1,14 +1,13 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { Plus, Trash2, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase'
 import { produtoSchema, type ProdutoForm } from '@/lib/validations'
-import { slugify } from '@/lib/utils'
 import ImageUploader from '@/components/admin/ImageUploader'
 import type { Categoria } from '@/types'
 
@@ -18,17 +17,15 @@ export default function EditarProdutoPage() {
   const supabase = createClient()
   const [categorias, setCategorias] = useState<Categoria[]>([])
   const [loading, setLoading] = useState(true)
+  const [caracList, setCaracList] = useState<string[]>([''])
 
-  const { register, handleSubmit, watch, setValue, reset, control, formState: { errors, isSubmitting } } = useForm<ProdutoForm>({
+  const { register, handleSubmit, watch, setValue, reset, formState: { errors, isSubmitting } } = useForm<ProdutoForm>({
     resolver: zodResolver(produtoSchema),
-    defaultValues: { imagens_secundarias: [], caracteristicas: [], destaque: false, ativo: true },
+    defaultValues: { caracteristicas: [], destaque: false, ativo: true },
   })
 
-  const { fields: caracFields, append: appendCarac, remove: removeCarac } = useFieldArray({ control, name: 'caracteristicas' })
-
-  const nome = watch('nome')
   const slug = watch('slug')
-  const imgPrincipal = watch('imagem_principal')
+  const imagem = watch('imagem')
 
   useEffect(() => {
     async function load() {
@@ -37,12 +34,8 @@ export default function EditarProdutoPage() {
         supabase.from('categorias').select('*').order('nome'),
       ])
       if (prod) {
-        reset({
-          ...prod,
-          categoria_id: prod.categoria_id ?? undefined,
-          imagens_secundarias: prod.imagens_secundarias ?? [],
-          caracteristicas: prod.caracteristicas ?? [],
-        })
+        reset({ ...prod, categoria_id: prod.categoria_id ?? undefined })
+        setCaracList((prod.caracteristicas as string[])?.length ? prod.caracteristicas : [''])
       }
       setCategorias((cats ?? []) as Categoria[])
       setLoading(false)
@@ -50,11 +43,13 @@ export default function EditarProdutoPage() {
     load()
   }, [id])
 
+  function addCarac() { setCaracList(l => [...l, '']) }
+  function removeCarac(i: number) { setCaracList(l => l.filter((_, idx) => idx !== i)) }
+  function updateCarac(i: number, v: string) { setCaracList(l => l.map((c, idx) => idx === i ? v : c)) }
+
   async function onSubmit(data: ProdutoForm) {
-    const { error } = await supabase.from('produtos').update({
-      ...data,
-      atualizado_em: new Date().toISOString(),
-    }).eq('id', id)
+    const payload = { ...data, caracteristicas: caracList.filter(Boolean) }
+    const { error } = await supabase.from('produtos').update(payload).eq('id', id)
     if (error) { toast.error('Erro: ' + error.message); return }
     toast.success('Produto atualizado!')
     router.push('/produtos')
@@ -69,8 +64,7 @@ export default function EditarProdutoPage() {
   return (
     <div className="max-w-3xl">
       <Link href="/produtos" className="flex items-center gap-2 text-[#888] hover:text-white text-sm mb-6 transition-colors">
-        <ArrowLeft size={14} />
-        Voltar para produtos
+        <ArrowLeft size={14} /> Voltar para produtos
       </Link>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -96,35 +90,36 @@ export default function EditarProdutoPage() {
         </div>
 
         <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">Descrição curta</label>
-          <input {...register('descricao_curta')} className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors" />
-        </div>
-
-        <div>
-          <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">Descrição completa</label>
-          <textarea {...register('descricao')} rows={5} className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors resize-none" />
+          <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">Descrição</label>
+          <textarea {...register('descricao')} rows={4} className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors resize-none" />
         </div>
 
         <ImageUploader
           label="Imagem principal"
           pasta="produtos"
-          value={imgPrincipal ?? null}
-          onChange={url => setValue('imagem_principal', url ?? undefined)}
+          value={imagem ?? null}
+          onChange={url => setValue('imagem', url ?? undefined)}
         />
 
         <div>
           <div className="flex items-center justify-between mb-3">
-            <label className="text-xs font-bold uppercase tracking-widest text-[#888]">Características técnicas</label>
-            <button type="button" onClick={() => appendCarac({ chave: '', valor: '' })} className="flex items-center gap-1 text-xs text-[#e8ff00] hover:text-white transition-colors">
+            <label className="text-xs font-bold uppercase tracking-widest text-[#888]">Características</label>
+            <button type="button" onClick={addCarac} className="flex items-center gap-1 text-xs text-[#e8ff00] hover:text-white transition-colors">
               <Plus size={13} /> Adicionar
             </button>
           </div>
           <div className="space-y-2">
-            {caracFields.map((field, i) => (
-              <div key={field.id} className="flex gap-2">
-                <input {...register(`caracteristicas.${i}.chave`)} placeholder="Chave" className="flex-1 bg-[#111] border border-[#1c1c1c] text-white px-3 py-2 text-sm focus:border-[#e8ff00] transition-colors" />
-                <input {...register(`caracteristicas.${i}.valor`)} placeholder="Valor" className="flex-1 bg-[#111] border border-[#1c1c1c] text-white px-3 py-2 text-sm focus:border-[#e8ff00] transition-colors" />
-                <button type="button" onClick={() => removeCarac(i)} className="text-[#888] hover:text-red-400 px-2 transition-colors"><Trash2 size={14} /></button>
+            {caracList.map((c, i) => (
+              <div key={i} className="flex gap-2">
+                <input
+                  value={c}
+                  onChange={e => updateCarac(i, e.target.value)}
+                  placeholder="Ex: Material: Nylon 600D"
+                  className="flex-1 bg-[#111] border border-[#1c1c1c] text-white px-3 py-2 text-sm focus:border-[#e8ff00] transition-colors"
+                />
+                <button type="button" onClick={() => removeCarac(i)} className="text-[#888] hover:text-red-400 px-2 transition-colors">
+                  <Trash2 size={14} />
+                </button>
               </div>
             ))}
           </div>
@@ -145,11 +140,11 @@ export default function EditarProdutoPage() {
           <p className="text-xs font-bold uppercase tracking-widest text-[#888]">SEO</p>
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-[#555] mb-2">Meta Title</label>
-            <input {...register('seo_title')} className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors" />
+            <input {...register('meta_titulo')} className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors" />
           </div>
           <div>
             <label className="block text-xs font-bold uppercase tracking-widest text-[#555] mb-2">Meta Description</label>
-            <textarea {...register('seo_description')} rows={2} className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors resize-none" />
+            <textarea {...register('meta_descricao')} rows={2} className="w-full bg-[#111] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors resize-none" />
           </div>
         </div>
 

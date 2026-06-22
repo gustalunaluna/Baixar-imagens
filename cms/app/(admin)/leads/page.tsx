@@ -56,19 +56,19 @@ export default function LeadsPage() {
 
   const filtered = leads.filter(l =>
     l.nome.toLowerCase().includes(search.toLowerCase()) ||
-    (l.empresa ?? '').toLowerCase().includes(search.toLowerCase())
+    (l.empresa ?? '').toLowerCase().includes(search.toLowerCase()) ||
+    l.telefone.includes(search)
   )
 
   return (
     <div>
-      {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">
         <input
           type="text"
-          placeholder="Buscar por nome ou empresa…"
+          placeholder="Buscar por nome, empresa ou telefone…"
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="bg-[#111] border border-[#1c1c1c] text-white px-4 py-2 text-sm focus:border-[#e8ff00] transition-colors w-64"
+          className="bg-[#111] border border-[#1c1c1c] text-white px-4 py-2 text-sm focus:border-[#e8ff00] transition-colors w-72"
         />
         <div className="flex gap-1">
           {(['todos', 'novo', 'atendido', 'arquivado'] as const).map(s => (
@@ -87,12 +87,11 @@ export default function LeadsPage() {
         </div>
       </div>
 
-      {/* Table */}
       <div className="bg-[#111] border border-[#1c1c1c] overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-[#1c1c1c]">
-              {['Nome', 'Empresa', 'WhatsApp', 'Interesse', 'Status', 'Data', ''].map(h => (
+              {['Nome', 'Empresa', 'Telefone', 'Origem', 'Status', 'Data', ''].map(h => (
                 <th key={h} className="text-left px-4 py-3 text-xs uppercase tracking-wider text-[#888] font-semibold">{h}</th>
               ))}
             </tr>
@@ -110,13 +109,13 @@ export default function LeadsPage() {
               >
                 <td className="px-4 py-3 font-medium">{lead.nome}</td>
                 <td className="px-4 py-3 text-[#888]">{lead.empresa ?? '—'}</td>
-                <td className="px-4 py-3 text-[#888]">{lead.whatsapp}</td>
-                <td className="px-4 py-3 text-[#888]">{lead.interesse ?? '—'}</td>
+                <td className="px-4 py-3 text-[#888]">{lead.telefone}</td>
+                <td className="px-4 py-3 text-[#888] text-xs">{lead.origem}</td>
                 <td className="px-4 py-3"><StatusBadge status={lead.status} /></td>
                 <td className="px-4 py-3 text-[#888] text-xs whitespace-nowrap">{formatDate(lead.criado_em)}</td>
                 <td className="px-4 py-3">
                   <a
-                    href={waLink(lead.whatsapp)}
+                    href={waLink(lead.telefone)}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={e => e.stopPropagation()}
@@ -131,7 +130,6 @@ export default function LeadsPage() {
         </table>
       </div>
 
-      {/* Detail modal */}
       {selected && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
           <div className="bg-[#111] border border-[#1c1c1c] w-full max-w-lg max-h-[90vh] overflow-y-auto">
@@ -146,9 +144,9 @@ export default function LeadsPage() {
                 {[
                   ['Nome', selected.nome],
                   ['Empresa', selected.empresa ?? '—'],
-                  ['WhatsApp', selected.whatsapp],
+                  ['Telefone', selected.telefone],
                   ['E-mail', selected.email ?? '—'],
-                  ['Interesse', selected.interesse ?? '—'],
+                  ['Origem', selected.origem],
                   ['Data', formatDate(selected.criado_em)],
                 ].map(([k, v]) => (
                   <div key={k}>
@@ -195,7 +193,7 @@ export default function LeadsPage() {
 
               <div className="flex gap-3 pt-2">
                 <a
-                  href={waLink(selected.whatsapp, selected.mensagem ?? '')}
+                  href={waLink(selected.telefone, selected.mensagem ?? '')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-green-500 text-white text-sm font-bold hover:bg-green-600 transition-colors"

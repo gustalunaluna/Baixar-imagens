@@ -4,23 +4,19 @@ export const produtoSchema = z.object({
   nome: z.string().min(2, 'Nome obrigatório'),
   slug: z.string().min(2, 'Slug obrigatório'),
   categoria_id: z.string().uuid().nullable().optional(),
-  descricao_curta: z.string().nullable().optional(),
   descricao: z.string().nullable().optional(),
-  imagem_principal: z.string().nullable().optional(),
-  imagens_secundarias: z.array(z.string()).default([]),
-  caracteristicas: z.array(z.object({ chave: z.string(), valor: z.string() })).default([]),
+  imagem: z.string().nullable().optional(),
+  caracteristicas: z.array(z.string()).default([]),
   destaque: z.boolean().default(false),
   ativo: z.boolean().default(true),
-  seo_title: z.string().nullable().optional(),
-  seo_description: z.string().nullable().optional(),
+  meta_titulo: z.string().nullable().optional(),
+  meta_descricao: z.string().nullable().optional(),
 })
 
 export const categoriaSchema = z.object({
   nome: z.string().min(2, 'Nome obrigatório'),
   slug: z.string().min(2, 'Slug obrigatório'),
   descricao: z.string().nullable().optional(),
-  imagem: z.string().nullable().optional(),
-  ordem: z.number().default(0),
   ativo: z.boolean().default(true),
 })
 

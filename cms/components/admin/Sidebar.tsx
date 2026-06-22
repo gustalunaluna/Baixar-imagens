@@ -99,7 +99,7 @@ export default function Sidebar({ profile, open, onClose }: Props) {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold truncate">{profile?.nome ?? 'Admin'}</p>
-              <p className="text-[#888] text-xs capitalize">{profile?.nivel_acesso ?? 'admin'}</p>
+              <p className="text-[#888] text-xs capitalize">{profile?.role ?? 'admin'}</p>
             </div>
           </div>
           <button
