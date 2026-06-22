@@ -1,12 +1,8 @@
 'use client'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
-import { createClient } from '@/lib/supabase'
 
 export default function LoginPage() {
-  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPass, setShowPass] = useState(false)
@@ -17,32 +13,25 @@ export default function LoginPage() {
     e.preventDefault()
     setError('')
 
-    if (!email || !password) {
-      setError('Preencha e-mail e senha.')
-      return
-    }
-    if (password.length < 6) {
-      setError('Senha deve ter pelo menos 6 caracteres.')
-      return
-    }
+    if (!email || !password) { setError('Preencha e-mail e senha.'); return }
+    if (password.length < 6) { setError('Senha deve ter pelo menos 6 caracteres.'); return }
 
     setLoading(true)
     try {
-      const supabase = createClient()
-      const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
-      if (authError) {
-        setError(
-          authError.message === 'Invalid login credentials'
-            ? 'E-mail ou senha incorretos.'
-            : authError.message
-        )
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      })
+      const json = await res.json()
+      if (!res.ok) {
+        setError(json.error ?? 'Erro ao entrar.')
         setLoading(false)
         return
       }
-      toast.success('Login realizado!')
       window.location.href = '/dashboard'
-    } catch (err) {
-      setError('Erro ao conectar. Verifique sua conexão.')
+    } catch {
+      setError('Erro de conexão.')
       setLoading(false)
     }
   }
@@ -65,9 +54,7 @@ export default function LoginPage() {
           )}
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">
-              E-mail
-            </label>
+            <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">E-mail</label>
             <input
               type="email"
               autoComplete="email"
@@ -79,9 +66,7 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">
-              Senha
-            </label>
+            <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">Senha</label>
             <div className="relative">
               <input
                 type={showPass ? 'text' : 'password'}
@@ -111,9 +96,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-center text-[#888] text-xs mt-8">
-          lsconfex.com.br — Acesso restrito
-        </p>
+        <p className="text-center text-[#888] text-xs mt-8">lsconfex.com.br — Acesso restrito</p>
       </div>
     </div>
   )
