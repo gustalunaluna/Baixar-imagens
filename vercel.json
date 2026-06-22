@@ -1,6 +1,0 @@
-{
-  "framework": "nextjs",
-  "installCommand": "cd cms && npm install",
-  "buildCommand": "cd cms && npx next build",
-  "outputDirectory": "cms/.next"
-}
