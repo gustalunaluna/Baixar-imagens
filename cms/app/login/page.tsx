@@ -40,8 +40,7 @@ export default function LoginPage() {
         return
       }
       toast.success('Login realizado!')
-      router.push('/dashboard')
-      router.refresh()
+      window.location.href = '/dashboard'
     } catch (err) {
       setError('Erro ao conectar. Verifique sua conexão.')
       setLoading(false)
