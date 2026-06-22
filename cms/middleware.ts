@@ -21,15 +21,11 @@ export async function middleware(request: NextRequest) {
     }
   )
 
+  // Refresh session if expired — required for Server Components
   const { data: { user } } = await supabase.auth.getUser()
-  const pathname = request.nextUrl.pathname
-  const isLoginPage = pathname === '/login'
 
-  if (!isLoginPage && !user) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
-
-  if (isLoginPage && user) {
+  // Only redirect away from login if already authenticated
+  if (request.nextUrl.pathname === '/login' && user) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
   }
 
