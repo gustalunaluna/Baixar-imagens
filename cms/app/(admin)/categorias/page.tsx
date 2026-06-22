@@ -2,12 +2,12 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import { toast } from 'sonner'
-import { Plus, Pencil, Trash2, X, Check } from 'lucide-react'
+import { Plus, Pencil, Trash2, X } from 'lucide-react'
 import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import { slugify } from '@/lib/utils'
 import type { Categoria } from '@/types'
 
-const EMPTY: Omit<Categoria, 'id' | 'criado_em'> = { nome: '', slug: '', descricao: null, imagem: null, ordem: 0, ativo: true }
+const EMPTY = { nome: '', slug: '', descricao: null as string | null, ativo: true }
 
 export default function CategoriasPage() {
   const supabase = createClient()
@@ -20,14 +20,17 @@ export default function CategoriasPage() {
   const [deleting, setDeleting] = useState(false)
 
   async function load() {
-    const { data } = await supabase.from('categorias').select('*').order('ordem')
+    const { data } = await supabase.from('categorias').select('*').order('nome')
     setCategorias((data ?? []) as Categoria[])
     setLoading(false)
   }
   useEffect(() => { load() }, [])
 
   function openNew() { setForm(EMPTY); setModal('novo') }
-  function openEdit(c: Categoria) { setForm({ nome: c.nome, slug: c.slug, descricao: c.descricao, imagem: c.imagem, ordem: c.ordem, ativo: c.ativo }); setModal(c) }
+  function openEdit(c: Categoria) {
+    setForm({ nome: c.nome, slug: c.slug, descricao: c.descricao, ativo: c.ativo })
+    setModal(c)
+  }
 
   async function handleSave() {
     if (!form.nome) { toast.error('Nome obrigatório'); return }
@@ -69,21 +72,20 @@ export default function CategoriasPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-[#1c1c1c]">
-              {['Nome', 'Slug', 'Ordem', 'Ativo', 'Ações'].map(h => (
+              {['Nome', 'Slug', 'Ativo', 'Ações'].map(h => (
                 <th key={h} className="text-left px-4 py-3 text-xs uppercase tracking-wider text-[#888] font-semibold">{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {loading ? (
-              <tr><td colSpan={5} className="px-4 py-8 text-center text-[#888]">Carregando…</td></tr>
+              <tr><td colSpan={4} className="px-4 py-8 text-center text-[#888]">Carregando…</td></tr>
             ) : categorias.length === 0 ? (
-              <tr><td colSpan={5} className="px-4 py-8 text-center text-[#888] text-xs">Nenhuma categoria ainda</td></tr>
+              <tr><td colSpan={4} className="px-4 py-8 text-center text-[#888] text-xs">Nenhuma categoria ainda</td></tr>
             ) : categorias.map(c => (
               <tr key={c.id} className="border-b border-[#1c1c1c] hover:bg-white/5 transition-colors">
                 <td className="px-4 py-3 font-medium">{c.nome}</td>
                 <td className="px-4 py-3 text-[#888] font-mono text-xs">{c.slug}</td>
-                <td className="px-4 py-3 text-[#888]">{c.ordem}</td>
                 <td className="px-4 py-3">
                   <span className={`text-xs font-bold ${c.ativo ? 'text-green-400' : 'text-[#888]'}`}>{c.ativo ? 'Sim' : 'Não'}</span>
                 </td>
@@ -99,7 +101,6 @@ export default function CategoriasPage() {
         </table>
       </div>
 
-      {/* Modal */}
       {modal && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
           <div className="bg-[#111] border border-[#1c1c1c] w-full max-w-md">
@@ -133,23 +134,12 @@ export default function CategoriasPage() {
                   className="w-full bg-[#0d0d0d] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors resize-none"
                 />
               </div>
-              <div className="flex gap-4 items-center">
-                <div className="flex-1">
-                  <label className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">Ordem</label>
-                  <input
-                    type="number"
-                    value={form.ordem}
-                    onChange={e => setForm(f => ({ ...f, ordem: Number(e.target.value) }))}
-                    className="w-full bg-[#0d0d0d] border border-[#1c1c1c] text-white px-4 py-2.5 text-sm focus:border-[#e8ff00] transition-colors"
-                  />
-                </div>
-                <label className="flex items-center gap-2 cursor-pointer pt-5">
-                  <input type="checkbox" checked={form.ativo} onChange={e => setForm(f => ({ ...f, ativo: e.target.checked }))} className="w-4 h-4 accent-[#e8ff00]" />
-                  <span className="text-sm">Ativo</span>
-                </label>
-              </div>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" checked={form.ativo} onChange={e => setForm(f => ({ ...f, ativo: e.target.checked }))} className="w-4 h-4 accent-[#e8ff00]" />
+                <span className="text-sm">Ativo</span>
+              </label>
               <div className="flex gap-3 pt-2">
-                <button onClick={() => setModal(null)} className="flex-1 py-2.5 border border-[#1c1c1c] text-[#888] text-sm hover:text-white hover:border-white/20 transition-colors">Cancelar</button>
+                <button onClick={() => setModal(null)} className="flex-1 py-2.5 border border-[#1c1c1c] text-[#888] text-sm hover:text-white transition-colors">Cancelar</button>
                 <button onClick={handleSave} disabled={saving} className="flex-1 py-2.5 bg-[#e8ff00] text-black text-sm font-bold hover:bg-yellow-300 transition-colors disabled:opacity-50">
                   {saving ? 'Salvando…' : 'Salvar'}
                 </button>
