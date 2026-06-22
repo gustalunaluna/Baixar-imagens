@@ -7,7 +7,7 @@ import ConfirmDialog from '@/components/admin/ConfirmDialog'
 import ImageUploader from '@/components/admin/ImageUploader'
 import type { Banner } from '@/types'
 
-const EMPTY = { titulo: '', subtitulo: '', imagem: null, botao_texto: '', botao_link: '', ativo: true, ordem: 0 }
+const EMPTY = { titulo: '', subtitulo: '', imagem: null as string | null, botao_texto: '', botao_link: '', ativo: true, ordem: 0 }
 
 export default function BannersPage() {
   const supabase = createClient()
