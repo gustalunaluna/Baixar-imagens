@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
+import { createBrowserClient } from '@supabase/ssr'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -18,18 +19,40 @@ export default function LoginPage() {
 
     setLoading(true)
     try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
-      const json = await res.json()
-      if (!res.ok) {
-        setError(json.error ?? 'Erro ao entrar.')
+      // Step 1: sign in via browser client to get tokens
+      const supabase = createBrowserClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      )
+
+      const { data, error: authError } = await supabase.auth.signInWithPassword({ email, password })
+
+      if (authError || !data.session) {
+        const msg = authError?.message
+        setError(msg === 'Invalid login credentials' ? 'E-mail ou senha incorretos.' : (msg ?? 'Erro ao entrar.'))
         setLoading(false)
         return
       }
-      window.location.href = '/dashboard'
+
+      // Step 2: exchange tokens for server-side httpOnly cookies
+      const res = await fetch('/api/auth/set-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_token: data.session.access_token,
+          refresh_token: data.session.refresh_token,
+        }),
+      })
+
+      if (!res.ok) {
+        const json = await res.json()
+        setError(json.error ?? 'Erro ao iniciar sessão.')
+        setLoading(false)
+        return
+      }
+
+      // Step 3: hard navigate so middleware reads the new cookies
+      window.location.replace('/dashboard')
     } catch {
       setError('Erro de conexão.')
       setLoading(false)
