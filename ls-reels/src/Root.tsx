@@ -207,16 +207,15 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Card sizes
-  const CW = 700, CH = 440; // center card
-  const SW = 520, SH = 310; // satellite cards (all same size)
+  const CW = 700, CH = 440;
+  const SW = 580, SH = 350; // satellites bigger
 
   // Phase 1: center card pops in (0-24f)
   const mainSpring = spring({ frame, fps, config: { damping: 8, mass: 0.8, stiffness: 180 } });
   const mainScale  = interpolate(mainSpring, [0, 1], [0.02, 1]);
   const bgFade     = interpolate(frame, [0, 8], [0, 1], { extrapolateRight: "clamp" });
 
-  // Phase 2: search bar slides in + typewriter (24-88f)
+  // Phase 2: search bar + typewriter (24-88f)
   const barPr   = interpolate(frame, [24, 42], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
   const barX    = interpolate(1 - Math.pow(1 - barPr, 3), [0, 1], [-300, 0]);
   const barGlow = interpolate(frame, [40, 50], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
@@ -224,58 +223,74 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const charsN = Math.floor(interpolate(frame, [42, 88], [0, searchText.length], { extrapolateLeft:"clamp", extrapolateRight:"clamp" }));
   const displayText = searchText.slice(0, charsN);
   const cursorBlink = frame < 100 && Math.floor(frame / 7) % 2 === 0;
-  // Text before highlight vs inside highlight
   const preHL    = "melhor confecção ";
   const beforeHL = displayText.length <= preHL.length ? displayText : preHL;
   const insideHL = displayText.length >  preHL.length ? displayText.slice(preHL.length) : "";
 
-  // Mouse cursor
-  const cursorX = interpolate(frame, [18, 38], [280, 60], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
-  const cursorY = interpolate(frame, [18, 38], [20, 80],  { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
-  const clickBounce  = spring({ frame: frame - 38, fps, config: { damping: 8, mass: 0.4, stiffness: 280 } });
-  const cursorClickY = interpolate(clickBounce, [0, 0.3, 1], [0, 6, 0]);
-
-  // Phase 3: 4 satellite cards staggered (54-96f)
-  const spTL = spring({ frame: frame - 54, fps, config: { damping: 12, mass: 0.7 } });
-  const spTR = spring({ frame: frame - 64, fps, config: { damping: 12, mass: 0.7 } });
-  const spBL = spring({ frame: frame - 74, fps, config: { damping: 12, mass: 0.7 } });
-  const spBR = spring({ frame: frame - 84, fps, config: { damping: 12, mass: 0.7 } });
-  // Each enters from its corner direction
+  // Phase 3: satellites staggered (40-80f — earlier than before)
+  const spTL = spring({ frame: frame - 40, fps, config: { damping: 12, mass: 0.7 } });
+  const spTR = spring({ frame: frame - 50, fps, config: { damping: 12, mass: 0.7 } });
+  const spBL = spring({ frame: frame - 60, fps, config: { damping: 12, mass: 0.7 } });
+  const spBR = spring({ frame: frame - 70, fps, config: { damping: 12, mass: 0.7 } });
   const tlEx = interpolate(spTL,[0,1],[-200,0]), tlEy = interpolate(spTL,[0,1],[-200,0]);
   const trEx = interpolate(spTR,[0,1],[ 200,0]), trEy = interpolate(spTR,[0,1],[-200,0]);
   const blEx = interpolate(spBL,[0,1],[-200,0]), blEy = interpolate(spBL,[0,1],[ 200,0]);
   const brEx = interpolate(spBR,[0,1],[ 200,0]), brEy = interpolate(spBR,[0,1],[ 200,0]);
-  // Resting rotations
   const TL_ROT = -7, TR_ROT = 6, BL_ROT = 5, BR_ROT = -4;
 
-  // Phase 4: all converge to center (96-134f)
-  const mergePr    = interpolate(frame, [96, 134], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
-  const mergeE     = mergePr * mergePr; // ease-in
+  // Phase 4: merge (85-125f)
+  const mergePr    = interpolate(frame, [85, 125], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const mergeE     = mergePr * mergePr;
   const mergeScale = interpolate(mergeE, [0, 0.7, 1], [1, 0.5, 0]);
   const mergeOp    = interpolate(mergeE, [0.5, 1],    [1, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
   const mergeBlur  = interpolate(mergeE, [0, 0.8, 1], [0, 5, 14]);
-  // Merge translation per card: each card's center moves to screen center (540, 960)
-  // TL rest center: (-80+260, 180+155) = (180, 335) -> delta (+360, +625)
-  // TR rest center: (640+260, 130+155) = (900, 285) -> delta (-360, +675)
-  // BL rest center: (180, 1430+155)    = (180, 1585) -> delta (+360, -625)
-  // BR rest center: (900, 1585)                       -> delta (-360, -625)
-  const mTLx = interpolate(mergeE,[0,1],[0, 360]),  mTLy = interpolate(mergeE,[0,1],[0, 625]);
-  const mTRx = interpolate(mergeE,[0,1],[0,-360]),  mTRy = interpolate(mergeE,[0,1],[0, 675]);
-  const mBLx = interpolate(mergeE,[0,1],[0, 360]),  mBLy = interpolate(mergeE,[0,1],[0,-625]);
-  const mBRx = interpolate(mergeE,[0,1],[0,-360]),  mBRy = interpolate(mergeE,[0,1],[0,-625]);
+  // Satellite rest positions (closer): TL(30,340) TR(470,290) BL(30,1230) BR(470,1230)
+  // Centers: TL(320,515) TR(760,465) BL(320,1405) BR(760,1405) — screen center (540,960)
+  const mTLx = interpolate(mergeE,[0,1],[0, 220]),  mTLy = interpolate(mergeE,[0,1],[0, 445]);
+  const mTRx = interpolate(mergeE,[0,1],[0,-220]),  mTRy = interpolate(mergeE,[0,1],[0, 495]);
+  const mBLx = interpolate(mergeE,[0,1],[0, 220]),  mBLy = interpolate(mergeE,[0,1],[0,-445]);
+  const mBRx = interpolate(mergeE,[0,1],[0,-220]),  mBRy = interpolate(mergeE,[0,1],[0,-445]);
   const trailOp = interpolate(mergeE,[0.1,0.8],[0,1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
 
-  // Phase 5: flash + bag reveal (134-150f)
-  const flash       = interpolate(frame, [132,137,143], [0,0.8,0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
-  const bagRevPr    = spring({ frame: frame - 135, fps, config: { damping: 10, mass: 0.9, stiffness: 140 } });
-  const bagRevScale = interpolate(bagRevPr, [0, 1],   [0, 1]);
-  const bagRevBlur  = interpolate(bagRevPr, [0, 0.6], [20, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
-  const bagRevRot   = interpolate(bagRevPr, [0, 0.8], [-180, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
-  const bagRevOp    = interpolate(bagRevPr, [0, 0.25],[0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
-  const bagGlow     = interpolate(bagRevPr, [0.5, 1], [0, 40], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  // Mouse cursor movement (18-130f)
+  const cursorX0 = interpolate(frame, [18, 38],  [280, 60],  { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const cursorY0 = interpolate(frame, [18, 38],  [20,  80],  { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const cursorX1 = interpolate(frame, [90, 120], [60,  0],   { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const cursorY1 = interpolate(frame, [90, 120], [80,  0],   { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const cursorX  = frame >= 90 ? cursorX1 : cursorX0;
+  const cursorY  = frame >= 90 ? cursorY1 : cursorY0;
+
+  // Click animation at frame 120
+  const clickSp    = spring({ frame: frame - 120, fps, config: { damping: 8, mass: 0.4, stiffness: 300 } });
+  const clickScale = interpolate(clickSp, [0, 0.25, 1], [1, 0.65, 1]);
+  const clickRingOp   = interpolate(frame, [120, 122, 134], [0, 0.85, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const clickRingSize = interpolate(frame, [120, 135], [8, 130],  { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+
+  // Flash (123-136f)
+  const flash = interpolate(frame, [123, 128, 137], [0, 0.85, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+
+  // Bag reveal (133-165f)
+  const bagRevPr    = spring({ frame: frame - 133, fps, config: { damping: 10, mass: 0.9, stiffness: 140 } });
+  const bagRevScale = interpolate(bagRevPr, [0, 1],    [0, 1]);
+  const bagRevBlur  = interpolate(bagRevPr, [0, 0.6],  [20, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const bagRevRot   = interpolate(bagRevPr, [0, 0.8],  [-180, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const bagRevOp    = interpolate(bagRevPr, [0, 0.25], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const bagGlow     = interpolate(bagRevPr, [0.5, 1],  [0, 40], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
   const bagBreathe  = 1 + Math.sin(frame / 12) * 0.02;
 
-  // Satellite wrapper: fixed rest pos, motion via transform
+  // LS Logo (155-178f): grows then shrinks
+  const logoPr    = spring({ frame: frame - 155, fps, config: { damping: 14, mass: 0.8, stiffness: 160 } });
+  const logoGrow  = interpolate(logoPr, [0, 1], [0, 1]);
+  const logoShrPr = interpolate(frame, [170, 180], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const logoSc    = logoGrow * (1 - logoShrPr * 0.97);
+  const logoOp    = interpolate(logoPr, [0, 0.3], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" })
+                    * (1 - interpolate(frame, [177, 184], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" }));
+
+  // Iris wipe (176-190f): green circle expands, reveals white (S2 bg)
+  const irisPr  = interpolate(frame, [176, 190], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const irisE   = irisPr * irisPr;
+  const irisPx  = interpolate(irisE, [0, 1], [0, 1600]);
+
   const satWrap = (restL: number, restT: number, ex: number, ey: number, mx: number, my: number, rot: number, sp: number): React.CSSProperties => ({
     position: "absolute" as const,
     left: restL, top: restT,
@@ -303,9 +318,9 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
 
       <AbsoluteFill>
 
-        {/* TOP-LEFT: Light Mac-style window (AI search) */}
-        {frame >= 54 && frame < 135 && (
-          <div style={satWrap(-80, 180, tlEx, tlEy, mTLx, mTLy, TL_ROT, spTL)}>
+        {/* TOP-LEFT: Light Mac-style window */}
+        {frame >= 40 && frame < 125 && (
+          <div style={satWrap(30, 340, tlEx, tlEy, mTLx, mTLy, TL_ROT, spTL)}>
             <div style={{ width:"100%", height:"100%", background:"#F5F7FA", borderRadius:18, overflow:"hidden", display:"flex", flexDirection:"column", boxShadow:"0 16px 56px rgba(0,0,0,0.22)" }}>
               <div style={{ height:34, background:"#E8EAED", display:"flex", alignItems:"center", padding:"0 14px", gap:7, borderBottom:"1px solid #D0D4DB", flexShrink:0 }}>
                 {["#FF5F56","#FFBD2E","#27C93F"].map((c,i)=>(<div key={i} style={{ width:11,height:11,borderRadius:"50%",background:c }} />))}
@@ -333,9 +348,9 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
           </div>
         )}
 
-        {/* TOP-RIGHT: White Gmail-style email inbox */}
-        {frame >= 64 && frame < 135 && (
-          <div style={satWrap(640, 130, trEx, trEy, mTRx, mTRy, TR_ROT, spTR)}>
+        {/* TOP-RIGHT: Gmail-style email inbox */}
+        {frame >= 50 && frame < 125 && (
+          <div style={satWrap(470, 290, trEx, trEy, mTRx, mTRy, TR_ROT, spTR)}>
             <div style={{ width:"100%", height:"100%", background:"#FFFFFF", borderRadius:18, overflow:"hidden", display:"flex", flexDirection:"column", boxShadow:"0 16px 56px rgba(0,0,0,0.18)" }}>
               <div style={{ height:36, background:"#F5F5F5", display:"flex", alignItems:"center", padding:"0 14px", gap:10, borderBottom:"1px solid #E2E2E2", flexShrink:0 }}>
                 <div style={{ width:18,height:18,borderRadius:"50%",background:"conic-gradient(#EA4335 0deg 90deg,#FBBC05 90deg 180deg,#34A853 180deg 270deg,#4285F4 270deg 360deg)",flexShrink:0 }} />
@@ -363,8 +378,8 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
         )}
 
         {/* BOTTOM-LEFT: Dark email client */}
-        {frame >= 74 && frame < 135 && (
-          <div style={satWrap(-80, 1430, blEx, blEy, mBLx, mBLy, BL_ROT, spBL)}>
+        {frame >= 60 && frame < 125 && (
+          <div style={satWrap(30, 1230, blEx, blEy, mBLx, mBLy, BL_ROT, spBL)}>
             <div style={{ width:"100%", height:"100%", background:"#0D1B2A", borderRadius:18, overflow:"hidden", display:"flex", flexDirection:"column", boxShadow:"0 16px 56px rgba(0,0,0,0.45)" }}>
               <div style={{ height:36, background:"#091520", display:"flex", alignItems:"center", padding:"0 16px", gap:10, borderBottom:`1px solid ${T.accent}22`, flexShrink:0 }}>
                 <span style={{ color:"#667788", fontSize:18 }}>☰</span>
@@ -390,9 +405,9 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
           </div>
         )}
 
-        {/* BOTTOM-RIGHT: Spreadsheet with green header */}
-        {frame >= 84 && frame < 135 && (
-          <div style={satWrap(640, 1430, brEx, brEy, mBRx, mBRy, BR_ROT, spBR)}>
+        {/* BOTTOM-RIGHT: Spreadsheet */}
+        {frame >= 70 && frame < 125 && (
+          <div style={satWrap(470, 1230, brEx, brEy, mBRx, mBRy, BR_ROT, spBR)}>
             <div style={{ width:"100%", height:"100%", background:"white", borderRadius:18, overflow:"hidden", display:"flex", flexDirection:"column", boxShadow:"0 16px 56px rgba(0,0,0,0.2)" }}>
               <div style={{ background:"#1B7F3C", padding:"12px 18px", flexShrink:0 }}>
                 <div style={{ fontFamily:F.ui,fontSize:12,color:"white",fontWeight:700,letterSpacing:0.4 }}>ORÇAMENTO LS CONFECÇÕES</div>
@@ -424,7 +439,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
           );
         })}
 
-        {/* CENTER: Main dark app window (always front, zIndex 10) */}
+        {/* CENTER: Main card (always front) */}
         <div style={{
           position:"absolute",
           left: 190, top: 740,
@@ -433,8 +448,8 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
           borderRadius: 24,
           border: `2.5px solid ${bagRevOp > 0.5 ? T.accent+"ee" : T.accent+"88"}`,
           boxShadow: bagRevOp > 0.3
-            ? `0 0 ${bagGlow}px ${T.accent}88, 0 0 ${bagGlow*2}px ${T.accent}44, 0 24px 80px rgba(0,0,0,0.7)`
-            : `0 0 40px ${T.accent}44, 0 24px 70px rgba(0,0,0,0.65)`,
+            ? `inset 0 0 0 1px rgba(255,255,255,0.18), 0 0 ${bagGlow}px ${T.accent}88, 0 0 ${bagGlow*2}px ${T.accent}44, 0 24px 80px rgba(0,0,0,0.7)`
+            : `inset 0 0 0 1px rgba(255,255,255,0.18), 0 0 40px ${T.accent}44, 0 24px 70px rgba(0,0,0,0.65)`,
           overflow: "hidden",
           transform: `scale(${mainScale * (bagRevOp > 0.3 ? bagBreathe : 1)})`,
           transformOrigin: "center center",
@@ -456,7 +471,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
               ))}
             </div>
 
-            {/* Search bar with highlighted text */}
+            {/* Search bar */}
             <div style={{ flex:1, display:"flex", alignItems:"center", overflow:"hidden" }}>
               <div style={{
                 width:"100%", background:"white", borderRadius:34, padding:"18px 26px",
@@ -481,7 +496,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
           </div>
 
           {/* Bag reveal overlay */}
-          {frame >= 134 && (
+          {frame >= 133 && (
             <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center", background:"#0D1B2A" }}>
               <div style={{ opacity:bagRevOp, transform:`scale(${bagRevScale}) rotate(${bagRevRot}deg)`, filter:`blur(${bagRevBlur}px) drop-shadow(0 0 ${bagGlow}px ${T.accent}cc)` }}>
                 <div style={{ position:"relative", width:220, height:220 }}>
@@ -494,12 +509,35 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
               </div>
             </AbsoluteFill>
           )}
+
+          {/* LS Logo appears after bag, grows then shrinks */}
+          {frame >= 155 && (
+            <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center", background:"#0D1B2A", zIndex:2 }}>
+              <div style={{
+                opacity: logoOp,
+                transform: `scale(${logoSc})`,
+                filter: `drop-shadow(0 0 ${bagGlow * logoSc}px ${T.accent}cc)`,
+                width: 140, height: 140, borderRadius: 32,
+                border: `3px solid ${T.accent}`,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: T.accent, fontFamily: F.brand, fontWeight: 700, fontSize: 62,
+                background: "#091520",
+              }}>
+                LS
+              </div>
+            </AbsoluteFill>
+          )}
         </div>
       </AbsoluteFill>
 
+      {/* Click ring at screen center */}
+      {clickRingOp > 0 && (
+        <div style={{ position:"absolute", left:"50%", top:"50%", width:clickRingSize, height:clickRingSize, borderRadius:"50%", border:"2.5px solid rgba(255,255,255,0.85)", opacity:clickRingOp, transform:"translate(-50%,-50%)", pointerEvents:"none", zIndex:60 }} />
+      )}
+
       {/* Mouse cursor */}
-      {frame >= 18 && frame < 96 && (
-        <div style={{ position:"absolute", left:"50%", top:"50%", transform:`translate(${cursorX}px,${cursorY+cursorClickY}px)`, pointerEvents:"none", zIndex:50 }}>
+      {frame >= 18 && frame < 132 && (
+        <div style={{ position:"absolute", left:"50%", top:"50%", transform:`translate(${cursorX}px,${cursorY}px) scale(${frame >= 120 ? clickScale : 1})`, pointerEvents:"none", zIndex:50, transformOrigin:"top left" }}>
           <svg width="30" height="37" viewBox="0 0 20 25" fill="none">
             <path d="M2 2L2 20L6.5 14.5L11 22L14 20.5L9.5 13L17 13Z" fill="white" stroke="rgba(0,0,0,0.45)" strokeWidth="1.3" />
           </svg>
@@ -507,6 +545,11 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
       )}
 
       {flash > 0 && <AbsoluteFill style={{ background:"white", opacity: flash * 0.6, pointerEvents:"none" }} />}
+
+      {/* Iris wipe: green circle expands from center revealing white (S2 bg) */}
+      {frame >= 176 && (
+        <AbsoluteFill style={{ background:"white", clipPath:`circle(${irisPx}px at 540px 960px)`, pointerEvents:"none", zIndex:100 }} />
+      )}
     </AbsoluteFill>
   );
 };
