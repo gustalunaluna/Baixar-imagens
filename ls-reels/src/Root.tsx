@@ -173,28 +173,41 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Timeline:
-  // 0-15   : UI fades in
-  // 10-40  : typing indicator visible
-  // 38-55  : bubble slides in (spring)
-  // 55-70  : bubble stays, pulses slightly
-  // 65-85  : bubble morphs → bag pops out
+  // Timeline (90 frames = 3s):
+  // 0–14   : UI fades in
+  // 10–42  : typing dots bounce
+  // 40–58  : bubble springs in from below
+  // 58–68  : bubble rests (settle)
+  // 68–90  : morph — bubble contracts to circle, bag bursts out
 
-  const uiFade = interpolate(frame, [0, 15], [0, 1], { extrapolateRight: "clamp" });
+  const uiFade = interpolate(frame, [0, 14], [0, 1], { extrapolateRight: "clamp" });
+  const typingVisible = frame >= 10 && frame < 46;
+  const bubbleVisible = frame >= 40;
 
-  const typingVisible = frame >= 10 && frame < 45;
+  // Bubble entry
+  const bubblePr = spring({ frame: frame - 40, fps, config: { damping: 16, mass: 0.65 } });
 
-  const bubblePr = spring({ frame: frame - 38, fps, config: { damping: 14, mass: 0.7 } });
-  const bubbleVisible = frame >= 38;
+  // --- Fluid morph sequence ---
+  // Phase 1 (68–76): bubble squishes horizontally (scaleX shrinks, scaleY expands slightly)
+  const squishX = interpolate(frame, [68, 76], [1, 0.3], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const squishY = interpolate(frame, [68, 76], [1, 1.15], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Phase 2 (76–84): circle contracts to point
+  const contractScale = interpolate(frame, [76, 84], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Combined bubble transform
+  const bubbleScaleX = squishX * contractScale;
+  const bubbleScaleY = squishY * contractScale;
+  const bubbleOpacity = interpolate(frame, [74, 82], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Border-radius morphs to circle during squish
+  const bubbleRadius = interpolate(frame, [68, 76], [28, 200], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Morph: bubble shrinks + fades, bag grows from same center
-  const morphPr = spring({ frame: frame - 65, fps, config: { damping: 10, mass: 1.1 } });
-  const bubbleScale = interpolate(morphPr, [0, 1], [1, 0.1]);
-  const bubbleOpacity = interpolate(morphPr, [0, 0.6], [1, 0], { extrapolateRight: "clamp" });
-  const bagScale = interpolate(morphPr, [0.2, 1], [0, 1], { extrapolateLeft: "clamp" });
-  const bagOpacity = interpolate(morphPr, [0.2, 0.7], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // bag bounces up slightly at the end
-  const bagY = interpolate(morphPr, [0.7, 1], [0, -18], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Bag burst (starts at 78, slightly before bubble fully gone)
+  const bagBurst = spring({ frame: frame - 78, fps, config: { damping: 11, mass: 0.9, stiffness: 160 } });
+  const bagScale = interpolate(bagBurst, [0, 1], [0, 1]);
+  const bagOpacity = interpolate(bagBurst, [0, 0.3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Float up gently after burst
+  const bagFloat = interpolate(frame, [84, 90], [0, -10], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Glow pulses
+  const glowSize = interpolate(bagBurst, [0.6, 1], [0, 30], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
     <AbsoluteFill style={{ background: "#0B141A" }}>
@@ -261,7 +274,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
         </div>
       </div>
 
-      {/* Chat area */}
+      {/* Chat area — centralizada verticalmente */}
       <div
         style={{
           position: "absolute",
@@ -269,22 +282,23 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
           bottom: 90,
           left: 0,
           right: 0,
-          padding: "20px 18px",
+          padding: "40px 36px",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "flex-end",
-          gap: 10,
+          justifyContent: "center",
+          alignItems: "flex-start",
+          gap: 16,
           opacity: uiFade,
         }}
       >
         {/* Typing indicator */}
         {typingVisible && (
-          <div style={{ display: "flex", alignItems: "flex-end", gap: 10 }}>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 12 }}>
             <div
               style={{
-                width: 34,
-                height: 34,
-                borderRadius: 17,
+                width: 44,
+                height: 44,
+                borderRadius: 22,
                 background: T.accent,
                 display: "flex",
                 alignItems: "center",
@@ -292,7 +306,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                 color: T.ink,
                 fontFamily: F.brand,
                 fontWeight: 700,
-                fontSize: 13,
+                fontSize: 16,
                 flexShrink: 0,
               }}
             >
@@ -301,8 +315,8 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             <div
               style={{
                 background: "#1F2C34",
-                borderRadius: "18px 18px 18px 4px",
-                padding: "12px 16px",
+                borderRadius: "28px 28px 28px 6px",
+                padding: "16px 22px",
                 border: "1px solid #2A3942",
               }}
             >
@@ -311,24 +325,24 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
           </div>
         )}
 
-        {/* Message bubble */}
+        {/* Message bubble + morph */}
         {bubbleVisible && (
           <div
             style={{
               display: "flex",
               alignItems: "flex-end",
-              gap: 10,
+              gap: 12,
+              width: "100%",
               opacity: bubblePr,
-              transform: `translateY(${interpolate(bubblePr, [0, 1], [30, 0])}px)`,
-              position: "relative",
+              transform: `translateY(${interpolate(bubblePr, [0, 1], [50, 0])}px)`,
             }}
           >
-            {/* Avatar */}
+            {/* Avatar — hides during morph */}
             <div
               style={{
-                width: 34,
-                height: 34,
-                borderRadius: 17,
+                width: 44,
+                height: 44,
+                borderRadius: 22,
                 background: T.accent,
                 display: "flex",
                 alignItems: "center",
@@ -336,48 +350,51 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                 color: T.ink,
                 fontFamily: F.brand,
                 fontWeight: 700,
-                fontSize: 13,
+                fontSize: 16,
                 flexShrink: 0,
                 alignSelf: "flex-end",
+                opacity: bubbleOpacity,
               }}
             >
               LS
             </div>
 
-            {/* Bubble + Bag morph container */}
-            <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
-              {/* The message bubble */}
+            {/* Morph container — bubble collapses here, bag bursts out */}
+            <div style={{ position: "relative", flex: 1 }}>
+
+              {/* Bubble */}
               <div
                 style={{
                   background: "#1F2C34",
-                  borderRadius: "18px 18px 18px 4px",
-                  padding: "18px 22px",
+                  borderRadius: bubbleRadius,
+                  padding: "26px 30px",
                   border: "1px solid #2A3942",
-                  maxWidth: 580,
-                  transform: `scale(${bubbleScale})`,
-                  opacity: bubbleOpacity,
+                  transform: `scaleX(${bubbleScaleX}) scaleY(${bubbleScaleY})`,
                   transformOrigin: "left center",
+                  opacity: bubbleOpacity,
                 }}
               >
                 <div
                   style={{
                     color: "#E9EDEF",
                     fontFamily: F.ui,
-                    fontSize: 26,
-                    lineHeight: 1.45,
+                    fontSize: 34,
+                    lineHeight: 1.5,
                     fontWeight: 400,
                   }}
                 >
                   Você sabia que a partir de{" "}
-                  <span style={{ color: T.accent, fontWeight: 800, fontSize: 30 }}>20 unidades</span>{" "}
+                  <span style={{ color: T.accent, fontWeight: 800, fontSize: 40 }}>
+                    20 unidades
+                  </span>{" "}
                   seu produto vira realidade? 🎒
                 </div>
                 <div
                   style={{
                     color: "#8696A0",
                     fontFamily: F.ui,
-                    fontSize: 12,
-                    marginTop: 8,
+                    fontSize: 16,
+                    marginTop: 12,
                     textAlign: "right",
                   }}
                 >
@@ -385,19 +402,19 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                 </div>
               </div>
 
-              {/* Bag that pops from bubble */}
+              {/* Bag burst — aparece no mesmo ponto onde o balão estava */}
               <div
                 style={{
                   position: "absolute",
-                  left: 0,
+                  left: "50%",
                   top: "50%",
-                  transform: `translateY(calc(-50% + ${bagY}px)) scale(${bagScale})`,
+                  transform: `translate(-50%, calc(-50% + ${bagFloat}px)) scale(${bagScale})`,
                   opacity: bagOpacity,
-                  transformOrigin: "left center",
-                  filter: `drop-shadow(0 0 20px ${T.accent}88)`,
+                  filter: `drop-shadow(0 0 ${glowSize}px ${T.accent}99)`,
+                  transformOrigin: "center center",
                 }}
               >
-                <SlingBagSVG size={220} color={T.accent} />
+                <SlingBagSVG size={260} color={T.accent} />
               </div>
             </div>
           </div>
