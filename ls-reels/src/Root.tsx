@@ -275,54 +275,39 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // ── Timeline (150 frames / 5s) — ritmo lento e cinematográfico ──
-  // 0–20   : UI fades in suavemente
-  // 18–70  : typing dots (digitando por mais tempo)
-  // 65–95  : balão entra com bounce + salta levemente ao receber
-  // 95–110 : balão repousa, pre-glow acumula
-  // 108–116: FLASH
-  // 114–134: mochila emerge (blur→sharp + rotação + spring)
-  // 116–138: anel de glow + partículas
-  // 128–150: mochila flutua + light sweep
+  // ── Timeline (150 frames / 5s) ──
+  // 0–20   : UI fades in
+  // 18–70  : typing dots visible
+  // 65–95  : bubble appears AT SAME POSITION as typing dots (scale-in)
+  // 95–108 : bubble rests, pre-glow
+  // 108–130: bubble flies UP off screen
+  // (no bag morph — bubble exits screen)
 
   const uiFade = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" });
-  const typingVisible = frame >= 18 && frame < 72;
+  const typingVisible = frame >= 18 && frame < 68;
   const bubbleVisible = frame >= 65;
 
-  // Bounce ao receber: spring com overshoot (damping baixo = mais bounce)
-  // Vem de baixo (60px), sobe, ultrapassa um pouco (-20px), depois assenta
-  const bounceSpring = spring({ frame: frame - 65, fps, config: { damping: 7, mass: 0.75, stiffness: 160 } });
-  const bubbleY = interpolate(bounceSpring, [0, 1], [60, 0]);
-  // Pequeno salto extra: sobe e volta — como WhatsApp "pula" ao receber
-  const jumpExtra = spring({ frame: frame - 68, fps, config: { damping: 5, mass: 0.5, stiffness: 280 } });
-  const bubbleJump = interpolate(jumpExtra, [0, 0.25, 0.55, 1], [0, -22, -6, 0]);
-  const bubbleOpacityIn = interpolate(frame, [65, 75], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Bubble scales in from the typing dots position (no translateY from below)
+  const scaleSpring = spring({ frame: frame - 65, fps, config: { damping: 9, mass: 0.7, stiffness: 180 } });
+  const bubbleScale = interpolate(scaleSpring, [0, 1], [0.2, 1]);
+  // Small bounce jump after arriving
+  const jumpExtra = spring({ frame: frame - 70, fps, config: { damping: 5, mass: 0.5, stiffness: 260 } });
+  const bubbleJump = interpolate(jumpExtra, [0, 0.25, 0.55, 1], [0, -18, -4, 0]);
+  const bubbleOpacityIn = interpolate(frame, [65, 72], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Pre-flash: balão pulsa levemente antes do morph
+  // Pre-flash pulse
   const prePulse = interpolate(frame, [100, 108], [1, 1.035], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const preGlow = interpolate(frame, [100, 108], [0, 0.7], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Morph (a partir do frame 108)
-  // Fase 1: squish horizontal como borracha
-  const squishX = interpolate(frame, [108, 116], [1, 0.2], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const squishY = interpolate(frame, [108, 116], [1, 1.25], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // Fase 2: contrai até zero
-  const contractScale = interpolate(frame, [116, 124], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bubbleScaleX = squishX * contractScale;
-  const bubbleScaleY = squishY * contractScale;
-  const bubbleOpacity = interpolate(frame, [112, 122], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bubbleRadius = interpolate(frame, [108, 116], [28, 200], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Bubble exit: flies UP off screen (frame 108–130)
+  const exitProgress = interpolate(frame, [108, 130], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Ease-in acceleration (quadratic)
+  const exitEased = exitProgress * exitProgress;
+  const bubbleExitY = interpolate(exitEased, [0, 1], [0, -2200]);
+  const bubbleExitScale = interpolate(exitProgress, [0, 0.3, 1], [1, 1.05, 0.85]);
+  const bubbleOpacity = frame < 108 ? 1 : interpolate(frame, [122, 130], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Mochila: spring elástico + blur→sharp + rotação de entrada
-  const bagSpring = spring({ frame: frame - 114, fps, config: { damping: 10, mass: 1.1, stiffness: 130 } });
-  const bagScale = interpolate(bagSpring, [0, 1], [0, 1]);
-  const bagOpacity = interpolate(bagSpring, [0, 0.25], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagBlur = interpolate(bagSpring, [0, 0.65], [26, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRotate = interpolate(bagSpring, [0, 0.7], [-20, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagFloat = interpolate(frame, [132, 150], [0, -18], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagGlowSize = interpolate(bagSpring, [0.5, 1], [0, 34], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
-  const showMorphEffects = frame >= 108;
+  const bubbleRadius = 28;
 
   return (
     <AbsoluteFill style={{ background: "#0B141A", overflow: "hidden" }}>
@@ -357,7 +342,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
       {/* Chat area */}
       <div style={{ position: "absolute", top: 140, bottom: 90, left: 0, right: 0, padding: "40px 36px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: 16, opacity: uiFade }}>
 
-        {/* Typing indicator */}
+        {/* Typing indicator — hidden once bubble replaces it */}
         {typingVisible && (
           <div style={{ display: "flex", alignItems: "flex-end", gap: 12 }}>
             <div style={{ width: 44, height: 44, borderRadius: 22, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: T.ink, fontFamily: F.brand, fontWeight: 700, fontSize: 16, flexShrink: 0 }}>LS</div>
@@ -367,14 +352,13 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
           </div>
         )}
 
-        {/* Message bubble com bounce */}
+        {/* Message bubble — appears at same spot as typing dots, exits upward */}
         {bubbleVisible && (
           <div
             style={{
               display: "flex", alignItems: "flex-end", gap: 12, width: "100%",
               opacity: bubbleOpacityIn,
-              // Bounce: vem de baixo + salta levemente ao "receber"
-              transform: `translateY(${bubbleY + bubbleJump}px)`,
+              transform: `translateY(${bubbleJump + bubbleExitY}px)`,
             }}
           >
             <div style={{ width: 44, height: 44, borderRadius: 22, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: T.ink, fontFamily: F.brand, fontWeight: 700, fontSize: 16, flexShrink: 0, alignSelf: "flex-end", opacity: bubbleOpacity }}>LS</div>
@@ -387,7 +371,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                   borderRadius: bubbleRadius,
                   padding: "26px 30px",
                   border: "1px solid #2A3942",
-                  transform: `scaleX(${bubbleScaleX}) scaleY(${bubbleScaleY}) scale(${prePulse})`,
+                  transform: `scale(${bubbleScale * bubbleExitScale}) scale(${prePulse})`,
                   transformOrigin: "left center",
                   opacity: bubbleOpacity,
                   boxShadow: preGlow > 0 ? `0 0 ${preGlow * 44}px ${T.accent}55` : "none",
@@ -400,34 +384,13 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                 </div>
                 <div style={{ color: "#8696A0", fontFamily: F.ui, fontSize: 16, marginTop: 12, textAlign: "right" }}>agora ✓✓</div>
               </div>
-
-              {/* Efeitos de morph */}
-              {showMorphEffects && (
-                <>
-                  <GlowRing startFrame={116} x="40%" y="50%" color={T.accent} />
-                  <BurstParticles startFrame={118} x="40%" y="50%" count={12} color={T.accent} />
-                  <div
-                    style={{
-                      position: "absolute", left: "50%", top: "50%",
-                      transform: `translate(-50%, calc(-50% + ${bagFloat}px)) scale(${bagScale}) rotate(${bagRotate}deg)`,
-                      opacity: bagOpacity,
-                      filter: `blur(${bagBlur}px) drop-shadow(0 0 ${bagGlowSize}px ${T.accent}cc)`,
-                      transformOrigin: "center center",
-                    }}
-                  >
-                    <SlingBagSVG size={280} color={T.accent} />
-                  </div>
-                  {frame >= 130 && <LightSweep startFrame={130} />}
-                </>
-              )}
             </div>
           </div>
         )}
       </div>
 
-      {/* Flash do morph */}
-      <GlowFlash startFrame={108} color={`${T.accent}99`} duration={12} />
-      <GlowFlash startFrame={112} color="#ffffff" duration={7} />
+      {/* Flash no momento de saída */}
+      <GlowFlash startFrame={108} color={`${T.accent}66`} duration={10} />
 
       {/* Input bar */}
       <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "#1F2C34", padding: "12px 16px 28px", display: "flex", alignItems: "center", gap: 12, opacity: uiFade }}>
@@ -439,45 +402,113 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-// ─── S2 — Brands ─────────────────────────────────────────────────────────────
+// ─── S2 — Floating gift cards ─────────────────────────────────────────────────
 
-const BRAND_ROWS = [
-  ["THUG NINE", "BOLOVO", "CARNAN", "DUBS", "ALFA", "COROA"],
-  ["FLAMENGO", "VASCO", "SEABIRD", "DISTURB", "THUG NINE", "BOLOVO"],
-  ["CARNAN", "COROA", "DUBS", "FLAMENGO", "VASCO", "SEABIRD"],
-  ["ALFA", "DISTURB", "BOLOVO", "CARNAN", "THUG NINE", "COROA"],
-  ["SEABIRD", "FLAMENGO", "VASCO", "DUBS", "DISTURB", "ALFA"],
+const GIFT_CARDS = [
+  { brand: "THUG NINE", color: "#FF6B35", textColor: "#fff", blur: 0 },
+  { brand: "BOLOVO", color: "#7B2FBE", textColor: "#fff", blur: 3 },
+  { brand: "CARNAN", color: "#00B4D8", textColor: "#fff", blur: 0 },
+  { brand: "FLAMENGO", color: "#E63946", textColor: "#fff", blur: 5 },
+  { brand: "VASCO", color: "#1A1A2E", textColor: "#fff", blur: 2 },
+  { brand: "COROA", color: "#C6FF3A", textColor: "#0A0A0A", blur: 0 },
+  { brand: "SEABIRD", color: "#06D6A0", textColor: "#0A0A0A", blur: 4 },
+  { brand: "DISTURB", color: "#FF9F1C", textColor: "#0A0A0A", blur: 0 },
+  { brand: "DUBS", color: "#EF476F", textColor: "#fff", blur: 6 },
+  { brand: "ALFA", color: "#118AB2", textColor: "#fff", blur: 2 },
 ];
+
+const FloatingCard: React.FC<{
+  brand: string; color: string; textColor: string; blur: number;
+  x: number; y: number; rotation: number; driftX: number; driftY: number; delay: number;
+}> = ({ brand, color, textColor, blur, x, y, rotation, driftX, driftY, delay }) => {
+  const frame = useCurrentFrame();
+  const t = (frame + delay * 30) / 30;
+  const floatX = Math.sin(t * 0.6 + driftX) * 18;
+  const floatY = Math.cos(t * 0.5 + driftY) * 22;
+  const rot = rotation + Math.sin(t * 0.4 + driftX) * 3;
+  const enterPr = interpolate(frame, [delay * 6, delay * 6 + 20], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: `${x}%`,
+        top: `${y}%`,
+        transform: `translate(-50%, -50%) translate(${floatX}px, ${floatY}px) rotate(${rot}deg) scale(${enterPr})`,
+        opacity: enterPr * (blur > 3 ? 0.55 : blur > 0 ? 0.78 : 1),
+        filter: blur > 0 ? `blur(${blur}px)` : "none",
+        width: 210,
+        height: 130,
+        borderRadius: 20,
+        background: color,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        padding: "16px 18px",
+        boxShadow: `0 8px 32px rgba(0,0,0,0.4)`,
+        zIndex: blur === 0 ? 2 : 1,
+      }}
+    >
+      {/* Card chip decoration */}
+      <div style={{ position: "absolute", top: 18, left: 18, width: 32, height: 24, borderRadius: 5, background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.3)" }} />
+      <div style={{ position: "absolute", top: 12, right: 16, fontSize: 20, opacity: 0.5 }}>◈</div>
+      <div style={{ color: textColor, fontFamily: F.ui, fontSize: 18, fontWeight: 900, letterSpacing: 1.5 }}>{brand}</div>
+      <div style={{ color: textColor, fontFamily: F.mono, fontSize: 11, opacity: 0.5, marginTop: 2 }}>★★★★ ★★★★ ★★★★</div>
+    </div>
+  );
+};
 
 const S2: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const headerPr = spring({ frame, fps, config: { damping: 18 } });
+
+  // Card layout: scattered positions across screen
+  const positions = [
+    { x: 22, y: 18, rotation: -12, driftX: 0, driftY: 0, delay: 0 },
+    { x: 72, y: 14, rotation: 8, driftX: 1, driftY: 0.5, delay: 1 },
+    { x: 15, y: 42, rotation: -6, driftX: 0.5, driftY: 1, delay: 2 },
+    { x: 80, y: 38, rotation: 14, driftX: 1.5, driftY: 0.3, delay: 0.5 },
+    { x: 35, y: 65, rotation: -10, driftX: 0.2, driftY: 1.2, delay: 1.5 },
+    { x: 75, y: 62, rotation: 5, driftX: 0.8, driftY: 0.7, delay: 2.5 },
+    { x: 20, y: 82, rotation: -8, driftX: 1.2, driftY: 0.2, delay: 0.3 },
+    { x: 65, y: 85, rotation: 11, driftX: 0.4, driftY: 1.5, delay: 1.8 },
+    { x: 48, y: 30, rotation: -3, driftX: 0.9, driftY: 0.6, delay: 3 },
+    { x: 50, y: 75, rotation: 7, driftX: 0.3, driftY: 0.9, delay: 0.8 },
+  ];
+
+  const textPr = spring({ frame: frame - 10, fps, config: { damping: 16, mass: 0.8 } });
 
   return (
-    <Slide dur={dur} bg={T.accent}>
+    <AbsoluteFill style={{ background: "#0A0A0A", overflow: "hidden" }}>
+      <AtmosphericBg intensity={0.15} />
 
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 4, opacity: 0.18 }}>
-        {BRAND_ROWS.map((row, i) => (
-          <BrandScrollRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.6 + i * 0.1} />
-        ))}
+      {/* Floating cards */}
+      {GIFT_CARDS.map((card, i) => (
+        <FloatingCard key={i} {...card} {...positions[i]} />
+      ))}
+
+      {/* Dark overlay to improve text readability */}
+      <AbsoluteFill style={{ background: "linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.6) 50%, transparent 80%)" }} />
+
+      {/* Text overlay */}
+      <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
+        <div
+          style={{
+            opacity: textPr,
+            transform: `scale(${interpolate(textPr, [0, 1], [0.85, 1])})`,
+            textAlign: "center",
+            padding: "28px 40px",
+            background: "rgba(0,0,0,0.55)",
+            borderRadius: 24,
+            border: `1px solid ${T.accent}33`,
+            backdropFilter: "blur(8px)",
+          }}
+        >
+          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 52, fontWeight: 900, lineHeight: 1.2 }}>
+            E são tantas<br /><span style={{ color: T.accent }}>possibilidades</span>
+          </div>
+        </div>
       </AbsoluteFill>
-      <div style={{ position: "relative" }}>
-        <div style={{ opacity: headerPr, transform: `translateY(${interpolate(headerPr, [0, 1], [-20, 0])}px)`, color: T.ink, fontFamily: F.ui, fontSize: 46, fontWeight: 900, marginBottom: 24, textAlign: "center" }}>
-          E é tanta marca<br />que confia na gente...
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 10 }}>
-          {["THUG NINE", "BOLOVO", "CARNAN", "DUBS", "ALFA", "FLAMENGO", "VASCO", "COROA", "DISTURB", "SEABIRD", "+495", "..."].map((b, i) => {
-            const pr = springIn(frame, fps, 8 + i * 3);
-            return (
-              <div key={i} style={{ opacity: pr, transform: `scale(${interpolate(pr, [0, 1], [0.7, 1])})`, background: T.ink, borderRadius: 10, padding: "16px 8px", textAlign: "center", color: T.accent, fontFamily: F.ui, fontSize: 15, fontWeight: 800 }}>
-                {b}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </Slide>
+    </AbsoluteFill>
   );
 };
 
@@ -523,21 +554,84 @@ const S3: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-// ─── S4 — Pergunta ────────────────────────────────────────────────────────────
+// ─── S4 — Marcas scrolling cards ─────────────────────────────────────────────
 
-const S4: React.FC<{ dur: number }> = ({ dur }) => (
-  <Slide dur={dur} bg={T.surface}>
+const BRAND_CARD_COLORS = ["#FF6B35", "#7B2FBE", "#00B4D8", "#E63946", "#06D6A0", "#C6FF3A"];
+const BRAND_CARD_TEXT = ["#fff", "#fff", "#fff", "#fff", "#0A0A0A", "#0A0A0A"];
+const S4_BRANDS = ["THUG NINE", "BOLOVO", "CARNAN", "FLAMENGO", "VASCO", "COROA"];
 
-    <AtmosphericBg intensity={0.13} />
-    <Grid />
-    <div style={{ position: "relative", textAlign: "center" }}>
-      <div style={{ color: T.white, fontFamily: F.ui, fontSize: 52, fontWeight: 800, lineHeight: 1.15 }}>
-        Por que tanta<br />marca escolhe<br /><span style={{ color: T.accent }}>produzir com a LS?</span>
+const BrandCardRow: React.FC<{ brands: string[]; dir: 1 | -1; speed?: number; y?: number }> = ({
+  brands, dir, speed = 0.8, y = 0,
+}) => {
+  const frame = useCurrentFrame();
+  const doubled = [...brands, ...brands, ...brands];
+  const itemW = 260;
+  const totalW = brands.length * itemW;
+  const offset = (((frame * speed * dir) % totalW) + totalW) % totalW;
+  return (
+    <div style={{ overflow: "hidden", width: "100%", transform: `translateY(${y}px)` }}>
+      <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
+        {doubled.map((b, i) => {
+          const colorIdx = S4_BRANDS.indexOf(b);
+          const bg = colorIdx >= 0 ? BRAND_CARD_COLORS[colorIdx] : T.surface2;
+          const tc = colorIdx >= 0 ? BRAND_CARD_TEXT[colorIdx] : T.accent;
+          return (
+            <div key={i} style={{ width: itemW, flexShrink: 0, padding: "8px 10px" }}>
+              <div style={{ background: bg, borderRadius: 16, padding: "20px 24px", display: "flex", flexDirection: "column", gap: 6, boxShadow: "0 4px 20px rgba(0,0,0,0.35)" }}>
+                <div style={{ color: tc, fontFamily: F.ui, fontSize: 22, fontWeight: 900, letterSpacing: 1.5 }}>{b}</div>
+                <div style={{ color: tc, fontFamily: F.mono, fontSize: 11, opacity: 0.45 }}>★★★★ ★★★★</div>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div style={{ marginTop: 30, fontSize: 60 }}>🤔</div>
     </div>
-  </Slide>
-);
+  );
+};
+
+const S4: React.FC<{ dur: number }> = ({ dur }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const textPr = spring({ frame: frame - 8, fps, config: { damping: 16, mass: 0.8 } });
+
+  const rows = [S4_BRANDS, [...S4_BRANDS].reverse(), S4_BRANDS];
+
+  return (
+    <AbsoluteFill style={{ background: "#0A0A0A", overflow: "hidden" }}>
+      <AtmosphericBg intensity={0.14} />
+
+      {/* Scrolling card rows */}
+      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", paddingTop: 80, paddingBottom: 80 }}>
+        {rows.map((row, i) => (
+          <BrandCardRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.7 + i * 0.12} />
+        ))}
+      </AbsoluteFill>
+
+      {/* Dark overlay */}
+      <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.5) 100%)" }} />
+
+      {/* Text */}
+      <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
+        <div
+          style={{
+            opacity: textPr,
+            transform: `scale(${interpolate(textPr, [0, 1], [0.88, 1])})`,
+            textAlign: "center",
+            padding: "30px 44px",
+            background: "rgba(0,0,0,0.6)",
+            borderRadius: 26,
+            border: `1px solid ${T.accent}44`,
+            backdropFilter: "blur(10px)",
+          }}
+        >
+          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 46, fontWeight: 900, lineHeight: 1.2 }}>
+            E é tanta marca que<br /><span style={{ color: T.accent }}>confia na gente...</span>
+          </div>
+        </div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
 
 // ─── S5 — Resposta ────────────────────────────────────────────────────────────
 
@@ -766,7 +860,7 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
-const D = { s1: 150, s2: 95, s3: 90, s4: 75, s5: 110, s6: 80, s7: 90, s8: 110 };
+const D = { s1: 150, s2: 95, s3: 90, s4: 110, s5: 110, s6: 80, s7: 90, s8: 110 };
 export const TOTAL = Object.values(D).reduce((a, b) => a + b, 0);
 
 const Main: React.FC = () => (
