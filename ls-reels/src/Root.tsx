@@ -53,7 +53,31 @@ const ToteSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70, color
     <path d="M8 22 L22 22 L98 22 L112 22 L108 90 Q108 96 102 96 L18 96 Q12 96 12 90 Z" stroke={color} strokeWidth="3" fill="none" />
     <line x1="12" y1="50" x2="108" y2="50" stroke={color} strokeWidth="1.5" strokeDasharray="4 2" />
     <line x1="60" y1="22" x2="60" y2="96" stroke={color} strokeWidth="1.5" strokeDasharray="3 2" />
-    <text x="60" y="76" textAnchor="middle" fill={color} fontSize="12" fontFamily="Georgia">coroa</text>
+    <text x="60" y="76" textAnchor="middle" fill={color} fontSize="12" fontFamily="Georgia">LS</text>
+  </svg>
+);
+
+// Hobo / shoulder bag
+const HoboSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70, color = T.accent }) => (
+  <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
+    <path d="M20 30 Q10 60 12 75 Q14 92 50 92 Q86 92 88 75 Q90 60 80 30" stroke={color} strokeWidth="3" fill="none" />
+    <path d="M20 30 Q35 10 50 14 Q65 10 80 30" stroke={color} strokeWidth="2.5" fill="none" />
+    <path d="M30 30 Q20 20 18 8" stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" />
+    <path d="M32 50 Q50 44 68 50 Q72 64 68 72 Q50 78 32 72 Z" stroke={color} strokeWidth="1.5" fill="none" />
+    <circle cx="18" cy="7" r="4" stroke={color} strokeWidth="1.5" fill="none" />
+  </svg>
+);
+
+// Necessaire / toiletry bag
+const NecessaireSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70, color = T.accent }) => (
+  <svg width={size * 1.3} height={size * 0.8} viewBox="0 0 130 80" fill="none">
+    <rect x="4" y="18" width="122" height="58" rx="10" stroke={color} strokeWidth="3" fill="none" />
+    <path d="M35 18 Q35 4 65 4 Q95 4 95 18" stroke={color} strokeWidth="2.5" fill="none" />
+    <line x1="4" y1="34" x2="126" y2="34" stroke={color} strokeWidth="1.5" strokeDasharray="5 3" />
+    <circle cx="65" cy="26" r="6" stroke={color} strokeWidth="2" fill="none" />
+    <rect x="20" y="44" width="30" height="20" rx="4" stroke={color} strokeWidth="1.5" fill="none" />
+    <rect x="58" y="44" width="30" height="20" rx="4" stroke={color} strokeWidth="1.5" fill="none" />
+    <circle cx="102" cy="54" r="10" stroke={color} strokeWidth="1.5" fill="none" />
   </svg>
 );
 
@@ -175,28 +199,6 @@ const SceneTrans: React.FC<{ dur: number; tf?: number; color?: string; entry?: b
   );
 };
 
-// ─── Scrolling Rows ───────────────────────────────────────────────────────────
-
-const BagScrollRow: React.FC<{ bags: React.ReactNode[]; dir: 1 | -1; speed?: number; y?: number }> = ({
-  bags, dir, speed = 0.7, y = 0,
-}) => {
-  const frame = useCurrentFrame();
-  const doubled = [...bags, ...bags, ...bags];
-  const itemW = 160;
-  const totalW = bags.length * itemW;
-  const offset = (((frame * speed * dir) % totalW) + totalW) % totalW;
-  const vertY = interpolate(frame, [0, 300], [0, -30], { extrapolateRight: "clamp" });
-  return (
-    <div style={{ overflow: "hidden", width: "100%", transform: `translateY(${y + vertY}px)` }}>
-      <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
-        {doubled.map((bag, i) => (
-          <div key={i} style={{ width: itemW, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 20px" }}>{bag}</div>
-        ))}
-      </div>
-    </div>
-  );
-};
-
 // ─── S1 — App window reveal + satellite windows merge ────────────────────────
 
 const SatBorder: React.FC<{ w: number; h: number }> = ({ w, h }) => (
@@ -241,7 +243,6 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const spTR = spring({ frame: frame - 50, fps, config: { damping: 12, mass: 0.7 } });
   const spBL = spring({ frame: frame - 60, fps, config: { damping: 12, mass: 0.7 } });
   const spBR = spring({ frame: frame - 70, fps, config: { damping: 12, mass: 0.7 } });
-  // Entry translations (no clamp = natural spring overshoot)
   const tlEx = interpolate(spTL, [0, 1], [-200, 0]);
   const tlEy = interpolate(spTL, [0, 1], [-200, 0]);
   const trEx = interpolate(spTR, [0, 1], [200, 0]);
@@ -252,13 +253,12 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const brEy = interpolate(spBR, [0, 1], [200, 0]);
   const TL_ROT = -7, TR_ROT = 6, BL_ROT = 5, BR_ROT = -4;
 
-  // Phase 4: orbital merge (85-125f) with sine-curved paths
+  // Phase 4: orbital merge (85-125f)
   const mergePr    = interpolate(frame, [85, 125], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const mergeE     = mergePr * mergePr;
   const mergeScale = interpolate(mergeE, [0, 0.7, 1], [1, 0.5, 0]);
   const mergeOp    = interpolate(mergeE, [0.5, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // Orbital sine arc for magnetic pull feel
-  const orbitAmt = Math.sin(mergePr * Math.PI) * 55;
+  const orbitAmt   = Math.sin(mergePr * Math.PI) * 55;
   const mTLx = interpolate(mergeE, [0, 1], [0, 220]) + orbitAmt;
   const mTLy = interpolate(mergeE, [0, 1], [0, 445]) - orbitAmt * 0.5;
   const mTRx = interpolate(mergeE, [0, 1], [0, -220]) - orbitAmt;
@@ -267,11 +267,11 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const mBLy = interpolate(mergeE, [0, 1], [0, -445]) + orbitAmt * 0.5;
   const mBRx = interpolate(mergeE, [0, 1], [0, -220]) - orbitAmt;
   const mBRy = interpolate(mergeE, [0, 1], [0, -445]) + orbitAmt * 0.5;
-  // Motion blur proportional to orbital velocity
-  const mergeVel = Math.abs(Math.cos(mergePr * Math.PI)) * 55;
-  const motionBlurPx = interpolate(mergeVel, [0, 55], [0, 6]);
-  const endBlurPx = interpolate(mergeE, [0.7, 1], [0, 14], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const trailOp = interpolate(mergeE, [0.1, 0.8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Motion blur only during active merge
+  const mergeVel    = mergePr > 0 ? Math.abs(Math.cos(mergePr * Math.PI)) * 55 : 0;
+  const motionBlurPx = mergePr > 0 ? interpolate(mergeVel, [0, 55], [0, 5]) : 0;
+  const endBlurPx   = interpolate(mergeE, [0.7, 1], [0, 12], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const trailOp     = interpolate(mergeE, [0.1, 0.8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   // Mouse cursor movement (18-130f)
   const cursorX0 = interpolate(frame, [18, 38], [280, 60], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -290,16 +290,21 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   // Flash (123-136f)
   const flash = interpolate(frame, [123, 128, 137], [0, 0.85, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Bag reveal (133-165f)
-  const bagRevPr    = spring({ frame: frame - 133, fps, config: { damping: 10, mass: 0.9, stiffness: 140 } });
-  const bagRevScale = interpolate(bagRevPr, [0, 1], [0, 1]);
-  const bagRevBlur  = interpolate(bagRevPr, [0, 0.6], [20, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRevRot   = interpolate(bagRevPr, [0, 0.8], [-180, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRevOp    = interpolate(bagRevPr, [0, 0.25], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagGlow     = interpolate(bagRevPr, [0.5, 1], [0, 40], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagBreathe  = 1 + Math.sin(frame / 12) * 0.02;
+  // Card shrinks as bag replaces it (133-148f)
+  const cardExitSc = interpolate(frame, [133, 150], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // The center card's effective scale
+  const centerCardSc = frame < 133 ? mainScale : mainScale * cardExitSc;
 
-  // LS Logo (155-178f): spring overshoot 0→120%→100%, then shrinks for iris
+  // Bag reveal (133-165f) — positioned at screen center, OUTSIDE the card
+  const bagRevPr  = spring({ frame: frame - 133, fps, config: { damping: 10, mass: 0.9, stiffness: 140 } });
+  const bagRevSc  = interpolate(bagRevPr, [0, 1], [0, 1]);
+  const bagRevBlur = interpolate(bagRevPr, [0, 0.6], [20, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagRevRot  = interpolate(bagRevPr, [0, 0.8], [-180, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagRevOp   = interpolate(bagRevPr, [0, 0.25], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagGlow    = interpolate(bagRevPr, [0.5, 1], [0, 40], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagBreathe = 1 + Math.sin(frame / 12) * 0.02;
+
+  // LS Logo (155-178f): spring overshoot then shrinks for iris
   const logoPr    = spring({ frame: frame - 155, fps, config: { damping: 10, mass: 0.7, stiffness: 180 } });
   const logoGrow  = interpolate(logoPr, [0, 1], [0, 1]);
   const logoShrPr = interpolate(frame, [170, 180], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
@@ -307,7 +312,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const logoOp    = interpolate(logoPr, [0, 0.3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
                     * (1 - interpolate(frame, [177, 184], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
 
-  // Iris wipe (176-190f): lime circle expands from center → reveals S2 lime bg
+  // Iris wipe (176-190f): lime circle expands → reveals white S2 bg
   const irisPr = interpolate(frame, [176, 190], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const irisE  = irisPr * irisPr;
   const irisPx = interpolate(irisE, [0, 1], [0, 1600]);
@@ -324,7 +329,8 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
     transform: `translate(${ex + mx}px,${ey + my}px) rotate(${interpolate(mergeE, [0, 1], [rot, 0])}deg) scale(${mergeScale})`,
     transformOrigin: "center center",
     opacity: sp * mergeOp,
-    filter: (motionBlurPx + endBlurPx) > 0 ? `blur(${(motionBlurPx + endBlurPx).toFixed(1)}px)` : "none",
+    // blur only when actually merging
+    filter: mergePr > 0 && (motionBlurPx + endBlurPx) > 0.3 ? `blur(${(motionBlurPx + endBlurPx).toFixed(1)}px)` : "none",
   });
 
   return (
@@ -334,7 +340,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
         <InlineGrid id="geo1" />
 
         <AbsoluteFill>
-          {/* TOP-LEFT: Light Mac-style window */}
+          {/* TOP-LEFT: Mac-style window */}
           {frame >= 40 && frame < 125 && (
             <div style={satWrap(30, 340, tlEx, tlEy, mTLx, mTLy, TL_ROT, spTL)}>
               <div style={{ width: "100%", height: "100%", background: "#F5F7FA", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 16px 56px rgba(0,0,0,0.22)" }}>
@@ -364,7 +370,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             </div>
           )}
 
-          {/* TOP-RIGHT: Gmail-style email inbox */}
+          {/* TOP-RIGHT: Gmail */}
           {frame >= 50 && frame < 125 && (
             <div style={satWrap(470, 290, trEx, trEy, mTRx, mTRy, TR_ROT, spTR)}>
               <div style={{ width: "100%", height: "100%", background: "#FFFFFF", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 16px 56px rgba(0,0,0,0.18)" }}>
@@ -393,7 +399,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             </div>
           )}
 
-          {/* BOTTOM-LEFT: Dark email client */}
+          {/* BOTTOM-LEFT: Dark email */}
           {frame >= 60 && frame < 125 && (
             <div style={satWrap(30, 1230, blEx, blEy, mBLx, mBLy, BL_ROT, spBL)}>
               <div style={{ width: "100%", height: "100%", background: "#0D1B2A", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 16px 56px rgba(0,0,0,0.45)" }}>
@@ -412,7 +418,6 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                     <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: `1px solid ${T.accent}11` }}>
                       <div style={{ width: 9, height: 9, borderRadius: "50%", background: e.dot, flexShrink: 0 }} />
                       <span style={{ fontFamily: F.ui, fontSize: 13, color: T.white, fontWeight: e.bold ? 700 : 400, flex: 1 }}>{e.label}</span>
-                      <span style={{ color: T.muted, fontFamily: F.ui, fontSize: 12 }}>–</span>
                     </div>
                   ))}
                 </div>
@@ -455,90 +460,93 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             );
           })}
 
-          {/* CENTER: Main card */}
-          <div style={{
-            position: "absolute",
-            left: 190, top: 740,
-            width: CW, height: CH,
-            background: "#0D1B2A",
-            borderRadius: 24,
-            border: `2.5px solid ${bagRevOp > 0.5 ? T.accent + "ee" : T.accent + "88"}`,
-            boxShadow: bagRevOp > 0.3
-              ? `inset 0 0 0 1px rgba(255,255,255,0.18), 0 0 ${bagGlow}px ${T.accent}88, 0 0 ${bagGlow * 2}px ${T.accent}44, 0 24px 80px rgba(0,0,0,0.7)`
-              : `inset 0 0 0 1px rgba(255,255,255,0.18), 0 0 40px ${T.accent}44, 0 24px 70px rgba(0,0,0,0.65)`,
-            overflow: "hidden",
-            transform: `scale(${mainScale * (bagRevOp > 0.3 ? bagBreathe : 1)})`,
-            transformOrigin: "center center",
-            display: "flex",
-            flexDirection: "column",
-            zIndex: 10,
-          }}>
-            <div style={{ height: 44, background: "#091520", display: "flex", alignItems: "center", padding: "0 20px", gap: 12, borderBottom: `1px solid ${T.accent}22`, flexShrink: 0 }}>
-              <div style={{ width: 13, height: 13, borderRadius: "50%", background: T.accent }} />
-              <div style={{ flex: 1, height: 9, background: "#1E3044", borderRadius: 5, maxWidth: 180 }} />
-            </div>
-            <div style={{ padding: "24px 30px", display: "flex", flexDirection: "column", gap: 20, flex: 1 }}>
-              <div style={{ display: "flex", gap: 10, opacity: barPr }}>
-                {[{ w: 105, a: true }, { w: 68 }, { w: 118 }, { w: 78 }, { w: 95 }].map((p, i) => (
-                  <div key={i} style={{ width: p.w, height: 34, borderRadius: 17, background: p.a ? "#1B3A55" : "#162333", border: p.a ? `1.5px solid ${T.accent}77` : "1px solid #1E3044", flexShrink: 0 }} />
-                ))}
+          {/* CENTER: Main card — shrinks away when bag appears */}
+          {frame < 152 && (
+            <div style={{
+              position: "absolute",
+              left: 190, top: 740,
+              width: CW, height: CH,
+              background: "#0D1B2A",
+              borderRadius: 24,
+              border: `2.5px solid ${T.accent}88`,
+              boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.18), 0 0 40px ${T.accent}44, 0 24px 70px rgba(0,0,0,0.65)`,
+              overflow: "hidden",
+              transform: `scale(${centerCardSc})`,
+              transformOrigin: "center center",
+              display: "flex",
+              flexDirection: "column",
+              zIndex: 10,
+            }}>
+              <div style={{ height: 44, background: "#091520", display: "flex", alignItems: "center", padding: "0 20px", gap: 12, borderBottom: `1px solid ${T.accent}22`, flexShrink: 0 }}>
+                <div style={{ width: 13, height: 13, borderRadius: "50%", background: T.accent }} />
+                <div style={{ flex: 1, height: 9, background: "#1E3044", borderRadius: 5, maxWidth: 180 }} />
               </div>
-              <div style={{ flex: 1, display: "flex", alignItems: "center", overflow: "hidden" }}>
-                <div style={{
-                  width: "100%", background: "white", borderRadius: 34, padding: "18px 26px",
-                  display: "flex", alignItems: "center", gap: 14,
-                  transform: `translateX(${barX}px)`,
-                  boxShadow: barGlow > 0.5
-                    ? `0 0 ${barGlow * 24}px ${T.accent}66, 0 6px 24px rgba(0,0,0,0.12)`
-                    : "0 6px 24px rgba(0,0,0,0.08)",
-                }}>
-                  <span style={{ fontSize: 26, flexShrink: 0 }}>🎒</span>
-                  <span style={{ fontFamily: F.ui, fontSize: 21, flex: 1, fontWeight: 500 }}>
-                    <span style={{ color: "#333" }}>{beforeHL}</span>
-                    {insideHL && (
-                      <mark style={{ background: `${T.accent}55`, color: "#0A0A0A", fontWeight: 800, borderRadius: 5, padding: "2px 5px" }}>
-                        {insideHL}
-                      </mark>
-                    )}
-                    {cursorBlink && <span style={{ borderLeft: "2px solid #444", marginLeft: 2 }}>&nbsp;</span>}
-                  </span>
+              <div style={{ padding: "24px 30px", display: "flex", flexDirection: "column", gap: 20, flex: 1 }}>
+                <div style={{ display: "flex", gap: 10, opacity: barPr }}>
+                  {[{ w: 105, a: true }, { w: 68 }, { w: 118 }, { w: 78 }, { w: 95 }].map((p, i) => (
+                    <div key={i} style={{ width: p.w, height: 34, borderRadius: 17, background: p.a ? "#1B3A55" : "#162333", border: p.a ? `1.5px solid ${T.accent}77` : "1px solid #1E3044", flexShrink: 0 }} />
+                  ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Bag reveal overlay */}
-            {frame >= 133 && (
-              <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "#0D1B2A" }}>
-                <div style={{ opacity: bagRevOp, transform: `scale(${bagRevScale}) rotate(${bagRevRot}deg)`, filter: `blur(${bagRevBlur}px) drop-shadow(0 0 ${bagGlow}px ${T.accent}cc)` }}>
-                  <div style={{ position: "relative", width: 220, height: 220 }}>
-                    <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: `${T.accent}18` }} />
-                    <div style={{ position: "absolute", inset: 18, borderRadius: "50%", background: `${T.accent}28` }} />
-                    <div style={{ position: "absolute", inset: 32, borderRadius: "50%", background: "#0A1520", border: `3px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <SlingBagSVG size={90} color={T.accent} />
-                    </div>
+                <div style={{ flex: 1, display: "flex", alignItems: "center", overflow: "hidden" }}>
+                  <div style={{
+                    width: "100%", background: "white", borderRadius: 34, padding: "18px 26px",
+                    display: "flex", alignItems: "center", gap: 14,
+                    transform: `translateX(${barX}px)`,
+                    boxShadow: barGlow > 0.5 ? `0 0 ${barGlow * 24}px ${T.accent}66, 0 6px 24px rgba(0,0,0,0.12)` : "0 6px 24px rgba(0,0,0,0.08)",
+                  }}>
+                    <span style={{ fontSize: 26, flexShrink: 0 }}>🎒</span>
+                    <span style={{ fontFamily: F.ui, fontSize: 21, flex: 1, fontWeight: 500 }}>
+                      <span style={{ color: "#333" }}>{beforeHL}</span>
+                      {insideHL && (
+                        <mark style={{ background: `${T.accent}55`, color: "#0A0A0A", fontWeight: 800, borderRadius: 5, padding: "2px 5px" }}>{insideHL}</mark>
+                      )}
+                      {cursorBlink && <span style={{ borderLeft: "2px solid #444", marginLeft: 2 }}>&nbsp;</span>}
+                    </span>
                   </div>
                 </div>
-              </AbsoluteFill>
-            )}
+              </div>
+            </div>
+          )}
 
-            {/* LS Logo */}
-            {frame >= 155 && (
-              <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "#0D1B2A", zIndex: 2 }}>
-                <div style={{
-                  opacity: logoOp,
-                  transform: `scale(${logoSc})`,
-                  filter: `drop-shadow(0 0 ${bagGlow * logoSc}px ${T.accent}cc)`,
-                  width: 140, height: 140, borderRadius: 32,
-                  border: `3px solid ${T.accent}`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  color: T.accent, fontFamily: F.brand, fontWeight: 700, fontSize: 62,
-                  background: "#091520",
-                }}>
-                  LS
+          {/* BAG — appears at screen center after card shrinks */}
+          {frame >= 133 && (
+            <div style={{
+              position: "absolute",
+              left: 540, top: 960,
+              transform: `translate(-50%, -50%) scale(${bagRevSc * bagBreathe})`,
+              opacity: bagRevOp,
+              filter: `blur(${bagRevBlur}px) drop-shadow(0 0 ${bagGlow}px ${T.accent}cc)`,
+              zIndex: 15,
+            }}>
+              <div style={{ position: "relative", width: 260, height: 260 }}>
+                <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#0D1B2A" }} />
+                <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: `${T.accent}18` }} />
+                <div style={{ position: "absolute", inset: 18, borderRadius: "50%", background: `${T.accent}28` }} />
+                <div style={{ position: "absolute", inset: 32, borderRadius: "50%", background: "#0A1520", border: `3px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center", transform: `rotate(${bagRevRot}deg)` }}>
+                  <SlingBagSVG size={100} color={T.accent} />
                 </div>
-              </AbsoluteFill>
-            )}
-          </div>
+              </div>
+            </div>
+          )}
+
+          {/* LS Logo — replaces bag */}
+          {frame >= 155 && (
+            <div style={{
+              position: "absolute",
+              left: 540, top: 960,
+              transform: `translate(-50%, -50%) scale(${logoSc})`,
+              opacity: logoOp,
+              filter: `drop-shadow(0 0 ${bagGlow * logoSc}px ${T.accent}cc)`,
+              zIndex: 16,
+              width: 160, height: 160, borderRadius: 36,
+              border: `3px solid ${T.accent}`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: T.accent, fontFamily: F.brand, fontWeight: 700, fontSize: 68,
+              background: "#091520",
+            }}>
+              LS
+            </div>
+          )}
         </AbsoluteFill>
       </div>
 
@@ -557,13 +565,17 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
       )}
 
       {flash > 0 && <AbsoluteFill style={{ background: "white", opacity: flash * 0.6, pointerEvents: "none" }} />}
-
-      {/* Grain */}
       <Grain />
 
-      {/* Iris wipe: lime circle expands from center — S2 continues with same lime bg */}
+      {/* Iris wipe: lime circle grows → reveals white (S2 bg) */}
       {frame >= 176 && (
-        <AbsoluteFill style={{ background: T.accent, clipPath: `circle(${irisPx}px at 540px 960px)`, pointerEvents: "none", zIndex: 100 }} />
+        <AbsoluteFill style={{ background: "white", clipPath: `circle(${irisPx}px at 540px 960px)`, pointerEvents: "none", zIndex: 100 }} />
+      )}
+      {/* Lime ring border on iris edge */}
+      {frame >= 176 && irisPx < 1590 && (
+        <AbsoluteFill style={{ pointerEvents: "none", zIndex: 101 }}>
+          <div style={{ position: "absolute", left: 540, top: 960, width: irisPx * 2, height: irisPx * 2, borderRadius: "50%", border: `3px solid ${T.accent}`, transform: "translate(-50%,-50%)", opacity: interpolate(irisPx, [0, 200, 1400], [0, 1, 0]) }} />
+        </AbsoluteFill>
       )}
     </AbsoluteFill>
   );
@@ -587,11 +599,11 @@ const FloatingCard: React.FC<{
     <div style={{
       position: "absolute", left: `${x}%`, top: `${y}%`,
       transform: `translate(-50%,-50%) translate(${floatX}px,${floatY}px) rotate(${rot}deg) scale(${enterPr})`,
-      opacity: enterPr * (blur > 3 ? 0.65 : blur > 0 ? 0.82 : 1),
+      opacity: enterPr * (blur > 3 ? 0.50 : blur > 0 ? 0.72 : 1),
       filter: blur > 0 ? `blur(${blur}px)` : "none",
       width: 190, height: 118, background: "#0D1B2A", borderRadius: 16,
-      border: `1.5px solid ${T.accent}55`,
-      boxShadow: `0 8px 32px rgba(0,0,0,0.28), inset 0 0 0 0.5px rgba(255,255,255,0.06)`,
+      border: `1.5px solid rgba(0,0,0,0.10)`,
+      boxShadow: `0 8px 32px rgba(0,0,0,0.12), inset 0 0 0 0.5px rgba(255,255,255,0.04)`,
       overflow: "hidden", zIndex: blur === 0 ? 2 : 1,
     }}>
       <div style={{ height: 24, background: "#091520", display: "flex", alignItems: "center", padding: "0 10px", gap: 6, borderBottom: `1px solid ${T.accent}22`, flexShrink: 0 }}>
@@ -632,75 +644,147 @@ const S2: React.FC<{ dur: number }> = ({ dur }) => {
   const exitBlur  = interpolate(exitPr, [0, 1], [0, 15]);
 
   return (
-    <AbsoluteFill style={{ background: T.accent, overflow: "hidden" }}>
-      <InlineGrid id="geo2" />
-      <AtmosphericBg color="#0D1B2A" intensity={0.08} />
+    <AbsoluteFill style={{ background: "white", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, transform: `scale(${exitScale})`, filter: exitBlur > 0 ? `blur(${exitBlur}px)` : "none", transformOrigin: "center center" }}>
         {S2_BRANDS.map((brand, i) => (<FloatingCard key={i} brand={brand} {...positions[i]} />))}
         <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
-          <div style={{ opacity: textPr, transform: `scale(${interpolate(textPr, [0, 1], [0.85, 1])})`, textAlign: "center", padding: "28px 40px", background: "#0D1B2A", borderRadius: 24, border: `1.5px solid ${T.accent}55`, boxShadow: `0 4px 60px rgba(0,0,0,0.22)` }}>
-            <div style={{ color: T.white, fontFamily: F.ui, fontSize: 52, fontWeight: 900, lineHeight: 1.2 }}>
+          <div style={{ opacity: textPr, transform: `scale(${interpolate(textPr, [0, 1], [0.85, 1])})`, textAlign: "center", padding: "28px 40px", background: "#0D1B2A", borderRadius: 24, border: "1.5px solid rgba(0,0,0,0.08)", boxShadow: "0 8px 60px rgba(0,0,0,0.15)" }}>
+            <div style={{ color: "white", fontFamily: F.ui, fontSize: 52, fontWeight: 900, lineHeight: 1.2 }}>
               E são tantas<br /><span style={{ color: T.accent }}>possibilidades</span>
             </div>
           </div>
         </AbsoluteFill>
       </div>
-      <Grain />
-      {/* S2 entry: iris handles it (no SceneTrans entry); exit: lime flash */}
-      <SceneTrans dur={dur} entry={false} exit={true} />
+      {/* No entry SceneTrans — iris handles it; exit white flash */}
+      <SceneTrans dur={dur} entry={false} exit={true} color="white" />
     </AbsoluteFill>
   );
 };
 
-// ─── S3 — Bag models ─────────────────────────────────────────────────────────
+// ─── S3 — Product catalog cards ──────────────────────────────────────────────
 
-const BAG_ROWS = [
-  [<PocheteSVG size={90} color="#0A0A0A" />, <SlingBagSVG size={90} color="#0A0A0A" />, <MessengerSVG size={90} color="#0A0A0A" />, <ToteSVG size={90} color="#0A0A0A" />, <PocheteSVG size={90} color="#0A0A0A" />],
-  [<ToteSVG size={80} color="#0A0A0A" />, <MessengerSVG size={80} color="#0A0A0A" />, <SlingBagSVG size={80} color="#0A0A0A" />, <PocheteSVG size={80} color="#0A0A0A" />, <ToteSVG size={80} color="#0A0A0A" />],
-  [<SlingBagSVG size={100} color="#0A0A0A" />, <ToteSVG size={100} color="#0A0A0A" />, <PocheteSVG size={100} color="#0A0A0A" />, <MessengerSVG size={100} color="#0A0A0A" />, <SlingBagSVG size={100} color="#0A0A0A" />],
+const PRODUCTS = [
+  { name: "Eco Bag",    sub: "100% algodão",   Svg: ToteSVG,       bg: "#F0F7EE", accent: "#2D6A1F" },
+  { name: "Mochila",   sub: "Impermeável",     Svg: SlingBagSVG,   bg: "#EEF0F7", accent: "#1F3D6A" },
+  { name: "Bolsa Hobo",sub: "Casual & estilo", Svg: HoboSVG,       bg: "#F7EEEE", accent: "#6A1F1F" },
+  { name: "Pochete",   sub: "Crossbody",       Svg: PocheteSVG,    bg: "#F2EEF7", accent: "#4A1F6A" },
+  { name: "Necessaire",sub: "Viagem & beauty", Svg: NecessaireSVG, bg: "#F7F2EE", accent: "#6A3D1F" },
+  { name: "Tote Bag",  sub: "Minimalista",     Svg: ToteSVG,       bg: "#EEF7F5", accent: "#1F6A5A" },
+  { name: "Messenger", sub: "Urban & prático", Svg: MessengerSVG,  bg: "#F7F0EE", accent: "#6A4A1F" },
+  { name: "Sling Bag", sub: "Esportivo",       Svg: SlingBagSVG,   bg: "#EEF5F7", accent: "#1F556A" },
 ];
+
+const ProductCard: React.FC<{ name: string; sub: string; Svg: React.FC<{ size?: number; color?: string }>; bg: string; accent: string; delay: number }> = ({
+  name, sub, Svg, bg, accent, delay,
+}) => {
+  const frame = useCurrentFrame();
+  const pr = springIn(frame, 30, delay);
+  return (
+    <div style={{
+      width: 220, flexShrink: 0,
+      background: "white", borderRadius: 20,
+      boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
+      overflow: "hidden",
+      opacity: pr, transform: `translateY(${interpolate(pr, [0, 1], [30, 0])}px)`,
+    }}>
+      {/* Product image area */}
+      <div style={{ height: 170, background: bg, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
+        <div style={{ opacity: 0.9 }}>
+          <Svg size={90} color={accent} />
+        </div>
+        {/* Category tag */}
+        <div style={{ position: "absolute", top: 12, left: 12, background: "white", borderRadius: 20, padding: "3px 10px", fontSize: 10, fontFamily: F.ui, fontWeight: 700, color: accent, letterSpacing: 0.5 }}>
+          PRIVATE LABEL
+        </div>
+        {/* LS badge */}
+        <div style={{ position: "absolute", top: 12, right: 12, width: 28, height: 28, borderRadius: 8, background: "#0D1B2A", display: "flex", alignItems: "center", justifyContent: "center", color: T.accent, fontFamily: F.brand, fontSize: 11, fontWeight: 700 }}>
+          LS
+        </div>
+      </div>
+      {/* Card info */}
+      <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 4 }}>
+        <div style={{ fontFamily: F.ui, fontSize: 16, fontWeight: 900, color: "#0D1B2A", letterSpacing: 0.3 }}>{name}</div>
+        <div style={{ fontFamily: F.ui, fontSize: 12, color: "#778899" }}>{sub}</div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 8 }}>
+          <div style={{ fontFamily: F.ui, fontSize: 11, color: accent, fontWeight: 700 }}>Personalizar →</div>
+          <div style={{ display: "flex", gap: 3 }}>
+            {[accent, `${accent}88`, `${accent}44`].map((c, i) => (
+              <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: c }} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProductRow: React.FC<{ items: typeof PRODUCTS; dir: 1 | -1; speed?: number; delay?: number }> = ({
+  items, dir, speed = 0.6, delay = 0,
+}) => {
+  const frame = useCurrentFrame();
+  const doubled = [...items, ...items, ...items];
+  const itemW = 240;
+  const totalW = items.length * itemW;
+  const offset = (((frame * speed * dir) % totalW) + totalW) % totalW;
+  return (
+    <div style={{ overflow: "hidden", width: "100%", padding: "10px 0" }}>
+      <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform", gap: 20 }}>
+        {doubled.map((p, i) => (
+          <ProductCard key={i} {...p} delay={delay + (i % items.length) * 3} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const S3: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const count = useCountUp(800, 10, 40);
 
-  // Exit: counter card zooms large (punch-out)
+  // Exit: counter card zooms out (punch)
   const exitPr    = interpolate(frame, [dur - 20, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const exitScale = interpolate(exitPr, [0, 1], [1, 7]);
   const exitOp    = interpolate(exitPr, [0.5, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
+  const headerPr = spring({ frame: frame - 5, fps, config: { damping: 16, mass: 0.8 } });
+
   return (
     <AbsoluteFill style={{ background: T.accent, overflow: "hidden" }}>
       <InlineGrid id="geo3" />
-      <AtmosphericBg color="#0D1B2A" intensity={0.08} />
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", opacity: 0.12 }}>
-        {BAG_ROWS.map((row, i) => (<BagScrollRow key={i} bags={row} dir={i % 2 === 0 ? 1 : -1} speed={0.5 + i * 0.15} />))}
+      <AtmosphericBg color="#0D1B2A" intensity={0.06} />
+
+      {/* Title */}
+      <div style={{ position: "absolute", top: 120, left: 0, right: 0, textAlign: "center", opacity: headerPr, transform: `translateY(${interpolate(headerPr, [0, 1], [-20, 0])}px)` }}>
+        <div style={{ color: "#0A0A0A", fontFamily: F.ui, fontSize: 28, fontWeight: 900, letterSpacing: 0.5 }}>
+          +{count} modelos produzidos
+        </div>
+        <div style={{ color: "#0A0A0A99", fontFamily: F.ui, fontSize: 16, marginTop: 4 }}>
+          mochilas · bolsas · eco bags · necessaires e mais
+        </div>
+      </div>
+
+      {/* Two scrolling rows of product cards */}
+      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 0, paddingTop: 200 }}>
+        <ProductRow items={PRODUCTS.slice(0, 4)} dir={1} speed={0.55} delay={5} />
+        <ProductRow items={PRODUCTS.slice(4)} dir={-1} speed={0.65} delay={10} />
       </AbsoluteFill>
-      <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+      {/* Counter overlay */}
+      <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
         <div style={{
           opacity: exitOp,
           transform: `scale(${exitScale})`,
           transformOrigin: "center center",
           background: "#0D1B2A", border: `1.5px solid ${T.accent}55`, borderRadius: 28,
-          padding: "40px 60px", textAlign: "center",
+          padding: "36px 56px", textAlign: "center",
           boxShadow: `0 8px 60px rgba(0,0,0,0.22)`,
         }}>
-          <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 90, fontWeight: 900 }}>+{count}</div>
-          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 34, fontWeight: 700, marginTop: 4 }}>modelos já produzidos</div>
-          <div style={{ color: T.muted, fontFamily: F.ui, fontSize: 22, marginTop: 8 }}>bolsas, mochilas, pochetes e acessórios</div>
-          <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 36 }}>
-            {[PocheteSVG, SlingBagSVG, MessengerSVG, ToteSVG].map((BagComp, i) => {
-              const pr = springIn(frame, fps, 20 + i * 5);
-              return (
-                <div key={i} style={{ opacity: pr, transform: `scale(${interpolate(pr, [0, 1], [0.5, 1])})`, width: 90, height: 90, background: `${T.accent}22`, border: `1px solid ${T.accent}66`, borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <BagComp size={54} color="#0A0A0A" />
-                </div>
-              );
-            })}
-          </div>
+          <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 86, fontWeight: 900 }}>+{count}</div>
+          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 28, fontWeight: 700 }}>modelos produzidos</div>
         </div>
       </AbsoluteFill>
+
       <Grain />
       <SceneTrans dur={dur} />
     </AbsoluteFill>
@@ -724,12 +808,7 @@ const BrandCardRow: React.FC<{ brands: string[]; dir: 1 | -1; speed?: number; y?
       <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
         {doubled.map((b, i) => (
           <div key={i} style={{ width: itemW, flexShrink: 0, padding: "12px 14px" }}>
-            <div style={{
-              background: "#0D1B2A", borderRadius: 28, padding: "36px 40px",
-              display: "flex", flexDirection: "column", gap: 10,
-              boxShadow: "0 8px 40px rgba(0,0,0,0.25)", height: 180,
-              border: `1.5px solid ${T.accent}33`,
-            }}>
+            <div style={{ background: "#0D1B2A", borderRadius: 28, padding: "36px 40px", display: "flex", flexDirection: "column", gap: 10, boxShadow: "0 8px 40px rgba(0,0,0,0.25)", height: 180, border: `1.5px solid ${T.accent}33` }}>
               <div style={{ width: 44, height: 32, borderRadius: 7, background: `${T.accent}22`, border: `1px solid ${T.accent}44`, marginBottom: 4 }} />
               <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 30, fontWeight: 900, letterSpacing: 2 }}>{b}</div>
               <div style={{ color: "#334455", fontFamily: F.mono, fontSize: 14 }}>★★★★ ★★★★ ★★★★</div>
@@ -746,8 +825,6 @@ const S4: React.FC<{ dur: number }> = ({ dur }) => {
   const { fps } = useVideoConfig();
   const textPr = spring({ frame: frame - 8, fps, config: { damping: 16, mass: 0.8 } });
   const rows = [S4_BRANDS, [...S4_BRANDS].reverse(), S4_BRANDS];
-
-  // Exit: brand rows slide down
   const exitPr = interpolate(frame, [dur - 22, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const exitTY = interpolate(exitPr, [0, 1], [0, 400]);
 
@@ -756,9 +833,7 @@ const S4: React.FC<{ dur: number }> = ({ dur }) => {
       <InlineGrid id="geo4" />
       <AtmosphericBg color="#0D1B2A" intensity={0.10} />
       <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", paddingTop: 60, paddingBottom: 60 }}>
-        {rows.map((row, i) => (
-          <BrandCardRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.7 + i * 0.12} blurAmount={i === 0 ? 3 : i === 2 ? 4 : 0} exitTY={exitTY} />
-        ))}
+        {rows.map((row, i) => (<BrandCardRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.7 + i * 0.12} blurAmount={i === 0 ? 3 : i === 2 ? 4 : 0} exitTY={exitTY} />))}
       </AbsoluteFill>
       <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
         <div style={{ opacity: textPr, transform: `scale(${interpolate(textPr, [0, 1], [0.88, 1])})`, textAlign: "center", padding: "30px 44px", background: "#0D1B2A", borderRadius: 26, border: `1.5px solid ${T.accent}55`, boxShadow: `0 4px 60px rgba(0,0,0,0.22)` }}>
@@ -783,8 +858,6 @@ const S5: React.FC<{ dur: number }> = ({ dur }) => {
     { t: "Premium", d: "Materiais de qualidade e acabamento", icon: "★" },
     { t: "Sob medida", d: "Bordado, silk e cores da sua marca", icon: "✦" },
   ];
-
-  // Exit: whole content scales to center
   const exitPr    = interpolate(frame, [dur - 20, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const exitScale = interpolate(exitPr, [0, 1], [1, 0]);
   const exitBlur  = interpolate(exitPr, [0, 1], [0, 12]);
@@ -796,19 +869,13 @@ const S5: React.FC<{ dur: number }> = ({ dur }) => {
       <div style={{ position: "absolute", inset: 0, transform: `scale(${exitScale})`, filter: exitBlur > 0 ? `blur(${exitBlur}px)` : "none", transformOrigin: "center center", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }}>
           <div style={{ color: "#0A0A0A", fontFamily: F.ui, fontSize: 38, fontWeight: 800, textAlign: "center", padding: "0 40px" }}>
-            Porque é <span style={{ color: "#0D1B2A", textDecoration: "underline" }}>simples</span>, premium e sob medida.
+            Porque é <span style={{ textDecoration: "underline" }}>simples</span>, premium e sob medida.
           </div>
           <div style={{ display: "flex", flexDirection: "row", gap: 20, justifyContent: "center", padding: "0 20px" }}>
             {cards.map((c, i) => {
               const pr = springIn(frame, fps, 12 + i * 10);
               return (
-                <div key={i} style={{
-                  opacity: pr, transform: `translateY(${interpolate(pr, [0, 1], [40, 0])}px)`,
-                  background: "#0D1B2A", border: `2px solid ${i === 1 ? T.accent : T.accent + "44"}`,
-                  borderRadius: 20, padding: "30px 22px",
-                  display: "flex", flexDirection: "column", alignItems: "center", gap: 16,
-                  flex: 1, maxWidth: 280, textAlign: "center",
-                }}>
+                <div key={i} style={{ opacity: pr, transform: `translateY(${interpolate(pr, [0, 1], [40, 0])}px)`, background: "#0D1B2A", border: `2px solid ${i === 1 ? T.accent : T.accent + "44"}`, borderRadius: 20, padding: "30px 22px", display: "flex", flexDirection: "column", alignItems: "center", gap: 16, flex: 1, maxWidth: 280, textAlign: "center" }}>
                   <div style={{ width: 64, height: 64, borderRadius: 16, background: i === 1 ? T.accent : `${T.accent}22`, border: `2px solid ${T.accent}`, color: i === 1 ? "#0A0A0A" : T.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, fontWeight: 800 }}>{c.icon}</div>
                   <div style={{ color: T.white, fontFamily: F.ui, fontSize: 26, fontWeight: 800 }}>{c.t}</div>
                   <div style={{ color: T.muted, fontFamily: F.ui, fontSize: 16 }}>{c.d}</div>
@@ -829,8 +896,6 @@ const S5: React.FC<{ dur: number }> = ({ dur }) => {
 const S6: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const count = useCountUp(10, 10, 36);
-
-  // Exit: counter card flips on X axis (scaleX goes to 0, then negative = "flip")
   const s6FlipPr = interpolate(frame, [dur - 18, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const flipScaleX = Math.cos(s6FlipPr * Math.PI / 2);
 
@@ -839,20 +904,14 @@ const S6: React.FC<{ dur: number }> = ({ dur }) => {
       <InlineGrid id="geo6" />
       <AtmosphericBg color="#0D1B2A" intensity={0.08} />
       <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{
-          transform: `scaleX(${flipScaleX})`,
-          transformOrigin: "center center",
-          background: "#0D1B2A", border: `1.5px solid ${T.accent}55`, borderRadius: 28,
-          padding: "52px 80px", textAlign: "center",
-          boxShadow: `0 8px 60px rgba(0,0,0,0.22)`,
-        }}>
+        <div style={{ transform: `scaleX(${flipScaleX})`, transformOrigin: "center center", background: "#0D1B2A", border: `1.5px solid ${T.accent}55`, borderRadius: 28, padding: "52px 80px", textAlign: "center", boxShadow: `0 8px 60px rgba(0,0,0,0.22)` }}>
           <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 100, fontWeight: 900 }}>+{count} anos</div>
           <div style={{ color: T.white, fontFamily: F.ui, fontSize: 30, fontWeight: 700, marginTop: 6 }}>de mercado e experiência</div>
           <div style={{ color: T.muted, fontFamily: F.ui, fontSize: 22, marginTop: 8 }}>As marcas já sabem disso. 🔥</div>
         </div>
       </AbsoluteFill>
       <Grain />
-      <SceneTrans dur={dur} exit={true} entry={true} />
+      <SceneTrans dur={dur} />
     </AbsoluteFill>
   );
 };
@@ -861,30 +920,18 @@ const S6: React.FC<{ dur: number }> = ({ dur }) => {
 
 const S7: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
   const pulse = 1 + Math.sin(frame / 9) * 0.03;
-
-  // Entry: scaleX flip-in (from 0 → 1) like card flipping
   const s7FlipPr = interpolate(frame, [0, 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const flipScaleX = Math.sin(s7FlipPr * Math.PI / 2);
-
-  // Dark iris exit: dark circle expands from center
   const darkIrisPr = interpolate(frame, [dur - 22, dur - 2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const darkIrisE  = darkIrisPr * darkIrisPr;
-  const darkIrisPx = interpolate(darkIrisE, [0, 1], [0, 1600]);
+  const darkIrisPx = interpolate(darkIrisPr * darkIrisPr, [0, 1], [0, 1600]);
 
   return (
     <AbsoluteFill style={{ background: T.accent, overflow: "hidden" }}>
       <InlineGrid id="geo7" />
       <AtmosphericBg color="#0D1B2A" intensity={0.08} />
       <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{
-          transform: `scaleX(${flipScaleX})`,
-          transformOrigin: "center center",
-          background: "#0D1B2A", border: `1.5px solid ${T.accent}55`, borderRadius: 28,
-          padding: "52px 60px", textAlign: "center",
-          boxShadow: `0 8px 60px rgba(0,0,0,0.22)`,
-        }}>
+        <div style={{ transform: `scaleX(${flipScaleX})`, transformOrigin: "center center", background: "#0D1B2A", border: `1.5px solid ${T.accent}55`, borderRadius: 28, padding: "52px 60px", textAlign: "center", boxShadow: `0 8px 60px rgba(0,0,0,0.22)` }}>
           <div style={{ color: T.white, fontFamily: F.ui, fontSize: 46, fontWeight: 900, lineHeight: 1.15 }}>
             Está esperando o quê<br />para produzir seus<br />acessórios?
           </div>
@@ -894,9 +941,6 @@ const S7: React.FC<{ dur: number }> = ({ dur }) => {
         </div>
       </AbsoluteFill>
       <Grain />
-      {/* No SceneTrans exit — dark iris handles transition to S8 */}
-      <SceneTrans dur={dur} entry={false} exit={false} />
-      {/* Dark iris wipe to S8 */}
       {frame >= dur - 22 && (
         <AbsoluteFill style={{ background: T.bg, clipPath: `circle(${darkIrisPx}px at 540px 960px)`, pointerEvents: "none", zIndex: 100 }} />
       )}
@@ -910,10 +954,7 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const convergeProgress = (i: number) => {
-    const delay = i * 2;
-    return spring({ frame: frame - delay, fps, config: { damping: 14, mass: 0.6 } });
-  };
+  const convergeProgress = (i: number) => spring({ frame: frame - i * 2, fps, config: { damping: 14, mass: 0.6 } });
 
   const logoPr = spring({ frame: frame - 10, fps, config: { damping: 13, mass: 0.9 } });
   const logoScale = interpolate(logoPr, [0, 1], [0.5, 1]);
@@ -923,9 +964,8 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
   const logoGlow = interpolate(logoPr, [0.6, 1], [0, 22], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   const textPr = spring({ frame: frame - 30, fps, config: { damping: 16, mass: 0.7 } });
-  const textY = interpolate(textPr, [0, 1], [28, 0]);
+  const textY  = interpolate(textPr, [0, 1], [28, 0]);
   const textOp = interpolate(textPr, [0, 0.4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
   const cardPr = spring({ frame: frame - 50, fps, config: { damping: 16 } });
 
   return (
@@ -950,9 +990,7 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
       <BurstParticles startFrame={10} x="50%" y="35%" count={8} color={T.accent} />
       <LightSweep startFrame={22} />
       <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 20 }}>
-        <div style={{ opacity: logoOpacity, transform: `scale(${logoScale * breathe})`, filter: `blur(${logoBlur}px) drop-shadow(0 0 ${logoGlow}px ${T.accent}cc)`, width: 110, height: 110, borderRadius: 26, border: `3px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center", color: T.accent, fontFamily: F.brand, fontWeight: 700, fontSize: 52 }}>
-          LS
-        </div>
+        <div style={{ opacity: logoOpacity, transform: `scale(${logoScale * breathe})`, filter: `blur(${logoBlur}px) drop-shadow(0 0 ${logoGlow}px ${T.accent}cc)`, width: 110, height: 110, borderRadius: 26, border: `3px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center", color: T.accent, fontFamily: F.brand, fontWeight: 700, fontSize: 52 }}>LS</div>
         <div style={{ opacity: textOp, transform: `translateY(${textY}px)`, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <div style={{ color: T.white, fontFamily: F.ui, fontSize: 38, fontWeight: 800 }}>LS CONFECÇÕES</div>
           <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 22, fontWeight: 700, letterSpacing: 1 }}>SUA MARCA. NOSSA PRODUÇÃO.</div>
