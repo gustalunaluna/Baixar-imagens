@@ -57,7 +57,6 @@ const ToteSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70, color
   </svg>
 );
 
-// Hobo / shoulder bag
 const HoboSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70, color = T.accent }) => (
   <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
     <path d="M20 30 Q10 60 12 75 Q14 92 50 92 Q86 92 88 75 Q90 60 80 30" stroke={color} strokeWidth="3" fill="none" />
@@ -68,7 +67,6 @@ const HoboSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70, color
   </svg>
 );
 
-// Necessaire / toiletry bag
 const NecessaireSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70, color = T.accent }) => (
   <svg width={size * 1.3} height={size * 0.8} viewBox="0 0 130 80" fill="none">
     <rect x="4" y="18" width="122" height="58" rx="10" stroke={color} strokeWidth="3" fill="none" />
@@ -84,12 +82,11 @@ const NecessaireSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70,
 // ─── Cinematic Utilities ──────────────────────────────────────────────────────
 
 const AtmosphericBg: React.FC<{ color?: string; intensity?: number }> = ({
-  color = "#000000",
-  intensity = 0.10,
+  color = "#000000", intensity = 0.10,
 }) => {
   const frame = useCurrentFrame();
-  const x = 50 + Math.sin(frame / 70) * 12;
-  const y = 50 + Math.cos(frame / 90) * 9;
+  const x  = 50 + Math.sin(frame / 70) * 12;
+  const y  = 50 + Math.cos(frame / 90) * 9;
   const x2 = 30 + Math.cos(frame / 110) * 15;
   const y2 = 70 + Math.sin(frame / 80) * 10;
   return (
@@ -104,8 +101,7 @@ const GlowFlash: React.FC<{ startFrame: number; color?: string; duration?: numbe
   startFrame, color = "#ffffff", duration = 8,
 }) => {
   const frame = useCurrentFrame();
-  const mid = duration / 2;
-  const opacity = interpolate(frame, [startFrame, startFrame + mid, startFrame + duration], [0, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const opacity = interpolate(frame, [startFrame, startFrame + duration / 2, startFrame + duration], [0, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return <AbsoluteFill style={{ background: color, opacity, pointerEvents: "none", mixBlendMode: "screen" }} />;
 };
 
@@ -128,12 +124,12 @@ const BurstParticles: React.FC<{ startFrame: number; x?: string; y?: string; cou
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <div style={{ position: "absolute", left: x, top: y }}>
         {Array.from({ length: count }).map((_, i) => {
-          const angle = (i / count) * Math.PI * 2;
-          const delay = i * 1.5;
+          const angle   = (i / count) * Math.PI * 2;
+          const delay   = i * 1.5;
           const progress = interpolate(frame, [startFrame + delay, startFrame + delay + 20], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-          const dist = interpolate(progress, [0, 0.6, 1], [0, 110, 140]);
+          const dist    = interpolate(progress, [0, 0.6, 1], [0, 110, 140]);
           const opacity = interpolate(progress, [0, 0.2, 0.7, 1], [0, 1, 0.6, 0]);
-          const size = i % 3 === 0 ? 7 : i % 3 === 1 ? 5 : 9;
+          const size    = i % 3 === 0 ? 7 : i % 3 === 1 ? 5 : 9;
           return (
             <div key={i} style={{ position: "absolute", width: size, height: size, borderRadius: i % 2 === 0 ? 2 : "50%", background: color, opacity, transform: `translate(-50%, -50%) translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px) rotate(${progress * 180}deg)` }} />
           );
@@ -147,8 +143,8 @@ const GlowRing: React.FC<{ startFrame: number; x?: string; y?: string; color?: s
   startFrame, x = "50%", y = "50%", color = T.accent,
 }) => {
   const frame = useCurrentFrame();
-  const pr = spring({ frame: frame - startFrame, fps: 30, config: { damping: 18, mass: 0.7 } });
-  const size = interpolate(pr, [0, 1], [40, 380]);
+  const pr    = spring({ frame: frame - startFrame, fps: 30, config: { damping: 18, mass: 0.7 } });
+  const size  = interpolate(pr, [0, 1], [40, 380]);
   const opacity = interpolate(pr, [0, 0.3, 1], [0, 0.7, 0]);
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
@@ -168,7 +164,7 @@ const Grain: React.FC = () => {
   );
 };
 
-// ─── Inline Grid (unique ID per scene) ───────────────────────────────────────
+// ─── Inline Grid ─────────────────────────────────────────────────────────────
 
 const InlineGrid: React.FC<{ id: string; dark?: boolean }> = ({ id, dark = false }) => (
   <AbsoluteFill style={{ opacity: 0.07, pointerEvents: "none" }}>
@@ -188,9 +184,9 @@ const InlineGrid: React.FC<{ id: string; dark?: boolean }> = ({ id, dark = false
 const SceneTrans: React.FC<{ dur: number; tf?: number; color?: string; entry?: boolean; exit?: boolean }> = ({
   dur, tf = 12, color = T.accent, entry = true, exit = true,
 }) => {
-  const frame = useCurrentFrame();
-  const inOp  = entry ? interpolate(frame, [0, tf], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 0;
-  const outOp = exit  ? interpolate(frame, [dur - tf, dur - 1], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 0;
+  const frame  = useCurrentFrame();
+  const inOp   = entry ? interpolate(frame, [0, tf], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 0;
+  const outOp  = exit  ? interpolate(frame, [dur - tf, dur - 1], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 0;
   return (
     <>
       {inOp  > 0.01 && <AbsoluteFill style={{ background: color, opacity: inOp,  pointerEvents: "none", zIndex: 200 }} />}
@@ -215,30 +211,29 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const CW = 700, CH = 440;
   const SW = 580, SH = 350;
 
-  // Camera zoom on entry
+  // Camera zoom entry
   const cameraZoom = interpolate(frame, [0, 20], [1.04, 1.0], { extrapolateRight: "clamp" });
 
-  // Phase 1: center card pops in (0-24f)
+  // Center card pop-in
   const mainSpring = spring({ frame, fps, config: { damping: 8, mass: 0.8, stiffness: 180 } });
   const mainScale  = interpolate(mainSpring, [0, 1], [0.02, 1]);
   const bgFade     = interpolate(frame, [0, 8], [0, 1], { extrapolateRight: "clamp" });
 
-  // Phase 2: search bar + typewriter (24-88f)
+  // Search bar + typewriter
   const barPr   = interpolate(frame, [24, 42], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const barX    = interpolate(1 - Math.pow(1 - barPr, 3), [0, 1], [-300, 0]);
   const barGlow = interpolate(frame, [40, 50], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const searchText = "melhor confecção private label do brasil";
-  const charsN = Math.floor(interpolate(frame, [42, 88], [0, searchText.length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  const charsN     = Math.floor(interpolate(frame, [42, 88], [0, searchText.length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
   const displayText = searchText.slice(0, charsN);
   const cursorBlink = frame < 100 && Math.floor(frame / 7) % 2 === 0;
   const preHL    = "melhor confecção ";
   const beforeHL = displayText.length <= preHL.length ? displayText : preHL;
   const insideHL = displayText.length >  preHL.length ? displayText.slice(preHL.length) : "";
 
-  // Phase 3: satellites staggered (40-80f)
+  // Satellites
   const spTL = spring({ frame: frame - 40, fps, config: { damping: 12, mass: 0.7 } });
   const spTR = spring({ frame: frame - 50, fps, config: { damping: 12, mass: 0.7 } });
   const spBL = spring({ frame: frame - 60, fps, config: { damping: 12, mass: 0.7 } });
@@ -253,12 +248,12 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const brEy = interpolate(spBR, [0, 1], [200, 0]);
   const TL_ROT = -7, TR_ROT = 6, BL_ROT = 5, BR_ROT = -4;
 
-  // Phase 4: orbital merge (85-125f)
-  const mergePr    = interpolate(frame, [85, 125], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const mergeE     = mergePr * mergePr;
+  // Orbital merge (85-125f)
+  const mergePr  = interpolate(frame, [85, 125], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const mergeE   = mergePr * mergePr;
   const mergeScale = interpolate(mergeE, [0, 0.7, 1], [1, 0.5, 0]);
-  const mergeOp    = interpolate(mergeE, [0.5, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const orbitAmt   = Math.sin(mergePr * Math.PI) * 55;
+  const mergeOp  = interpolate(mergeE, [0.5, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const orbitAmt = Math.sin(mergePr * Math.PI) * 55;
   const mTLx = interpolate(mergeE, [0, 1], [0, 220]) + orbitAmt;
   const mTLy = interpolate(mergeE, [0, 1], [0, 445]) - orbitAmt * 0.5;
   const mTRx = interpolate(mergeE, [0, 1], [0, -220]) - orbitAmt;
@@ -267,55 +262,50 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const mBLy = interpolate(mergeE, [0, 1], [0, -445]) + orbitAmt * 0.5;
   const mBRx = interpolate(mergeE, [0, 1], [0, -220]) - orbitAmt;
   const mBRy = interpolate(mergeE, [0, 1], [0, -445]) + orbitAmt * 0.5;
-  // Motion blur only during active merge
   const mergeVel    = mergePr > 0 ? Math.abs(Math.cos(mergePr * Math.PI)) * 55 : 0;
   const motionBlurPx = mergePr > 0 ? interpolate(mergeVel, [0, 55], [0, 5]) : 0;
   const endBlurPx   = interpolate(mergeE, [0.7, 1], [0, 12], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const trailOp     = interpolate(mergeE, [0.1, 0.8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Mouse cursor movement (18-130f)
+  // Click
   const cursorX0 = interpolate(frame, [18, 38], [280, 60], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const cursorY0 = interpolate(frame, [18, 38], [20, 80],  { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const cursorX1 = interpolate(frame, [90, 120], [60, 0],  { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const cursorY1 = interpolate(frame, [90, 120], [80, 0],  { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const cursorX  = frame >= 90 ? cursorX1 : cursorX0;
   const cursorY  = frame >= 90 ? cursorY1 : cursorY0;
-
-  // Click animation at frame 120
   const clickSp    = spring({ frame: frame - 120, fps, config: { damping: 8, mass: 0.4, stiffness: 300 } });
   const clickScale = interpolate(clickSp, [0, 0.25, 1], [1, 0.65, 1]);
   const clickRingOp   = interpolate(frame, [120, 122, 134], [0, 0.85, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const clickRingSize = interpolate(frame, [120, 135], [8, 130], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
-  // Flash (123-136f)
   const flash = interpolate(frame, [123, 128, 137], [0, 0.85, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Card shrinks as bag replaces it (133-148f)
-  const cardExitSc = interpolate(frame, [133, 150], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // The center card's effective scale
-  const centerCardSc = frame < 133 ? mainScale : mainScale * cardExitSc;
+  // Card exits completely first (128-144f)
+  const cardExitSc  = interpolate(frame, [128, 145], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const centerCardSc = frame < 128 ? mainScale : mainScale * cardExitSc;
 
-  // Bag reveal (133-165f) — positioned at screen center, OUTSIDE the card
-  const bagRevPr  = spring({ frame: frame - 133, fps, config: { damping: 10, mass: 0.9, stiffness: 140 } });
-  const bagRevSc  = interpolate(bagRevPr, [0, 1], [0, 1]);
-  const bagRevBlur = interpolate(bagRevPr, [0, 0.6], [20, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRevRot  = interpolate(bagRevPr, [0, 0.8], [-180, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRevOp   = interpolate(bagRevPr, [0, 0.25], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagGlow    = interpolate(bagRevPr, [0.5, 1], [0, 40], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagBreathe = 1 + Math.sin(frame / 12) * 0.02;
+  // Bag appears ONLY after card is gone (starts at 145f), bounce spring (low damping = overshoot)
+  const bagSpring = spring({ frame: frame - 145, fps, config: { damping: 7, mass: 0.6, stiffness: 220 } });
+  const bagGrow   = interpolate(bagSpring, [0, 1], [0, 1]);
+  const bagGlow   = interpolate(bagSpring, [0.5, 1], [0, 36], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagRevOp  = interpolate(bagSpring, [0, 0.2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Bag shrinks away (163-172f) so logo can appear
+  const bagExitPr = interpolate(frame, [163, 172], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagFinalSc = bagGrow * (1 - bagExitPr);
+  const bagFinalOp = bagRevOp * (1 - bagExitPr);
 
-  // LS Logo (155-178f): spring overshoot then shrinks for iris
-  const logoPr    = spring({ frame: frame - 155, fps, config: { damping: 10, mass: 0.7, stiffness: 180 } });
+  // LS Logo appears as bag shrinks (starts 165f), bounce spring
+  const logoPr    = spring({ frame: frame - 165, fps, config: { damping: 7, mass: 0.6, stiffness: 220 } });
   const logoGrow  = interpolate(logoPr, [0, 1], [0, 1]);
-  const logoShrPr = interpolate(frame, [170, 180], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const logoSc    = logoGrow * (1 - logoShrPr * 0.97);
-  const logoOp    = interpolate(logoPr, [0, 0.3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
-                    * (1 - interpolate(frame, [177, 184], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  const logoRevOp = interpolate(logoPr, [0, 0.2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Logo shrinks for iris (178-185f)
+  const logoExitPr = interpolate(frame, [178, 186], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const logoFinalSc = logoGrow * (1 - logoExitPr);
+  const logoFinalOp = logoRevOp * (1 - logoExitPr);
 
-  // Iris wipe (176-190f): lime circle expands → reveals white S2 bg
-  const irisPr = interpolate(frame, [176, 190], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const irisE  = irisPr * irisPr;
-  const irisPx = interpolate(irisE, [0, 1], [0, 1600]);
+  // Iris (183-190f)
+  const irisPr = interpolate(frame, [183, 190], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const irisPx = interpolate(irisPr * irisPr, [0, 1], [0, 1600]);
 
   const satWrap = (
     restL: number, restT: number,
@@ -329,18 +319,15 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
     transform: `translate(${ex + mx}px,${ey + my}px) rotate(${interpolate(mergeE, [0, 1], [rot, 0])}deg) scale(${mergeScale})`,
     transformOrigin: "center center",
     opacity: sp * mergeOp,
-    // blur only when actually merging
     filter: mergePr > 0 && (motionBlurPx + endBlurPx) > 0.3 ? `blur(${(motionBlurPx + endBlurPx).toFixed(1)}px)` : "none",
   });
 
   return (
     <AbsoluteFill style={{ background: T.accent, opacity: bgFade, overflow: "hidden" }}>
-
       <div style={{ position: "absolute", inset: 0, transform: `scale(${cameraZoom})`, transformOrigin: "center center" }}>
         <InlineGrid id="geo1" />
-
         <AbsoluteFill>
-          {/* TOP-LEFT: Mac-style window */}
+
           {frame >= 40 && frame < 125 && (
             <div style={satWrap(30, 340, tlEx, tlEy, mTLx, mTLy, TL_ROT, spTL)}>
               <div style={{ width: "100%", height: "100%", background: "#F5F7FA", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 16px 56px rgba(0,0,0,0.22)" }}>
@@ -370,7 +357,6 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             </div>
           )}
 
-          {/* TOP-RIGHT: Gmail */}
           {frame >= 50 && frame < 125 && (
             <div style={satWrap(470, 290, trEx, trEy, mTRx, mTRy, TR_ROT, spTR)}>
               <div style={{ width: "100%", height: "100%", background: "#FFFFFF", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 16px 56px rgba(0,0,0,0.18)" }}>
@@ -382,11 +368,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                   <span style={{ color: T.accent, fontFamily: F.ui, fontSize: 11, fontWeight: 700, flexShrink: 0 }}>Novo</span>
                 </div>
                 <div style={{ flex: 1, overflow: "hidden" }}>
-                  {[
-                    { s: "Parabéns pela produção!", t: "agora", u: true },
-                    { s: "Pedido confirmado",       t: "10h",   u: false },
-                    { s: "Mochila ficou incrível!", t: "ontem", u: true },
-                  ].map((e, i) => (
+                  {[{ s: "Parabéns pela produção!", t: "agora", u: true }, { s: "Pedido confirmado", t: "10h", u: false }, { s: "Mochila ficou incrível!", t: "ontem", u: true }].map((e, i) => (
                     <div key={i} style={{ padding: "9px 16px", borderBottom: "1px solid #F2F2F2", display: "flex", alignItems: "center", gap: 10, background: e.u ? "#F7FFF0" : "transparent" }}>
                       <div style={{ width: 9, height: 9, borderRadius: "50%", background: e.u ? T.accent : "transparent", border: `1.5px solid ${e.u ? T.accent : "#CCC"}`, flexShrink: 0 }} />
                       <span style={{ fontFamily: F.ui, fontSize: 12, color: "#111", fontWeight: e.u ? 700 : 400, flex: 1 }}>{e.s}</span>
@@ -399,7 +381,6 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             </div>
           )}
 
-          {/* BOTTOM-LEFT: Dark email */}
           {frame >= 60 && frame < 125 && (
             <div style={satWrap(30, 1230, blEx, blEy, mBLx, mBLy, BL_ROT, spBL)}>
               <div style={{ width: "100%", height: "100%", background: "#0D1B2A", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 16px 56px rgba(0,0,0,0.45)" }}>
@@ -410,11 +391,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                 </div>
                 <div style={{ padding: "14px 18px", flex: 1, display: "flex", flexDirection: "column", gap: 2 }}>
                   <div style={{ fontFamily: F.ui, fontSize: 10, color: "#667788", fontWeight: 700, letterSpacing: 0.5, marginBottom: 8 }}>CAIXA DE ENT...</div>
-                  {[
-                    { label: "Venda concluída ✓",   dot: T.accent, bold: true },
-                    { label: "Produção iniciada",    dot: "#445566", bold: false },
-                    { label: "Pagamento confirmado", dot: T.accent, bold: true },
-                  ].map((e, i) => (
+                  {[{ label: "Venda concluída ✓", dot: T.accent, bold: true }, { label: "Produção iniciada", dot: "#445566", bold: false }, { label: "Pagamento confirmado", dot: T.accent, bold: true }].map((e, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: `1px solid ${T.accent}11` }}>
                       <div style={{ width: 9, height: 9, borderRadius: "50%", background: e.dot, flexShrink: 0 }} />
                       <span style={{ fontFamily: F.ui, fontSize: 13, color: T.white, fontWeight: e.bold ? 700 : 400, flex: 1 }}>{e.label}</span>
@@ -426,7 +403,6 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             </div>
           )}
 
-          {/* BOTTOM-RIGHT: Spreadsheet */}
           {frame >= 70 && frame < 125 && (
             <div style={satWrap(470, 1230, brEx, brEy, mBRx, mBRy, BR_ROT, spBR)}>
               <div style={{ width: "100%", height: "100%", background: "white", borderRadius: 18, overflow: "hidden", display: "flex", flexDirection: "column", boxShadow: "0 16px 56px rgba(0,0,0,0.2)" }}>
@@ -450,7 +426,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             </div>
           )}
 
-          {/* Particle trail during merge */}
+          {/* Particle trail */}
           {mergePr > 0 && mergePr < 1 && Array.from({ length: 14 }).map((_, i) => {
             const angle = (i / 14) * Math.PI * 2;
             const dist  = interpolate(mergeE, [0, 1], [500, 0]);
@@ -460,22 +436,17 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             );
           })}
 
-          {/* CENTER: Main card — shrinks away when bag appears */}
-          {frame < 152 && (
+          {/* Center card — vanishes completely before bag appears */}
+          {frame < 147 && (
             <div style={{
-              position: "absolute",
-              left: 190, top: 740,
-              width: CW, height: CH,
-              background: "#0D1B2A",
-              borderRadius: 24,
+              position: "absolute", left: 190, top: 740, width: 700, height: 440,
+              background: "#0D1B2A", borderRadius: 24,
               border: `2.5px solid ${T.accent}88`,
               boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.18), 0 0 40px ${T.accent}44, 0 24px 70px rgba(0,0,0,0.65)`,
               overflow: "hidden",
               transform: `scale(${centerCardSc})`,
               transformOrigin: "center center",
-              display: "flex",
-              flexDirection: "column",
-              zIndex: 10,
+              display: "flex", flexDirection: "column", zIndex: 10,
             }}>
               <div style={{ height: 44, background: "#091520", display: "flex", alignItems: "center", padding: "0 20px", gap: 12, borderBottom: `1px solid ${T.accent}22`, flexShrink: 0 }}>
                 <div style={{ width: 13, height: 13, borderRadius: "50%", background: T.accent }} />
@@ -488,18 +459,11 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                   ))}
                 </div>
                 <div style={{ flex: 1, display: "flex", alignItems: "center", overflow: "hidden" }}>
-                  <div style={{
-                    width: "100%", background: "white", borderRadius: 34, padding: "18px 26px",
-                    display: "flex", alignItems: "center", gap: 14,
-                    transform: `translateX(${barX}px)`,
-                    boxShadow: barGlow > 0.5 ? `0 0 ${barGlow * 24}px ${T.accent}66, 0 6px 24px rgba(0,0,0,0.12)` : "0 6px 24px rgba(0,0,0,0.08)",
-                  }}>
+                  <div style={{ width: "100%", background: "white", borderRadius: 34, padding: "18px 26px", display: "flex", alignItems: "center", gap: 14, transform: `translateX(${barX}px)`, boxShadow: barGlow > 0.5 ? `0 0 ${barGlow * 24}px ${T.accent}66, 0 6px 24px rgba(0,0,0,0.12)` : "0 6px 24px rgba(0,0,0,0.08)" }}>
                     <span style={{ fontSize: 26, flexShrink: 0 }}>🎒</span>
                     <span style={{ fontFamily: F.ui, fontSize: 21, flex: 1, fontWeight: 500 }}>
                       <span style={{ color: "#333" }}>{beforeHL}</span>
-                      {insideHL && (
-                        <mark style={{ background: `${T.accent}55`, color: "#0A0A0A", fontWeight: 800, borderRadius: 5, padding: "2px 5px" }}>{insideHL}</mark>
-                      )}
+                      {insideHL && (<mark style={{ background: `${T.accent}55`, color: "#0A0A0A", fontWeight: 800, borderRadius: 5, padding: "2px 5px" }}>{insideHL}</mark>)}
                       {cursorBlink && <span style={{ borderLeft: "2px solid #444", marginLeft: 2 }}>&nbsp;</span>}
                     </span>
                   </div>
@@ -508,35 +472,27 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
             </div>
           )}
 
-          {/* BAG — appears at screen center after card shrinks */}
-          {frame >= 133 && (
-            <div style={{
-              position: "absolute",
-              left: 540, top: 960,
-              transform: `translate(-50%, -50%) scale(${bagRevSc * bagBreathe})`,
-              opacity: bagRevOp,
-              filter: `blur(${bagRevBlur}px) drop-shadow(0 0 ${bagGlow}px ${T.accent}cc)`,
-              zIndex: 15,
-            }}>
+          {/* Bag — appears only after card is gone, bounce spring */}
+          {frame >= 145 && bagFinalOp > 0.01 && (
+            <div style={{ position: "absolute", left: 540, top: 960, transform: `translate(-50%,-50%) scale(${bagFinalSc})`, opacity: bagFinalOp, filter: `drop-shadow(0 0 ${bagGlow}px ${T.accent}cc)`, zIndex: 15 }}>
               <div style={{ position: "relative", width: 260, height: 260 }}>
                 <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#0D1B2A" }} />
                 <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: `${T.accent}18` }} />
                 <div style={{ position: "absolute", inset: 18, borderRadius: "50%", background: `${T.accent}28` }} />
-                <div style={{ position: "absolute", inset: 32, borderRadius: "50%", background: "#0A1520", border: `3px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center", transform: `rotate(${bagRevRot}deg)` }}>
+                <div style={{ position: "absolute", inset: 32, borderRadius: "50%", background: "#0A1520", border: `3px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <SlingBagSVG size={100} color={T.accent} />
                 </div>
               </div>
             </div>
           )}
 
-          {/* LS Logo — replaces bag */}
-          {frame >= 155 && (
+          {/* LS Logo — appears only after bag is gone, bounce spring */}
+          {frame >= 163 && logoFinalOp > 0.01 && (
             <div style={{
-              position: "absolute",
-              left: 540, top: 960,
-              transform: `translate(-50%, -50%) scale(${logoSc})`,
-              opacity: logoOp,
-              filter: `drop-shadow(0 0 ${bagGlow * logoSc}px ${T.accent}cc)`,
+              position: "absolute", left: 540, top: 960,
+              transform: `translate(-50%,-50%) scale(${logoFinalSc})`,
+              opacity: logoFinalOp,
+              filter: `drop-shadow(0 0 ${bagGlow * logoFinalSc}px ${T.accent}cc)`,
               zIndex: 16,
               width: 160, height: 160, borderRadius: 36,
               border: `3px solid ${T.accent}`,
@@ -555,7 +511,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
         <div style={{ position: "absolute", left: "50%", top: "50%", width: clickRingSize, height: clickRingSize, borderRadius: "50%", border: "2.5px solid rgba(255,255,255,0.85)", opacity: clickRingOp, transform: "translate(-50%,-50%)", pointerEvents: "none", zIndex: 60 }} />
       )}
 
-      {/* Mouse cursor */}
+      {/* Cursor */}
       {frame >= 18 && frame < 132 && (
         <div style={{ position: "absolute", left: "50%", top: "50%", transform: `translate(${cursorX}px,${cursorY}px) scale(${frame >= 120 ? clickScale : 1})`, pointerEvents: "none", zIndex: 50, transformOrigin: "top left" }}>
           <svg width="30" height="37" viewBox="0 0 20 25" fill="none">
@@ -567,12 +523,11 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
       {flash > 0 && <AbsoluteFill style={{ background: "white", opacity: flash * 0.6, pointerEvents: "none" }} />}
       <Grain />
 
-      {/* Iris wipe: lime circle grows → reveals white (S2 bg) */}
-      {frame >= 176 && (
+      {/* Iris: lime → white */}
+      {frame >= 183 && (
         <AbsoluteFill style={{ background: "white", clipPath: `circle(${irisPx}px at 540px 960px)`, pointerEvents: "none", zIndex: 100 }} />
       )}
-      {/* Lime ring border on iris edge */}
-      {frame >= 176 && irisPx < 1590 && (
+      {frame >= 183 && irisPx < 1590 && (
         <AbsoluteFill style={{ pointerEvents: "none", zIndex: 101 }}>
           <div style={{ position: "absolute", left: 540, top: 960, width: irisPx * 2, height: irisPx * 2, borderRadius: "50%", border: `3px solid ${T.accent}`, transform: "translate(-50%,-50%)", opacity: interpolate(irisPx, [0, 200, 1400], [0, 1, 0]) }} />
         </AbsoluteFill>
@@ -581,41 +536,43 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-// ─── S2 — Floating brand windows ─────────────────────────────────────────────
+// ─── S2 — Colorful product cards scrolling + text overlay ────────────────────
 
-const S2_BRANDS = ["THUG NINE", "BOLOVO", "CARNAN", "FLAMENGO", "VASCO", "COROA", "SEABIRD", "DISTURB", "DUBS", "ALFA"];
+// Large colorful cards like INZMO reference
+const S2_CARD_ITEMS = [
+  { label: "MOCHILA",    bg: "#C6FF3A", tc: "#000", Svg: SlingBagSVG },
+  { label: "TOTE BAG",   bg: "#FF4136", tc: "#fff", Svg: ToteSVG },
+  { label: "BOLSA",      bg: "#7B2FBE", tc: "#fff", Svg: HoboSVG },
+  { label: "POCHETE",    bg: "#FF9F1C", tc: "#000", Svg: PocheteSVG },
+  { label: "ECO BAG",    bg: "#00B4D8", tc: "#fff", Svg: ToteSVG },
+  { label: "NECESSAIRE", bg: "#06D6A0", tc: "#000", Svg: NecessaireSVG },
+  { label: "MESSENGER",  bg: "#EF476F", tc: "#fff", Svg: MessengerSVG },
+  { label: "SLING BAG",  bg: "#118AB2", tc: "#fff", Svg: SlingBagSVG },
+];
 
-const FloatingCard: React.FC<{
-  brand: string; blur: number;
-  x: number; y: number; rotation: number; driftX: number; driftY: number; delay: number;
-}> = ({ brand, blur, x, y, rotation, driftX, driftY, delay }) => {
+const BigProductCard: React.FC<{ label: string; bg: string; tc: string; Svg: React.FC<{ size?: number; color?: string }> }> = ({ label, bg, tc, Svg }) => (
+  <div style={{ width: 300, height: 380, flexShrink: 0, background: bg, borderRadius: 28, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-between", padding: "28px 20px 22px", overflow: "hidden", position: "relative" }}>
+    {/* Large bag icon */}
+    <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <Svg size={160} color={tc === "#fff" ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.80)"} />
+    </div>
+    {/* Label */}
+    <div style={{ fontFamily: F.ui, fontSize: 26, fontWeight: 900, color: tc, letterSpacing: 1.5, textAlign: "center", marginTop: 8 }}>{label}</div>
+    {/* LS badge */}
+    <div style={{ position: "absolute", top: 16, right: 16, background: "rgba(0,0,0,0.18)", borderRadius: 10, padding: "4px 10px", fontFamily: F.brand, fontSize: 12, fontWeight: 700, color: tc, letterSpacing: 1 }}>LS</div>
+  </div>
+);
+
+const BigCardRow: React.FC<{ dir?: 1 | -1; speed?: number }> = ({ dir = 1, speed = 0.7 }) => {
   const frame = useCurrentFrame();
-  const t = (frame + delay * 30) / 30;
-  const floatX = Math.sin(t * 0.6 + driftX) * 18;
-  const floatY = Math.cos(t * 0.5 + driftY) * 22;
-  const rot = rotation + Math.sin(t * 0.4 + driftX) * 3;
-  const enterPr = interpolate(frame, [delay * 6, delay * 6 + 20], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const doubled = [...S2_CARD_ITEMS, ...S2_CARD_ITEMS, ...S2_CARD_ITEMS];
+  const itemW   = 320;
+  const totalW  = S2_CARD_ITEMS.length * itemW;
+  const offset  = (((frame * speed * dir) % totalW) + totalW) % totalW;
   return (
-    <div style={{
-      position: "absolute", left: `${x}%`, top: `${y}%`,
-      transform: `translate(-50%,-50%) translate(${floatX}px,${floatY}px) rotate(${rot}deg) scale(${enterPr})`,
-      opacity: enterPr * (blur > 3 ? 0.50 : blur > 0 ? 0.72 : 1),
-      filter: blur > 0 ? `blur(${blur}px)` : "none",
-      width: 190, height: 118, background: "#0D1B2A", borderRadius: 16,
-      border: `1.5px solid rgba(0,0,0,0.10)`,
-      boxShadow: `0 8px 32px rgba(0,0,0,0.12), inset 0 0 0 0.5px rgba(255,255,255,0.04)`,
-      overflow: "hidden", zIndex: blur === 0 ? 2 : 1,
-    }}>
-      <div style={{ height: 24, background: "#091520", display: "flex", alignItems: "center", padding: "0 10px", gap: 6, borderBottom: `1px solid ${T.accent}22`, flexShrink: 0 }}>
-        <div style={{ width: 7, height: 7, borderRadius: "50%", background: T.accent }} />
-        <div style={{ flex: 1, height: 4, background: "#1E3044", borderRadius: 2, maxWidth: 70 }} />
-      </div>
-      <div style={{ padding: "10px 14px", display: "flex", flexDirection: "column", gap: 5 }}>
-        <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 17, fontWeight: 900, letterSpacing: 1.2 }}>{brand}</div>
-        <div style={{ color: "#667788", fontFamily: F.ui, fontSize: 10 }}>private label · produção</div>
-        <div style={{ display: "flex", gap: 4, marginTop: 2 }}>
-          {[50, 85, 35].map((w, i) => (<div key={i} style={{ width: w, height: 3, borderRadius: 2, background: i === 0 ? `${T.accent}44` : "#1E3044" }} />))}
-        </div>
+    <div style={{ overflow: "hidden", width: "100%" }}>
+      <div style={{ display: "flex", gap: 20, transform: `translateX(-${offset}px)`, willChange: "transform" }}>
+        {doubled.map((item, i) => (<BigProductCard key={i} {...item} />))}
       </div>
     </div>
   );
@@ -624,54 +581,51 @@ const FloatingCard: React.FC<{
 const S2: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const positions = [
-    { x: 22, y: 18, rotation: -12, driftX: 0,   driftY: 0,   blur: 0, delay: 0   },
-    { x: 72, y: 14, rotation: 8,   driftX: 1,   driftY: 0.5, blur: 3, delay: 1   },
-    { x: 15, y: 42, rotation: -6,  driftX: 0.5, driftY: 1,   blur: 0, delay: 2   },
-    { x: 80, y: 38, rotation: 14,  driftX: 1.5, driftY: 0.3, blur: 5, delay: 0.5 },
-    { x: 35, y: 65, rotation: -10, driftX: 0.2, driftY: 1.2, blur: 0, delay: 1.5 },
-    { x: 75, y: 62, rotation: 5,   driftX: 0.8, driftY: 0.7, blur: 4, delay: 2.5 },
-    { x: 20, y: 82, rotation: -8,  driftX: 1.2, driftY: 0.2, blur: 0, delay: 0.3 },
-    { x: 65, y: 85, rotation: 11,  driftX: 0.4, driftY: 1.5, blur: 6, delay: 1.8 },
-    { x: 48, y: 30, rotation: -3,  driftX: 0.9, driftY: 0.6, blur: 2, delay: 3   },
-    { x: 50, y: 75, rotation: 7,   driftX: 0.3, driftY: 0.9, blur: 0, delay: 0.8 },
-  ];
   const textPr = spring({ frame: frame - 10, fps, config: { damping: 16, mass: 0.8 } });
-
-  // Exit: zoom content to center + blur
   const exitPr    = interpolate(frame, [dur - 22, dur - 5], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const exitScale = interpolate(exitPr, [0, 1], [1, 0.3]);
   const exitBlur  = interpolate(exitPr, [0, 1], [0, 15]);
 
   return (
     <AbsoluteFill style={{ background: "white", overflow: "hidden" }}>
+      {/* Scrolling big cards fill the background */}
       <div style={{ position: "absolute", inset: 0, transform: `scale(${exitScale})`, filter: exitBlur > 0 ? `blur(${exitBlur}px)` : "none", transformOrigin: "center center" }}>
-        {S2_BRANDS.map((brand, i) => (<FloatingCard key={i} brand={brand} {...positions[i]} />))}
+        <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 20, padding: "80px 0" }}>
+          <BigCardRow dir={1} speed={0.8} />
+          <BigCardRow dir={-1} speed={0.6} />
+        </AbsoluteFill>
+
+        {/* Gradient vignette to make text legible */}
+        <AbsoluteFill style={{ background: "radial-gradient(ellipse 70% 40% at 50% 50%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 60%, transparent 100%)", pointerEvents: "none" }} />
+
+        {/* Text overlay */}
         <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
-          <div style={{ opacity: textPr, transform: `scale(${interpolate(textPr, [0, 1], [0.85, 1])})`, textAlign: "center", padding: "28px 40px", background: "#0D1B2A", borderRadius: 24, border: "1.5px solid rgba(0,0,0,0.08)", boxShadow: "0 8px 60px rgba(0,0,0,0.15)" }}>
+          <div style={{ opacity: textPr, transform: `scale(${interpolate(textPr, [0, 1], [0.85, 1])})`, textAlign: "center", padding: "28px 44px", background: "rgba(13,27,42,0.88)", borderRadius: 24, backdropFilter: "blur(6px)", boxShadow: "0 8px 60px rgba(0,0,0,0.22)" }}>
             <div style={{ color: "white", fontFamily: F.ui, fontSize: 52, fontWeight: 900, lineHeight: 1.2 }}>
               E são tantas<br /><span style={{ color: T.accent }}>possibilidades</span>
             </div>
           </div>
         </AbsoluteFill>
       </div>
-      {/* No entry SceneTrans — iris handles it; exit white flash */}
+
       <SceneTrans dur={dur} entry={false} exit={true} color="white" />
     </AbsoluteFill>
   );
 };
 
-// ─── S3 — Product catalog cards ──────────────────────────────────────────────
+// ─── S3 — Product catalog: 5 rows, no overlay card, slight blur ───────────────
 
 const PRODUCTS = [
-  { name: "Eco Bag",    sub: "100% algodão",   Svg: ToteSVG,       bg: "#F0F7EE", accent: "#2D6A1F" },
-  { name: "Mochila",   sub: "Impermeável",     Svg: SlingBagSVG,   bg: "#EEF0F7", accent: "#1F3D6A" },
-  { name: "Bolsa Hobo",sub: "Casual & estilo", Svg: HoboSVG,       bg: "#F7EEEE", accent: "#6A1F1F" },
-  { name: "Pochete",   sub: "Crossbody",       Svg: PocheteSVG,    bg: "#F2EEF7", accent: "#4A1F6A" },
-  { name: "Necessaire",sub: "Viagem & beauty", Svg: NecessaireSVG, bg: "#F7F2EE", accent: "#6A3D1F" },
-  { name: "Tote Bag",  sub: "Minimalista",     Svg: ToteSVG,       bg: "#EEF7F5", accent: "#1F6A5A" },
-  { name: "Messenger", sub: "Urban & prático", Svg: MessengerSVG,  bg: "#F7F0EE", accent: "#6A4A1F" },
-  { name: "Sling Bag", sub: "Esportivo",       Svg: SlingBagSVG,   bg: "#EEF5F7", accent: "#1F556A" },
+  { name: "Eco Bag",     sub: "100% algodão",   Svg: ToteSVG,       bg: "#F0F7EE", accent: "#2D6A1F" },
+  { name: "Mochila",     sub: "Impermeável",     Svg: SlingBagSVG,   bg: "#EEF0F7", accent: "#1F3D6A" },
+  { name: "Bolsa Hobo",  sub: "Casual & estilo", Svg: HoboSVG,       bg: "#F7EEEE", accent: "#6A1F1F" },
+  { name: "Pochete",     sub: "Crossbody",       Svg: PocheteSVG,    bg: "#F2EEF7", accent: "#4A1F6A" },
+  { name: "Necessaire",  sub: "Viagem & beauty", Svg: NecessaireSVG, bg: "#F7F2EE", accent: "#6A3D1F" },
+  { name: "Tote Bag",    sub: "Minimalista",     Svg: ToteSVG,       bg: "#EEF7F5", accent: "#1F6A5A" },
+  { name: "Messenger",   sub: "Urban & prático", Svg: MessengerSVG,  bg: "#F7F0EE", accent: "#6A4A1F" },
+  { name: "Sling Bag",   sub: "Esportivo",       Svg: SlingBagSVG,   bg: "#EEF5F7", accent: "#1F556A" },
+  { name: "Bolsa Hobo",  sub: "Pufada premium",  Svg: HoboSVG,       bg: "#F5EEF7", accent: "#5A1F6A" },
+  { name: "Eco Tote",    sub: "Sustentável",     Svg: ToteSVG,       bg: "#F7F5EE", accent: "#6A601F" },
 ];
 
 const ProductCard: React.FC<{ name: string; sub: string; Svg: React.FC<{ size?: number; color?: string }>; bg: string; accent: string; delay: number }> = ({
@@ -680,37 +634,19 @@ const ProductCard: React.FC<{ name: string; sub: string; Svg: React.FC<{ size?: 
   const frame = useCurrentFrame();
   const pr = springIn(frame, 30, delay);
   return (
-    <div style={{
-      width: 220, flexShrink: 0,
-      background: "white", borderRadius: 20,
-      boxShadow: "0 4px 24px rgba(0,0,0,0.10)",
-      overflow: "hidden",
-      opacity: pr, transform: `translateY(${interpolate(pr, [0, 1], [30, 0])}px)`,
-    }}>
-      {/* Product image area */}
-      <div style={{ height: 170, background: bg, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
-        <div style={{ opacity: 0.9 }}>
-          <Svg size={90} color={accent} />
-        </div>
-        {/* Category tag */}
-        <div style={{ position: "absolute", top: 12, left: 12, background: "white", borderRadius: 20, padding: "3px 10px", fontSize: 10, fontFamily: F.ui, fontWeight: 700, color: accent, letterSpacing: 0.5 }}>
-          PRIVATE LABEL
-        </div>
-        {/* LS badge */}
-        <div style={{ position: "absolute", top: 12, right: 12, width: 28, height: 28, borderRadius: 8, background: "#0D1B2A", display: "flex", alignItems: "center", justifyContent: "center", color: T.accent, fontFamily: F.brand, fontSize: 11, fontWeight: 700 }}>
-          LS
-        </div>
+    <div style={{ width: 220, flexShrink: 0, background: "white", borderRadius: 20, boxShadow: "0 4px 24px rgba(0,0,0,0.10)", overflow: "hidden", opacity: pr, transform: `translateY(${interpolate(pr, [0, 1], [30, 0])}px)` }}>
+      <div style={{ height: 160, background: bg, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
+        <div style={{ opacity: 0.9 }}><Svg size={90} color={accent} /></div>
+        <div style={{ position: "absolute", top: 12, left: 12, background: "white", borderRadius: 20, padding: "3px 10px", fontSize: 10, fontFamily: F.ui, fontWeight: 700, color: accent, letterSpacing: 0.5 }}>PRIVATE LABEL</div>
+        <div style={{ position: "absolute", top: 12, right: 12, width: 28, height: 28, borderRadius: 8, background: "#0D1B2A", display: "flex", alignItems: "center", justifyContent: "center", color: T.accent, fontFamily: F.brand, fontSize: 11, fontWeight: 700 }}>LS</div>
       </div>
-      {/* Card info */}
       <div style={{ padding: "14px 16px", display: "flex", flexDirection: "column", gap: 4 }}>
         <div style={{ fontFamily: F.ui, fontSize: 16, fontWeight: 900, color: "#0D1B2A", letterSpacing: 0.3 }}>{name}</div>
         <div style={{ fontFamily: F.ui, fontSize: 12, color: "#778899" }}>{sub}</div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 8 }}>
           <div style={{ fontFamily: F.ui, fontSize: 11, color: accent, fontWeight: 700 }}>Personalizar →</div>
           <div style={{ display: "flex", gap: 3 }}>
-            {[accent, `${accent}88`, `${accent}44`].map((c, i) => (
-              <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: c }} />
-            ))}
+            {[accent, `${accent}88`, `${accent}44`].map((c, i) => (<div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: c }} />))}
           </div>
         </div>
       </div>
@@ -723,65 +659,67 @@ const ProductRow: React.FC<{ items: typeof PRODUCTS; dir: 1 | -1; speed?: number
 }) => {
   const frame = useCurrentFrame();
   const doubled = [...items, ...items, ...items];
-  const itemW = 240;
+  const itemW  = 240;
   const totalW = items.length * itemW;
   const offset = (((frame * speed * dir) % totalW) + totalW) % totalW;
   return (
-    <div style={{ overflow: "hidden", width: "100%", padding: "10px 0" }}>
+    <div style={{ overflow: "hidden", width: "100%", padding: "8px 0", filter: "blur(1.5px)" }}>
       <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform", gap: 20 }}>
-        {doubled.map((p, i) => (
-          <ProductCard key={i} {...p} delay={delay + (i % items.length) * 3} />
-        ))}
+        {doubled.map((p, i) => (<ProductCard key={i} {...p} delay={delay + (i % items.length) * 3} />))}
       </div>
     </div>
   );
 };
 
 const S3: React.FC<{ dur: number }> = ({ dur }) => {
-  const frame = useCurrentFrame();
+  const frame   = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const count = useCountUp(800, 10, 40);
+  const count   = useCountUp(800, 10, 40);
 
-  // Exit: counter card zooms out (punch)
   const exitPr    = interpolate(frame, [dur - 20, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const exitScale = interpolate(exitPr, [0, 1], [1, 7]);
   const exitOp    = interpolate(exitPr, [0.5, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   const headerPr = spring({ frame: frame - 5, fps, config: { damping: 16, mass: 0.8 } });
 
+  // Split 10 products into 5 groups of 2 for 5 rows
+  const ROW_SETS = [
+    PRODUCTS.slice(0, 5),
+    PRODUCTS.slice(5),
+    PRODUCTS.slice(2, 7),
+    PRODUCTS.slice(0, 4).concat(PRODUCTS.slice(6, 8)),
+    PRODUCTS.slice(3, 8).concat(PRODUCTS.slice(0, 1)),
+  ];
+  const DIRS: Array<1 | -1> = [1, -1, 1, -1, 1];
+  const SPEEDS = [0.50, 0.65, 0.45, 0.70, 0.55];
+
   return (
     <AbsoluteFill style={{ background: T.accent, overflow: "hidden" }}>
       <InlineGrid id="geo3" />
       <AtmosphericBg color="#0D1B2A" intensity={0.06} />
 
-      {/* Title */}
-      <div style={{ position: "absolute", top: 120, left: 0, right: 0, textAlign: "center", opacity: headerPr, transform: `translateY(${interpolate(headerPr, [0, 1], [-20, 0])}px)` }}>
-        <div style={{ color: "#0A0A0A", fontFamily: F.ui, fontSize: 28, fontWeight: 900, letterSpacing: 0.5 }}>
+      {/* 5 scrolling rows — blurred slightly */}
+      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 0, paddingTop: 180, paddingBottom: 40 }}>
+        {ROW_SETS.map((items, i) => (
+          <ProductRow key={i} items={items} dir={DIRS[i]} speed={SPEEDS[i]} delay={5 + i * 4} />
+        ))}
+      </AbsoluteFill>
+
+      {/* Title — no background card, just text */}
+      <div style={{ position: "absolute", top: 100, left: 0, right: 0, textAlign: "center", opacity: headerPr, transform: `translateY(${interpolate(headerPr, [0, 1], [-20, 0])}px)`, zIndex: 10 }}>
+        <div style={{ color: "#0A0A0A", fontFamily: F.ui, fontSize: 32, fontWeight: 900, letterSpacing: 0.5 }}>
           +{count} modelos produzidos
         </div>
-        <div style={{ color: "#0A0A0A99", fontFamily: F.ui, fontSize: 16, marginTop: 4 }}>
+        <div style={{ color: "rgba(0,0,0,0.6)", fontFamily: F.ui, fontSize: 16, marginTop: 6 }}>
           mochilas · bolsas · eco bags · necessaires e mais
         </div>
       </div>
 
-      {/* Two scrolling rows of product cards */}
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 0, paddingTop: 200 }}>
-        <ProductRow items={PRODUCTS.slice(0, 4)} dir={1} speed={0.55} delay={5} />
-        <ProductRow items={PRODUCTS.slice(4)} dir={-1} speed={0.65} delay={10} />
-      </AbsoluteFill>
-
-      {/* Counter overlay */}
+      {/* Exit zoom — just the counter number */}
       <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
-        <div style={{
-          opacity: exitOp,
-          transform: `scale(${exitScale})`,
-          transformOrigin: "center center",
-          background: "#0D1B2A", border: `1.5px solid ${T.accent}55`, borderRadius: 28,
-          padding: "36px 56px", textAlign: "center",
-          boxShadow: `0 8px 60px rgba(0,0,0,0.22)`,
-        }}>
-          <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 86, fontWeight: 900 }}>+{count}</div>
-          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 28, fontWeight: 700 }}>modelos produzidos</div>
+        <div style={{ opacity: exitOp, transform: `scale(${exitScale})`, transformOrigin: "center center", textAlign: "center" }}>
+          <div style={{ color: "#0A0A0A", fontFamily: F.ui, fontSize: 110, fontWeight: 900, lineHeight: 1, textShadow: "0 2px 20px rgba(0,0,0,0.15)" }}>+{count}</div>
+          <div style={{ color: "#0A0A0A", fontFamily: F.ui, fontSize: 28, fontWeight: 700, opacity: 0.7 }}>modelos</div>
         </div>
       </AbsoluteFill>
 
@@ -800,7 +738,7 @@ const BrandCardRow: React.FC<{ brands: string[]; dir: 1 | -1; speed?: number; y?
 }) => {
   const frame = useCurrentFrame();
   const doubled = [...brands, ...brands, ...brands];
-  const itemW = 420;
+  const itemW  = 420;
   const totalW = brands.length * itemW;
   const offset = (((frame * speed * dir) % totalW) + totalW) % totalW;
   return (
@@ -824,7 +762,7 @@ const S4: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const textPr = spring({ frame: frame - 8, fps, config: { damping: 16, mass: 0.8 } });
-  const rows = [S4_BRANDS, [...S4_BRANDS].reverse(), S4_BRANDS];
+  const rows   = [S4_BRANDS, [...S4_BRANDS].reverse(), S4_BRANDS];
   const exitPr = interpolate(frame, [dur - 22, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const exitTY = interpolate(exitPr, [0, 1], [0, 400]);
 
@@ -853,10 +791,10 @@ const S4: React.FC<{ dur: number }> = ({ dur }) => {
 const S5: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const cards = [
-    { t: "Simples", d: "Você cuida da marca, a gente da produção", icon: "✓" },
-    { t: "Premium", d: "Materiais de qualidade e acabamento", icon: "★" },
-    { t: "Sob medida", d: "Bordado, silk e cores da sua marca", icon: "✦" },
+  const cards  = [
+    { t: "Simples",     d: "Você cuida da marca, a gente da produção", icon: "✓" },
+    { t: "Premium",     d: "Materiais de qualidade e acabamento", icon: "★" },
+    { t: "Sob medida",  d: "Bordado, silk e cores da sua marca", icon: "✦" },
   ];
   const exitPr    = interpolate(frame, [dur - 20, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const exitScale = interpolate(exitPr, [0, 1], [1, 0]);
@@ -896,8 +834,7 @@ const S5: React.FC<{ dur: number }> = ({ dur }) => {
 const S6: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const count = useCountUp(10, 10, 36);
-  const s6FlipPr = interpolate(frame, [dur - 18, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const flipScaleX = Math.cos(s6FlipPr * Math.PI / 2);
+  const flipScaleX = Math.cos(interpolate(frame, [dur - 18, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) * Math.PI / 2);
 
   return (
     <AbsoluteFill style={{ background: T.accent, overflow: "hidden" }}>
@@ -920,11 +857,10 @@ const S6: React.FC<{ dur: number }> = ({ dur }) => {
 
 const S7: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
-  const pulse = 1 + Math.sin(frame / 9) * 0.03;
-  const s7FlipPr = interpolate(frame, [0, 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const flipScaleX = Math.sin(s7FlipPr * Math.PI / 2);
-  const darkIrisPr = interpolate(frame, [dur - 22, dur - 2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const darkIrisPx = interpolate(darkIrisPr * darkIrisPr, [0, 1], [0, 1600]);
+  const pulse        = 1 + Math.sin(frame / 9) * 0.03;
+  const flipScaleX   = Math.sin(interpolate(frame, [0, 14], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) * Math.PI / 2);
+  const darkIrisPr   = interpolate(frame, [dur - 22, dur - 2], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const darkIrisPx   = interpolate(darkIrisPr * darkIrisPr, [0, 1], [0, 1600]);
 
   return (
     <AbsoluteFill style={{ background: T.accent, overflow: "hidden" }}>
@@ -954,19 +890,16 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const convergeProgress = (i: number) => spring({ frame: frame - i * 2, fps, config: { damping: 14, mass: 0.6 } });
-
-  const logoPr = spring({ frame: frame - 10, fps, config: { damping: 13, mass: 0.9 } });
-  const logoScale = interpolate(logoPr, [0, 1], [0.5, 1]);
-  const logoBlur = interpolate(logoPr, [0, 0.7], [16, 0], { extrapolateRight: "clamp" });
-  const logoOpacity = interpolate(logoPr, [0, 0.3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const breathe = 1 + Math.sin(frame / 18) * 0.018;
-  const logoGlow = interpolate(logoPr, [0.6, 1], [0, 22], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
-  const textPr = spring({ frame: frame - 30, fps, config: { damping: 16, mass: 0.7 } });
-  const textY  = interpolate(textPr, [0, 1], [28, 0]);
-  const textOp = interpolate(textPr, [0, 0.4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const cardPr = spring({ frame: frame - 50, fps, config: { damping: 16 } });
+  const logoPr     = spring({ frame: frame - 10, fps, config: { damping: 13, mass: 0.9 } });
+  const logoScale  = interpolate(logoPr, [0, 1], [0.5, 1]);
+  const logoBlur   = interpolate(logoPr, [0, 0.7], [16, 0], { extrapolateRight: "clamp" });
+  const logoOp     = interpolate(logoPr, [0, 0.3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const breathe    = 1 + Math.sin(frame / 18) * 0.018;
+  const logoGlow   = interpolate(logoPr, [0.6, 1], [0, 22], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const textPr     = spring({ frame: frame - 30, fps, config: { damping: 16, mass: 0.7 } });
+  const textY      = interpolate(textPr, [0, 1], [28, 0]);
+  const textOp     = interpolate(textPr, [0, 0.4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const cardPr     = spring({ frame: frame - 50, fps, config: { damping: 16 } });
 
   return (
     <AbsoluteFill style={{ background: T.bg }}>
@@ -975,10 +908,10 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
       <AbsoluteFill style={{ pointerEvents: "none" }}>
         {Array.from({ length: 10 }).map((_, i) => {
           const angle = (i / 10) * Math.PI * 2;
-          const pr = convergeProgress(i);
-          const dist = interpolate(pr, [0, 1], [500, 0]);
+          const pr    = spring({ frame: frame - i * 2, fps, config: { damping: 14, mass: 0.6 } });
+          const dist  = interpolate(pr, [0, 1], [500, 0]);
           const opacity = interpolate(pr, [0, 0.1, 0.8, 1], [0, 1, 0.8, 0]);
-          const size = i % 3 === 0 ? 8 : 5;
+          const size  = i % 3 === 0 ? 8 : 5;
           return (
             <div key={i} style={{ position: "absolute", left: "50%", top: "35%", width: size, height: size, borderRadius: i % 2 === 0 ? "50%" : 2, background: T.accent, opacity, transform: `translate(-50%,-50%) translate(${Math.cos(angle) * dist}px,${Math.sin(angle) * dist}px)` }} />
           );
@@ -990,7 +923,7 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
       <BurstParticles startFrame={10} x="50%" y="35%" count={8} color={T.accent} />
       <LightSweep startFrame={22} />
       <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 20 }}>
-        <div style={{ opacity: logoOpacity, transform: `scale(${logoScale * breathe})`, filter: `blur(${logoBlur}px) drop-shadow(0 0 ${logoGlow}px ${T.accent}cc)`, width: 110, height: 110, borderRadius: 26, border: `3px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center", color: T.accent, fontFamily: F.brand, fontWeight: 700, fontSize: 52 }}>LS</div>
+        <div style={{ opacity: logoOp, transform: `scale(${logoScale * breathe})`, filter: `blur(${logoBlur}px) drop-shadow(0 0 ${logoGlow}px ${T.accent}cc)`, width: 110, height: 110, borderRadius: 26, border: `3px solid ${T.accent}`, display: "flex", alignItems: "center", justifyContent: "center", color: T.accent, fontFamily: F.brand, fontWeight: 700, fontSize: 52 }}>LS</div>
         <div style={{ opacity: textOp, transform: `translateY(${textY}px)`, textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
           <div style={{ color: T.white, fontFamily: F.ui, fontSize: 38, fontWeight: 800 }}>LS CONFECÇÕES</div>
           <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 22, fontWeight: 700, letterSpacing: 1 }}>SUA MARCA. NOSSA PRODUÇÃO.</div>
