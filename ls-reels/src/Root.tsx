@@ -182,9 +182,10 @@ const BagScrollRow: React.FC<{ bags: React.ReactNode[]; dir: 1 | -1; speed?: num
 // Dashed selection border with corner handles (sits OUTSIDE the inner overflow:hidden card)
 const SatBorder: React.FC<{ w: number; h: number }> = ({ w, h }) => (
   <>
-    <div style={{ position:"absolute", inset:-3, border:`1.5px dashed ${T.accent}bb`, borderRadius:22, pointerEvents:"none" }} />
-    {[[-5,-5],[w-4,-5],[-5,h-4],[w-4,h-4]].map(([l,t],i) => (
-      <div key={i} style={{ position:"absolute", width:9, height:9, background:T.accent, borderRadius:2, left:l, top:t }} />
+    <div style={{ position:"absolute", inset:-2, border:"1px solid rgba(255,255,255,0.2)", borderRadius:20, pointerEvents:"none" }} />
+    <div style={{ position:"absolute", inset:-10, border:"1.5px dashed rgba(255,255,255,0.38)", borderRadius:28, pointerEvents:"none" }} />
+    {[[-7,-7],[w-2,-7],[-7,h-2],[w-2,h-2]].map(([l,t],i) => (
+      <div key={i} style={{ position:"absolute", width:10, height:10, background:"rgba(255,255,255,0.75)", borderRadius:2, left:l, top:t }} />
     ))}
   </>
 );
@@ -562,13 +563,13 @@ const S2: React.FC<{ dur: number }> = ({ dur }) => {
   ];
   const textPr = spring({ frame: frame - 10, fps, config: { damping: 16, mass: 0.8 } });
   return (
-    <AbsoluteFill style={{ background: "#0A0A0A", overflow: "hidden" }}>
+    <AbsoluteFill style={{ background: "white", overflow: "hidden" }}>
       <AtmosphericBg intensity={0.15} />
       {GIFT_CARDS.map((card, i) => (<FloatingCard key={i} {...card} {...positions[i]} />))}
-      <AbsoluteFill style={{ background: "linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.6) 50%, transparent 80%)" }} />
+      <AbsoluteFill style={{ background: "rgba(0,0,0,0)" }} />
       <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center", pointerEvents:"none" }}>
-        <div style={{ opacity:textPr, transform:`scale(${interpolate(textPr,[0,1],[0.85,1])})`, textAlign:"center", padding:"28px 40px", background:"rgba(0,0,0,0.55)", borderRadius:24, border:`1px solid ${T.accent}33`, backdropFilter:"blur(8px)" }}>
-          <div style={{ color:T.white, fontFamily:F.ui, fontSize:52, fontWeight:900, lineHeight:1.2 }}>
+        <div style={{ opacity:textPr, transform:`scale(${interpolate(textPr,[0,1],[0.85,1])})`, textAlign:"center", padding:"28px 40px", background:"rgba(240,240,240,0.7)", borderRadius:24, border:`1px solid ${T.accent}66`, backdropFilter:"blur(8px)" }}>
+          <div style={{ color:"#0A0A0A", fontFamily:F.ui, fontSize:52, fontWeight:900, lineHeight:1.2 }}>
             E são tantas<br /><span style={{ color:T.accent }}>possibilidades</span>
           </div>
         </div>
@@ -809,7 +810,7 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
-const D = { s1: 150, s2: 95, s3: 90, s4: 110, s5: 110, s6: 80, s7: 90, s8: 110 };
+const D = { s1: 190, s2: 95, s3: 90, s4: 110, s5: 110, s6: 80, s7: 90, s8: 110 };
 export const TOTAL = Object.values(D).reduce((a, b) => a + b, 0);
 
 const Main: React.FC = () => (
