@@ -323,7 +323,8 @@ const Main: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: T.bg }}>
-      <Audio src={staticFile("music.mp3")} volume={volume} placeholder={null} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
+      {/* Coloque public/music.mp3 para ativar o áudio */}
+      {/* <Audio src={staticFile("music.mp3")} volume={volume} placeholder={null} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} /> */}
       <Series>
         <Series.Sequence durationInFrames={D.s1}><S1 dur={D.s1} /></Series.Sequence>
         <Series.Sequence durationInFrames={D.s2}><S2 dur={D.s2} /></Series.Sequence>
