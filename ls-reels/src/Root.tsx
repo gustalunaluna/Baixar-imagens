@@ -59,7 +59,6 @@ const ToteSVG: React.FC<{ size?: number; color?: string }> = ({ size = 70, color
 
 // ─── Cinematic Utilities ──────────────────────────────────────────────────────
 
-// Fundo atmosférico com glow radial animado (parallax lento)
 const AtmosphericBg: React.FC<{ color?: string; intensity?: number }> = ({
   color = T.accent,
   intensity = 0.18,
@@ -71,74 +70,32 @@ const AtmosphericBg: React.FC<{ color?: string; intensity?: number }> = ({
   const y2 = 70 + Math.sin(frame / 80) * 10;
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
-      {/* Glow principal */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(ellipse 65% 45% at ${x}% ${y}%, ${color}${Math.round(intensity * 255).toString(16).padStart(2, "0")} 0%, transparent 70%)`,
-        }}
-      />
-      {/* Glow secundário menor */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `radial-gradient(ellipse 35% 25% at ${x2}% ${y2}%, ${color}18 0%, transparent 65%)`,
-        }}
-      />
+      <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 65% 45% at ${x}% ${y}%, ${color}${Math.round(intensity * 255).toString(16).padStart(2, "0")} 0%, transparent 70%)` }} />
+      <div style={{ position: "absolute", inset: 0, background: `radial-gradient(ellipse 35% 25% at ${x2}% ${y2}%, ${color}18 0%, transparent 65%)` }} />
     </AbsoluteFill>
   );
 };
 
-// Flash de luz — curto e intenso
 const GlowFlash: React.FC<{ startFrame: number; color?: string; duration?: number }> = ({
-  startFrame,
-  color = "#ffffff",
-  duration = 8,
+  startFrame, color = "#ffffff", duration = 8,
 }) => {
   const frame = useCurrentFrame();
   const mid = duration / 2;
-  const opacity = interpolate(
-    frame,
-    [startFrame, startFrame + mid, startFrame + duration],
-    [0, 1, 0],
-    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
-  return (
-    <AbsoluteFill
-      style={{
-        background: color,
-        opacity,
-        pointerEvents: "none",
-        mixBlendMode: "screen",
-      }}
-    />
-  );
+  const opacity = interpolate(frame, [startFrame, startFrame + mid, startFrame + duration], [0, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  return <AbsoluteFill style={{ background: color, opacity, pointerEvents: "none", mixBlendMode: "screen" }} />;
 };
 
-// Brilho passando (light sweep)
 const LightSweep: React.FC<{ startFrame: number; delay?: number }> = ({ startFrame, delay = 0 }) => {
   const frame = useCurrentFrame();
-  const progress = interpolate(frame, [startFrame + delay, startFrame + delay + 22], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  const progress = interpolate(frame, [startFrame + delay, startFrame + delay + 22], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const x = interpolate(progress, [0, 1], [-30, 130]);
   return (
     <AbsoluteFill style={{ pointerEvents: "none", overflow: "hidden" }}>
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: `linear-gradient(105deg, transparent ${x - 12}%, rgba(255,255,255,0.12) ${x}%, rgba(255,255,255,0.06) ${x + 4}%, transparent ${x + 18}%)`,
-        }}
-      />
+      <div style={{ position: "absolute", inset: 0, background: `linear-gradient(105deg, transparent ${x - 12}%, rgba(255,255,255,0.12) ${x}%, rgba(255,255,255,0.06) ${x + 4}%, transparent ${x + 18}%)` }} />
     </AbsoluteFill>
   );
 };
 
-// Partículas geométricas que explodem de um ponto
 const BurstParticles: React.FC<{ startFrame: number; x?: string; y?: string; count?: number; color?: string }> = ({
   startFrame, x = "50%", y = "50%", count = 10, color = T.accent,
 }) => {
@@ -149,27 +106,12 @@ const BurstParticles: React.FC<{ startFrame: number; x?: string; y?: string; cou
         {Array.from({ length: count }).map((_, i) => {
           const angle = (i / count) * Math.PI * 2;
           const delay = i * 1.5;
-          const progress = interpolate(frame, [startFrame + delay, startFrame + delay + 20], [0, 1], {
-            extrapolateLeft: "clamp",
-            extrapolateRight: "clamp",
-          });
+          const progress = interpolate(frame, [startFrame + delay, startFrame + delay + 20], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
           const dist = interpolate(progress, [0, 0.6, 1], [0, 110, 140]);
           const opacity = interpolate(progress, [0, 0.2, 0.7, 1], [0, 1, 0.6, 0]);
           const size = i % 3 === 0 ? 7 : i % 3 === 1 ? 5 : 9;
-          const isSquare = i % 2 === 0;
           return (
-            <div
-              key={i}
-              style={{
-                position: "absolute",
-                width: size,
-                height: size,
-                borderRadius: isSquare ? 2 : "50%",
-                background: color,
-                opacity,
-                transform: `translate(-50%, -50%) translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px) rotate(${progress * 180}deg)`,
-              }}
-            />
+            <div key={i} style={{ position: "absolute", width: size, height: size, borderRadius: i % 2 === 0 ? 2 : "50%", background: color, opacity, transform: `translate(-50%, -50%) translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px) rotate(${progress * 180}deg)` }} />
           );
         })}
       </div>
@@ -177,7 +119,6 @@ const BurstParticles: React.FC<{ startFrame: number; x?: string; y?: string; cou
   );
 };
 
-// Anel de glow que expande
 const GlowRing: React.FC<{ startFrame: number; x?: string; y?: string; color?: string }> = ({
   startFrame, x = "50%", y = "50%", color = T.accent,
 }) => {
@@ -187,24 +128,10 @@ const GlowRing: React.FC<{ startFrame: number; x?: string; y?: string; color?: s
   const opacity = interpolate(pr, [0, 0.3, 1], [0, 0.7, 0]);
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
-      <div
-        style={{
-          position: "absolute",
-          left: x,
-          top: y,
-          width: size,
-          height: size,
-          borderRadius: "50%",
-          border: `2px solid ${color}`,
-          transform: "translate(-50%, -50%)",
-          opacity,
-          boxShadow: `0 0 ${size * 0.15}px ${color}66`,
-        }}
-      />
+      <div style={{ position: "absolute", left: x, top: y, width: size, height: size, borderRadius: "50%", border: `2px solid ${color}`, transform: "translate(-50%, -50%)", opacity, boxShadow: `0 0 ${size * 0.15}px ${color}66` }} />
     </AbsoluteFill>
   );
 };
-
 
 // ─── Scrolling Rows ───────────────────────────────────────────────────────────
 
@@ -221,9 +148,7 @@ const BrandScrollRow: React.FC<{ brands: string[]; dir: 1 | -1; speed?: number; 
       <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
         {doubled.map((b, i) => (
           <div key={i} style={{ width: itemW, flexShrink: 0, padding: "10px 0", display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ background: T.ink, border: `1px solid ${T.border}`, borderRadius: 8, padding: "10px 18px", color: T.accent, fontFamily: F.ui, fontSize: 13, fontWeight: 800, letterSpacing: 1, whiteSpace: "nowrap" }}>
-              {b}
-            </div>
+            <div style={{ background: T.ink, border: `1px solid ${T.border}`, borderRadius: 8, padding: "10px 18px", color: T.accent, fontFamily: F.ui, fontSize: 13, fontWeight: 800, letterSpacing: 1, whiteSpace: "nowrap" }}>{b}</div>
             <div style={{ color: T.border, fontSize: 10 }}>✦</div>
           </div>
         ))}
@@ -245,16 +170,24 @@ const BagScrollRow: React.FC<{ bags: React.ReactNode[]; dir: 1 | -1; speed?: num
     <div style={{ overflow: "hidden", width: "100%", transform: `translateY(${y + vertY}px)` }}>
       <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
         {doubled.map((bag, i) => (
-          <div key={i} style={{ width: itemW, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 20px" }}>
-            {bag}
-          </div>
+          <div key={i} style={{ width: itemW, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "10px 20px" }}>{bag}</div>
         ))}
       </div>
     </div>
   );
 };
 
-// ─── S1 — WhatsApp com morph cinematográfico ──────────────────────────────────
+// ─── S1 — App window reveal + satellite windows merge ────────────────────────
+
+// Dashed selection border with corner handles (sits OUTSIDE the inner overflow:hidden card)
+const SatBorder: React.FC<{ w: number; h: number }> = ({ w, h }) => (
+  <>
+    <div style={{ position:"absolute", inset:-3, border:`1.5px dashed ${T.accent}bb`, borderRadius:22, pointerEvents:"none" }} />
+    {[[-5,-5],[w-4,-5],[-5,h-4],[w-4,h-4]].map(([l,t],i) => (
+      <div key={i} style={{ position:"absolute", width:9, height:9, background:T.accent, borderRadius:2, left:l, top:t }} />
+    ))}
+  </>
+);
 
 const TypingDots: React.FC = () => {
   const frame = useCurrentFrame();
@@ -263,327 +196,297 @@ const TypingDots: React.FC = () => {
       {[0, 1, 2].map((i) => {
         const bounce = Math.sin((frame - i * 6) / 7) * 0.5 + 0.5;
         const y = interpolate(bounce, [0, 1], [3, -3]);
-        return (
-          <div key={i} style={{ width: 9, height: 9, borderRadius: "50%", background: T.accent, opacity: 0.6 + bounce * 0.4, transform: `translateY(${y}px)` }} />
-        );
+        return <div key={i} style={{ width: 9, height: 9, borderRadius: "50%", background: T.accent, opacity: 0.6 + bounce * 0.4, transform: `translateY(${y}px)` }} />;
       })}
     </div>
   );
 };
 
-// ─── S1 — App window reveal + satellite windows merge ────────────────────────
-
-const SelectionHandles: React.FC = () => {
-  const corners: Array<{ l: string | number; t: string | number }> = [
-    { l: -5, t: -5 },
-    { l: "calc(100% - 3px)", t: -5 },
-    { l: -5, t: "calc(100% - 3px)" },
-    { l: "calc(100% - 3px)", t: "calc(100% - 3px)" },
-  ];
-  return (
-    <>
-      <div style={{ position:"absolute", inset:-3, border:`2px solid ${T.accent}bb`, borderRadius:20, pointerEvents:"none" }} />
-      {corners.map(({l, t}, i) => (
-        <div key={i} style={{ position:"absolute", width:8, height:8, background:T.accent, borderRadius:2, left:l, top:t }} />
-      ))}
-    </>
-  );
-};
-
-const MacTitleBar: React.FC<{ label?: string; dark?: boolean }> = ({ label, dark = false }) => (
-  <div style={{ height: 34, background: dark ? "#162030" : "#F1F3F4", display:"flex", alignItems:"center", padding:"0 12px", gap:7, borderBottom: dark ? `1px solid ${T.accent}22` : "1px solid #DDD", flexShrink: 0 }}>
-    {dark
-      ? <div style={{ width:12, height:12, borderRadius:"50%", background: T.accent }} />
-      : ["#FF5F56","#FFBD2E","#27C93F"].map((c,i)=>(<div key={i} style={{ width:11,height:11,borderRadius:"50%",background:c }} />))
-    }
-    {label && <span style={{ fontFamily:F.ui, fontSize:11, color: dark?"#8899AA":"#666", marginLeft:6 }}>{label}</span>}
-    {dark && <div style={{ flex:1, height:9, background:"#253545", borderRadius:5, maxWidth:150, marginLeft:4 }} />}
-  </div>
-);
-
-// Dark card used for all satellite windows
-const DarkCard: React.FC<{ children: React.ReactNode; w?: number; accentBorder?: boolean }> = ({ children, w = 400, accentBorder = false }) => (
-  <div style={{ width: w, background: "#0F1923", borderRadius: 18, border: `2px solid ${T.accent}${accentBorder ? "88" : "44"}`, padding: "18px 20px", boxShadow: `0 8px 32px rgba(0,0,0,0.45), 0 0 18px ${T.accent}22` }}>
-    {children}
-  </div>
-);
-
 const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // ── Timeline (150 frames = 5s) ──
-  // 0–24   (0.8s): main card spring in with overshoot
-  // 24–54  (1.0s): search bar slides from left + typing
-  // 54–96  (1.4s): 4 sat cards appear: top→right→bottom→left (staggered 10f)
-  // 96–134 (1.3s): converge → motion blur + particle trail
-  // 134–150(0.5s): flash → bag icon emerges with spin + glow
+  // Card sizes
+  const CW = 700, CH = 440; // center card
+  const SW = 520, SH = 310; // satellite cards (all same size)
 
-  // ─ Phase 1: main card pop-in ─
+  // Phase 1: center card pops in (0-24f)
   const mainSpring = spring({ frame, fps, config: { damping: 8, mass: 0.8, stiffness: 180 } });
-  const mainScale = interpolate(mainSpring, [0, 1], [0.02, 1]);
+  const mainScale  = interpolate(mainSpring, [0, 1], [0.02, 1]);
+  const bgFade     = interpolate(frame, [0, 8], [0, 1], { extrapolateRight: "clamp" });
 
-  // ─ Phase 2: search bar + typing ─
-  const barPr = interpolate(frame, [24, 42], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const barX = interpolate(1 - Math.pow(1 - barPr, 3), [0, 1], [-300, 0]);
-  const barGlow = interpolate(frame, [40, 50], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const searchText = "confecção premium de mochilas e acessórios";
-  const charsN = Math.floor(interpolate(frame, [42, 88], [0, searchText.length], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }));
+  // Phase 2: search bar slides in + typewriter (24-88f)
+  const barPr   = interpolate(frame, [24, 42], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const barX    = interpolate(1 - Math.pow(1 - barPr, 3), [0, 1], [-300, 0]);
+  const barGlow = interpolate(frame, [40, 50], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const searchText = "melhor confecção private label do brasil";
+  const charsN = Math.floor(interpolate(frame, [42, 88], [0, searchText.length], { extrapolateLeft:"clamp", extrapolateRight:"clamp" }));
   const displayText = searchText.slice(0, charsN);
   const cursorBlink = frame < 100 && Math.floor(frame / 7) % 2 === 0;
-  // mouse cursor moves and clicks on search bar
-  const cursorX = interpolate(frame, [18, 38], [280, 60], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const cursorY = interpolate(frame, [18, 38], [20, 80], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const clickBounce = spring({ frame: frame - 38, fps, config: { damping: 8, mass: 0.4, stiffness: 280 } });
+  // Text before highlight vs inside highlight
+  const preHL    = "melhor confecção ";
+  const beforeHL = displayText.length <= preHL.length ? displayText : preHL;
+  const insideHL = displayText.length >  preHL.length ? displayText.slice(preHL.length) : "";
+
+  // Mouse cursor
+  const cursorX = interpolate(frame, [18, 38], [280, 60], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const cursorY = interpolate(frame, [18, 38], [20, 80],  { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const clickBounce  = spring({ frame: frame - 38, fps, config: { damping: 8, mass: 0.4, stiffness: 280 } });
   const cursorClickY = interpolate(clickBounce, [0, 0.3, 1], [0, 6, 0]);
 
-  // ─ Phase 3: satellite cards (top/right/bottom/left) ─
-  // Entry direction: top↓, right←, bottom↑, left→
-  const spTop    = spring({ frame: frame - 54, fps, config: { damping: 12, mass: 0.7 } });
-  const spRight  = spring({ frame: frame - 64, fps, config: { damping: 12, mass: 0.7 } });
-  const spBottom = spring({ frame: frame - 74, fps, config: { damping: 12, mass: 0.7 } });
-  const spLeft   = spring({ frame: frame - 84, fps, config: { damping: 12, mass: 0.7 } });
-  const topEntryY    = interpolate(spTop,    [0,1], [-220, 0]);
-  const rightEntryX  = interpolate(spRight,  [0,1], [ 220, 0]);
-  const bottomEntryY = interpolate(spBottom, [0,1], [ 220, 0]);
-  const leftEntryX   = interpolate(spLeft,   [0,1], [-220, 0]);
-  const topRot    = interpolate(spTop,    [0,1], [-5, 0]);
-  const rightRot  = interpolate(spRight,  [0,1], [ 5, 0]);
-  const bottomRot = interpolate(spBottom, [0,1], [ 5, 0]);
-  const leftRot   = interpolate(spLeft,   [0,1], [-5, 0]);
-  const topEntryS    = interpolate(spTop,    [0,1], [0.8, 1]);
-  const rightEntryS  = interpolate(spRight,  [0,1], [0.8, 1]);
-  const bottomEntryS = interpolate(spBottom, [0,1], [0.8, 1]);
-  const leftEntryS   = interpolate(spLeft,   [0,1], [0.8, 1]);
+  // Phase 3: 4 satellite cards staggered (54-96f)
+  const spTL = spring({ frame: frame - 54, fps, config: { damping: 12, mass: 0.7 } });
+  const spTR = spring({ frame: frame - 64, fps, config: { damping: 12, mass: 0.7 } });
+  const spBL = spring({ frame: frame - 74, fps, config: { damping: 12, mass: 0.7 } });
+  const spBR = spring({ frame: frame - 84, fps, config: { damping: 12, mass: 0.7 } });
+  // Each enters from its corner direction
+  const tlEx = interpolate(spTL,[0,1],[-200,0]), tlEy = interpolate(spTL,[0,1],[-200,0]);
+  const trEx = interpolate(spTR,[0,1],[ 200,0]), trEy = interpolate(spTR,[0,1],[-200,0]);
+  const blEx = interpolate(spBL,[0,1],[-200,0]), blEy = interpolate(spBL,[0,1],[ 200,0]);
+  const brEx = interpolate(spBR,[0,1],[ 200,0]), brEy = interpolate(spBR,[0,1],[ 200,0]);
+  // Resting rotations
+  const TL_ROT = -7, TR_ROT = 6, BL_ROT = 5, BR_ROT = -4;
 
-  // ─ Phase 4: merge (all converge to center) ─
-  const mergePr = interpolate(frame, [96, 134], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const mergeE = mergePr * mergePr; // ease-in
+  // Phase 4: all converge to center (96-134f)
+  const mergePr    = interpolate(frame, [96, 134], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const mergeE     = mergePr * mergePr; // ease-in
   const mergeScale = interpolate(mergeE, [0, 0.7, 1], [1, 0.5, 0]);
-  const mergeOp    = interpolate(mergeE, [0.5, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const mergeBlur  = interpolate(mergeE, [0, 0.8, 1], [0, 4, 12]);
-  // Each sat moves its center to screen center (540,960)
-  // Top: center≈(540,560) → delta Y = +400
-  // Right: center≈(860,960) → delta X = -320
-  // Bottom: center≈(540,1460) → delta Y = -500
-  // Left: center≈(180,960) → delta X = +360
-  const mTopY    = interpolate(mergeE, [0,1], [0,  400]);
-  const mRightX  = interpolate(mergeE, [0,1], [0, -320]);
-  const mBottomY = interpolate(mergeE, [0,1], [0, -500]);
-  const mLeftX   = interpolate(mergeE, [0,1], [0,  360]);
+  const mergeOp    = interpolate(mergeE, [0.5, 1],    [1, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const mergeBlur  = interpolate(mergeE, [0, 0.8, 1], [0, 5, 14]);
+  // Merge translation per card: each card's center moves to screen center (540, 960)
+  // TL rest center: (-80+260, 180+155) = (180, 335) -> delta (+360, +625)
+  // TR rest center: (640+260, 130+155) = (900, 285) -> delta (-360, +675)
+  // BL rest center: (180, 1430+155)    = (180, 1585) -> delta (+360, -625)
+  // BR rest center: (900, 1585)                       -> delta (-360, -625)
+  const mTLx = interpolate(mergeE,[0,1],[0, 360]),  mTLy = interpolate(mergeE,[0,1],[0, 625]);
+  const mTRx = interpolate(mergeE,[0,1],[0,-360]),  mTRy = interpolate(mergeE,[0,1],[0, 675]);
+  const mBLx = interpolate(mergeE,[0,1],[0, 360]),  mBLy = interpolate(mergeE,[0,1],[0,-625]);
+  const mBRx = interpolate(mergeE,[0,1],[0,-360]),  mBRy = interpolate(mergeE,[0,1],[0,-625]);
+  const trailOp = interpolate(mergeE,[0.1,0.8],[0,1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
 
-  // Merge particle trail
-  const trailOp = interpolate(mergeE, [0.1, 0.8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
-  // ─ Phase 5: bag icon reveal ─
-  const flash    = interpolate(frame, [132, 137, 143], [0, 0.8, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRevPr = spring({ frame: frame - 135, fps, config: { damping: 10, mass: 0.9, stiffness: 140 } });
-  const bagRevScale = interpolate(bagRevPr, [0, 1], [0, 1]);
-  const bagRevBlur  = interpolate(bagRevPr, [0, 0.6], [20, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRevRot   = interpolate(bagRevPr, [0, 0.8], [-180, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRevOp    = interpolate(bagRevPr, [0, 0.25], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagGlow     = interpolate(bagRevPr, [0.5, 1], [0, 40], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Phase 5: flash + bag reveal (134-150f)
+  const flash       = interpolate(frame, [132,137,143], [0,0.8,0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const bagRevPr    = spring({ frame: frame - 135, fps, config: { damping: 10, mass: 0.9, stiffness: 140 } });
+  const bagRevScale = interpolate(bagRevPr, [0, 1],   [0, 1]);
+  const bagRevBlur  = interpolate(bagRevPr, [0, 0.6], [20, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const bagRevRot   = interpolate(bagRevPr, [0, 0.8], [-180, 0], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const bagRevOp    = interpolate(bagRevPr, [0, 0.25],[0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
+  const bagGlow     = interpolate(bagRevPr, [0.5, 1], [0, 40], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
   const bagBreathe  = 1 + Math.sin(frame / 12) * 0.02;
-  const bgFade = interpolate(frame, [0, 8], [0, 1], { extrapolateRight: "clamp" });
 
-  // Card dimensions — all 5 cards same size
-  const CW = 560; // card width
-  const CH = 360; // card height
-  // Screen center: 540, 960
-  // Positions (top-left corner of each card):
-  //  center: left=(1080-CW)/2=260, top=(1920-CH)/2=780
-  //  top:    left=260, top=780-CH-60=360
-  //  bottom: left=260, top=780+CH+60=1200
-  //  left:   left=260-CW-60=−260 (enters from off-screen), top=780
-  //  right:  left=260+CW+60=880, top=780
-  // For merge, each moves to center position (260, 780):
-  //  top: translateY = +(CH+60) = +420
-  //  bottom: translateY = −(CH+60) = −420
-  //  left: translateX = +(CW+60) = +620
-  //  right: translateX = −(CW+60) = −620
-
-  const cardStyle = (op: number, tx: number, ty: number, rot: number, sc: number, blur: number): React.CSSProperties => ({
-    opacity: op,
-    transform: `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${sc})`,
-    transformOrigin: "center center",
-    filter: blur > 0 ? `blur(${blur}px)` : "none",
+  // Satellite wrapper: fixed rest pos, motion via transform
+  const satWrap = (restL: number, restT: number, ex: number, ey: number, mx: number, my: number, rot: number, sp: number): React.CSSProperties => ({
     position: "absolute" as const,
-    width: CW,
-    height: CH,
-    background: "#0F1923",
-    borderRadius: 20,
-    border: `2px solid ${T.accent}55`,
-    boxShadow: `0 8px 32px rgba(0,0,0,0.45)`,
-    overflow: "hidden" as const,
-    display: "flex" as const,
-    flexDirection: "column" as const,
-    padding: 22,
-    boxSizing: "border-box" as const,
+    left: restL, top: restT,
+    width: SW, height: SH,
+    transform: `translate(${ex+mx}px,${ey+my}px) rotate(${interpolate(mergeE,[0,1],[rot,0])}deg) scale(${mergeScale})`,
+    transformOrigin: "center center",
+    opacity: sp * mergeOp,
+    filter: mergeBlur > 0 ? `blur(${mergeBlur}px)` : "none",
   });
 
   return (
     <AbsoluteFill style={{ background: "#D4FF6A", opacity: bgFade, overflow: "hidden" }}>
 
-      {/* Subtle geometric bg pattern */}
-      <AbsoluteFill style={{ opacity: 0.12 }}>
+      {/* Subtle grid */}
+      <AbsoluteFill style={{ opacity: 0.07 }}>
         <svg width="100%" height="100%">
           <defs>
             <pattern id="geo" width="80" height="80" patternUnits="userSpaceOnUse">
-              <rect x="20" y="20" width="40" height="40" fill="none" stroke="#000" strokeWidth="0.5" />
-              <circle cx="40" cy="40" r="2" fill="#000" />
+              <rect x="20" y="20" width="40" height="40" fill="none" stroke="#000" strokeWidth="0.6" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#geo)" />
         </svg>
       </AbsoluteFill>
 
-      {/* ── 4 satellite cards + center card, all absolutely positioned ── */}
       <AbsoluteFill>
 
-        {/* TOP — planilha: resting at (260, 360), merges down +420 */}
+        {/* TOP-LEFT: Light Mac-style window (AI search) */}
         {frame >= 54 && frame < 135 && (
-          <div style={cardStyle(
-            spTop * mergeOp,
-            260, 360 + topEntryY + mTopY,
-            topRot, topEntryS * mergeScale, mergeBlur
-          )}>
-            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:2, marginBottom:12 }}>ORÇAMENTO</div>
-            {[["Eco Bag","1.000 un","R$ 10"],["Mochila","30 un","R$ 70"],["Tote Bag","20 un","R$ 25"],["Pochete","50 un","R$ 35"]].map(([p,q,r],i)=>(
-              <div key={i} style={{ display:"flex", justifyContent:"space-between", padding:"8px 0", borderBottom:`1px solid ${T.accent}22`, fontFamily:F.ui, fontSize:14 }}>
-                <span style={{ color:T.white }}>{p}</span>
-                <span style={{ color:T.muted }}>{q}</span>
-                <span style={{ color:T.accent, fontWeight:700 }}>{r}</span>
+          <div style={satWrap(-80, 180, tlEx, tlEy, mTLx, mTLy, TL_ROT, spTL)}>
+            <div style={{ width:"100%", height:"100%", background:"#F5F7FA", borderRadius:18, overflow:"hidden", display:"flex", flexDirection:"column", boxShadow:"0 16px 56px rgba(0,0,0,0.22)" }}>
+              <div style={{ height:34, background:"#E8EAED", display:"flex", alignItems:"center", padding:"0 14px", gap:7, borderBottom:"1px solid #D0D4DB", flexShrink:0 }}>
+                {["#FF5F56","#FFBD2E","#27C93F"].map((c,i)=>(<div key={i} style={{ width:11,height:11,borderRadius:"50%",background:c }} />))}
+                <div style={{ flex:1,height:8,background:"#C8CDD5",borderRadius:4,maxWidth:130,marginLeft:10 }} />
               </div>
-            ))}
+              <div style={{ padding:"16px 20px", flex:1, display:"flex", flexDirection:"column", gap:14 }}>
+                <div style={{ display:"flex", gap:8 }}>
+                  {[70,105,55,80].map((w,i)=>(<div key={i} style={{ width:w,height:24,borderRadius:12,background:i===1?"#263A4A":"#D0D5DE" }} />))}
+                </div>
+                <div style={{ background:"#1A2B3C",borderRadius:14,padding:"13px 18px",display:"flex",alignItems:"center",gap:10 }}>
+                  <span style={{ fontSize:16 }}>🔍</span>
+                  <span style={{ fontFamily:F.ui,fontSize:15,color:"#9BB8CA" }}>confecção premium...</span>
+                </div>
+                <div style={{ display:"flex", gap:10, flex:1 }}>
+                  {[{bg:"#ECEEF2"},{bg:"#F0F3F7"}].map((b,i)=>(
+                    <div key={i} style={{ flex:1,background:b.bg,borderRadius:12,padding:"12px 14px" }}>
+                      <div style={{ width:38,height:5,background:"#B0B5BE",borderRadius:3,marginBottom:8 }} />
+                      <div style={{ width:60,height:5,background:"#C8CDD4",borderRadius:3 }} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <SatBorder w={SW} h={SH} />
           </div>
         )}
 
-        {/* RIGHT — cliente: resting at (880, 780), merges left -620 */}
+        {/* TOP-RIGHT: White Gmail-style email inbox */}
         {frame >= 64 && frame < 135 && (
-          <div style={cardStyle(
-            spRight * mergeOp,
-            880 + rightEntryX + mRightX, 780,
-            rightRot, rightEntryS * mergeScale, mergeBlur
-          )}>
-            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:1, marginBottom:16 }}>CLIENTE SATISFEITO</div>
-            <div style={{ fontSize:32, marginBottom:12 }}>✉️</div>
-            <div style={{ color:T.white, fontFamily:F.ui, fontSize:16, fontWeight:400, lineHeight:1.6, marginBottom:16, fontStyle:"italic" }}>
-              "Parabéns pela produção.<br />Excelente qualidade!"
+          <div style={satWrap(640, 130, trEx, trEy, mTRx, mTRy, TR_ROT, spTR)}>
+            <div style={{ width:"100%", height:"100%", background:"#FFFFFF", borderRadius:18, overflow:"hidden", display:"flex", flexDirection:"column", boxShadow:"0 16px 56px rgba(0,0,0,0.18)" }}>
+              <div style={{ height:36, background:"#F5F5F5", display:"flex", alignItems:"center", padding:"0 14px", gap:10, borderBottom:"1px solid #E2E2E2", flexShrink:0 }}>
+                <div style={{ width:18,height:18,borderRadius:"50%",background:"conic-gradient(#EA4335 0deg 90deg,#FBBC05 90deg 180deg,#34A853 180deg 270deg,#4285F4 270deg 360deg)",flexShrink:0 }} />
+                <div style={{ flex:1,background:"#E8E8E8",borderRadius:14,height:22,display:"flex",alignItems:"center",paddingLeft:12 }}>
+                  <span style={{ fontFamily:F.ui,fontSize:11,color:"#888" }}>Pesquisar e-mail</span>
+                </div>
+                <span style={{ color:T.accent,fontFamily:F.ui,fontSize:11,fontWeight:700,flexShrink:0 }}>Novo</span>
+              </div>
+              <div style={{ flex:1, overflow:"hidden" }}>
+                {[
+                  { s:"Parabéns pela produção!", t:"agora", u:true },
+                  { s:"Pedido confirmado",       t:"10h",   u:false },
+                  { s:"Mochila ficou incrível!", t:"ontem", u:true },
+                ].map((e,i)=>(
+                  <div key={i} style={{ padding:"9px 16px",borderBottom:"1px solid #F2F2F2",display:"flex",alignItems:"center",gap:10,background:e.u?"#F7FFF0":"transparent" }}>
+                    <div style={{ width:9,height:9,borderRadius:"50%",background:e.u?T.accent:"transparent",border:`1.5px solid ${e.u?T.accent:"#CCC"}`,flexShrink:0 }} />
+                    <span style={{ fontFamily:F.ui,fontSize:12,color:"#111",fontWeight:e.u?700:400,flex:1 }}>{e.s}</span>
+                    <span style={{ fontFamily:F.ui,fontSize:10,color:"#AAA",flexShrink:0 }}>{e.t}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ color:T.accent, fontSize:22, letterSpacing:3 }}>★★★★★</div>
+            <SatBorder w={SW} h={SH} />
           </div>
         )}
 
-        {/* BOTTOM — venda: resting at (260, 1200), merges up -420 */}
+        {/* BOTTOM-LEFT: Dark email client */}
         {frame >= 74 && frame < 135 && (
-          <div style={cardStyle(
-            spBottom * mergeOp,
-            260, 1200 + bottomEntryY + mBottomY,
-            bottomRot, bottomEntryS * mergeScale, mergeBlur
-          )}>
-            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:1, marginBottom:20 }}>VENDA</div>
-            <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:12 }}>
-              <div style={{ width:52, height:52, borderRadius:"50%", background:T.accent, display:"flex", alignItems:"center", justifyContent:"center", fontSize:26, color:T.ink, fontWeight:900, flexShrink:0 }}>✓</div>
-              <div style={{ color:T.white, fontFamily:F.ui, fontSize:20, fontWeight:700 }}>Venda concluída</div>
+          <div style={satWrap(-80, 1430, blEx, blEy, mBLx, mBLy, BL_ROT, spBL)}>
+            <div style={{ width:"100%", height:"100%", background:"#0D1B2A", borderRadius:18, overflow:"hidden", display:"flex", flexDirection:"column", boxShadow:"0 16px 56px rgba(0,0,0,0.45)" }}>
+              <div style={{ height:36, background:"#091520", display:"flex", alignItems:"center", padding:"0 16px", gap:10, borderBottom:`1px solid ${T.accent}22`, flexShrink:0 }}>
+                <span style={{ color:"#667788", fontSize:18 }}>☰</span>
+                <div style={{ width:16,height:16,borderRadius:"50%",background:"#4285F4",flexShrink:0 }} />
+                <div style={{ flex:1,height:8,background:"#1E3044",borderRadius:4,maxWidth:110 }} />
+              </div>
+              <div style={{ padding:"14px 18px", flex:1, display:"flex", flexDirection:"column", gap:2 }}>
+                <div style={{ fontFamily:F.ui,fontSize:10,color:"#667788",fontWeight:700,letterSpacing:0.5,marginBottom:8 }}>CAIXA DE ENT...</div>
+                {[
+                  { label:"Venda concluída ✓",   dot:T.accent, bold:true },
+                  { label:"Produção iniciada",    dot:"#445566", bold:false },
+                  { label:"Pagamento confirmado", dot:T.accent, bold:true },
+                ].map((e,i)=>(
+                  <div key={i} style={{ display:"flex",alignItems:"center",gap:10,padding:"8px 0",borderBottom:`1px solid ${T.accent}11` }}>
+                    <div style={{ width:9,height:9,borderRadius:"50%",background:e.dot,flexShrink:0 }} />
+                    <span style={{ fontFamily:F.ui,fontSize:13,color:T.white,fontWeight:e.bold?700:400,flex:1 }}>{e.label}</span>
+                    <span style={{ color:T.muted,fontFamily:F.ui,fontSize:12 }}>–</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ color:T.muted, fontFamily:F.ui, fontSize:14, paddingLeft:68 }}>500 unidades</div>
-            <div style={{ color:T.muted, fontFamily:F.ui, fontSize:14, paddingLeft:68, marginTop:4 }}>Produção iniciada ✓</div>
+            <SatBorder w={SW} h={SH} />
           </div>
         )}
 
-        {/* LEFT — pesquisa: resting at (-260, 780), merges right +620 */}
+        {/* BOTTOM-RIGHT: Spreadsheet with green header */}
         {frame >= 84 && frame < 135 && (
-          <div style={cardStyle(
-            spLeft * mergeOp,
-            -260 + leftEntryX + mLeftX, 780,
-            leftRot, leftEntryS * mergeScale, mergeBlur
-          )}>
-            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:1, marginBottom:16 }}>PESQUISA</div>
-            <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:14 }}>
-              <span style={{ fontSize:20 }}>🔍</span>
-              <span style={{ color:T.muted, fontFamily:F.ui, fontSize:13 }}>google.com</span>
+          <div style={satWrap(640, 1430, brEx, brEy, mBRx, mBRy, BR_ROT, spBR)}>
+            <div style={{ width:"100%", height:"100%", background:"white", borderRadius:18, overflow:"hidden", display:"flex", flexDirection:"column", boxShadow:"0 16px 56px rgba(0,0,0,0.2)" }}>
+              <div style={{ background:"#1B7F3C", padding:"12px 18px", flexShrink:0 }}>
+                <div style={{ fontFamily:F.ui,fontSize:12,color:"white",fontWeight:700,letterSpacing:0.4 }}>ORÇAMENTO LS CONFECÇÕES</div>
+              </div>
+              <div style={{ display:"grid", gridTemplateColumns:"1.8fr 1fr 1fr", background:"#2A6B3C", padding:"7px 16px" }}>
+                {["Produto","Qtd","Custo"].map(h=>(<span key={h} style={{ fontFamily:F.ui,fontSize:11,color:"white",fontWeight:700 }}>{h}</span>))}
+              </div>
+              <div style={{ flex:1, overflow:"hidden" }}>
+                {[["Eco Bag","1.000 un","R$ 10"],["Mochila","30 un","R$ 70"],["Tote Bag","20 un","R$ 25"],["Pochete","50 un","R$ 35"]].map(([p,q,r],i)=>(
+                  <div key={i} style={{ display:"grid",gridTemplateColumns:"1.8fr 1fr 1fr",padding:"9px 16px",background:i%2===0?"#F4FFF7":"white",borderBottom:"1px solid #DFF0E2" }}>
+                    <span style={{ fontFamily:F.ui,fontSize:11,color:"#222",fontWeight:500 }}>{p}</span>
+                    <span style={{ fontFamily:F.ui,fontSize:11,color:"#555" }}>{q}</span>
+                    <span style={{ fontFamily:F.ui,fontSize:11,color:"#1B7F3C",fontWeight:700 }}>{r}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div style={{ color:T.white, fontFamily:F.ui, fontSize:17, fontWeight:600, marginBottom:10 }}>melhor private label do brasil</div>
-            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:16, fontWeight:700, marginBottom:4 }}>LS Confecções</div>
-            <div style={{ color:"#4A8AFF", fontFamily:F.ui, fontSize:13 }}>lsconfex.com.br</div>
+            <SatBorder w={SW} h={SH} />
           </div>
         )}
 
-        {/* Merge particle trail */}
+        {/* Particle trail during merge */}
         {mergePr > 0 && mergePr < 1 && Array.from({ length: 14 }).map((_,i) => {
           const angle = (i / 14) * Math.PI * 2;
-          const dist = interpolate(mergeE, [0,1], [420, 0]);
-          const ptOp = interpolate(mergeE, [0.1, 0.7, 1], [0, trailOp * 0.8, 0]);
+          const dist  = interpolate(mergeE, [0,1], [500, 0]);
+          const ptOp  = interpolate(mergeE, [0.1,0.7,1], [0, trailOp*0.8, 0]);
           return (
-            <div key={i} style={{
-              position:"absolute", left:540, top:960,
-              width: i%3===0?10:6, height: i%3===0?10:6,
-              borderRadius: i%2===0?"50%":3,
-              background: T.accent,
-              opacity: ptOp,
-              transform: `translate(-50%,-50%) translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`,
-            }} />
+            <div key={i} style={{ position:"absolute",left:540,top:960,width:i%3===0?10:6,height:i%3===0?10:6,borderRadius:i%2===0?"50%":3,background:T.accent,opacity:ptOp,transform:`translate(-50%,-50%) translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)` }} />
           );
         })}
 
-        {/* ── CENTER — main app card ── */}
+        {/* CENTER: Main dark app window (always front, zIndex 10) */}
         <div style={{
           position:"absolute",
-          left: 260, top: 780,
+          left: 190, top: 740,
           width: CW, height: CH,
-          background: "#0F1923",
-          borderRadius: 20,
-          border: `2px solid ${T.accent}${bagRevOp > 0.5 ? "dd" : "66"}`,
+          background: "#0D1B2A",
+          borderRadius: 24,
+          border: `2.5px solid ${bagRevOp > 0.5 ? T.accent+"ee" : T.accent+"88"}`,
           boxShadow: bagRevOp > 0.3
-            ? `0 0 ${bagGlow}px ${T.accent}88, 0 0 ${bagGlow*2}px ${T.accent}44, 0 12px 40px rgba(0,0,0,0.6)`
-            : `0 0 28px ${T.accent}33, 0 12px 40px rgba(0,0,0,0.5)`,
+            ? `0 0 ${bagGlow}px ${T.accent}88, 0 0 ${bagGlow*2}px ${T.accent}44, 0 24px 80px rgba(0,0,0,0.7)`
+            : `0 0 40px ${T.accent}44, 0 24px 70px rgba(0,0,0,0.65)`,
           overflow: "hidden",
           transform: `scale(${mainScale * (bagRevOp > 0.3 ? bagBreathe : 1)})`,
           transformOrigin: "center center",
           display: "flex",
           flexDirection: "column",
+          zIndex: 10,
         }}>
           {/* Title bar */}
-          <div style={{ height:40, background:"#162030", display:"flex", alignItems:"center", padding:"0 16px", gap:10, borderBottom:`1px solid ${T.accent}22`, flexShrink:0 }}>
-            <div style={{ width:11, height:11, borderRadius:"50%", background:T.accent }} />
-            <div style={{ flex:1, height:8, background:"#253545", borderRadius:4, maxWidth:130 }} />
+          <div style={{ height:44, background:"#091520", display:"flex", alignItems:"center", padding:"0 20px", gap:12, borderBottom:`1px solid ${T.accent}22`, flexShrink:0 }}>
+            <div style={{ width:13,height:13,borderRadius:"50%",background:T.accent }} />
+            <div style={{ flex:1,height:9,background:"#1E3044",borderRadius:5,maxWidth:180 }} />
           </div>
 
-          <div style={{ padding:"18px 22px", display:"flex", flexDirection:"column", gap:16, flex:1 }}>
+          <div style={{ padding:"24px 30px", display:"flex", flexDirection:"column", gap:20, flex:1 }}>
             {/* Nav pills */}
-            <div style={{ display:"flex", gap:8, opacity: barPr }}>
-              {[{w:90,a:true},{w:60},{w:100},{w:70},{w:80}].map((p,i)=>(
-                <div key={i} style={{ width:p.w, height:30, borderRadius:15, background:p.a?"#263A4A":"#1A2A38", border:p.a?`1px solid ${T.accent}66`:"1px solid #253545", flexShrink:0 }} />
+            <div style={{ display:"flex", gap:10, opacity: barPr }}>
+              {[{w:105,a:true},{w:68},{w:118},{w:78},{w:95}].map((p,i)=>(
+                <div key={i} style={{ width:p.w,height:34,borderRadius:17,background:p.a?"#1B3A55":"#162333",border:p.a?`1.5px solid ${T.accent}77`:"1px solid #1E3044",flexShrink:0 }} />
               ))}
             </div>
-            {/* Search bar */}
+
+            {/* Search bar with highlighted text */}
             <div style={{ flex:1, display:"flex", alignItems:"center", overflow:"hidden" }}>
               <div style={{
-                width:"100%", background:"white", borderRadius:28, padding:"14px 22px",
-                display:"flex", alignItems:"center", gap:12,
+                width:"100%", background:"white", borderRadius:34, padding:"18px 26px",
+                display:"flex", alignItems:"center", gap:14,
                 transform: `translateX(${barX}px)`,
-                boxShadow: barGlow > 0.5 ? `0 0 ${barGlow*18}px ${T.accent}55` : "none",
+                boxShadow: barGlow > 0.5
+                  ? `0 0 ${barGlow*24}px ${T.accent}66, 0 6px 24px rgba(0,0,0,0.12)`
+                  : "0 6px 24px rgba(0,0,0,0.08)",
               }}>
-                <span style={{ fontSize:20 }}>🎒</span>
-                <span style={{ fontFamily:F.ui, fontSize:18, color:"#333", flex:1 }}>
-                  {displayText}{cursorBlink && <span style={{ borderLeft:"2px solid #444", marginLeft:2 }}>&nbsp;</span>}
+                <span style={{ fontSize:26, flexShrink:0 }}>🎒</span>
+                <span style={{ fontFamily:F.ui, fontSize:21, flex:1, fontWeight:500 }}>
+                  <span style={{ color:"#333" }}>{beforeHL}</span>
+                  {insideHL && (
+                    <mark style={{ background:`${T.accent}55`, color:"#0A0A0A", fontWeight:800, borderRadius:5, padding:"2px 5px" }}>
+                      {insideHL}
+                    </mark>
+                  )}
+                  {cursorBlink && <span style={{ borderLeft:"2px solid #444", marginLeft:2 }}>&nbsp;</span>}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Bag reveal after merge */}
+          {/* Bag reveal overlay */}
           {frame >= 134 && (
-            <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center", background:"#0F1923" }}>
-              <div style={{
-                opacity: bagRevOp,
-                transform: `scale(${bagRevScale}) rotate(${bagRevRot}deg)`,
-                filter: `blur(${bagRevBlur}px) drop-shadow(0 0 ${bagGlow}px ${T.accent}cc)`,
-              }}>
+            <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center", background:"#0D1B2A" }}>
+              <div style={{ opacity:bagRevOp, transform:`scale(${bagRevScale}) rotate(${bagRevRot}deg)`, filter:`blur(${bagRevBlur}px) drop-shadow(0 0 ${bagGlow}px ${T.accent}cc)` }}>
                 <div style={{ position:"relative", width:220, height:220 }}>
-                  <div style={{ position:"absolute", inset:0, borderRadius:"50%", background:`${T.accent}18` }} />
-                  <div style={{ position:"absolute", inset:18, borderRadius:"50%", background:`${T.accent}28` }} />
-                  <div style={{ position:"absolute", inset:32, borderRadius:"50%", background:"#0A1520", border:`3px solid ${T.accent}`, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                  <div style={{ position:"absolute",inset:0,borderRadius:"50%",background:`${T.accent}18` }} />
+                  <div style={{ position:"absolute",inset:18,borderRadius:"50%",background:`${T.accent}28` }} />
+                  <div style={{ position:"absolute",inset:32,borderRadius:"50%",background:"#0A1520",border:`3px solid ${T.accent}`,display:"flex",alignItems:"center",justifyContent:"center" }}>
                     <SlingBagSVG size={90} color={T.accent} />
                   </div>
                 </div>
@@ -595,14 +498,13 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
 
       {/* Mouse cursor */}
       {frame >= 18 && frame < 96 && (
-        <div style={{ position:"absolute", left:"50%", top:"50%", transform:`translate(${cursorX}px, ${cursorY + cursorClickY}px)`, pointerEvents:"none", zIndex:50 }}>
+        <div style={{ position:"absolute", left:"50%", top:"50%", transform:`translate(${cursorX}px,${cursorY+cursorClickY}px)`, pointerEvents:"none", zIndex:50 }}>
           <svg width="30" height="37" viewBox="0 0 20 25" fill="none">
             <path d="M2 2L2 20L6.5 14.5L11 22L14 20.5L9.5 13L17 13Z" fill="white" stroke="rgba(0,0,0,0.45)" strokeWidth="1.3" />
           </svg>
         </div>
       )}
 
-      {/* Merge + reveal flash */}
       {flash > 0 && <AbsoluteFill style={{ background:"white", opacity: flash * 0.6, pointerEvents:"none" }} />}
     </AbsoluteFill>
   );
@@ -634,31 +536,11 @@ const FloatingCard: React.FC<{
   const rot = rotation + Math.sin(t * 0.4 + driftX) * 3;
   const enterPr = interpolate(frame, [delay * 6, delay * 6 + 20], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
-    <div
-      style={{
-        position: "absolute",
-        left: `${x}%`,
-        top: `${y}%`,
-        transform: `translate(-50%, -50%) translate(${floatX}px, ${floatY}px) rotate(${rot}deg) scale(${enterPr})`,
-        opacity: enterPr * (blur > 3 ? 0.55 : blur > 0 ? 0.78 : 1),
-        filter: blur > 0 ? `blur(${blur}px)` : "none",
-        width: 210,
-        height: 130,
-        borderRadius: 20,
-        background: color,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-        padding: "16px 18px",
-        boxShadow: `0 8px 32px rgba(0,0,0,0.4)`,
-        zIndex: blur === 0 ? 2 : 1,
-      }}
-    >
-      {/* Card chip decoration */}
-      <div style={{ position: "absolute", top: 18, left: 18, width: 32, height: 24, borderRadius: 5, background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.3)" }} />
-      <div style={{ position: "absolute", top: 12, right: 16, fontSize: 20, opacity: 0.5 }}>◈</div>
-      <div style={{ color: textColor, fontFamily: F.ui, fontSize: 18, fontWeight: 900, letterSpacing: 1.5 }}>{brand}</div>
-      <div style={{ color: textColor, fontFamily: F.mono, fontSize: 11, opacity: 0.5, marginTop: 2 }}>★★★★ ★★★★ ★★★★</div>
+    <div style={{ position:"absolute", left:`${x}%`, top:`${y}%`, transform:`translate(-50%,-50%) translate(${floatX}px,${floatY}px) rotate(${rot}deg) scale(${enterPr})`, opacity:enterPr*(blur>3?0.55:blur>0?0.78:1), filter:blur>0?`blur(${blur}px)`:"none", width:210, height:130, borderRadius:20, background:color, display:"flex", flexDirection:"column", justifyContent:"flex-end", padding:"16px 18px", boxShadow:"0 8px 32px rgba(0,0,0,0.4)", zIndex:blur===0?2:1 }}>
+      <div style={{ position:"absolute", top:18, left:18, width:32, height:24, borderRadius:5, background:"rgba(255,255,255,0.25)", border:"1px solid rgba(255,255,255,0.3)" }} />
+      <div style={{ position:"absolute", top:12, right:16, fontSize:20, opacity:0.5 }}>◈</div>
+      <div style={{ color:textColor, fontFamily:F.ui, fontSize:18, fontWeight:900, letterSpacing:1.5 }}>{brand}</div>
+      <div style={{ color:textColor, fontFamily:F.mono, fontSize:11, opacity:0.5, marginTop:2 }}>★★★★ ★★★★ ★★★★</div>
     </div>
   );
 };
@@ -666,8 +548,6 @@ const FloatingCard: React.FC<{
 const S2: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-
-  // Card layout: scattered positions across screen
   const positions = [
     { x: 22, y: 18, rotation: -12, driftX: 0, driftY: 0, delay: 0 },
     { x: 72, y: 14, rotation: 8, driftX: 1, driftY: 0.5, delay: 1 },
@@ -680,37 +560,16 @@ const S2: React.FC<{ dur: number }> = ({ dur }) => {
     { x: 48, y: 30, rotation: -3, driftX: 0.9, driftY: 0.6, delay: 3 },
     { x: 50, y: 75, rotation: 7, driftX: 0.3, driftY: 0.9, delay: 0.8 },
   ];
-
   const textPr = spring({ frame: frame - 10, fps, config: { damping: 16, mass: 0.8 } });
-
   return (
     <AbsoluteFill style={{ background: "#0A0A0A", overflow: "hidden" }}>
       <AtmosphericBg intensity={0.15} />
-
-      {/* Floating cards */}
-      {GIFT_CARDS.map((card, i) => (
-        <FloatingCard key={i} {...card} {...positions[i]} />
-      ))}
-
-      {/* Dark overlay to improve text readability */}
+      {GIFT_CARDS.map((card, i) => (<FloatingCard key={i} {...card} {...positions[i]} />))}
       <AbsoluteFill style={{ background: "linear-gradient(to bottom, transparent 20%, rgba(0,0,0,0.6) 50%, transparent 80%)" }} />
-
-      {/* Text overlay */}
-      <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
-        <div
-          style={{
-            opacity: textPr,
-            transform: `scale(${interpolate(textPr, [0, 1], [0.85, 1])})`,
-            textAlign: "center",
-            padding: "28px 40px",
-            background: "rgba(0,0,0,0.55)",
-            borderRadius: 24,
-            border: `1px solid ${T.accent}33`,
-            backdropFilter: "blur(8px)",
-          }}
-        >
-          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 52, fontWeight: 900, lineHeight: 1.2 }}>
-            E são tantas<br /><span style={{ color: T.accent }}>possibilidades</span>
+      <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center", pointerEvents:"none" }}>
+        <div style={{ opacity:textPr, transform:`scale(${interpolate(textPr,[0,1],[0.85,1])})`, textAlign:"center", padding:"28px 40px", background:"rgba(0,0,0,0.55)", borderRadius:24, border:`1px solid ${T.accent}33`, backdropFilter:"blur(8px)" }}>
+          <div style={{ color:T.white, fontFamily:F.ui, fontSize:52, fontWeight:900, lineHeight:1.2 }}>
+            E são tantas<br /><span style={{ color:T.accent }}>possibilidades</span>
           </div>
         </div>
       </AbsoluteFill>
@@ -730,26 +589,22 @@ const S3: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const count = useCountUp(800, 10, 40);
-
   return (
     <Slide dur={dur}>
-
       <AtmosphericBg intensity={0.14} />
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", opacity: 0.12 }}>
-        {BAG_ROWS.map((row, i) => (
-          <BagScrollRow key={i} bags={row} dir={i % 2 === 0 ? 1 : -1} speed={0.5 + i * 0.15} />
-        ))}
+      <AbsoluteFill style={{ display:"flex", flexDirection:"column", justifyContent:"space-around", opacity:0.12 }}>
+        {BAG_ROWS.map((row, i) => (<BagScrollRow key={i} bags={row} dir={i % 2 === 0 ? 1 : -1} speed={0.5 + i * 0.15} />))}
       </AbsoluteFill>
       <Grid />
-      <div style={{ position: "relative", textAlign: "center" }}>
-        <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 90, fontWeight: 900 }}>+{count}</div>
-        <div style={{ color: T.white, fontFamily: F.ui, fontSize: 34, fontWeight: 700, marginTop: 4 }}>modelos já produzidos</div>
-        <div style={{ color: T.muted, fontFamily: F.ui, fontSize: 22, marginTop: 8 }}>bolsas, mochilas, pochetes e acessórios</div>
-        <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 36 }}>
+      <div style={{ position:"relative", textAlign:"center" }}>
+        <div style={{ color:T.accent, fontFamily:F.ui, fontSize:90, fontWeight:900 }}>+{count}</div>
+        <div style={{ color:T.white, fontFamily:F.ui, fontSize:34, fontWeight:700, marginTop:4 }}>modelos já produzidos</div>
+        <div style={{ color:T.muted, fontFamily:F.ui, fontSize:22, marginTop:8 }}>bolsas, mochilas, pochetes e acessórios</div>
+        <div style={{ display:"flex", justifyContent:"center", gap:20, marginTop:36 }}>
           {[PocheteSVG, SlingBagSVG, MessengerSVG, ToteSVG].map((BagComp, i) => {
             const pr = springIn(frame, fps, 20 + i * 5);
             return (
-              <div key={i} style={{ opacity: pr, transform: `scale(${interpolate(pr, [0, 1], [0.5, 1])})`, width: 90, height: 90, background: T.surface2, border: `1px solid ${T.accent}40`, borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div key={i} style={{ opacity:pr, transform:`scale(${interpolate(pr,[0,1],[0.5,1])})`, width:90, height:90, background:T.surface2, border:`1px solid ${T.accent}40`, borderRadius:14, display:"flex", alignItems:"center", justifyContent:"center" }}>
                 <BagComp size={54} />
               </div>
             );
@@ -775,19 +630,18 @@ const BrandCardRow: React.FC<{ brands: string[]; dir: 1 | -1; speed?: number; y?
   const totalW = brands.length * itemW;
   const offset = (((frame * speed * dir) % totalW) + totalW) % totalW;
   return (
-    <div style={{ overflow: "hidden", width: "100%", transform: `translateY(${y}px)`, filter: blurAmount > 0 ? `blur(${blurAmount}px)` : "none" }}>
-      <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
+    <div style={{ overflow:"hidden", width:"100%", transform:`translateY(${y}px)`, filter:blurAmount>0?`blur(${blurAmount}px)`:"none" }}>
+      <div style={{ display:"flex", transform:`translateX(-${offset}px)`, willChange:"transform" }}>
         {doubled.map((b, i) => {
           const colorIdx = S4_BRANDS.indexOf(b);
           const bg = colorIdx >= 0 ? BRAND_CARD_COLORS[colorIdx] : T.surface2;
           const tc = colorIdx >= 0 ? BRAND_CARD_TEXT[colorIdx] : T.accent;
           return (
-            <div key={i} style={{ width: itemW, flexShrink: 0, padding: "12px 14px" }}>
-              <div style={{ background: bg, borderRadius: 28, padding: "36px 40px", display: "flex", flexDirection: "column", gap: 10, boxShadow: "0 8px 40px rgba(0,0,0,0.45)", height: 180 }}>
-                {/* chip */}
-                <div style={{ width: 44, height: 32, borderRadius: 7, background: "rgba(255,255,255,0.22)", border: "1px solid rgba(255,255,255,0.3)", marginBottom: 4 }} />
-                <div style={{ color: tc, fontFamily: F.ui, fontSize: 30, fontWeight: 900, letterSpacing: 2 }}>{b}</div>
-                <div style={{ color: tc, fontFamily: F.mono, fontSize: 14, opacity: 0.4 }}>★★★★ ★★★★ ★★★★</div>
+            <div key={i} style={{ width:itemW, flexShrink:0, padding:"12px 14px" }}>
+              <div style={{ background:bg, borderRadius:28, padding:"36px 40px", display:"flex", flexDirection:"column", gap:10, boxShadow:"0 8px 40px rgba(0,0,0,0.45)", height:180 }}>
+                <div style={{ width:44, height:32, borderRadius:7, background:"rgba(255,255,255,0.22)", border:"1px solid rgba(255,255,255,0.3)", marginBottom:4 }} />
+                <div style={{ color:tc, fontFamily:F.ui, fontSize:30, fontWeight:900, letterSpacing:2 }}>{b}</div>
+                <div style={{ color:tc, fontFamily:F.mono, fontSize:14, opacity:0.4 }}>★★★★ ★★★★ ★★★★</div>
               </div>
             </div>
           );
@@ -801,39 +655,18 @@ const S4: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const textPr = spring({ frame: frame - 8, fps, config: { damping: 16, mass: 0.8 } });
-
   const rows = [S4_BRANDS, [...S4_BRANDS].reverse(), S4_BRANDS];
-
   return (
     <AbsoluteFill style={{ background: "#0A0A0A", overflow: "hidden" }}>
       <AtmosphericBg intensity={0.14} />
-
-      {/* Scrolling card rows */}
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", paddingTop: 60, paddingBottom: 60 }}>
-        {rows.map((row, i) => (
-          <BrandCardRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.7 + i * 0.12} blurAmount={i === 0 ? 6 : i === 2 ? 8 : 0} />
-        ))}
+      <AbsoluteFill style={{ display:"flex", flexDirection:"column", justifyContent:"space-around", paddingTop:60, paddingBottom:60 }}>
+        {rows.map((row, i) => (<BrandCardRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.7 + i * 0.12} blurAmount={i === 0 ? 6 : i === 2 ? 8 : 0} />))}
       </AbsoluteFill>
-
-      {/* Dark overlay */}
-      <AbsoluteFill style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.5) 100%)" }} />
-
-      {/* Text */}
-      <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
-        <div
-          style={{
-            opacity: textPr,
-            transform: `scale(${interpolate(textPr, [0, 1], [0.88, 1])})`,
-            textAlign: "center",
-            padding: "30px 44px",
-            background: "rgba(0,0,0,0.6)",
-            borderRadius: 26,
-            border: `1px solid ${T.accent}44`,
-            backdropFilter: "blur(10px)",
-          }}
-        >
-          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 46, fontWeight: 900, lineHeight: 1.2 }}>
-            E é tanta marca que<br /><span style={{ color: T.accent }}>confia na gente...</span>
+      <AbsoluteFill style={{ background:"linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.5) 100%)" }} />
+      <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center", pointerEvents:"none" }}>
+        <div style={{ opacity:textPr, transform:`scale(${interpolate(textPr,[0,1],[0.88,1])})`, textAlign:"center", padding:"30px 44px", background:"rgba(0,0,0,0.6)", borderRadius:26, border:`1px solid ${T.accent}44`, backdropFilter:"blur(10px)" }}>
+          <div style={{ color:T.white, fontFamily:F.ui, fontSize:46, fontWeight:900, lineHeight:1.2 }}>
+            E é tanta marca que<br /><span style={{ color:T.accent }}>confia na gente...</span>
           </div>
         </div>
       </AbsoluteFill>
@@ -853,21 +686,18 @@ const S5: React.FC<{ dur: number }> = ({ dur }) => {
   ];
   return (
     <Slide dur={dur}>
-
-      <div style={{ position: "relative" }}>
-        <div style={{ color: T.white, fontFamily: F.ui, fontSize: 38, fontWeight: 800, textAlign: "center", marginBottom: 36 }}>
-          Porque é <span style={{ color: T.accent }}>simples</span>, premium e sob medida.
+      <div style={{ position:"relative" }}>
+        <div style={{ color:T.white, fontFamily:F.ui, fontSize:38, fontWeight:800, textAlign:"center", marginBottom:36 }}>
+          Porque é <span style={{ color:T.accent }}>simples</span>, premium e sob medida.
         </div>
-        <div style={{ display: "flex", flexDirection: "row", gap: 20, justifyContent: "center" }}>
+        <div style={{ display:"flex", flexDirection:"row", gap:20, justifyContent:"center" }}>
           {cards.map((c, i) => {
             const pr = springIn(frame, fps, 12 + i * 10);
             return (
-              <div key={i} style={{ opacity: pr, transform: `translateY(${interpolate(pr, [0, 1], [40, 0])}px)`, background: T.surface2, border: `2px solid ${i === 1 ? T.accent : T.border}`, borderRadius: 20, padding: "30px 22px", display: "flex", flexDirection: "column", alignItems: "center", gap: 16, flex: 1, maxWidth: 280, textAlign: "center" }}>
-                <div style={{ width: 64, height: 64, borderRadius: 16, background: i === 1 ? T.accent : T.surface, border: `2px solid ${i === 1 ? T.accent : T.border}`, color: i === 1 ? T.ink : T.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28, fontWeight: 800 }}>
-                  {c.icon}
-                </div>
-                <div style={{ color: T.white, fontFamily: F.ui, fontSize: 26, fontWeight: 800 }}>{c.t}</div>
-                <div style={{ color: T.muted, fontFamily: F.ui, fontSize: 16 }}>{c.d}</div>
+              <div key={i} style={{ opacity:pr, transform:`translateY(${interpolate(pr,[0,1],[40,0])}px)`, background:T.surface2, border:`2px solid ${i===1?T.accent:T.border}`, borderRadius:20, padding:"30px 22px", display:"flex", flexDirection:"column", alignItems:"center", gap:16, flex:1, maxWidth:280, textAlign:"center" }}>
+                <div style={{ width:64, height:64, borderRadius:16, background:i===1?T.accent:T.surface, border:`2px solid ${i===1?T.accent:T.border}`, color:i===1?T.ink:T.accent, display:"flex", alignItems:"center", justifyContent:"center", fontSize:28, fontWeight:800 }}>{c.icon}</div>
+                <div style={{ color:T.white, fontFamily:F.ui, fontSize:26, fontWeight:800 }}>{c.t}</div>
+                <div style={{ color:T.muted, fontFamily:F.ui, fontSize:16 }}>{c.d}</div>
               </div>
             );
           })}
@@ -883,13 +713,12 @@ const S6: React.FC<{ dur: number }> = ({ dur }) => {
   const count = useCountUp(10, 10, 36);
   return (
     <Slide dur={dur} bg={T.surface}>
-
       <AtmosphericBg intensity={0.16} />
       <Grid />
-      <div style={{ position: "relative", textAlign: "center" }}>
-        <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 100, fontWeight: 900 }}>+{count} anos</div>
-        <div style={{ color: T.white, fontFamily: F.ui, fontSize: 30, fontWeight: 700, marginTop: 6 }}>de mercado e experiência</div>
-        <div style={{ color: T.muted, fontFamily: F.ui, fontSize: 22, marginTop: 8 }}>As marcas já sabem disso. 🔥</div>
+      <div style={{ position:"relative", textAlign:"center" }}>
+        <div style={{ color:T.accent, fontFamily:F.ui, fontSize:100, fontWeight:900 }}>+{count} anos</div>
+        <div style={{ color:T.white, fontFamily:F.ui, fontSize:30, fontWeight:700, marginTop:6 }}>de mercado e experiência</div>
+        <div style={{ color:T.muted, fontFamily:F.ui, fontSize:22, marginTop:8 }}>As marcas já sabem disso. 🔥</div>
       </div>
     </Slide>
   );
@@ -902,12 +731,11 @@ const S7: React.FC<{ dur: number }> = ({ dur }) => {
   const pulse = 1 + Math.sin(frame / 9) * 0.03;
   return (
     <Slide dur={dur} bg={T.accent}>
-
-      <div style={{ position: "relative", textAlign: "center" }}>
-        <div style={{ color: T.ink, fontFamily: F.ui, fontSize: 46, fontWeight: 900, lineHeight: 1.15 }}>
+      <div style={{ position:"relative", textAlign:"center" }}>
+        <div style={{ color:T.ink, fontFamily:F.ui, fontSize:46, fontWeight:900, lineHeight:1.15 }}>
           Está esperando o quê<br />para produzir seus<br />acessórios?
         </div>
-        <div style={{ marginTop: 40, transform: `scale(${pulse})`, background: T.ink, color: T.accent, fontFamily: F.ui, fontSize: 22, fontWeight: 800, padding: "18px 36px", borderRadius: 32, display: "inline-flex", alignItems: "center", gap: 12 }}>
+        <div style={{ marginTop:40, transform:`scale(${pulse})`, background:T.ink, color:T.accent, fontFamily:F.ui, fontSize:22, fontWeight:800, padding:"18px 36px", borderRadius:32, display:"inline-flex", alignItems:"center", gap:12 }}>
           💬 Chamar no WhatsApp
         </div>
       </div>
@@ -921,47 +749,29 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Revelação cinematográfica:
-  // 0–8   : flash de entrada
-  // 0–16  : partículas convergem ao centro
-  // 10–28 : logo emerge com blur→sharp + scale
-  // 22–36 : light sweep passa pelo logo
-  // 30–50 : texto aparece vindo de baixo
-  // 40–dur: oscilação suave de escala (respiração)
-
-  // Partículas convergindo (de fora para dentro)
   const convergeProgress = (i: number) => {
     const delay = i * 2;
     return spring({ frame: frame - delay, fps, config: { damping: 14, mass: 0.6 } });
   };
 
-  // Logo
   const logoPr = spring({ frame: frame - 10, fps, config: { damping: 13, mass: 0.9 } });
   const logoScale = interpolate(logoPr, [0, 1], [0.5, 1]);
   const logoBlur = interpolate(logoPr, [0, 0.7], [16, 0], { extrapolateRight: "clamp" });
-  const logoOpacity = interpolate(logoPr, [0, 0.3], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // Respiração suave depois de aparecer
+  const logoOpacity = interpolate(logoPr, [0, 0.3], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
   const breathe = 1 + Math.sin(frame / 18) * 0.018;
+  const logoGlow = interpolate(logoPr, [0.6, 1], [0, 22], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
 
-  // Glow do logo
-  const logoGlow = interpolate(logoPr, [0.6, 1], [0, 22], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-
-  // Texto
   const textPr = spring({ frame: frame - 30, fps, config: { damping: 16, mass: 0.7 } });
   const textY = interpolate(textPr, [0, 1], [28, 0]);
-  const textOp = interpolate(textPr, [0, 0.4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const textOp = interpolate(textPr, [0, 0.4], [0, 1], { extrapolateLeft:"clamp", extrapolateRight:"clamp" });
 
-  // Contato card
   const cardPr = spring({ frame: frame - 50, fps, config: { damping: 16 } });
 
   return (
     <AbsoluteFill style={{ background: T.bg }}>
-
       <AtmosphericBg intensity={0.22} />
       <Grid />
-
-      {/* Partículas geométricas convergindo para o centro */}
-      <AbsoluteFill style={{ pointerEvents: "none" }}>
+      <AbsoluteFill style={{ pointerEvents:"none" }}>
         {Array.from({ length: 10 }).map((_, i) => {
           const angle = (i / 10) * Math.PI * 2;
           const pr = convergeProgress(i);
@@ -969,97 +779,28 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
           const opacity = interpolate(pr, [0, 0.1, 0.8, 1], [0, 1, 0.8, 0]);
           const size = i % 3 === 0 ? 8 : 5;
           return (
-            <div
-              key={i}
-              style={{
-                position: "absolute",
-                left: "50%",
-                top: "35%",
-                width: size,
-                height: size,
-                borderRadius: i % 2 === 0 ? "50%" : 2,
-                background: T.accent,
-                opacity,
-                transform: `translate(-50%, -50%) translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px)`,
-              }}
-            />
+            <div key={i} style={{ position:"absolute", left:"50%", top:"35%", width:size, height:size, borderRadius:i%2===0?"50%":2, background:T.accent, opacity, transform:`translate(-50%,-50%) translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)` }} />
           );
         })}
       </AbsoluteFill>
-
-      {/* Flash na entrada */}
       <GlowFlash startFrame={8} color={`${T.accent}88`} duration={8} />
       <GlowFlash startFrame={10} color="#ffffff" duration={5} />
-
-      {/* Anel de glow no logo */}
       <GlowRing startFrame={18} x="50%" y="35%" color={T.accent} />
       <BurstParticles startFrame={10} x="50%" y="35%" count={8} color={T.accent} />
-
-      {/* Light sweep */}
       <LightSweep startFrame={22} />
-
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 20 }}>
-        {/* Logo */}
-        <div
-          style={{
-            opacity: logoOpacity,
-            transform: `scale(${logoScale * breathe})`,
-            filter: `blur(${logoBlur}px) drop-shadow(0 0 ${logoGlow}px ${T.accent}cc)`,
-            width: 110,
-            height: 110,
-            borderRadius: 26,
-            border: `3px solid ${T.accent}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: T.accent,
-            fontFamily: F.brand,
-            fontWeight: 700,
-            fontSize: 52,
-          }}
-        >
+      <AbsoluteFill style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:20 }}>
+        <div style={{ opacity:logoOpacity, transform:`scale(${logoScale*breathe})`, filter:`blur(${logoBlur}px) drop-shadow(0 0 ${logoGlow}px ${T.accent}cc)`, width:110, height:110, borderRadius:26, border:`3px solid ${T.accent}`, display:"flex", alignItems:"center", justifyContent:"center", color:T.accent, fontFamily:F.brand, fontWeight:700, fontSize:52 }}>
           LS
         </div>
-
-        {/* Texto revelado pela luz */}
-        <div
-          style={{
-            opacity: textOp,
-            transform: `translateY(${textY}px)`,
-            textAlign: "center",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 8,
-          }}
-        >
-          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 38, fontWeight: 800 }}>LS CONFECÇÕES</div>
-          <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 22, fontWeight: 700, letterSpacing: 1 }}>
-            SUA MARCA. NOSSA PRODUÇÃO.
-          </div>
+        <div style={{ opacity:textOp, transform:`translateY(${textY}px)`, textAlign:"center", display:"flex", flexDirection:"column", alignItems:"center", gap:8 }}>
+          <div style={{ color:T.white, fontFamily:F.ui, fontSize:38, fontWeight:800 }}>LS CONFECÇÕES</div>
+          <div style={{ color:T.accent, fontFamily:F.ui, fontSize:22, fontWeight:700, letterSpacing:1 }}>SUA MARCA. NOSSA PRODUÇÃO.</div>
         </div>
-
-        {/* Segundo light sweep no texto */}
         <LightSweep startFrame={42} />
-
-        {/* Card de contato */}
-        <div
-          style={{
-            opacity: cardPr,
-            transform: `translateY(${interpolate(cardPr, [0, 1], [20, 0])}px)`,
-            marginTop: 16,
-            background: T.surface2,
-            border: `1px solid ${T.border}`,
-            borderRadius: 14,
-            padding: "18px 30px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
-          }}
-        >
-          <span style={{ color: T.white, fontFamily: F.mono, fontSize: 20 }}>💬 (11) 99937-0418</span>
-          <span style={{ color: T.muted, fontFamily: F.mono, fontSize: 17 }}>🌐 lsconfex.com.br</span>
-          <span style={{ color: T.muted, fontFamily: F.mono, fontSize: 17 }}>📸 @lsconfex</span>
+        <div style={{ opacity:cardPr, transform:`translateY(${interpolate(cardPr,[0,1],[20,0])}px)`, marginTop:16, background:T.surface2, border:`1px solid ${T.border}`, borderRadius:14, padding:"18px 30px", display:"flex", flexDirection:"column", gap:10 }}>
+          <span style={{ color:T.white, fontFamily:F.mono, fontSize:20 }}>💬 (11) 99937-0418</span>
+          <span style={{ color:T.muted, fontFamily:F.mono, fontSize:17 }}>🌐 lsconfex.com.br</span>
+          <span style={{ color:T.muted, fontFamily:F.mono, fontSize:17 }}>📸 @lsconfex</span>
         </div>
       </AbsoluteFill>
     </AbsoluteFill>
