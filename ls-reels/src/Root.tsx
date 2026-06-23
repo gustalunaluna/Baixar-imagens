@@ -386,6 +386,41 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const bagBreathe  = 1 + Math.sin(frame / 12) * 0.02;
   const bgFade = interpolate(frame, [0, 8], [0, 1], { extrapolateRight: "clamp" });
 
+  // Card dimensions — all 5 cards same size
+  const CW = 560; // card width
+  const CH = 360; // card height
+  // Screen center: 540, 960
+  // Positions (top-left corner of each card):
+  //  center: left=(1080-CW)/2=260, top=(1920-CH)/2=780
+  //  top:    left=260, top=780-CH-60=360
+  //  bottom: left=260, top=780+CH+60=1200
+  //  left:   left=260-CW-60=−260 (enters from off-screen), top=780
+  //  right:  left=260+CW+60=880, top=780
+  // For merge, each moves to center position (260, 780):
+  //  top: translateY = +(CH+60) = +420
+  //  bottom: translateY = −(CH+60) = −420
+  //  left: translateX = +(CW+60) = +620
+  //  right: translateX = −(CW+60) = −620
+
+  const cardStyle = (op: number, tx: number, ty: number, rot: number, sc: number, blur: number): React.CSSProperties => ({
+    opacity: op,
+    transform: `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${sc})`,
+    transformOrigin: "center center",
+    filter: blur > 0 ? `blur(${blur}px)` : "none",
+    position: "absolute" as const,
+    width: CW,
+    height: CH,
+    background: "#0F1923",
+    borderRadius: 20,
+    border: `2px solid ${T.accent}55`,
+    boxShadow: `0 8px 32px rgba(0,0,0,0.45)`,
+    overflow: "hidden" as const,
+    display: "flex" as const,
+    flexDirection: "column" as const,
+    padding: 22,
+    boxSizing: "border-box" as const,
+  });
+
   return (
     <AbsoluteFill style={{ background: "#D4FF6A", opacity: bgFade, overflow: "hidden" }}>
 
@@ -402,161 +437,142 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
         </svg>
       </AbsoluteFill>
 
-      {/* ── Sat card: TOPO — planilha ── */}
-      {frame >= 54 && frame < 135 && (
-        <AbsoluteFill style={{ display:"flex", alignItems:"flex-start", justifyContent:"center", paddingTop:200 }}>
-          <div style={{
-            opacity: spTop * mergeOp,
-            transform: `translateY(${topEntryY + mTopY}px) rotate(${topRot}deg) scale(${topEntryS * mergeScale})`,
-            transformOrigin: "center center",
-            filter: `blur(${mergeBlur}px)`,
-          }}>
-            <DarkCard w={560}>
-              <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:2, marginBottom:10 }}>ORÇAMENTO</div>
-              {[["Eco Bag","1.000 un","R$ 10"],["Mochila","30 un","R$ 70"],["Tote Bag","20 un","R$ 25"]].map(([p,q,r],i)=>(
-                <div key={i} style={{ display:"flex", justifyContent:"space-between", padding:"7px 0", borderBottom:`1px solid ${T.accent}22`, fontFamily:F.ui, fontSize:13 }}>
-                  <span style={{ color:T.white }}>{p}</span>
-                  <span style={{ color:T.muted }}>{q}</span>
-                  <span style={{ color:T.accent, fontWeight:700 }}>{r}</span>
-                </div>
-              ))}
-            </DarkCard>
-          </div>
-        </AbsoluteFill>
-      )}
+      {/* ── 4 satellite cards + center card, all absolutely positioned ── */}
+      <AbsoluteFill>
 
-      {/* ── Sat card: DIREITA — cliente satisfeito ── */}
-      {frame >= 64 && frame < 135 && (
-        <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"flex-end", paddingRight:40 }}>
-          <div style={{
-            opacity: spRight * mergeOp,
-            transform: `translateX(${rightEntryX + mRightX}px) rotate(${rightRot}deg) scale(${rightEntryS * mergeScale})`,
-            transformOrigin: "center center",
-            filter: `blur(${mergeBlur}px)`,
-          }}>
-            <DarkCard w={420}>
-              <div style={{ fontSize:28, marginBottom:10 }}>✉️</div>
-              <div style={{ color:T.white, fontFamily:F.ui, fontSize:15, fontWeight:400, lineHeight:1.5, marginBottom:12, fontStyle:"italic" }}>
-                "Parabéns pela produção.<br />Excelente qualidade!"
+        {/* TOP — planilha: resting at (260, 360), merges down +420 */}
+        {frame >= 54 && frame < 135 && (
+          <div style={cardStyle(
+            spTop * mergeOp,
+            260, 360 + topEntryY + mTopY,
+            topRot, topEntryS * mergeScale, mergeBlur
+          )}>
+            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:2, marginBottom:12 }}>ORÇAMENTO</div>
+            {[["Eco Bag","1.000 un","R$ 10"],["Mochila","30 un","R$ 70"],["Tote Bag","20 un","R$ 25"],["Pochete","50 un","R$ 35"]].map(([p,q,r],i)=>(
+              <div key={i} style={{ display:"flex", justifyContent:"space-between", padding:"8px 0", borderBottom:`1px solid ${T.accent}22`, fontFamily:F.ui, fontSize:14 }}>
+                <span style={{ color:T.white }}>{p}</span>
+                <span style={{ color:T.muted }}>{q}</span>
+                <span style={{ color:T.accent, fontWeight:700 }}>{r}</span>
               </div>
-              <div style={{ color:T.accent, fontSize:18, letterSpacing:2 }}>★★★★★</div>
-            </DarkCard>
+            ))}
           </div>
-        </AbsoluteFill>
-      )}
+        )}
 
-      {/* ── Sat card: BAIXO — venda concluída ── */}
-      {frame >= 74 && frame < 135 && (
-        <AbsoluteFill style={{ display:"flex", alignItems:"flex-end", justifyContent:"center", paddingBottom:200 }}>
-          <div style={{
-            opacity: spBottom * mergeOp,
-            transform: `translateY(${bottomEntryY + mBottomY}px) rotate(${bottomRot}deg) scale(${bottomEntryS * mergeScale})`,
-            transformOrigin: "center center",
-            filter: `blur(${mergeBlur}px)`,
-          }}>
-            <DarkCard w={480}>
-              <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:8 }}>
-                <div style={{ width:40, height:40, borderRadius:"50%", background:T.accent, display:"flex", alignItems:"center", justifyContent:"center", fontSize:20, color:T.ink, fontWeight:900 }}>✓</div>
-                <div style={{ color:T.white, fontFamily:F.ui, fontSize:17, fontWeight:700 }}>Venda concluída</div>
-              </div>
-              <div style={{ color:T.muted, fontFamily:F.ui, fontSize:13, paddingLeft:54 }}>500 unidades · Produção iniciada</div>
-            </DarkCard>
+        {/* RIGHT — cliente: resting at (880, 780), merges left -620 */}
+        {frame >= 64 && frame < 135 && (
+          <div style={cardStyle(
+            spRight * mergeOp,
+            880 + rightEntryX + mRightX, 780,
+            rightRot, rightEntryS * mergeScale, mergeBlur
+          )}>
+            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:1, marginBottom:16 }}>CLIENTE SATISFEITO</div>
+            <div style={{ fontSize:32, marginBottom:12 }}>✉️</div>
+            <div style={{ color:T.white, fontFamily:F.ui, fontSize:16, fontWeight:400, lineHeight:1.6, marginBottom:16, fontStyle:"italic" }}>
+              "Parabéns pela produção.<br />Excelente qualidade!"
+            </div>
+            <div style={{ color:T.accent, fontSize:22, letterSpacing:3 }}>★★★★★</div>
           </div>
-        </AbsoluteFill>
-      )}
+        )}
 
-      {/* ── Sat card: ESQUERDA — pesquisa Google ── */}
-      {frame >= 84 && frame < 135 && (
-        <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"flex-start", paddingLeft:40 }}>
-          <div style={{
-            opacity: spLeft * mergeOp,
-            transform: `translateX(${leftEntryX + mLeftX}px) rotate(${leftRot}deg) scale(${leftEntryS * mergeScale})`,
-            transformOrigin: "center center",
-            filter: `blur(${mergeBlur}px)`,
-          }}>
-            <DarkCard w={420}>
-              <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:12 }}>
-                <span style={{ fontSize:18 }}>🔍</span>
-                <span style={{ color:T.muted, fontFamily:F.ui, fontSize:12 }}>google.com</span>
-              </div>
-              <div style={{ color:T.white, fontFamily:F.ui, fontSize:15, fontWeight:600, marginBottom:6 }}>melhor private label do brasil</div>
-              <div style={{ color:T.accent, fontFamily:F.ui, fontSize:14, fontWeight:700 }}>LS Confecções</div>
-              <div style={{ color:"#4A8AFF", fontFamily:F.ui, fontSize:11, marginTop:2 }}>lsconfex.com.br</div>
-            </DarkCard>
+        {/* BOTTOM — venda: resting at (260, 1200), merges up -420 */}
+        {frame >= 74 && frame < 135 && (
+          <div style={cardStyle(
+            spBottom * mergeOp,
+            260, 1200 + bottomEntryY + mBottomY,
+            bottomRot, bottomEntryS * mergeScale, mergeBlur
+          )}>
+            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:1, marginBottom:20 }}>VENDA</div>
+            <div style={{ display:"flex", alignItems:"center", gap:16, marginBottom:12 }}>
+              <div style={{ width:52, height:52, borderRadius:"50%", background:T.accent, display:"flex", alignItems:"center", justifyContent:"center", fontSize:26, color:T.ink, fontWeight:900, flexShrink:0 }}>✓</div>
+              <div style={{ color:T.white, fontFamily:F.ui, fontSize:20, fontWeight:700 }}>Venda concluída</div>
+            </div>
+            <div style={{ color:T.muted, fontFamily:F.ui, fontSize:14, paddingLeft:68 }}>500 unidades</div>
+            <div style={{ color:T.muted, fontFamily:F.ui, fontSize:14, paddingLeft:68, marginTop:4 }}>Produção iniciada ✓</div>
           </div>
-        </AbsoluteFill>
-      )}
+        )}
 
-      {/* Merge particle trail */}
-      {mergePr > 0 && mergePr < 1 && (
-        <AbsoluteFill style={{ pointerEvents:"none" }}>
-          {Array.from({ length: 14 }).map((_,i) => {
-            const angle = (i / 14) * Math.PI * 2;
-            const dist = interpolate(mergeE, [0,1], [380, 0]);
-            const ptOp = interpolate(mergeE, [0.1, 0.7, 1], [0, trailOp * 0.8, 0]);
-            return (
-              <div key={i} style={{
-                position:"absolute", left:"50%", top:"50%",
-                width: i%3===0?10:6, height: i%3===0?10:6,
-                borderRadius: i%2===0?"50%":3,
-                background: T.accent,
-                opacity: ptOp,
-                transform: `translate(-50%,-50%) translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`,
-              }} />
-            );
-          })}
-        </AbsoluteFill>
-      )}
+        {/* LEFT — pesquisa: resting at (-260, 780), merges right +620 */}
+        {frame >= 84 && frame < 135 && (
+          <div style={cardStyle(
+            spLeft * mergeOp,
+            -260 + leftEntryX + mLeftX, 780,
+            leftRot, leftEntryS * mergeScale, mergeBlur
+          )}>
+            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:13, fontWeight:800, letterSpacing:1, marginBottom:16 }}>PESQUISA</div>
+            <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:14 }}>
+              <span style={{ fontSize:20 }}>🔍</span>
+              <span style={{ color:T.muted, fontFamily:F.ui, fontSize:13 }}>google.com</span>
+            </div>
+            <div style={{ color:T.white, fontFamily:F.ui, fontSize:17, fontWeight:600, marginBottom:10 }}>melhor private label do brasil</div>
+            <div style={{ color:T.accent, fontFamily:F.ui, fontSize:16, fontWeight:700, marginBottom:4 }}>LS Confecções</div>
+            <div style={{ color:"#4A8AFF", fontFamily:F.ui, fontSize:13 }}>lsconfex.com.br</div>
+          </div>
+        )}
 
-      {/* ── Main App Card (center, always visible) ── */}
-      <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center" }}>
+        {/* Merge particle trail */}
+        {mergePr > 0 && mergePr < 1 && Array.from({ length: 14 }).map((_,i) => {
+          const angle = (i / 14) * Math.PI * 2;
+          const dist = interpolate(mergeE, [0,1], [420, 0]);
+          const ptOp = interpolate(mergeE, [0.1, 0.7, 1], [0, trailOp * 0.8, 0]);
+          return (
+            <div key={i} style={{
+              position:"absolute", left:540, top:960,
+              width: i%3===0?10:6, height: i%3===0?10:6,
+              borderRadius: i%2===0?"50%":3,
+              background: T.accent,
+              opacity: ptOp,
+              transform: `translate(-50%,-50%) translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`,
+            }} />
+          );
+        })}
+
+        {/* ── CENTER — main app card ── */}
         <div style={{
-          width: 920,
-          height: 500,
+          position:"absolute",
+          left: 260, top: 780,
+          width: CW, height: CH,
           background: "#0F1923",
-          borderRadius: 22,
-          border: `2px solid ${T.accent}${bagRevOp > 0.5 ? "dd" : "55"}`,
+          borderRadius: 20,
+          border: `2px solid ${T.accent}${bagRevOp > 0.5 ? "dd" : "66"}`,
           boxShadow: bagRevOp > 0.3
             ? `0 0 ${bagGlow}px ${T.accent}88, 0 0 ${bagGlow*2}px ${T.accent}44, 0 12px 40px rgba(0,0,0,0.6)`
-            : `0 0 28px ${T.accent}22, 0 12px 40px rgba(0,0,0,0.5)`,
+            : `0 0 28px ${T.accent}33, 0 12px 40px rgba(0,0,0,0.5)`,
           overflow: "hidden",
           transform: `scale(${mainScale * (bagRevOp > 0.3 ? bagBreathe : 1)})`,
+          transformOrigin: "center center",
           display: "flex",
           flexDirection: "column",
         }}>
           {/* Title bar */}
-          <div style={{ height:44, background:"#162030", display:"flex", alignItems:"center", padding:"0 18px", gap:10, borderBottom:`1px solid ${T.accent}22` }}>
-            <div style={{ width:12, height:12, borderRadius:"50%", background:T.accent }} />
-            <div style={{ flex:1, height:9, background:"#253545", borderRadius:5, maxWidth:150 }} />
+          <div style={{ height:40, background:"#162030", display:"flex", alignItems:"center", padding:"0 16px", gap:10, borderBottom:`1px solid ${T.accent}22`, flexShrink:0 }}>
+            <div style={{ width:11, height:11, borderRadius:"50%", background:T.accent }} />
+            <div style={{ flex:1, height:8, background:"#253545", borderRadius:4, maxWidth:130 }} />
           </div>
 
-          {/* Content */}
-          <div style={{ padding:"22px 26px", display:"flex", flexDirection:"column", gap:22, flex:1 }}>
-            {/* Nav pills — appear with bar */}
-            <div style={{ display:"flex", gap:10, opacity: barPr }}>
-              {[{w:115,a:true},{w:78},{w:125},{w:88},{w:100}].map((p,i)=>(
-                <div key={i} style={{ width:p.w, height:36, borderRadius:18, background:p.a?"#263A4A":"#1A2A38", border:p.a?`1px solid ${T.accent}66`:"1px solid #253545", flexShrink:0 }} />
+          <div style={{ padding:"18px 22px", display:"flex", flexDirection:"column", gap:16, flex:1 }}>
+            {/* Nav pills */}
+            <div style={{ display:"flex", gap:8, opacity: barPr }}>
+              {[{w:90,a:true},{w:60},{w:100},{w:70},{w:80}].map((p,i)=>(
+                <div key={i} style={{ width:p.w, height:30, borderRadius:15, background:p.a?"#263A4A":"#1A2A38", border:p.a?`1px solid ${T.accent}66`:"1px solid #253545", flexShrink:0 }} />
               ))}
             </div>
-
-            {/* Search bar slides in from left */}
+            {/* Search bar */}
             <div style={{ flex:1, display:"flex", alignItems:"center", overflow:"hidden" }}>
               <div style={{
-                width:"100%", background:"white", borderRadius:34, padding:"18px 28px",
-                display:"flex", alignItems:"center", gap:14,
+                width:"100%", background:"white", borderRadius:28, padding:"14px 22px",
+                display:"flex", alignItems:"center", gap:12,
                 transform: `translateX(${barX}px)`,
-                boxShadow: barGlow > 0.5 ? `0 0 ${barGlow*20}px ${T.accent}55, 0 2px 12px rgba(0,0,0,0.12)` : "0 2px 12px rgba(0,0,0,0.12)",
+                boxShadow: barGlow > 0.5 ? `0 0 ${barGlow*18}px ${T.accent}55` : "none",
               }}>
-                <span style={{ fontSize:24 }}>🎒</span>
-                <span style={{ fontFamily:F.ui, fontSize:22, color:"#333", flex:1 }}>
-                  {displayText}
-                  {cursorBlink && <span style={{ borderLeft:"2px solid #444", marginLeft:2 }}>&nbsp;</span>}
+                <span style={{ fontSize:20 }}>🎒</span>
+                <span style={{ fontFamily:F.ui, fontSize:18, color:"#333", flex:1 }}>
+                  {displayText}{cursorBlink && <span style={{ borderLeft:"2px solid #444", marginLeft:2 }}>&nbsp;</span>}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Bag icon reveal overlay (after merge) */}
+          {/* Bag reveal after merge */}
           {frame >= 134 && (
             <AbsoluteFill style={{ display:"flex", alignItems:"center", justifyContent:"center", background:"#0F1923" }}>
               <div style={{
@@ -564,28 +580,27 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                 transform: `scale(${bagRevScale}) rotate(${bagRevRot}deg)`,
                 filter: `blur(${bagRevBlur}px) drop-shadow(0 0 ${bagGlow}px ${T.accent}cc)`,
               }}>
-                {/* Outer glow rings */}
-                <div style={{ position:"relative", width:260, height:260 }}>
+                <div style={{ position:"relative", width:220, height:220 }}>
                   <div style={{ position:"absolute", inset:0, borderRadius:"50%", background:`${T.accent}18` }} />
-                  <div style={{ position:"absolute", inset:20, borderRadius:"50%", background:`${T.accent}28` }} />
-                  <div style={{ position:"absolute", inset:36, borderRadius:"50%", background:"#0A1520", border:`3px solid ${T.accent}`, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                    <SlingBagSVG size={110} color={T.accent} />
+                  <div style={{ position:"absolute", inset:18, borderRadius:"50%", background:`${T.accent}28` }} />
+                  <div style={{ position:"absolute", inset:32, borderRadius:"50%", background:"#0A1520", border:`3px solid ${T.accent}`, display:"flex", alignItems:"center", justifyContent:"center" }}>
+                    <SlingBagSVG size={90} color={T.accent} />
                   </div>
                 </div>
               </div>
             </AbsoluteFill>
           )}
         </div>
-
-        {/* Mouse cursor */}
-        {frame >= 18 && frame < 96 && (
-          <div style={{ position:"absolute", transform:`translate(${cursorX}px, ${cursorY + cursorClickY}px)`, pointerEvents:"none", zIndex:50 }}>
-            <svg width="30" height="37" viewBox="0 0 20 25" fill="none">
-              <path d="M2 2L2 20L6.5 14.5L11 22L14 20.5L9.5 13L17 13Z" fill="white" stroke="rgba(0,0,0,0.45)" strokeWidth="1.3" />
-            </svg>
-          </div>
-        )}
       </AbsoluteFill>
+
+      {/* Mouse cursor */}
+      {frame >= 18 && frame < 96 && (
+        <div style={{ position:"absolute", left:"50%", top:"50%", transform:`translate(${cursorX}px, ${cursorY + cursorClickY}px)`, pointerEvents:"none", zIndex:50 }}>
+          <svg width="30" height="37" viewBox="0 0 20 25" fill="none">
+            <path d="M2 2L2 20L6.5 14.5L11 22L14 20.5L9.5 13L17 13Z" fill="white" stroke="rgba(0,0,0,0.45)" strokeWidth="1.3" />
+          </svg>
+        </div>
+      )}
 
       {/* Merge + reveal flash */}
       {flash > 0 && <AbsoluteFill style={{ background:"white", opacity: flash * 0.6, pointerEvents:"none" }} />}
