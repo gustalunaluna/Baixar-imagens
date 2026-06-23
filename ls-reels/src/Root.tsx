@@ -560,26 +560,28 @@ const BRAND_CARD_COLORS = ["#FF6B35", "#7B2FBE", "#00B4D8", "#E63946", "#06D6A0"
 const BRAND_CARD_TEXT = ["#fff", "#fff", "#fff", "#fff", "#0A0A0A", "#0A0A0A"];
 const S4_BRANDS = ["THUG NINE", "BOLOVO", "CARNAN", "FLAMENGO", "VASCO", "COROA"];
 
-const BrandCardRow: React.FC<{ brands: string[]; dir: 1 | -1; speed?: number; y?: number }> = ({
-  brands, dir, speed = 0.8, y = 0,
+const BrandCardRow: React.FC<{ brands: string[]; dir: 1 | -1; speed?: number; y?: number; blurAmount?: number }> = ({
+  brands, dir, speed = 0.8, y = 0, blurAmount = 0,
 }) => {
   const frame = useCurrentFrame();
   const doubled = [...brands, ...brands, ...brands];
-  const itemW = 260;
+  const itemW = 420;
   const totalW = brands.length * itemW;
   const offset = (((frame * speed * dir) % totalW) + totalW) % totalW;
   return (
-    <div style={{ overflow: "hidden", width: "100%", transform: `translateY(${y}px)` }}>
+    <div style={{ overflow: "hidden", width: "100%", transform: `translateY(${y}px)`, filter: blurAmount > 0 ? `blur(${blurAmount}px)` : "none" }}>
       <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
         {doubled.map((b, i) => {
           const colorIdx = S4_BRANDS.indexOf(b);
           const bg = colorIdx >= 0 ? BRAND_CARD_COLORS[colorIdx] : T.surface2;
           const tc = colorIdx >= 0 ? BRAND_CARD_TEXT[colorIdx] : T.accent;
           return (
-            <div key={i} style={{ width: itemW, flexShrink: 0, padding: "8px 10px" }}>
-              <div style={{ background: bg, borderRadius: 16, padding: "20px 24px", display: "flex", flexDirection: "column", gap: 6, boxShadow: "0 4px 20px rgba(0,0,0,0.35)" }}>
-                <div style={{ color: tc, fontFamily: F.ui, fontSize: 22, fontWeight: 900, letterSpacing: 1.5 }}>{b}</div>
-                <div style={{ color: tc, fontFamily: F.mono, fontSize: 11, opacity: 0.45 }}>★★★★ ★★★★</div>
+            <div key={i} style={{ width: itemW, flexShrink: 0, padding: "12px 14px" }}>
+              <div style={{ background: bg, borderRadius: 28, padding: "36px 40px", display: "flex", flexDirection: "column", gap: 10, boxShadow: "0 8px 40px rgba(0,0,0,0.45)", height: 180 }}>
+                {/* chip */}
+                <div style={{ width: 44, height: 32, borderRadius: 7, background: "rgba(255,255,255,0.22)", border: "1px solid rgba(255,255,255,0.3)", marginBottom: 4 }} />
+                <div style={{ color: tc, fontFamily: F.ui, fontSize: 30, fontWeight: 900, letterSpacing: 2 }}>{b}</div>
+                <div style={{ color: tc, fontFamily: F.mono, fontSize: 14, opacity: 0.4 }}>★★★★ ★★★★ ★★★★</div>
               </div>
             </div>
           );
@@ -601,9 +603,9 @@ const S4: React.FC<{ dur: number }> = ({ dur }) => {
       <AtmosphericBg intensity={0.14} />
 
       {/* Scrolling card rows */}
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", paddingTop: 80, paddingBottom: 80 }}>
+      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", paddingTop: 60, paddingBottom: 60 }}>
         {rows.map((row, i) => (
-          <BrandCardRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.7 + i * 0.12} />
+          <BrandCardRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.7 + i * 0.12} blurAmount={i === 0 ? 6 : i === 2 ? 8 : 0} />
         ))}
       </AbsoluteFill>
 
