@@ -588,21 +588,20 @@ const S2: React.FC<{ dur: number }> = ({ dur }) => {
 
   return (
     <AbsoluteFill style={{ background: "white", overflow: "hidden" }}>
-      {/* Scrolling big cards fill the background */}
       <div style={{ position: "absolute", inset: 0, transform: `scale(${exitScale})`, filter: exitBlur > 0 ? `blur(${exitBlur}px)` : "none", transformOrigin: "center center" }}>
-        <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 20, padding: "80px 0" }}>
+        {/* Single scrolling big card row */}
+        <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px 0" }}>
           <BigCardRow dir={1} speed={0.8} />
-          <BigCardRow dir={-1} speed={0.6} />
         </AbsoluteFill>
 
-        {/* Gradient vignette to make text legible */}
-        <AbsoluteFill style={{ background: "radial-gradient(ellipse 70% 40% at 50% 50%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 60%, transparent 100%)", pointerEvents: "none" }} />
+        {/* Subtle vignette */}
+        <AbsoluteFill style={{ background: "radial-gradient(ellipse 75% 50% at 50% 50%, rgba(255,255,255,0.45) 0%, transparent 80%)", pointerEvents: "none" }} />
 
-        {/* Text overlay */}
+        {/* Text — no card wrapper */}
         <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
-          <div style={{ opacity: textPr, transform: `scale(${interpolate(textPr, [0, 1], [0.85, 1])})`, textAlign: "center", padding: "28px 44px", background: "rgba(13,27,42,0.88)", borderRadius: 24, backdropFilter: "blur(6px)", boxShadow: "0 8px 60px rgba(0,0,0,0.22)" }}>
-            <div style={{ color: "white", fontFamily: F.ui, fontSize: 52, fontWeight: 900, lineHeight: 1.2 }}>
-              E são tantas<br /><span style={{ color: T.accent }}>possibilidades</span>
+          <div style={{ opacity: textPr, transform: `scale(${interpolate(textPr, [0, 1], [0.85, 1])})`, textAlign: "center" }}>
+            <div style={{ color: "#0D1B2A", fontFamily: F.ui, fontSize: 64, fontWeight: 900, lineHeight: 1.15 }}>
+              são tantas<br /><span style={{ color: "#0D1B2A", WebkitTextStroke: `2px ${T.accent}` } as React.CSSProperties}>possibilidades</span>
             </div>
           </div>
         </AbsoluteFill>
@@ -698,8 +697,8 @@ const S3: React.FC<{ dur: number }> = ({ dur }) => {
       <InlineGrid id="geo3" />
       <AtmosphericBg color="#0D1B2A" intensity={0.06} />
 
-      {/* 5 scrolling rows — blurred slightly */}
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 0, paddingTop: 180, paddingBottom: 40 }}>
+      {/* 5 scrolling rows — blurred and low opacity so text stands out */}
+      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 0, paddingTop: 180, paddingBottom: 40, opacity: 0.28 }}>
         {ROW_SETS.map((items, i) => (
           <ProductRow key={i} items={items} dir={DIRS[i]} speed={SPEEDS[i]} delay={5 + i * 4} />
         ))}
@@ -729,57 +728,87 @@ const S3: React.FC<{ dur: number }> = ({ dur }) => {
   );
 };
 
-// ─── S4 — Marcas scrolling cards ─────────────────────────────────────────────
+// ─── S4 — Progressive brand name fill ────────────────────────────────────────
 
-const S4_BRANDS = ["THUG NINE", "BOLOVO", "CARNAN", "FLAMENGO", "VASCO", "COROA"];
-
-const BrandCardRow: React.FC<{ brands: string[]; dir: 1 | -1; speed?: number; y?: number; blurAmount?: number; exitTY?: number }> = ({
-  brands, dir, speed = 0.8, y = 0, blurAmount = 0, exitTY = 0,
-}) => {
-  const frame = useCurrentFrame();
-  const doubled = [...brands, ...brands, ...brands];
-  const itemW  = 420;
-  const totalW = brands.length * itemW;
-  const offset = (((frame * speed * dir) % totalW) + totalW) % totalW;
-  return (
-    <div style={{ overflow: "hidden", width: "100%", transform: `translateY(${y + exitTY}px)`, filter: blurAmount > 0 ? `blur(${blurAmount}px)` : "none" }}>
-      <div style={{ display: "flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
-        {doubled.map((b, i) => (
-          <div key={i} style={{ width: itemW, flexShrink: 0, padding: "12px 14px" }}>
-            <div style={{ background: "#0D1B2A", borderRadius: 28, padding: "36px 40px", display: "flex", flexDirection: "column", gap: 10, boxShadow: "0 8px 40px rgba(0,0,0,0.25)", height: 180, border: `1.5px solid ${T.accent}33` }}>
-              <div style={{ width: 44, height: 32, borderRadius: 7, background: `${T.accent}22`, border: `1px solid ${T.accent}44`, marginBottom: 4 }} />
-              <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 30, fontWeight: 900, letterSpacing: 2 }}>{b}</div>
-              <div style={{ color: "#334455", fontFamily: F.mono, fontSize: 14 }}>★★★★ ★★★★ ★★★★</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+const S4_BRAND_GRID: Array<{ name: string; x: number; y: number; size: number; rot: number }> = [
+  { name: "THUG NINE",   x: 8,   y: 5,   size: 28, rot: -2  },
+  { name: "BOLOVO",      x: 52,  y: 3,   size: 22, rot: 1   },
+  { name: "FARM",        x: 78,  y: 7,   size: 26, rot: -1  },
+  { name: "AREZZO",      x: 5,   y: 14,  size: 20, rot: 2   },
+  { name: "FILA",        x: 40,  y: 12,  size: 32, rot: 0   },
+  { name: "VANS",        x: 72,  y: 15,  size: 24, rot: -3  },
+  { name: "CARNAN",      x: 12,  y: 23,  size: 26, rot: 1   },
+  { name: "ELLUS",       x: 58,  y: 21,  size: 22, rot: 2   },
+  { name: "LEVIS",       x: 82,  y: 24,  size: 28, rot: -1  },
+  { name: "COLCCI",      x: 3,   y: 32,  size: 20, rot: 3   },
+  { name: "HERING",      x: 33,  y: 30,  size: 24, rot: -2  },
+  { name: "LACOSTE",     x: 65,  y: 33,  size: 22, rot: 1   },
+  { name: "FLAMENGO",    x: 10,  y: 41,  size: 30, rot: -1  },
+  { name: "ADIDAS",      x: 50,  y: 43,  size: 26, rot: 2   },
+  { name: "OAKLEY",      x: 78,  y: 40,  size: 20, rot: -3  },
+  { name: "VASCO",       x: 5,   y: 50,  size: 24, rot: 1   },
+  { name: "PUMA",        x: 38,  y: 52,  size: 28, rot: -1  },
+  { name: "TIMBERLAND",  x: 66,  y: 51,  size: 18, rot: 2   },
+  { name: "COROA",       x: 15,  y: 60,  size: 22, rot: -2  },
+  { name: "DUDALINA",    x: 52,  y: 62,  size: 24, rot: 1   },
+  { name: "MALWEE",      x: 80,  y: 59,  size: 20, rot: -1  },
+  { name: "MARISA",      x: 6,   y: 69,  size: 26, rot: 3   },
+  { name: "NIKE",        x: 35,  y: 71,  size: 32, rot: -2  },
+  { name: "RENNER",      x: 68,  y: 70,  size: 22, rot: 1   },
+  { name: "ZARA",        x: 12,  y: 79,  size: 28, rot: -1  },
+  { name: "H&M",         x: 46,  y: 80,  size: 26, rot: 2   },
+  { name: "C&A",         x: 76,  y: 78,  size: 24, rot: -3  },
+  { name: "RIACHUELO",   x: 4,   y: 88,  size: 20, rot: 1   },
+  { name: "TRACK&FIELD", x: 40,  y: 90,  size: 18, rot: -2  },
+  { name: "CENTAURO",    x: 72,  y: 89,  size: 22, rot: 2   },
+];
 
 const S4: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const textPr = spring({ frame: frame - 8, fps, config: { damping: 16, mass: 0.8 } });
-  const rows   = [S4_BRANDS, [...S4_BRANDS].reverse(), S4_BRANDS];
   const exitPr = interpolate(frame, [dur - 22, dur - 4], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const exitTY = interpolate(exitPr, [0, 1], [0, 400]);
+  const exitOp = interpolate(exitPr, [0.5, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+
+  // Each brand appears at a staggered frame: spread over first 70 frames
+  const totalBrands = S4_BRAND_GRID.length;
 
   return (
     <AbsoluteFill style={{ background: T.accent, overflow: "hidden" }}>
       <InlineGrid id="geo4" />
-      <AtmosphericBg color="#0D1B2A" intensity={0.10} />
-      <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", paddingTop: 60, paddingBottom: 60 }}>
-        {rows.map((row, i) => (<BrandCardRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.7 + i * 0.12} blurAmount={i === 0 ? 3 : i === 2 ? 4 : 0} exitTY={exitTY} />))}
+
+      {/* Progressive brand name fill — no cards, plain text */}
+      <AbsoluteFill style={{ pointerEvents: "none" }}>
+        {S4_BRAND_GRID.map((b, i) => {
+          const revealAt = Math.round((i / totalBrands) * 70);
+          const brandPr  = interpolate(frame, [revealAt, revealAt + 8], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+          return (
+            <div key={i} style={{
+              position: "absolute",
+              left: `${b.x}%`,
+              top: `${b.y}%`,
+              opacity: brandPr * 0.18,
+              transform: `rotate(${b.rot}deg)`,
+              fontFamily: F.ui,
+              fontSize: b.size,
+              fontWeight: 900,
+              color: "#0D1B2A",
+              letterSpacing: 1.5,
+              whiteSpace: "nowrap",
+            }}>{b.name}</div>
+          );
+        })}
       </AbsoluteFill>
+
+      {/* Main text — no card wrapper */}
       <AbsoluteFill style={{ display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
-        <div style={{ opacity: textPr, transform: `scale(${interpolate(textPr, [0, 1], [0.88, 1])})`, textAlign: "center", padding: "30px 44px", background: "#0D1B2A", borderRadius: 26, border: `1.5px solid ${T.accent}55`, boxShadow: `0 4px 60px rgba(0,0,0,0.22)` }}>
-          <div style={{ color: T.white, fontFamily: F.ui, fontSize: 46, fontWeight: 900, lineHeight: 1.2 }}>
-            E é tanta marca que<br /><span style={{ color: T.accent }}>confia na gente...</span>
+        <div style={{ opacity: textPr * exitOp, transform: `scale(${interpolate(textPr, [0, 1], [0.88, 1])})`, textAlign: "center" }}>
+          <div style={{ color: "#0D1B2A", fontFamily: F.ui, fontSize: 56, fontWeight: 900, lineHeight: 1.2 }}>
+            E é tanta marca que<br />confia na gente...
           </div>
         </div>
       </AbsoluteFill>
+
       <Grain />
       <SceneTrans dur={dur} />
     </AbsoluteFill>
