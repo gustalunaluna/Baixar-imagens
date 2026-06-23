@@ -205,16 +205,6 @@ const GlowRing: React.FC<{ startFrame: number; x?: string; y?: string; color?: s
   );
 };
 
-// Transição de entrada (flash + fade) no início de cada cena
-const SceneEntrance: React.FC = () => {
-  const frame = useCurrentFrame();
-  const opacity = interpolate(frame, [0, 8], [0.5, 0], { extrapolateRight: "clamp" });
-  return (
-    <AbsoluteFill
-      style={{ background: "#ffffff", opacity, pointerEvents: "none", mixBlendMode: "screen" }}
-    />
-  );
-};
 
 // ─── Scrolling Rows ───────────────────────────────────────────────────────────
 
@@ -285,55 +275,57 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // ── Timeline (90 frames / 3s) ──
-  // 0–14   : fade in atmosférico
-  // 10–46  : typing dots
-  // 40–60  : balão entra (spring)
-  // 60–66  : balão pulsa / glow suave pre-flash
-  // 66–72  : FLASH (luz branca estoura)
-  // 70–84  : mochila emerge — blur→sharp + rotação + scale (spring)
-  // 72–88  : anel de glow expande
-  // 74–84  : partículas geométricas explodem
-  // 80–90  : mochila flutua para cima + brilho sweep
+  // ── Timeline (150 frames / 5s) — ritmo lento e cinematográfico ──
+  // 0–20   : UI fades in suavemente
+  // 18–70  : typing dots (digitando por mais tempo)
+  // 65–95  : balão entra com bounce + salta levemente ao receber
+  // 95–110 : balão repousa, pre-glow acumula
+  // 108–116: FLASH
+  // 114–134: mochila emerge (blur→sharp + rotação + spring)
+  // 116–138: anel de glow + partículas
+  // 128–150: mochila flutua + light sweep
 
-  const uiFade = interpolate(frame, [0, 14], [0, 1], { extrapolateRight: "clamp" });
-  const typingVisible = frame >= 10 && frame < 46;
-  const bubbleVisible = frame >= 40;
+  const uiFade = interpolate(frame, [0, 20], [0, 1], { extrapolateRight: "clamp" });
+  const typingVisible = frame >= 18 && frame < 72;
+  const bubbleVisible = frame >= 65;
 
-  // Bubble entry
-  const bubblePr = spring({ frame: frame - 40, fps, config: { damping: 16, mass: 0.65 } });
+  // Bounce ao receber: spring com overshoot (damping baixo = mais bounce)
+  // Vem de baixo (60px), sobe, ultrapassa um pouco (-20px), depois assenta
+  const bounceSpring = spring({ frame: frame - 65, fps, config: { damping: 7, mass: 0.75, stiffness: 160 } });
+  const bubbleY = interpolate(bounceSpring, [0, 1], [60, 0]);
+  // Pequeno salto extra: sobe e volta — como WhatsApp "pula" ao receber
+  const jumpExtra = spring({ frame: frame - 68, fps, config: { damping: 5, mass: 0.5, stiffness: 280 } });
+  const bubbleJump = interpolate(jumpExtra, [0, 0.25, 0.55, 1], [0, -22, -6, 0]);
+  const bubbleOpacityIn = interpolate(frame, [65, 75], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Pre-flash: balão pulsa levemente antes do flash
-  const prePulse = interpolate(frame, [60, 66], [1, 1.04], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const preGlow = interpolate(frame, [60, 66], [0, 0.6], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Pre-flash: balão pulsa levemente antes do morph
+  const prePulse = interpolate(frame, [100, 108], [1, 1.035], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const preGlow = interpolate(frame, [100, 108], [0, 0.7], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Fase 1 (66–72): squish horizontal (como borracha)
-  const squishX = interpolate(frame, [66, 72], [1, 0.22], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const squishY = interpolate(frame, [66, 72], [1, 1.2], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // Fase 2 (72–78): contrai para ponto
-  const contractScale = interpolate(frame, [72, 78], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Morph (a partir do frame 108)
+  // Fase 1: squish horizontal como borracha
+  const squishX = interpolate(frame, [108, 116], [1, 0.2], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const squishY = interpolate(frame, [108, 116], [1, 1.25], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Fase 2: contrai até zero
+  const contractScale = interpolate(frame, [116, 124], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const bubbleScaleX = squishX * contractScale;
   const bubbleScaleY = squishY * contractScale;
-  const bubbleOpacity = interpolate(frame, [70, 78], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // Border-radius vira círculo durante squish
-  const bubbleRadius = interpolate(frame, [66, 72], [28, 200], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bubbleOpacity = interpolate(frame, [112, 122], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bubbleRadius = interpolate(frame, [108, 116], [28, 200], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  // Mochila: spring elástico + blur→sharp + leve rotação de entrada
-  const bagSpring = spring({ frame: frame - 70, fps, config: { damping: 10, mass: 1.1, stiffness: 140 } });
+  // Mochila: spring elástico + blur→sharp + rotação de entrada
+  const bagSpring = spring({ frame: frame - 114, fps, config: { damping: 10, mass: 1.1, stiffness: 130 } });
   const bagScale = interpolate(bagSpring, [0, 1], [0, 1]);
   const bagOpacity = interpolate(bagSpring, [0, 0.25], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagBlur = interpolate(bagSpring, [0, 0.6], [24, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagRotate = interpolate(bagSpring, [0, 0.7], [-18, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // Float suave após burst
-  const bagFloat = interpolate(frame, [84, 90], [0, -14], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  // Glow na mochila
-  const bagGlowSize = interpolate(bagSpring, [0.5, 1], [0, 32], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagBlur = interpolate(bagSpring, [0, 0.65], [26, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagRotate = interpolate(bagSpring, [0, 0.7], [-20, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagFloat = interpolate(frame, [132, 150], [0, -18], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const bagGlowSize = interpolate(bagSpring, [0.5, 1], [0, 34], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  const showMorphEffects = frame >= 66;
+  const showMorphEffects = frame >= 108;
 
   return (
     <AbsoluteFill style={{ background: "#0B141A", overflow: "hidden" }}>
-      {/* Atmosfera verde difusa no fundo */}
       <AtmosphericBg color={T.accent} intensity={0.12} />
 
       {/* Wallpaper pontilhado */}
@@ -352,65 +344,40 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
         </svg>
       </AbsoluteFill>
 
-      {/* Flash de entrada de cena */}
-      <SceneEntrance />
-
       {/* Header */}
-      <div
-        style={{
-          position: "absolute", top: 0, left: 0, right: 0,
-          background: "#1F2C34",
-          padding: "52px 20px 16px",
-          display: "flex", alignItems: "center", gap: 16,
-          opacity: uiFade, zIndex: 10,
-        }}
-      >
-        <div style={{ width: 54, height: 54, borderRadius: 27, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: T.ink, fontFamily: F.brand, fontWeight: 700, fontSize: 22, flexShrink: 0 }}>
-          LS
-        </div>
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, background: "#1F2C34", padding: "52px 20px 16px", display: "flex", alignItems: "center", gap: 16, opacity: uiFade, zIndex: 10 }}>
+        <div style={{ width: 54, height: 54, borderRadius: 27, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: T.ink, fontFamily: F.brand, fontWeight: 700, fontSize: 22, flexShrink: 0 }}>LS</div>
         <div style={{ flex: 1 }}>
           <div style={{ color: "#E9EDEF", fontFamily: F.ui, fontSize: 18, fontWeight: 600 }}>LS Confex</div>
           <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 13, marginTop: 2 }}>online</div>
         </div>
-        <div style={{ display: "flex", gap: 22, color: "#AEBAC1", fontSize: 20 }}>
-          <span>📹</span><span>📞</span><span>⋮</span>
-        </div>
+        <div style={{ display: "flex", gap: 22, color: "#AEBAC1", fontSize: 20 }}><span>📹</span><span>📞</span><span>⋮</span></div>
       </div>
 
       {/* Chat area */}
-      <div
-        style={{
-          position: "absolute", top: 140, bottom: 90, left: 0, right: 0,
-          padding: "40px 36px",
-          display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start",
-          gap: 16, opacity: uiFade,
-        }}
-      >
-        {/* Typing */}
+      <div style={{ position: "absolute", top: 140, bottom: 90, left: 0, right: 0, padding: "40px 36px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "flex-start", gap: 16, opacity: uiFade }}>
+
+        {/* Typing indicator */}
         {typingVisible && (
           <div style={{ display: "flex", alignItems: "flex-end", gap: 12 }}>
-            <div style={{ width: 44, height: 44, borderRadius: 22, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: T.ink, fontFamily: F.brand, fontWeight: 700, fontSize: 16, flexShrink: 0 }}>
-              LS
-            </div>
+            <div style={{ width: 44, height: 44, borderRadius: 22, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: T.ink, fontFamily: F.brand, fontWeight: 700, fontSize: 16, flexShrink: 0 }}>LS</div>
             <div style={{ background: "#1F2C34", borderRadius: "28px 28px 28px 6px", padding: "16px 22px", border: "1px solid #2A3942" }}>
               <TypingDots />
             </div>
           </div>
         )}
 
-        {/* Message bubble */}
+        {/* Message bubble com bounce */}
         {bubbleVisible && (
           <div
             style={{
               display: "flex", alignItems: "flex-end", gap: 12, width: "100%",
-              opacity: bubblePr,
-              transform: `translateY(${interpolate(bubblePr, [0, 1], [50, 0])}px)`,
+              opacity: bubbleOpacityIn,
+              // Bounce: vem de baixo + salta levemente ao "receber"
+              transform: `translateY(${bubbleY + bubbleJump}px)`,
             }}
           >
-            {/* Avatar */}
-            <div style={{ width: 44, height: 44, borderRadius: 22, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: T.ink, fontFamily: F.brand, fontWeight: 700, fontSize: 16, flexShrink: 0, alignSelf: "flex-end", opacity: bubbleOpacity }}>
-              LS
-            </div>
+            <div style={{ width: 44, height: 44, borderRadius: 22, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", color: T.ink, fontFamily: F.brand, fontWeight: 700, fontSize: 16, flexShrink: 0, alignSelf: "flex-end", opacity: bubbleOpacity }}>LS</div>
 
             <div style={{ position: "relative", flex: 1 }}>
               {/* Balão */}
@@ -423,7 +390,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                   transform: `scaleX(${bubbleScaleX}) scaleY(${bubbleScaleY}) scale(${prePulse})`,
                   transformOrigin: "left center",
                   opacity: bubbleOpacity,
-                  boxShadow: preGlow > 0 ? `0 0 ${preGlow * 40}px ${T.accent}44` : "none",
+                  boxShadow: preGlow > 0 ? `0 0 ${preGlow * 44}px ${T.accent}55` : "none",
                 }}
               >
                 <div style={{ color: "#E9EDEF", fontFamily: F.ui, fontSize: 34, lineHeight: 1.5, fontWeight: 400 }}>
@@ -431,26 +398,17 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                   <span style={{ color: T.accent, fontWeight: 800, fontSize: 40 }}>20 unidades</span>{" "}
                   seu produto vira realidade? 🎒
                 </div>
-                <div style={{ color: "#8696A0", fontFamily: F.ui, fontSize: 16, marginTop: 12, textAlign: "right" }}>
-                  agora ✓✓
-                </div>
+                <div style={{ color: "#8696A0", fontFamily: F.ui, fontSize: 16, marginTop: 12, textAlign: "right" }}>agora ✓✓</div>
               </div>
 
-              {/* Efeitos de morph (apenas após frame 66) */}
+              {/* Efeitos de morph */}
               {showMorphEffects && (
                 <>
-                  {/* Anel de glow expansivo */}
-                  <GlowRing startFrame={70} x="40%" y="50%" color={T.accent} />
-
-                  {/* Partículas geométricas */}
-                  <BurstParticles startFrame={72} x="40%" y="50%" count={12} color={T.accent} />
-
-                  {/* Mochila emerge do ponto onde o balão estava */}
+                  <GlowRing startFrame={116} x="40%" y="50%" color={T.accent} />
+                  <BurstParticles startFrame={118} x="40%" y="50%" count={12} color={T.accent} />
                   <div
                     style={{
-                      position: "absolute",
-                      left: "50%",
-                      top: "50%",
+                      position: "absolute", left: "50%", top: "50%",
                       transform: `translate(-50%, calc(-50% + ${bagFloat}px)) scale(${bagScale}) rotate(${bagRotate}deg)`,
                       opacity: bagOpacity,
                       filter: `blur(${bagBlur}px) drop-shadow(0 0 ${bagGlowSize}px ${T.accent}cc)`,
@@ -459,9 +417,7 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
                   >
                     <SlingBagSVG size={280} color={T.accent} />
                   </div>
-
-                  {/* Light sweep na mochila depois de aparecer */}
-                  {frame >= 82 && <LightSweep startFrame={82} />}
+                  {frame >= 130 && <LightSweep startFrame={130} />}
                 </>
               )}
             </div>
@@ -469,27 +425,15 @@ const S1: React.FC<{ dur: number }> = ({ dur }) => {
         )}
       </div>
 
-      {/* Flash no momento do morph */}
-      <GlowFlash startFrame={66} color={`${T.accent}aa`} duration={10} />
-      <GlowFlash startFrame={68} color="#ffffff" duration={6} />
+      {/* Flash do morph */}
+      <GlowFlash startFrame={108} color={`${T.accent}99`} duration={12} />
+      <GlowFlash startFrame={112} color="#ffffff" duration={7} />
 
       {/* Input bar */}
-      <div
-        style={{
-          position: "absolute", bottom: 0, left: 0, right: 0,
-          background: "#1F2C34",
-          padding: "12px 16px 28px",
-          display: "flex", alignItems: "center", gap: 12,
-          opacity: uiFade,
-        }}
-      >
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "#1F2C34", padding: "12px 16px 28px", display: "flex", alignItems: "center", gap: 12, opacity: uiFade }}>
         <div style={{ fontSize: 22 }}>😊</div>
-        <div style={{ flex: 1, background: "#2A3942", borderRadius: 24, padding: "12px 18px", color: "#8696A0", fontFamily: F.ui, fontSize: 16 }}>
-          Mensagem
-        </div>
-        <div style={{ width: 48, height: 48, borderRadius: 24, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>
-          🎤
-        </div>
+        <div style={{ flex: 1, background: "#2A3942", borderRadius: 24, padding: "12px 18px", color: "#8696A0", fontFamily: F.ui, fontSize: 16 }}>Mensagem</div>
+        <div style={{ width: 48, height: 48, borderRadius: 24, background: T.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🎤</div>
       </div>
     </AbsoluteFill>
   );
@@ -512,7 +456,7 @@ const S2: React.FC<{ dur: number }> = ({ dur }) => {
 
   return (
     <Slide dur={dur} bg={T.accent}>
-      <SceneEntrance />
+
       <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 4, opacity: 0.18 }}>
         {BRAND_ROWS.map((row, i) => (
           <BrandScrollRow key={i} brands={row} dir={i % 2 === 0 ? 1 : -1} speed={0.6 + i * 0.1} />
@@ -552,7 +496,7 @@ const S3: React.FC<{ dur: number }> = ({ dur }) => {
 
   return (
     <Slide dur={dur}>
-      <SceneEntrance />
+
       <AtmosphericBg intensity={0.14} />
       <AbsoluteFill style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", opacity: 0.12 }}>
         {BAG_ROWS.map((row, i) => (
@@ -583,7 +527,7 @@ const S3: React.FC<{ dur: number }> = ({ dur }) => {
 
 const S4: React.FC<{ dur: number }> = ({ dur }) => (
   <Slide dur={dur} bg={T.surface}>
-    <SceneEntrance />
+
     <AtmosphericBg intensity={0.13} />
     <Grid />
     <div style={{ position: "relative", textAlign: "center" }}>
@@ -607,7 +551,7 @@ const S5: React.FC<{ dur: number }> = ({ dur }) => {
   ];
   return (
     <Slide dur={dur}>
-      <SceneEntrance />
+
       <div style={{ position: "relative" }}>
         <div style={{ color: T.white, fontFamily: F.ui, fontSize: 38, fontWeight: 800, textAlign: "center", marginBottom: 36 }}>
           Porque é <span style={{ color: T.accent }}>simples</span>, premium e sob medida.
@@ -637,7 +581,7 @@ const S6: React.FC<{ dur: number }> = ({ dur }) => {
   const count = useCountUp(10, 10, 36);
   return (
     <Slide dur={dur} bg={T.surface}>
-      <SceneEntrance />
+
       <AtmosphericBg intensity={0.16} />
       <Grid />
       <div style={{ position: "relative", textAlign: "center" }}>
@@ -656,7 +600,7 @@ const S7: React.FC<{ dur: number }> = ({ dur }) => {
   const pulse = 1 + Math.sin(frame / 9) * 0.03;
   return (
     <Slide dur={dur} bg={T.accent}>
-      <SceneEntrance />
+
       <div style={{ position: "relative", textAlign: "center" }}>
         <div style={{ color: T.ink, fontFamily: F.ui, fontSize: 46, fontWeight: 900, lineHeight: 1.15 }}>
           Está esperando o quê<br />para produzir seus<br />acessórios?
@@ -710,7 +654,7 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
 
   return (
     <AbsoluteFill style={{ background: T.bg }}>
-      <SceneEntrance />
+
       <AtmosphericBg intensity={0.22} />
       <Grid />
 
@@ -822,7 +766,7 @@ const S8: React.FC<{ dur: number }> = ({ dur }) => {
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
-const D = { s1: 90, s2: 95, s3: 90, s4: 75, s5: 110, s6: 80, s7: 90, s8: 110 };
+const D = { s1: 150, s2: 95, s3: 90, s4: 75, s5: 110, s6: 80, s7: 90, s8: 110 };
 export const TOTAL = Object.values(D).reduce((a, b) => a + b, 0);
 
 const Main: React.FC = () => (
