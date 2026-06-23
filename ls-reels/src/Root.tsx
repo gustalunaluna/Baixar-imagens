@@ -142,202 +142,313 @@ const BagScrollRow: React.FC<{ bags: React.ReactNode[]; dir: 1 | -1; speed?: num
   );
 };
 
-// ─── S1 — Website Sim ─────────────────────────────────────────────────────────
+// ─── S1 — WhatsApp Chat ──────────────────────────────────────────────────────
+
+const TypingDots: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <div style={{ display: "flex", gap: 5, alignItems: "center", padding: "4px 2px" }}>
+      {[0, 1, 2].map((i) => {
+        const bounce = Math.sin((frame - i * 6) / 7) * 0.5 + 0.5;
+        const y = interpolate(bounce, [0, 1], [3, -3]);
+        return (
+          <div
+            key={i}
+            style={{
+              width: 9,
+              height: 9,
+              borderRadius: "50%",
+              background: T.accent,
+              opacity: 0.6 + bounce * 0.4,
+              transform: `translateY(${y}px)`,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+};
 
 const S1: React.FC<{ dur: number }> = ({ dur }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const count = useCountUp(20, 12, 36);
 
-  const loadProg = interpolate(frame, [12, 48], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // Timeline:
+  // 0-15   : UI fades in
+  // 10-40  : typing indicator visible
+  // 38-55  : bubble slides in (spring)
+  // 55-70  : bubble stays, pulses slightly
+  // 65-85  : bubble morphs → bag pops out
 
-  // After count=20 (frame ~48): dot jumps and bag appears
-  const dotJump = spring({ frame: frame - 50, fps, config: { damping: 14, mass: 0.8 } });
-  const dotX = interpolate(dotJump, [0, 1], [0, 120]);
-  const dotOpacity = interpolate(dotJump, [0.5, 1], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const bagPop = spring({ frame: frame - 58, fps, config: { damping: 12 } });
+  const uiFade = interpolate(frame, [0, 15], [0, 1], { extrapolateRight: "clamp" });
+
+  const typingVisible = frame >= 10 && frame < 45;
+
+  const bubblePr = spring({ frame: frame - 38, fps, config: { damping: 14, mass: 0.7 } });
+  const bubbleVisible = frame >= 38;
+
+  // Morph: bubble shrinks + fades, bag grows from same center
+  const morphPr = spring({ frame: frame - 65, fps, config: { damping: 10, mass: 1.1 } });
+  const bubbleScale = interpolate(morphPr, [0, 1], [1, 0.1]);
+  const bubbleOpacity = interpolate(morphPr, [0, 0.6], [1, 0], { extrapolateRight: "clamp" });
+  const bagScale = interpolate(morphPr, [0.2, 1], [0, 1], { extrapolateLeft: "clamp" });
+  const bagOpacity = interpolate(morphPr, [0.2, 0.7], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  // bag bounces up slightly at the end
+  const bagY = interpolate(morphPr, [0.7, 1], [0, -18], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
-    <Slide dur={dur}>
-      <Grid />
-      <div style={{ position: "relative", display: "flex", gap: 32 }}>
-        {/* LEFT: content */}
+    <AbsoluteFill style={{ background: "#0B141A" }}>
+      {/* WhatsApp wallpaper subtle pattern */}
+      <AbsoluteFill style={{ opacity: 0.06 }}>
+        <svg width="100%" height="100%">
+          <defs>
+            <pattern id="wp" width="60" height="60" patternUnits="userSpaceOnUse">
+              <circle cx="30" cy="30" r="1.5" fill={T.accent} />
+              <circle cx="0" cy="0" r="1.5" fill={T.accent} />
+              <circle cx="60" cy="0" r="1.5" fill={T.accent} />
+              <circle cx="0" cy="60" r="1.5" fill={T.accent} />
+              <circle cx="60" cy="60" r="1.5" fill={T.accent} />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#wp)" />
+        </svg>
+      </AbsoluteFill>
+
+      {/* Header */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          background: "#1F2C34",
+          padding: "52px 20px 16px",
+          display: "flex",
+          alignItems: "center",
+          gap: 16,
+          opacity: uiFade,
+          zIndex: 10,
+        }}
+      >
+        {/* Avatar */}
+        <div
+          style={{
+            width: 54,
+            height: 54,
+            borderRadius: 27,
+            background: T.accent,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: T.ink,
+            fontFamily: F.brand,
+            fontWeight: 700,
+            fontSize: 22,
+            flexShrink: 0,
+          }}
+        >
+          LS
+        </div>
         <div style={{ flex: 1 }}>
-          {/* Browser bar mockup */}
-          <div
-            style={{
-              background: T.surface2,
-              border: `1px solid ${T.border}`,
-              borderRadius: "10px 10px 0 0",
-              padding: "8px 14px",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              marginBottom: 0,
-            }}
-          >
-            <div style={{ width: 8, height: 8, borderRadius: 4, background: "#FF5F57" }} />
-            <div style={{ width: 8, height: 8, borderRadius: 4, background: "#FEBC2E" }} />
-            <div style={{ width: 8, height: 8, borderRadius: 4, background: "#28C840" }} />
+          <div style={{ color: "#E9EDEF", fontFamily: F.ui, fontSize: 18, fontWeight: 600 }}>LS Confex</div>
+          <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 13, marginTop: 2 }}>online</div>
+        </div>
+        {/* Icons */}
+        <div style={{ display: "flex", gap: 22, color: "#AEBAC1", fontSize: 20 }}>
+          <span>📹</span>
+          <span>📞</span>
+          <span>⋮</span>
+        </div>
+      </div>
+
+      {/* Chat area */}
+      <div
+        style={{
+          position: "absolute",
+          top: 140,
+          bottom: 90,
+          left: 0,
+          right: 0,
+          padding: "20px 18px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          gap: 10,
+          opacity: uiFade,
+        }}
+      >
+        {/* Typing indicator */}
+        {typingVisible && (
+          <div style={{ display: "flex", alignItems: "flex-end", gap: 10 }}>
             <div
               style={{
-                flex: 1,
-                background: T.surface,
-                border: `1px solid ${T.border}`,
-                borderRadius: 6,
-                padding: "3px 10px",
-                color: T.muted,
-                fontFamily: F.mono,
-                fontSize: 11,
-                marginLeft: 8,
+                width: 34,
+                height: 34,
+                borderRadius: 17,
+                background: T.accent,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: T.ink,
+                fontFamily: F.brand,
+                fontWeight: 700,
+                fontSize: 13,
+                flexShrink: 0,
               }}
             >
-              lsconfex.com.br
+              LS
             </div>
-          </div>
-          {/* Loading bar */}
-          <div style={{ height: 3, background: T.surface2, overflow: "hidden" }}>
             <div
               style={{
-                height: "100%",
-                width: `${loadProg * 100}%`,
-                background: T.accent,
-                transition: "none",
+                background: "#1F2C34",
+                borderRadius: "18px 18px 18px 4px",
+                padding: "12px 16px",
+                border: "1px solid #2A3942",
               }}
-            />
+            >
+              <TypingDots />
+            </div>
           </div>
+        )}
 
+        {/* Message bubble */}
+        {bubbleVisible && (
           <div
             style={{
-              background: T.surface,
-              border: `1px solid ${T.border}`,
-              borderTop: "none",
-              borderRadius: "0 0 10px 10px",
-              padding: "22px 20px",
+              display: "flex",
+              alignItems: "flex-end",
+              gap: 10,
+              opacity: bubblePr,
+              transform: `translateY(${interpolate(bubblePr, [0, 1], [30, 0])}px)`,
+              position: "relative",
             }}
           >
-            <div style={{ color: T.muted, fontFamily: F.ui, fontSize: 20, marginBottom: 6 }}>Você sabia que</div>
-            <div style={{ color: T.white, fontFamily: F.ui, fontSize: 38, fontWeight: 800, lineHeight: 1.05 }}>
-              a partir de
+            {/* Avatar */}
+            <div
+              style={{
+                width: 34,
+                height: 34,
+                borderRadius: 17,
+                background: T.accent,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: T.ink,
+                fontFamily: F.brand,
+                fontWeight: 700,
+                fontSize: 13,
+                flexShrink: 0,
+                alignSelf: "flex-end",
+              }}
+            >
+              LS
             </div>
 
-            {/* Counter with animated dot */}
-            <div style={{ display: "flex", alignItems: "baseline", position: "relative" }}>
+            {/* Bubble + Bag morph container */}
+            <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
+              {/* The message bubble */}
               <div
                 style={{
-                  color: T.accent,
-                  fontFamily: F.ui,
-                  fontSize: 90,
-                  fontWeight: 900,
-                  lineHeight: 1,
-                  margin: "4px 0",
+                  background: "#1F2C34",
+                  borderRadius: "18px 18px 18px 4px",
+                  padding: "18px 22px",
+                  border: "1px solid #2A3942",
+                  maxWidth: 580,
+                  transform: `scale(${bubbleScale})`,
+                  opacity: bubbleOpacity,
+                  transformOrigin: "left center",
                 }}
               >
-                {count} un
+                <div
+                  style={{
+                    color: "#E9EDEF",
+                    fontFamily: F.ui,
+                    fontSize: 26,
+                    lineHeight: 1.45,
+                    fontWeight: 400,
+                  }}
+                >
+                  Você sabia que a partir de{" "}
+                  <span style={{ color: T.accent, fontWeight: 800, fontSize: 30 }}>20 unidades</span>{" "}
+                  seu produto vira realidade? 🎒
+                </div>
+                <div
+                  style={{
+                    color: "#8696A0",
+                    fontFamily: F.ui,
+                    fontSize: 12,
+                    marginTop: 8,
+                    textAlign: "right",
+                  }}
+                >
+                  agora ✓✓
+                </div>
               </div>
-              {/* Animated dot */}
-              <div
-                style={{
-                  color: T.accent,
-                  fontFamily: F.ui,
-                  fontSize: 90,
-                  fontWeight: 900,
-                  lineHeight: 1,
-                  opacity: dotOpacity,
-                  transform: `translateX(${dotX}px)`,
-                  position: "relative",
-                  zIndex: 2,
-                }}
-              >
-                .
-              </div>
-              {/* Bag that pops in at dot position */}
+
+              {/* Bag that pops from bubble */}
               <div
                 style={{
                   position: "absolute",
-                  right: -20,
+                  left: 0,
                   top: "50%",
-                  transform: `translateY(-50%) scale(${interpolate(bagPop, [0, 1], [0.2, 1])})`,
-                  opacity: bagPop,
+                  transform: `translateY(calc(-50% + ${bagY}px)) scale(${bagScale})`,
+                  opacity: bagOpacity,
+                  transformOrigin: "left center",
+                  filter: `drop-shadow(0 0 20px ${T.accent}88)`,
                 }}
               >
-                <SlingBagSVG size={72} color={T.accent} />
+                <SlingBagSVG size={220} color={T.accent} />
               </div>
-            </div>
-
-            <div style={{ color: T.white, fontFamily: F.ui, fontSize: 22, fontWeight: 600 }}>
-              a sua marca já vira realidade?
-            </div>
-
-            <div
-              style={{
-                marginTop: 18,
-                background: T.surface2,
-                border: `1px solid ${T.border}`,
-                borderRadius: 12,
-                padding: "14px 18px",
-                display: "inline-flex",
-                gap: 4,
-                flexDirection: "column",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-                <span style={{ fontSize: 20 }}>🛍️</span>
-                <span style={{ color: T.accent, fontFamily: F.ui, fontSize: 13, fontWeight: 700 }}>+500 marcas</span>
-              </div>
-              <div style={{ color: T.white, fontFamily: F.ui, fontSize: 28, fontWeight: 800 }}>20</div>
-              <div style={{ color: T.dim, fontFamily: F.ui, fontSize: 12 }}>pedido mínimo</div>
             </div>
           </div>
-        </div>
+        )}
+      </div>
 
-        {/* RIGHT: website preview card */}
+      {/* Input bar */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          background: "#1F2C34",
+          padding: "12px 16px 28px",
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          opacity: uiFade,
+        }}
+      >
+        <div style={{ fontSize: 22 }}>😊</div>
         <div
           style={{
-            width: 280,
-            background: T.surface,
-            border: `1px solid ${T.border}`,
-            borderRadius: 12,
-            padding: 16,
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
-            opacity: interpolate(frame, [20, 40], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+            flex: 1,
+            background: "#2A3942",
+            borderRadius: 24,
+            padding: "12px 18px",
+            color: "#8696A0",
+            fontFamily: F.ui,
+            fontSize: 16,
           }}
         >
-          <div style={{ color: T.accent, fontFamily: F.ui, fontSize: 11, fontWeight: 700, letterSpacing: 2 }}>
-            CATÁLOGO
-          </div>
-          {[
-            { icon: <PocheteSVG size={36} />, name: "Pochetes" },
-            { icon: <SlingBagSVG size={36} />, name: "Shoulder Bags" },
-            { icon: <MessengerSVG size={36} />, name: "Mochilas" },
-            { icon: <ToteSVG size={36} />, name: "Sacolas" },
-          ].map((item, i) => {
-            const pr = springIn(frame, 30, 30 + i * 8);
-            return (
-              <div
-                key={i}
-                style={{
-                  opacity: pr,
-                  transform: `translateX(${interpolate(pr, [0, 1], [20, 0])}px)`,
-                  background: T.surface2,
-                  border: `1px solid ${T.border}`,
-                  borderRadius: 8,
-                  padding: "8px 12px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                {item.icon}
-                <span style={{ color: T.white, fontFamily: F.ui, fontSize: 14, fontWeight: 600 }}>{item.name}</span>
-              </div>
-            );
-          })}
+          Mensagem
+        </div>
+        <div
+          style={{
+            width: 48,
+            height: 48,
+            borderRadius: 24,
+            background: T.accent,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: 20,
+          }}
+        >
+          🎤
         </div>
       </div>
-    </Slide>
+    </AbsoluteFill>
   );
 };
 
