@@ -1967,6 +1967,14 @@ p:last-child { margin-bottom: 0; }
     transition: none;
   }
 
+  /* Botões do hero nunca recebem animação scroll-driven */
+  .hero-split .hero-actions,
+  .hero-split .btn {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   #diferenciais .section-header .eyebrow,
   #diferenciais .section-header h2,
   #diferenciais .section-header .divider {
