@@ -1825,9 +1825,7 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
-/* ══════════════════════════════════════════
-   HERO SPLIT — versão produção
-══════════════════════════════════════════ */
+/* ── Hero Split Layout ───────────────────── */
 .hero-split {
   display: grid;
   grid-template-columns: 45% 55%;
@@ -1836,7 +1834,6 @@ p:last-child { margin-bottom: 0; }
   background: #0a0a0a;
   overflow: hidden;
 }
-
 .hero-split-content {
   display: flex;
   flex-direction: column;
@@ -1845,12 +1842,10 @@ p:last-child { margin-bottom: 0; }
   position: relative;
   z-index: 1;
 }
-
 .hero-split-image {
   position: relative;
   overflow: hidden;
 }
-
 .hero-split-image img {
   position: absolute;
   inset: 0;
@@ -1859,8 +1854,6 @@ p:last-child { margin-bottom: 0; }
   object-fit: cover;
   object-position: center top;
 }
-
-/* Gradiente de fusão entre imagem e fundo escuro */
 .hero-split-image::before {
   content: '';
   position: absolute;
@@ -1869,8 +1862,6 @@ p:last-child { margin-bottom: 0; }
   z-index: 1;
   pointer-events: none;
 }
-
-/* Stats bar no hero */
 .hero-stats-bar {
   display: flex;
   align-items: center;
@@ -1904,17 +1895,6 @@ p:last-child { margin-bottom: 0; }
   background: rgba(255,255,255,0.12);
   flex-shrink: 0;
 }
-
-/* Scroll hint posicionado sobre o split */
-.hero-split .scroll-hint {
-  position: absolute;
-  bottom: 2rem;
-  left: calc(45% / 2);
-  transform: translateX(-50%);
-  z-index: 2;
-}
-
-/* Badge */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -1942,8 +1922,13 @@ p:last-child { margin-bottom: 0; }
   0%, 100% { opacity: 1; }
   50% { opacity: 0.25; }
 }
-
-/* Mobile: imagem em cima, texto embaixo */
+.hero-split .scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: calc(45% / 2);
+  transform: translateX(-50%);
+  z-index: 2;
+}
 @media (max-width: 768px) {
   .hero-split {
     grid-template-columns: 1fr;
