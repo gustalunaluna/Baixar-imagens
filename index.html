@@ -241,15 +241,15 @@
     }
     .product-card {
       background: #111;
-      border: 1px solid #1e1e1e;
-      transition: background .25s, box-shadow .25s;
+      border: 2px solid #1e1e1e;
+      transition: border-color .3s ease, transform .35s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       position: relative;
     }
     .product-card:hover {
-      background: #161616;
-      box-shadow: inset 0 0 0 2px #e8ff00;
+      border-color: #e8ff00;
+      transform: translateY(-6px);
       z-index: 1;
     }
     .product-img {
@@ -267,10 +267,29 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transition: transform .5s cubic-bezier(.22,1,.36,1);
-      filter: grayscale(15%);
+      transition: transform .5s cubic-bezier(.22,1,.36,1), filter .4s ease;
+      filter: grayscale(20%);
     }
-    .product-card:hover .product-img img { transform: scale(1.08); filter: grayscale(0%); }
+    .product-card:hover .product-img img { transform: scale(1.07); filter: grayscale(0%); }
+    /* overlay CTA na imagem */
+    .product-img::after {
+      content: 'Ver modelo \2192';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.52);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .85rem;
+      font-weight: 900;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #e8ff00;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .product-card:hover .product-img::after { opacity: 1; }
     .product-info {
       padding: 1.1rem 1.25rem 1.4rem;
       flex: 1;
