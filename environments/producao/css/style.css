@@ -188,7 +188,7 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 2rem;
-  border-radius: 0;                   /* streetwear: sem bordas arredondadas */
+  border-radius: 10px;                /* leve arredondamento — visual mais suave */
   font-family: var(--font-heading);
   font-size: 0.95rem;
   font-weight: 800;
@@ -1273,7 +1273,7 @@ p:last-child { margin-bottom: 0; }
 
 .filter-btn {
   padding: 0.6rem 1.6rem;
-  border-radius: 0;
+  border-radius: 10px;
   font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 800;
