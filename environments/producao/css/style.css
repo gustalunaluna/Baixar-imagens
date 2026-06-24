@@ -210,7 +210,6 @@ p:last-child { margin-bottom: 0; }
   color: var(--color-black);
   border: 2px solid var(--color-accent);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(232, 255, 0, 0.25);
 }
 
 .btn-outline {
