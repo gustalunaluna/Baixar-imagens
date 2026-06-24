@@ -322,13 +322,16 @@
       padding: .5rem 1rem;
       text-decoration: none;
       border-radius: 6px;
-      transition: background .2s, color .2s, box-shadow .2s, transform .2s;
+      border: 2px solid transparent;
+      transition: background .2s, color .2s, border-color .2s, box-shadow .2s, transform .2s;
       align-self: flex-start;
     }
     .product-info .prod-btn:hover {
       background: #fff;
-      box-shadow: 3px 3px 0 #e8ff00;
-      transform: translate(-2px,-2px);
+      color: #000;
+      border: 2px solid #e8ff00;
+      box-shadow: 0 4px 16px rgba(232, 255, 0, 0.2);
+      transform: translateY(-2px);
     }
     .products-cta {
       text-align: center;
@@ -732,22 +735,23 @@
       gap: .5rem;
       background: #e8ff00;
       color: #000 !important;
-      border-bottom: none;
+      border: 2px solid transparent;
       border-radius: 6px;
       padding: .6rem 1.25rem;
       font-size: .8rem;
       font-weight: 900;
       letter-spacing: .18em;
       text-transform: uppercase;
-      transition: background .2s, box-shadow .2s, transform .2s;
+      transition: background .2s, color .2s, border-color .2s, box-shadow .2s, transform .2s;
       align-self: flex-start;
       margin-top: auto;
     }
     .category-card--more .cat-btn:hover {
       background: #fff;
-      box-shadow: 3px 3px 0 #e8ff00;
-      transform: translate(-2px,-2px);
-      border-bottom: none;
+      color: #000;
+      border: 2px solid #e8ff00;
+      box-shadow: 0 4px 16px rgba(232, 255, 0, 0.2);
+      transform: translateY(-2px);
     }
     .category-card--more:hover { box-shadow: 6px 6px 0 #e8ff00; }
 
