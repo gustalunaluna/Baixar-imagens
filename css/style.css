@@ -2013,12 +2013,15 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (max-width: 768px) {
   #diferenciais .section-header .eyebrow,
   #diferenciais .section-header h2,
   #diferenciais .section-header .divider,
   .differential-card {
     animation: none;
+    opacity: 1;
+    translate: none;
+    filter: none;
   }
 }
 
