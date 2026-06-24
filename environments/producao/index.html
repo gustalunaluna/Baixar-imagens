@@ -460,10 +460,17 @@
       padding: 1rem 2.5rem;
       text-decoration: none;
       border-radius: 6px;
+      border: 2px solid transparent;
       margin-bottom: 2rem;
-      transition: background .2s, box-shadow .2s;
+      transition: background .2s, color .2s, border-color .2s, box-shadow .2s, transform .2s;
     }
-    .cta-section .btn-wa:hover { background: #1da851; box-shadow: 4px 4px 0 rgba(0,0,0,.2); }
+    .cta-section .btn-wa:hover {
+      background: #fff;
+      color: #25d366;
+      border: 2px solid #25d366;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
+      transform: translateY(-2px);
+    }
     .contact-info {
       display: flex;
       justify-content: center;
