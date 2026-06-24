@@ -1926,9 +1926,9 @@ p:last-child { margin-bottom: 0; }
 .hero-split .scroll-hint {
   position: absolute;
   bottom: 2rem;
-  left: calc(45% / 2);
+  left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 10;
 }
 @media (max-width: 768px) {
   .hero-split {
@@ -1946,7 +1946,7 @@ p:last-child { margin-bottom: 0; }
   .hero-split-image::before {
     background: linear-gradient(to bottom, transparent 50%, #0a0a0a 100%);
   }
-  .hero-split .scroll-hint { display: none; }
+  .hero-split .scroll-hint { display: flex; }
   .hero-stats-bar { gap: 1rem; }
   .hero-stat-sep { display: none; }
 }
