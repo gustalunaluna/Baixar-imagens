@@ -351,9 +351,24 @@
       text-decoration: none;
       border: 2px solid #e8ff00;
       border-radius: 6px;
-      transition: background .2s, color .2s, box-shadow .2s;
+      transition: background .2s, color .2s, border-color .2s, transform .2s;
     }
-    .products-cta a:hover { background: #0a0a0a; color: #e8ff00; }
+    .products-cta a:hover {
+      background: #fff;
+      color: #0a0a0a;
+      border-color: #e8ff00;
+      transform: translateY(-2px);
+    }
+    /* botões inline da seção de produtos */
+    .products-cta [style] {
+      transition: background .2s, color .2s, border-color .2s, transform .2s !important;
+    }
+    .products-cta [style]:hover {
+      background: #fff !important;
+      color: #0a0a0a !important;
+      border-color: #e8ff00 !important;
+      transform: translateY(-2px) !important;
+    }
 
     /* Stats */
     .stats-section {
