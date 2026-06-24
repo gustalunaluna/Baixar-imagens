@@ -1833,7 +1833,6 @@ p:last-child { margin-bottom: 0; }
   min-height: 100vh;
   position: relative;
   background: #0a0a0a;
-  overflow: hidden;
 }
 .hero-split-content {
   display: flex;
@@ -1944,7 +1943,78 @@ p:last-child { margin-bottom: 0; }
   .hero-stat-sep { display: none; }
 }
 
-/* ── 25. Utility / misc ─────────────────────────────────── */
+/* ── 25. Hero → Diferenciais scroll transition ──────────── */
+
+/* Gradiente suave no rodapé do hero */
+.hero-split::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.6) 70%, rgba(10,10,10,0.9) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Scroll-driven: seção de diferenciais emerge gradativamente */
+@supports (animation-timeline: view()) {
+  /* Desativa fade-up JS nos cards de diferenciais — scroll-driven assume */
+  .differential-card.fade-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  #diferenciais .section-header .eyebrow,
+  #diferenciais .section-header h2,
+  #diferenciais .section-header .divider {
+    animation: section-text-appear ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+
+  #diferenciais .section-header h2 { animation-delay: 0.05s; }
+  #diferenciais .section-header .divider { animation-delay: 0.1s; }
+
+  .differential-card {
+    animation: card-appear ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+
+  .differential-card:nth-child(1) { animation-delay: 0s; }
+  .differential-card:nth-child(2) { animation-delay: 0.07s; }
+  .differential-card:nth-child(3) { animation-delay: 0.14s; }
+  .differential-card:nth-child(4) { animation-delay: 0.21s; }
+}
+
+@keyframes section-text-appear {
+  from {
+    opacity: 0;
+    translate: 0 3rem;
+  }
+}
+
+@keyframes card-appear {
+  from {
+    opacity: 0;
+    translate: 0 4rem;
+    filter: blur(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #diferenciais .section-header .eyebrow,
+  #diferenciais .section-header h2,
+  #diferenciais .section-header .divider,
+  .differential-card {
+    animation: none;
+  }
+}
+
+/* ── 26. Utility / misc ─────────────────────────────────── */
 .sr-only {
   position: absolute;
   width: 1px;
