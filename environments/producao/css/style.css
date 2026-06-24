@@ -1829,6 +1829,7 @@ p:last-child { margin-bottom: 0; }
 .hero-split {
   display: grid;
   grid-template-columns: 45% 55%;
+  align-items: stretch;
   min-height: 100vh;
   position: relative;
   background: #0a0a0a;
