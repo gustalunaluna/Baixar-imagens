@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8WG4J3F78"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q8WG4J3F78');
+  </script>
+
+  <!-- Vercel Speed Insights -->
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+
+  <title>Brindes Corporativos Personalizados | LS Confecções</title>
+  <meta name="description" content="Brindes corporativos personalizados: ecobags, mochilas e pochetes com a identidade da sua marca. Ideais para eventos, ações de marketing e kits corporativos. A partir de 20 unidades.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="LS Confecções">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="canonical" href="https://lsconfeccoes.com.br/brindes.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ── Hero Brindes ── */
+    .brindes-hero {
+      display: block;
+      line-height: 0;
+    }
+    .brindes-hero-bg img {
+      display: block;
+      width: 100%;
+      max-height: 75vh;
+      object-fit: cover;
+      object-position: center center;
+    }
+    @media (max-width: 768px) {
+      .brindes-hero-bg img { max-height: none; width: 100%; }
+    }
+
+    /* ── Diferenciais ── */
+    .brindes-diffs {
+      background: #e8ff00;
+      padding: 3rem 0;
+    }
+    .brindes-diffs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .diff-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+    }
+    .diff-item svg {
+      width: 32px;
+      height: 32px;
+      color: #000;
+    }
+    .diff-item strong {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #000;
+      line-height: 1.2;
+    }
+    .diff-item span {
+      font-size: .8rem;
+      color: #333;
+    }
+
+    /* ── Produtos em destaque ── */
+    .brindes-section { padding: 6rem 0; background: #f4f4f4; }
+    .brindes-section-dark { padding: 6rem 0; background: #0a0a0a; }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #e8ff00;
+      margin-bottom: .5rem;
+    }
+    .section-title-light {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: .75rem;
+    }
+    .section-sub-light {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    /* Grid de produtos brindes */
+    .brindes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .brinde-card {
+      background: #fff;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .brinde-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.1);
+    }
+    .brinde-card-img {
+      position: relative;
+      padding-top: 100%;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    .brinde-card-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .brinde-card:hover .brinde-card-img img { transform: scale(1.06); }
+    .brinde-card-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #e8ff00;
+      color: #000;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+    }
+    .brinde-card-body {
+      padding: 1.2rem;
+    }
+    .brinde-card-body h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #0a0a0a;
+      margin-bottom: .4rem;
+    }
+    .brinde-card-body p {
+      font-size: .82rem;
+      color: #555;
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+
+    /* ── CTA central ── */
+    .brindes-cta {
+      background: #0a0a0a;
+      padding: 6rem 0;
+      text-align: center;
+    }
+    .brindes-cta h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .brindes-cta h2 span { color: #e8ff00; }
+    .brindes-cta p {
+      color: #888;
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.6;
+    }
+    .brindes-cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    /* Botão secundário visível sobre fundo preto */
+    .brindes-cta-actions .btn-secondary {
+      color: #fff;
+      border-color: #fff;
+    }
+    .brindes-cta-actions .btn-secondary:hover {
+      background: #fff;
+      color: #0a0a0a;
+    }
+
+    /* ── Como funciona ── */
+    .como-funciona-brindes {
+      background: #f4f4f4;
+      padding: 6rem 0;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+    .step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num {
+      width: 52px;
+      height: 52px;
+      background: #e8ff00;
+      color: #000;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      position: relative;
+      z-index: 2;
+    }
+    .step h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #0a0a0a;
+      margin-bottom: .4rem;
+    }
+    .step p {
+      font-size: .83rem;
+      color: #555;
+      line-height: 1.55;
+    }
+
+    /* Linha conectora dos steps — atrás dos números */
+    .como-funciona-brindes .steps-grid { position: relative; }
+    .como-funciona-brindes .steps-grid::before {
+      top: 26px; /* centraliza na altura do quadrado de 52px */
+      z-index: 0;
+      background: #ccc;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .brindes-diffs-grid { grid-template-columns: repeat(2, 1fr); }
+      .brindes-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 540px) {
+      .brindes-grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
+      .brindes-diffs-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .brinde-card-body { padding: .75rem; }
+      .brinde-card-body h3 { font-size: 1rem; }
+      .brinde-card-body p { font-size: .75rem; }
+      .brinde-card-body .btn { font-size: .6rem; padding: .4rem .5rem; width: 100%; justify-content: center; }
+    }
+  </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '891991662958124');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+  <!-- ══════════════════════════ HEADER ══════════════════════════ -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">LS <span>Confecções</span></a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="brindes.html" class="active">Brindes</a></li>
+          <li><a href="index.html#como-funciona">Como Funciona</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+        </ul>
+        <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20brindes%20corporativos." class="btn btn-primary" header-cta target="_blank" rel="noopener noreferrer">
+          Solicitar Orçamento
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══════════════════════════ HERO ══════════════════════════ -->
+  <section class="brindes-hero">
+    <div class="brindes-hero-bg">
+      <picture>
+        <source media="(max-width: 768px)" srcset="imagens/brindes-hero-mobile.jpeg">
+        <img src="imagens/brindes-hero.png" alt="Kit de brindes corporativos personalizados" width="1400" height="700" fetchpriority="high">
+      </picture>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ DIFERENCIAIS ══════════════════════════ -->
+  <section class="brindes-diffs">
+    <div class="container">
+      <div class="brindes-diffs-grid">
+        <div class="diff-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+          </svg>
+          <strong>A partir de<br>20 unidades</strong>
+          <span>Lotes pequenos e grandes</span>
+        </div>
+        <div class="diff-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <strong>Entrega<br>no prazo</strong>
+          <span>Produção ágil e pontual</span>
+        </div>
+        <div class="diff-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <strong>Qualidade<br>garantida</strong>
+          <span>Materiais duráveis e premium</span>
+        </div>
+        <div class="diff-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+          <strong>Consultoria<br>inclusa</strong>
+          <span>Suporte do início ao fim</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ MODELOS DISPONÍVEIS ══════════════════════════ -->
+  <section class="brindes-section">
+    <div class="container">
+      <p class="section-label" style="color:#0a0a0a; opacity:.5;">Modelos Disponíveis</p>
+      <h2 class="section-title" style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; text-transform:uppercase; color:#0a0a0a; line-height:1.05; margin-bottom:.5rem;">
+        Exemplos de modelos<br>para o seu brinde.
+      </h2>
+      <p style="color:#555; font-size:1rem; line-height:1.6; max-width:520px; margin-bottom:3rem;">
+        Ecobags, tote bags, mochilas e necessaires personalizadas com a identidade visual da sua empresa. Produção a partir de 20 unidades com silk screen, bordado ou sublimação.
+      </p>
+      <div class="brindes-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+        <div class="brinde-card">
+          <div class="brinde-card-img">
+            <img src="imagens/brinde-ecobag-natural.png" alt="Ecobag canvas natural personalizada brinde corporativo" width="480" height="480" loading="lazy">
+            <span class="brinde-card-badge">Mais pedido</span>
+          </div>
+          <div class="brinde-card-body">
+            <h3>Ecobag Canvas Natural</h3>
+            <p>Canvas cru 100% algodão com grande área de impressão. Silk screen, bordado ou sublimação. Perfeita para eventos, feiras e kits corporativos.</p>
+            <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Tenho%20interesse%20em%20Ecobag%20Canvas%20Natural%20para%20brindes." class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
+          </div>
+        </div>
+        <div class="brinde-card">
+          <div class="brinde-card-img">
+            <img src="imagens/brinde-tote-preta.jpeg" alt="Tote bag preta com zíper para brinde corporativo" width="480" height="480" loading="lazy">
+          </div>
+          <div class="brinde-card-body">
+            <h3>Tote Bag Térmica</h3>
+            <p>Tote térmica com fecho superior em zíper, forro interno isolante e grande capacidade. Ideal para brindes de alimentação, eventos e kits corporativos com apelo funcional.</p>
+            <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Tenho%20interesse%20em%20Tote%20Bag%20T%C3%A9rmica%20para%20brindes." class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
+          </div>
+        </div>
+        <div class="brinde-card">
+          <div class="brinde-card-img">
+            <img src="imagens/brinde-necessaire.png" alt="Necessaire com visor em PVC transparente para brinde" width="480" height="480" loading="lazy">
+          </div>
+          <div class="brinde-card-body">
+            <h3>Necessaire com Visor</h3>
+            <p>Necessaire em material resistente com janela em PVC transparente e zíper robusto. Ideal para kits de boas-vindas, eventos de saúde e beleza.</p>
+            <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Tenho%20interesse%20em%20Necessaire%20com%20Visor%20para%20brindes." class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
+          </div>
+        </div>
+        <div class="brinde-card">
+          <div class="brinde-card-img">
+            <img src="imagens/brinde-mochila-sport.jpeg" alt="Mochila sport preta e verde para brinde corporativo" width="480" height="480" loading="lazy">
+          </div>
+          <div class="brinde-card-body">
+            <h3>Mochila Sport</h3>
+            <p>Nylon resistente com detalhes em verde, alças ergonômicas e múltiplos compartimentos. Para marcas esportivas, academias e ações de patrocínio.</p>
+            <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Tenho%20interesse%20em%20Mochila%20Sport%20para%20brindes." class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
+          </div>
+        </div>
+        <div class="brinde-card">
+          <div class="brinde-card-img">
+            <img src="imagens/brinde-mochila-executiva.jpeg" alt="Mochila executiva preta para brinde premium" width="480" height="480" loading="lazy">
+          </div>
+          <div class="brinde-card-body">
+            <h3>Mochila Executiva</h3>
+            <p>Design profissional em nylon com compartimento para notebook, alças acolchoadas e acabamento premium. Ideal para kits de onboarding e eventos corporativos de alto padrão.</p>
+            <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Tenho%20interesse%20em%20Mochila%20Executiva%20para%20brindes." class="btn btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ COMO FUNCIONA ══════════════════════════ -->
+  <section class="como-funciona-brindes">
+    <div class="container">
+      <p class="section-label" style="color:#0a0a0a; opacity:.5;">Como funciona</p>
+      <h2 style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; text-transform:uppercase; color:#0a0a0a; line-height:1.05;">
+        Do pedido à<br>entrega, simples assim.
+      </h2>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h4>Briefing</h4>
+          <p>Nos conte sobre a sua marca, o evento ou campanha, a quantidade desejada e o prazo necessário.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h4>Proposta</h4>
+          <p>Enviamos uma proposta personalizada com opções de produto, materiais, técnica de personalização e valores.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h4>Aprovação</h4>
+          <p>Você aprova a arte e a amostra do produto antes de iniciarmos a produção em escala.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <h4>Entrega</h4>
+          <p>Produzimos e entregamos no prazo combinado, embalados e prontos para o seu evento ou campanha.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ CTA FINAL ══════════════════════════ -->
+  <section class="brindes-cta">
+    <div class="container">
+      <h2>Pronto para<br>surpreender<br><span>seus clientes?</span></h2>
+      <p>Fale agora com nosso time e receba uma proposta de brindes corporativos feita para a sua marca.</p>
+      <div class="brindes-cta-actions">
+        <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Quero%20solicitar%20um%20or%C3%A7amento%20de%20brindes%20corporativos%20personalizados." class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+          Solicitar Orçamento Agora
+        </a>
+        <a href="produtos.html" class="btn btn-secondary">
+          Ver Catálogo Completo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">LS <span>Confecções</span></a>
+        <p>Fabricação B2B de bolsas, mochilas e acessórios personalizados para marcas e eventos. São Paulo, SP.</p>
+      </div>
+      <div class="footer-nav">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Catálogo</a></li>
+          <li><a href="brindes.html">Brindes Corporativos</a></li>
+          <li><a href="index.html#como-funciona">Como Funciona</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h4>Produtos</h4>
+        <ul>
+          <li><a href="brindes.html">Brindes Corporativos</a></li>
+          <li><a href="produtos.html">Ver tudo</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contato</h4>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:.75rem;">
+          <li style="display:flex; align-items:center; gap:.6rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20brindes." target="_blank" rel="noopener noreferrer">(11) 99937-0418</a>
+          </li>
+          <li style="display:flex; align-items:center; gap:.6rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:ls_confeccoes@hotmail.com">ls_confeccoes@hotmail.com</a>
+          </li>
+          <li style="display:flex; align-items:center; gap:.6rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <a href="https://www.instagram.com/lsconfex" target="_blank" rel="noopener noreferrer">@lsconfex</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2025 LS Confecções. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
