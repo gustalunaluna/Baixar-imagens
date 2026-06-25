@@ -726,6 +726,53 @@
       .clients-marquee { animation: none; }
     }
 
+    /* ── Carrossel de categorias ── */
+    .cat-carousel-wrap {
+      position: relative;
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+    /* fade nas bordas */
+    .cat-carousel-wrap::before,
+    .cat-carousel-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 140px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .cat-carousel-wrap::before { left: 0;  background: linear-gradient(to right, #0a0a0a, transparent); }
+    .cat-carousel-wrap::after  { right: 0; background: linear-gradient(to left,  #0a0a0a, transparent); }
+
+    .cat-carousel-track {
+      display: flex;
+      width: max-content;
+      gap: 1.5rem;
+      animation: cat-scroll 36s linear infinite;
+    }
+    .cat-carousel-track:hover,
+    .cat-carousel-track:focus-within {
+      animation-play-state: paused;
+    }
+    @keyframes cat-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    /* cada card no carrossel tem largura fixa */
+    .cat-carousel-track .category-card {
+      flex: 0 0 280px;
+      width: 280px;
+    }
+    @media (max-width: 768px) {
+      .cat-carousel-track .category-card { flex: 0 0 220px; width: 220px; }
+      .cat-carousel-wrap::before,
+      .cat-carousel-wrap::after { width: 60px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .cat-carousel-track { animation: none; }
+    }
+
     /* Card "+50 categorias" — integrado ao padrão dos outros cards */
     .category-card--more .category-thumb {
       background: #0a0a0a;
@@ -1011,7 +1058,7 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
   </section>
 
   <!-- CATEGORIAS -->
-  <section id="categorias" class="section" style="background:#0a0a0a; padding-block: 5rem;">
+  <section id="categorias" class="section" style="background:#0a0a0a; padding-block: 5rem; overflow:hidden;">
     <div class="container">
       <div class="section-header">
         <span class="eyebrow">Nosso portfólio</span>
@@ -1019,7 +1066,10 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
         <span class="divider"></span>
         <p style="color:#666;">Do básico ao personalizado — mais de 50 categorias disponíveis para sua marca.</p>
       </div>
-      <div class="categories-grid">
+    </div>
+    <div class="cat-carousel-wrap">
+      <div class="cat-carousel" id="catCarousel">
+        <div class="cat-carousel-track">
 
         <a href="produtos.html" class="category-card fade-up">
           <div class="category-thumb">
@@ -1112,8 +1162,94 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
           </div>
         </a>
 
-      </div>
-    </div>
+        <!-- Cópia dos cards para loop infinito -->
+        <a href="produtos.html" class="category-card fade-up" aria-hidden="true" tabindex="-1">
+          <div class="category-thumb">
+            <img src="imagens/categoria-mochilas.jpeg" alt="" width="600" height="450" loading="lazy" style="object-position: center 40%;" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Mochilas</h3>
+            <p>Notebook, urbana, esportiva e casual. Para todos os perfis e estilos de vida.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+        <a href="produtos.html" class="category-card fade-up" aria-hidden="true" tabindex="-1">
+          <div class="category-thumb">
+            <img src="imagens/produto-09.jpg" alt="" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Pochetes</h3>
+            <p>Slim, urbana e esportiva. Praticidade com estilo para quem está sempre em movimento.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+        <a href="produtos.html" class="category-card fade-up" aria-hidden="true" tabindex="-1">
+          <div class="category-thumb">
+            <img src="imagens/categoria-ecobag.jpeg" alt="" width="600" height="450" loading="lazy" style="object-position: center 30%;" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Ecobag</h3>
+            <p>Sustentável e estilosa. Perfeita para ações de marca, eventos e brindes corporativos.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+        <a href="produtos.html" class="category-card fade-up" aria-hidden="true" tabindex="-1">
+          <div class="category-thumb">
+            <img src="imagens/Sholderbags/006_16_04_57_844_16_3_2_273_shoulderzinha20bolovo20preta.jpg" alt="" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Shoulder Bag</h3>
+            <p>Compacta e versátil, ideal para o uso diário. Alça ajustável e grande área de personalização para a sua marca.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+        <a href="produtos.html" class="category-card fade-up" aria-hidden="true" tabindex="-1">
+          <div class="category-thumb">
+            <img src="imagens/carteira.webp" alt="" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Carteiras</h3>
+            <p>Slim, porta-cartões e carteira clipe. Acabamento premium em couro sintético ou nylon com logo bordado ou silk.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+        <a href="produtos.html" class="category-card fade-up" aria-hidden="true" tabindex="-1">
+          <div class="category-thumb">
+            <img src="imagens/peitoral esportivo.jpg" alt="" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Peitoral Esportivo</h3>
+            <p>Pochete de peito leve e ergonômica para corrida, ciclismo e academia. Personalize com a identidade da sua marca fitness.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+        <a href="produtos.html" class="category-card fade-up" aria-hidden="true" tabindex="-1">
+          <div class="category-thumb">
+            <img src="imagens/cooler-bag.jpg" alt="" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Bolsa Térmica</h3>
+            <p>Cooler bag com forro isolante de alta capacidade. Perfeita para eventos, brindes corporativos e coleções outdoor.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+        <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%25C3%25A1%252C%2520Gustavo%21%2520Quero%2520conhecer%2520todas%2520as%2520categorias%2520da%2520LS%2520Confec%25C3%25A7%25C3%25B5es." class="category-card category-card--more fade-up" aria-hidden="true" tabindex="-1" target="_blank" rel="noopener noreferrer">
+          <div class="category-thumb">
+            <div class="more-inner">
+              <span class="more-number">+50</span>
+              <span class="more-label">categorias</span>
+            </div>
+          </div>
+          <div class="category-info">
+            <h3>E muito mais</h3>
+            <p>Shoulder bags, totes, necessaires e dezenas de outros modelos exclusivos.</p>
+            <span class="cat-btn">Saiba mais →</span>
+          </div>
+        </a>
+
+      </div><!-- /.cat-carousel-track -->
+    </div><!-- /.cat-carousel -->
+    </div><!-- /.cat-carousel-wrap -->
   </section>
 
   <!-- PRODUTOS EM DESTAQUE -->
