@@ -733,12 +733,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      padding: 2rem 0 2.5rem;
     }
     .cat3d-scene {
-      width: 260px;
-      height: 420px;
-      perspective: 1100px;
-      perspective-origin: 50% 50%;
+      /* cena larga — ocupa quase toda a largura disponível */
+      width: min(1000px, 88vw);
+      height: 400px;
+      perspective: 1400px;
+      perspective-origin: 50% 45%;
     }
     .cat3d-ring {
       width: 100%;
@@ -749,11 +752,13 @@
     }
     .cat3d-ring .category-card {
       position: absolute;
-      width: 260px;
-      left: 0; top: 0;
+      width: 220px;
+      left: calc(50% - 110px); /* centralizado na cena */
+      top: 0;
       margin: 0;
       backface-visibility: hidden;
-      transition: opacity 0.5s ease;
+      /* escala, blur e opacidade animadas via JS */
+      transition: opacity 0.55s ease, filter 0.55s ease, transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .cat3d-btn {
       flex-shrink: 0;
@@ -766,17 +771,18 @@
       cursor: pointer;
       transition: border-color .2s, background .2s, transform .15s;
       z-index: 10;
-      margin: 0 1.5rem;
+      margin: 0 1rem;
+      position: relative;
     }
     .cat3d-btn:hover { border-color: #e8ff00; background: #e8ff00; color: #0a0a0a; transform: scale(1.08); }
     .cat3d-btn svg { width: 22px; height: 22px; }
     @media (max-width: 768px) {
-      .cat3d-scene { width: 200px; height: 360px; perspective: 800px; }
-      .cat3d-ring .category-card { width: 200px; }
-      .cat3d-btn { margin: 0 .5rem; }
+      .cat3d-scene { width: 90vw; height: 340px; perspective: 900px; }
+      .cat3d-ring .category-card { width: 170px; left: calc(50% - 85px); }
+      .cat3d-btn { margin: 0 .4rem; width: 40px; height: 40px; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .cat3d-ring { transition: none; }
+      .cat3d-ring, .cat3d-ring .category-card { transition: none; }
     }
 
     /* Card "+50 categorias" — integrado ao padrão dos outros cards */
@@ -1658,9 +1664,10 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
     const nextBtn = document.getElementById('cat3dNext');
     if (!ring || !prevBtn || !nextBtn) return;
 
-    /* calcula raio para que os cards não se sobreponham */
-    const CARD_W = window.innerWidth <= 768 ? 200 : 260;
-    const radius = Math.round((CARD_W + 28) / (2 * Math.tan(Math.PI / N)));
+    /* raio generoso para espalhar os cards lateralmente */
+    const isMobile = window.innerWidth <= 768;
+    const CARD_W = isMobile ? 170 : 220;
+    const radius = isMobile ? 340 : 520;
 
     /* cria os cards no DOM */
     CARDS.forEach(function (c, i) {
@@ -1685,32 +1692,47 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
           '<div class="category-info"><h3>E muito mais</h3><p>' + c.desc + '</p><span class="cat-btn">Saiba mais →</span></div>';
       }
 
-      /* posiciona no anel */
+      /* posição base no anel — escala/blur/opacidade definidos em setRotation */
       var deg = i * ANGLE_STEP;
-      a.style.transform = 'rotateY(' + deg + 'deg) translateZ(' + radius + 'px)';
+      a.dataset.baseDeg = deg;
       ring.appendChild(a);
     });
 
     var current = 0;
     var autoTimer;
 
+    /*
+     * Tabela de estilos por posição relativa (8 cards, passo 45°)
+     * rel 0      = frente/centro
+     * rel 1,7    = adjacentes (±45°)
+     * rel 2,6    = laterais (±90°)
+     * rel 3,5    = quase atrás (±135°)
+     * rel 4      = exatamente atrás (180°)
+     */
+    var STYLES = [
+      { scale: 1.08, blur: 0,   opacity: 1,    events: 'auto' },  // 0 - frente
+      { scale: 0.92, blur: 1.5, opacity: 0.82, events: 'auto' },  // 1
+      { scale: 0.80, blur: 3,   opacity: 0.60, events: 'none' },  // 2
+      { scale: 0.70, blur: 5,   opacity: 0.35, events: 'none' },  // 3
+      { scale: 0.65, blur: 7,   opacity: 0.15, events: 'none' },  // 4 - atrás
+      { scale: 0.70, blur: 5,   opacity: 0.35, events: 'none' },  // 5
+      { scale: 0.80, blur: 3,   opacity: 0.60, events: 'none' },  // 6
+      { scale: 0.92, blur: 1.5, opacity: 0.82, events: 'auto' },  // 7
+    ];
+
     function setRotation(idx) {
       ring.style.transform = 'rotateY(' + (-idx * ANGLE_STEP) + 'deg)';
-      /* atualiza opacidade por posição relativa */
       var cards = ring.querySelectorAll('.category-card');
       cards.forEach(function (card, i) {
         var rel = ((i - idx) % N + N) % N;
-        /* 0-1 = frente, 4 = exatamente atrás, 2-3 e 5-6 = laterais */
-        if (rel <= 1 || rel >= N - 1) {
-          card.style.opacity = '1';
-          card.style.pointerEvents = 'auto';
-        } else if (rel === 4) {
-          card.style.opacity = '0.1';
-          card.style.pointerEvents = 'none';
-        } else {
-          card.style.opacity = '0.45';
-          card.style.pointerEvents = 'none';
-        }
+        var s = STYLES[rel];
+        var deg = i * ANGLE_STEP;
+        /* aplica posição base + escala no mesmo transform */
+        card.style.transform = 'rotateY(' + deg + 'deg) translateZ(' + radius + 'px) scale(' + s.scale + ')';
+        card.style.filter    = s.blur > 0 ? 'blur(' + s.blur + 'px)' : '';
+        card.style.opacity   = String(s.opacity);
+        card.style.pointerEvents = s.events;
+        card.style.zIndex    = String(rel === 0 ? 2 : 1);
       });
     }
 
