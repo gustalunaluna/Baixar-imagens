@@ -726,65 +726,6 @@
       .clients-marquee { animation: none; }
     }
 
-    /* ── Carrossel 3D em anel ── */
-    .cat3d-wrap {
-      position: relative;
-      margin-top: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 2rem 0 2.5rem;
-    }
-    .cat3d-scene {
-      /* cena larga — ocupa quase toda a largura disponível */
-      width: min(1000px, 88vw);
-      height: 400px;
-      perspective: 1400px;
-      perspective-origin: 50% 45%;
-    }
-    .cat3d-ring {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .cat3d-ring .category-card {
-      position: absolute;
-      width: 220px;
-      left: calc(50% - 110px); /* centralizado na cena */
-      top: 0;
-      margin: 0;
-      backface-visibility: hidden;
-      /* escala, blur e opacidade animadas via JS */
-      transition: opacity 0.55s ease, filter 0.55s ease, transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .cat3d-btn {
-      flex-shrink: 0;
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      border: 2px solid #333;
-      background: #111;
-      color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      transition: border-color .2s, background .2s, transform .15s;
-      z-index: 10;
-      margin: 0 1rem;
-      position: relative;
-    }
-    .cat3d-btn:hover { border-color: #e8ff00; background: #e8ff00; color: #0a0a0a; transform: scale(1.08); }
-    .cat3d-btn svg { width: 22px; height: 22px; }
-    @media (max-width: 768px) {
-      .cat3d-scene { width: 90vw; height: 340px; perspective: 900px; }
-      .cat3d-ring .category-card { width: 170px; left: calc(50% - 85px); }
-      .cat3d-btn { margin: 0 .4rem; width: 40px; height: 40px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .cat3d-ring, .cat3d-ring .category-card { transition: none; }
-    }
-
     /* Card "+50 categorias" — integrado ao padrão dos outros cards */
     .category-card--more .category-thumb {
       background: #0a0a0a;
@@ -1070,7 +1011,7 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
   </section>
 
   <!-- CATEGORIAS -->
-  <section id="categorias" class="section" style="background:#0a0a0a; padding-block: 5rem; overflow:hidden;">
+  <section id="categorias" class="section" style="background:#0a0a0a; padding-block: 5rem;">
     <div class="container">
       <div class="section-header">
         <span class="eyebrow">Nosso portfólio</span>
@@ -1078,24 +1019,101 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
         <span class="divider"></span>
         <p style="color:#666;">Do básico ao personalizado — mais de 50 categorias disponíveis para sua marca.</p>
       </div>
+      <div class="categories-grid">
+
+        <a href="produtos.html" class="category-card fade-up">
+          <div class="category-thumb">
+            <img src="imagens/categoria-mochilas.jpeg" alt="Mochilas — fabricação de mochilas personalizadas B2B" width="600" height="450" fetchpriority="high" style="object-position: center 40%;" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Mochilas</h3>
+            <p>Notebook, urbana, esportiva e casual. Para todos os perfis e estilos de vida.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="produtos.html" class="category-card fade-up">
+          <div class="category-thumb">
+            <img src="imagens/produto-09.jpg" alt="Pochetes — pochetes personalizadas atacado" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Pochetes</h3>
+            <p>Slim, urbana e esportiva. Praticidade com estilo para quem está sempre em movimento.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="produtos.html" class="category-card fade-up">
+          <div class="category-thumb">
+            <img src="imagens/categoria-ecobag.jpeg" alt="Ecobag personalizada para brindes corporativos" width="600" height="450" loading="lazy" style="object-position: center 30%;" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Ecobag</h3>
+            <p>Sustentável e estilosa. Perfeita para ações de marca, eventos e brindes corporativos.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="produtos.html" class="category-card fade-up">
+          <div class="category-thumb">
+            <img src="imagens/Sholderbags/006_16_04_57_844_16_3_2_273_shoulderzinha20bolovo20preta.jpg" alt="Shoulder Bag personalizada atacado B2B" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Shoulder Bag</h3>
+            <p>Compacta e versátil, ideal para o uso diário. Alça ajustável e grande área de personalização para a sua marca.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="produtos.html" class="category-card fade-up">
+          <div class="category-thumb">
+            <img src="imagens/carteira.webp" alt="Carteira personalizada slim para marcas premium" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Carteiras</h3>
+            <p>Slim, porta-cartões e carteira clipe. Acabamento premium em couro sintético ou nylon com logo bordado ou silk.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="produtos.html" class="category-card fade-up">
+          <div class="category-thumb">
+            <img src="imagens/peitoral esportivo.jpg" alt="Peitoral esportivo pochete de peito para marcas fitness" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Peitoral Esportivo</h3>
+            <p>Pochete de peito leve e ergonômica para corrida, ciclismo e academia. Personalize com a identidade da sua marca fitness.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="produtos.html" class="category-card fade-up">
+          <div class="category-thumb">
+            <img src="imagens/cooler-bag.jpg" alt="Bolsa térmica cooler bag personalizada para marcas e eventos" width="600" height="450" loading="lazy" onerror="this.style.display='none'">
+          </div>
+          <div class="category-info">
+            <h3>Bolsa Térmica</h3>
+            <p>Cooler bag com forro isolante de alta capacidade. Perfeita para eventos, brindes corporativos e coleções outdoor.</p>
+            <span class="cat-btn">Ver modelos →</span>
+          </div>
+        </a>
+
+        <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%25C3%25A1%252C%2520Gustavo%21%2520Quero%2520conhecer%2520todas%2520as%2520categorias%2520da%2520LS%2520Confec%25C3%25A7%25C3%25B5es." class="category-card category-card--more fade-up" target="_blank" rel="noopener noreferrer">
+          <div class="category-thumb">
+            <div class="more-inner">
+              <span class="more-number">+50</span>
+              <span class="more-label">categorias</span>
+            </div>
+          </div>
+          <div class="category-info">
+            <h3>E muito mais</h3>
+            <p>Shoulder bags, totes, necessaires e dezenas de outros modelos exclusivos.</p>
+            <span class="cat-btn">Saiba mais →</span>
+          </div>
+        </a>
+
+      </div>
     </div>
-
-    <!-- Carrossel 3D em anel -->
-    <div class="cat3d-wrap">
-      <div class="cat3d-scene">
-        <div class="cat3d-ring" id="cat3dRing">
-          <!-- os cards são inseridos via JS abaixo -->
-
-        </div><!-- /.cat3d-ring -->
-      </div><!-- /.cat3d-scene -->
-
-      <button class="cat3d-btn cat3d-prev" id="cat3dPrev" aria-label="Anterior">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button class="cat3d-btn cat3d-next" id="cat3dNext" aria-label="Próximo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div><!-- /.cat3d-wrap -->
   </section>
 
   <!-- PRODUTOS EM DESTAQUE -->
@@ -1640,115 +1658,6 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
         animId = requestAnimationFrame(draw);
       }
     });
-  })();
-  </script>
-
-  <!-- Carrossel 3D em anel -->
-  <script>
-  (function () {
-    const CARDS = [
-      { href: 'produtos.html', img: 'imagens/categoria-mochilas.jpeg',    imgStyle: 'object-position:center 40%', alt: 'Mochilas personalizadas B2B',       tag: 'Mochilas',          desc: 'Notebook, urbana, esportiva e casual. Para todos os perfis.' },
-      { href: 'produtos.html', img: 'imagens/produto-09.jpg',             imgStyle: '',                          alt: 'Pochetes personalizadas atacado',     tag: 'Pochetes',          desc: 'Slim, urbana e esportiva. Praticidade com estilo.' },
-      { href: 'produtos.html', img: 'imagens/categoria-ecobag.jpeg',      imgStyle: 'object-position:center 30%',alt: 'Ecobag personalizada brindes',        tag: 'Ecobag',            desc: 'Sustentável e estilosa. Perfeita para eventos e brindes.' },
-      { href: 'produtos.html', img: 'imagens/Sholderbags/006_16_04_57_844_16_3_2_273_shoulderzinha20bolovo20preta.jpg', imgStyle: '', alt: 'Shoulder Bag personalizada', tag: 'Shoulder Bag', desc: 'Compacta e versátil. Alça ajustável, ideal para o uso diário.' },
-      { href: 'produtos.html', img: 'imagens/carteira.webp',              imgStyle: '',                          alt: 'Carteira slim personalizada',         tag: 'Carteiras',         desc: 'Design slim com compartimentos. Logo bordado ou silk.' },
-      { href: 'produtos.html', img: 'imagens/peitoral esportivo.jpg',     imgStyle: '',                          alt: 'Peitoral esportivo pochete de peito', tag: 'Peitoral Esportivo',desc: 'Leve e ergonômico para corrida, ciclismo e academia.' },
-      { href: 'produtos.html', img: 'imagens/cooler-bag.jpg',             imgStyle: '',                          alt: 'Bolsa térmica cooler bag',            tag: 'Bolsa Térmica',     desc: 'Forro isolante de alta capacidade. Do evento ao dia a dia.' },
-      { href: 'obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418', img: null, imgStyle: '', alt: '', tag: '+50', desc: 'Shoulder bags, totes, necessaires e dezenas de outros modelos.' },
-    ];
-
-    const N = CARDS.length;
-    const ANGLE_STEP = 360 / N;
-    const ring = document.getElementById('cat3dRing');
-    const prevBtn = document.getElementById('cat3dPrev');
-    const nextBtn = document.getElementById('cat3dNext');
-    if (!ring || !prevBtn || !nextBtn) return;
-
-    /* raio generoso para espalhar os cards lateralmente */
-    const isMobile = window.innerWidth <= 768;
-    const CARD_W = isMobile ? 170 : 220;
-    const radius = isMobile ? 340 : 520;
-
-    /* cria os cards no DOM */
-    CARDS.forEach(function (c, i) {
-      var a = document.createElement('a');
-      a.href = c.href;
-      a.className = 'category-card';
-      if (c.href.indexOf('wa.me') > -1) {
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.classList.add('category-card--more');
-      }
-
-      if (c.img) {
-        a.innerHTML =
-          '<div class="category-thumb"><img src="' + c.img + '" alt="' + c.alt + '" width="600" height="450" loading="lazy"' +
-          (c.imgStyle ? ' style="' + c.imgStyle + '"' : '') +
-          ' onerror="this.style.display=\'none\'"></div>' +
-          '<div class="category-info"><h3>' + c.tag + '</h3><p>' + c.desc + '</p><span class="cat-btn">Ver modelos →</span></div>';
-      } else {
-        a.innerHTML =
-          '<div class="category-thumb"><div class="more-inner"><span class="more-number">+50</span><span class="more-label">categorias</span></div></div>' +
-          '<div class="category-info"><h3>E muito mais</h3><p>' + c.desc + '</p><span class="cat-btn">Saiba mais →</span></div>';
-      }
-
-      /* posição base no anel — escala/blur/opacidade definidos em setRotation */
-      var deg = i * ANGLE_STEP;
-      a.dataset.baseDeg = deg;
-      ring.appendChild(a);
-    });
-
-    var current = 0;
-    var autoTimer;
-
-    /*
-     * Tabela de estilos por posição relativa (8 cards, passo 45°)
-     * rel 0      = frente/centro
-     * rel 1,7    = adjacentes (±45°)
-     * rel 2,6    = laterais (±90°)
-     * rel 3,5    = quase atrás (±135°)
-     * rel 4      = exatamente atrás (180°)
-     */
-    var STYLES = [
-      { scale: 1.08, blur: 0,   opacity: 1,    events: 'auto' },  // 0 - frente
-      { scale: 0.92, blur: 1.5, opacity: 0.82, events: 'auto' },  // 1
-      { scale: 0.80, blur: 3,   opacity: 0.60, events: 'none' },  // 2
-      { scale: 0.70, blur: 5,   opacity: 0.35, events: 'none' },  // 3
-      { scale: 0.65, blur: 7,   opacity: 0.15, events: 'none' },  // 4 - atrás
-      { scale: 0.70, blur: 5,   opacity: 0.35, events: 'none' },  // 5
-      { scale: 0.80, blur: 3,   opacity: 0.60, events: 'none' },  // 6
-      { scale: 0.92, blur: 1.5, opacity: 0.82, events: 'auto' },  // 7
-    ];
-
-    function setRotation(idx) {
-      ring.style.transform = 'rotateY(' + (-idx * ANGLE_STEP) + 'deg)';
-      var cards = ring.querySelectorAll('.category-card');
-      cards.forEach(function (card, i) {
-        var rel = ((i - idx) % N + N) % N;
-        var s = STYLES[rel];
-        var deg = i * ANGLE_STEP;
-        /* aplica posição base + escala no mesmo transform */
-        card.style.transform = 'rotateY(' + deg + 'deg) translateZ(' + radius + 'px) scale(' + s.scale + ')';
-        card.style.filter    = s.blur > 0 ? 'blur(' + s.blur + 'px)' : '';
-        card.style.opacity   = String(s.opacity);
-        card.style.pointerEvents = s.events;
-        card.style.zIndex    = String(rel === 0 ? 2 : 1);
-      });
-    }
-
-    function next() { current = (current + 1) % N; setRotation(current); }
-    function prev() { current = (current - 1 + N) % N; setRotation(current); }
-
-    function startAuto() { autoTimer = setInterval(next, 3000); }
-    function stopAuto()  { clearInterval(autoTimer); }
-
-    nextBtn.addEventListener('click', function () { stopAuto(); next(); startAuto(); });
-    prevBtn.addEventListener('click', function () { stopAuto(); prev(); startAuto(); });
-    ring.addEventListener('mouseenter', stopAuto);
-    ring.addEventListener('mouseleave', startAuto);
-
-    setRotation(0);
-    startAuto();
   })();
   </script>
 </body>
