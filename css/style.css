@@ -629,6 +629,7 @@ p:last-child { margin-bottom: 0; }
   font-size: 4.5rem;
   font-weight: 900;
   color: rgba(0,0,0,0.04);
+  transition: color .3s ease;
   line-height: 1;
   pointer-events: none;
   user-select: none;
@@ -638,6 +639,10 @@ p:last-child { margin-bottom: 0; }
   background: #f9f9f9;
   transform: none;
   box-shadow: none;
+}
+
+.differential-card:hover::before {
+  color: rgba(0,0,0,0.85);
 }
 
 .differential-icon {
