@@ -1741,13 +1741,32 @@ p:last-child { margin-bottom: 0; }
   }
 
   .differential-card {
-    padding: .9rem .75rem;
+    padding: 1.1rem 1rem 1rem;
+  }
+
+  /* número decorativo menor no mobile para não sobrepor o texto */
+  .differential-card::before {
+    font-size: 2.8rem;
+    top: .8rem;
+    right: .9rem;
+  }
+
+  .differential-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: .7rem;
   }
 
   .differential-card h3 {
-    font-size: 1rem;
+    font-size: .92rem;
     word-break: break-word;
     overflow-wrap: break-word;
+    padding-right: 2rem; /* afasta do número */
+  }
+
+  .differential-card p {
+    font-size: .8rem;
+    line-height: 1.6;
   }
 
   .categories-grid {
@@ -1806,7 +1825,7 @@ p:last-child { margin-bottom: 0; }
   }
 
   .section-header h2 {
-    font-size: clamp(1.8rem, 8vw, 2.5rem);
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
   }
 
   .about-grid {
