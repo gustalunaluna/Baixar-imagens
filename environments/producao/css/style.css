@@ -633,26 +633,10 @@ p:last-child { margin-bottom: 0; }
   user-select: none;
 }
 
-/* Linha accent no topo */
-.differential-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--color-accent);
-  transition: width .4s ease;
-}
-
 .differential-card:hover {
   background: #f9f9f9;
   transform: none;
   box-shadow: none;
-}
-
-.differential-card:hover::after {
-  width: 100%;
 }
 
 .differential-icon {
