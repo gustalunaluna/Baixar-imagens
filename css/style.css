@@ -659,8 +659,8 @@ p:last-child { margin-bottom: 0; }
 }
 
 .differential-card:hover .differential-icon {
-  background: rgba(232,255,0,0.15);
-  border-color: rgba(180,200,0,0.4);
+  background: rgba(232,255,0,0.18);
+  border-color: rgba(232,255,0,0.55);
 }
 
 .differential-icon svg {
@@ -668,10 +668,11 @@ p:last-child { margin-bottom: 0; }
   height: 24px;
   color: var(--color-black);
   stroke: currentColor;
+  transition: color .3s ease;
 }
 
 .differential-card:hover .differential-icon svg {
-  color: #5a6600;
+  color: #7a8800;
 }
 
 .differential-card h3 {
