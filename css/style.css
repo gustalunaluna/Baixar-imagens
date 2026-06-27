@@ -1918,7 +1918,12 @@ p:last-child { margin-bottom: 0; }
   object-position: center top;
 }
 .hero-split-image::before {
-  display: none;
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #0a0a0a 0%, transparent 18%);
+  z-index: 1;
+  pointer-events: none;
 }
 .hero-stats-bar {
   display: flex;
@@ -1994,7 +1999,7 @@ p:last-child { margin-bottom: 0; }
     min-height: 55vw;
   }
   .hero-split-image::before {
-    display: none;
+    background: linear-gradient(to bottom, transparent 50%, #0a0a0a 100%);
   }
   .hero-split .scroll-hint { display: flex; }
   .hero-stats-bar { gap: 1rem; }
