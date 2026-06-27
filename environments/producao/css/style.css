@@ -2150,6 +2150,7 @@ p:last-child { margin-bottom: 0; }
     border-color: #e8ff00;
     transform: translateY(-6px) !important;
     box-shadow: 0 16px 48px rgba(232,255,0,.14);
+    transition-delay: 0ms !important;
   }
   .category-card:hover .category-thumb img {
     transform: scale(1.07);

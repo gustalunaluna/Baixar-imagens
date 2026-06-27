@@ -164,7 +164,10 @@
       position: relative;
       overflow: hidden;
       margin: 0 -1rem;
-      padding: 0 1rem 2.5rem;
+      padding: 10px 1rem 2.5rem;
+    }
+    .categories-grid {
+      padding-top: 10px;
     }
     .categories-grid {
       display: flex;
@@ -500,11 +503,8 @@
       margin: 0;
     }
 
-    /* Depoimentos — fundo claro para quebrar sequência de seções escuras */
-    .testimonials { background: #f4f4f4; padding: 5rem 0; }
-    .testimonials .eyebrow { color: #0a0a0a !important; }
-    .testimonials .section-title { color: #0a0a0a; }
-    .testimonials .section-subtitle { color: #555; }
+    /* Depoimentos — fundo escuro */
+    .testimonials { background: #111; padding: 5rem 0; }
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -512,8 +512,8 @@
       margin-top: 3rem;
     }
     .testimonial-card {
-      background: #fff;
-      border: 2px solid #e8e8e8;
+      background: #1a1a1a;
+      border: 2px solid #2a2a2a;
       padding: 2rem;
       transition: border-color 200ms cubic-bezier(0.23,1,0.32,1), transform 200ms cubic-bezier(0.23,1,0.32,1);
     }
@@ -524,7 +524,7 @@
     .testimonial-stars { color: #e8ff00; font-size: 1rem; letter-spacing: 3px; margin-bottom: 1rem; }
     .testimonial-text {
       font-size: .9rem;
-      color: #444;
+      color: #ccc;
       line-height: 1.8;
       font-style: italic;
       margin-bottom: 1.5rem;
@@ -1449,10 +1449,10 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
   <section class="testimonials">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Depoimentos</span>
-        <h2 class="section-title">O que nossos<br>clientes dizem</h2>
+        <span class="eyebrow" style="color:#e8ff00;">Depoimentos</span>
+        <h2 class="section-title" style="color:#fff;">O que nossos<br>clientes dizem</h2>
         <span class="divider"></span>
-        <p class="section-subtitle">Empresas que confiam na LS Confecções para criar suas linhas de produtos.</p>
+        <p class="section-subtitle" style="color:#666;">Empresas que confiam na LS Confecções para criar suas linhas de produtos.</p>
       </div>
       <div class="testimonials-grid">
 
