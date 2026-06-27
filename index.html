@@ -159,23 +159,36 @@
     /* ── CORREÇÕES E MELHORIAS ESPECÍFICAS ── */
 
     /* Categorias */
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1.5rem;
+    /* ── Categories Slider ── */
+    .cat-slider-wrap {
+      position: relative;
+      overflow: hidden;
+      margin: 0 -1rem;
+      padding: 0 1rem 2.5rem;
     }
+    .categories-grid {
+      display: flex;
+      gap: 1.25rem;
+      transition: transform .55s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+      cursor: grab;
+      user-select: none;
+    }
+    .categories-grid:active { cursor: grabbing; }
     .category-card {
       background: #111;
       border: 2px solid #222;
       overflow: hidden;
-      transition: border-color .3s, transform .3s;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
       display: flex;
       flex-direction: column;
+      flex: 0 0 calc(25% - 1rem);
+      min-width: 0;
     }
-    .category-card:hover { border-color: #e8ff00; transform: translateY(-6px); }
+    .category-card:hover { border-color: #e8ff00; transform: translateY(-6px); box-shadow: 0 12px 40px rgba(232,255,0,.12); }
     .category-thumb {
       width: 100%;
-      aspect-ratio: 4/3;
+      aspect-ratio: 3/4;
       background: #1c1c1c;
       display: flex;
       align-items: center;
@@ -184,47 +197,88 @@
     }
     .category-thumb img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform .4s;
+      transition: transform .5s cubic-bezier(.22,1,.36,1);
     }
-    .category-card:hover .category-thumb img { transform: scale(1.06); }
+    .category-card:hover .category-thumb img { transform: scale(1.07); }
     .category-thumb svg { width: 72px; height: 72px; opacity: .25; }
     .category-info {
-      padding: 1.25rem 1.5rem 1.5rem;
+      padding: 1.1rem 1.25rem 1.4rem;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
     .category-info h3 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       font-weight: 900;
       text-transform: uppercase;
       color: #fff;
-      margin-bottom: .4rem;
+      margin-bottom: .3rem;
     }
     .category-info p {
-      font-size: .875rem;
-      color: #888;
-      line-height: 1.6;
+      font-size: .82rem;
+      color: #777;
+      line-height: 1.55;
       flex: 1;
-      margin-bottom: 1rem;
+      margin-bottom: .9rem;
     }
     .category-info .cat-btn {
       display: inline-flex;
       align-items: center;
-      gap: .5rem;
+      gap: .4rem;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: .85rem;
+      font-size: .78rem;
       font-weight: 800;
       letter-spacing: .15em;
       text-transform: uppercase;
       color: #e8ff00;
       text-decoration: none;
-      border-bottom: 2px solid transparent;
+      border-bottom: 1px solid transparent;
       padding-bottom: 2px;
       transition: border-color .2s;
     }
     .category-info .cat-btn:hover { border-color: #e8ff00; }
+    /* Nav buttons */
+    .cat-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .cat-nav-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 2px solid #333;
+      background: transparent;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: border-color .2s, background .2s, transform .2s;
+      flex-shrink: 0;
+    }
+    .cat-nav-btn:hover { border-color: #e8ff00; background: #e8ff00; color: #000; transform: scale(1.08); }
+    .cat-nav-btn svg { width: 18px; height: 18px; }
+    /* Dots */
+    .cat-dots {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .cat-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #444;
+      cursor: pointer;
+      transition: background .2s, transform .2s, width .3s;
+      border: none;
+      padding: 0;
+    }
+    .cat-dot.active {
+      background: #e8ff00;
+      width: 22px;
+      border-radius: 3px;
+    }
 
     /* Produtos em destaque */
     .products-grid {
@@ -788,7 +842,7 @@
 
     /* Responsivo */
     @media (max-width: 1024px) {
-      .categories-grid { grid-template-columns: repeat(3, 1fr); }
+      .category-card { flex: 0 0 calc(33.333% - 1rem); }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-grid .stat-item:nth-child(2) { border-right: none; }
@@ -796,7 +850,7 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .category-card { flex: 0 0 calc(50% - .75rem); }
       .products-grid { grid-template-columns: 1fr 1fr; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .stats-grid .stat-item:nth-child(2) { border-right: none; }
@@ -836,12 +890,12 @@
       .cat-btn { font-size: .65rem; padding: .3rem 0; letter-spacing: .06em; }
     }
     @media (max-width: 640px) {
-      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .category-card { flex: 0 0 calc(50% - .75rem); }
       .products-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
       .products-grid { grid-template-columns: 1fr 1fr; }
-      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .category-card { flex: 0 0 calc(75% - .75rem); }
       .hero-actions { flex-direction: column; width: 100%; }
       .hero-actions .btn { width: 100%; text-align: center; justify-content: center; }
       .section { padding-block: 3rem; }
@@ -1019,7 +1073,8 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
         <span class="divider"></span>
         <p style="color:#666;">Do básico ao personalizado — mais de 50 categorias disponíveis para sua marca.</p>
       </div>
-      <div class="categories-grid">
+      <div class="cat-slider-wrap">
+      <div class="categories-grid" id="catSlider">
 
         <a href="produtos.html" class="category-card fade-up">
           <div class="category-thumb">
@@ -1090,7 +1145,20 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
           </div>
         </a>
 
+      </div><!-- .categories-grid -->
+
+      <!-- Nav -->
+      <div class="cat-nav">
+        <button class="cat-nav-btn" id="catPrev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="cat-dots" id="catDots"></div>
+        <button class="cat-nav-btn" id="catNext" aria-label="Próximo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
+
+      </div><!-- .cat-slider-wrap -->
     </div>
   </section>
 
@@ -1636,6 +1704,134 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
         animId = requestAnimationFrame(draw);
       }
     });
+  })();
+  </script>
+
+  <!-- ── Categories Slider ── -->
+  <script>
+  (function() {
+    const slider   = document.getElementById('catSlider');
+    const prevBtn  = document.getElementById('catPrev');
+    const nextBtn  = document.getElementById('catNext');
+    const dotsWrap = document.getElementById('catDots');
+    if (!slider || !prevBtn || !nextBtn) return;
+
+    let current = 0;
+    let autoTimer = null;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartScroll = 0;
+
+    function getVisible() {
+      const w = window.innerWidth;
+      if (w <= 480) return 1.2;
+      if (w <= 640) return 2;
+      if (w <= 1024) return 3;
+      return 4;
+    }
+
+    const cards = Array.from(slider.querySelectorAll('.category-card'));
+    const total = cards.length;
+
+    function maxIndex() {
+      return Math.max(0, total - Math.floor(getVisible()));
+    }
+
+    /* dots */
+    function buildDots() {
+      dotsWrap.innerHTML = '';
+      const count = maxIndex() + 1;
+      for (let i = 0; i < count; i++) {
+        const d = document.createElement('button');
+        d.className = 'cat-dot' + (i === current ? ' active' : '');
+        d.setAttribute('aria-label', 'Ir para slide ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(d);
+      }
+    }
+
+    function updateDots() {
+      const dots = dotsWrap.querySelectorAll('.cat-dot');
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function goTo(index) {
+      current = Math.max(0, Math.min(index, maxIndex()));
+      const cardW = cards[0].getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(slider).gap) || 20;
+      slider.style.transform = `translateX(-${current * (cardW + gap)}px)`;
+      updateDots();
+    }
+
+    function goNext() { goTo(current < maxIndex() ? current + 1 : 0); }
+    function goPrev() { goTo(current > 0 ? current - 1 : maxIndex()); }
+
+    prevBtn.addEventListener('click', () => { goPrev(); resetAuto(); });
+    nextBtn.addEventListener('click', () => { goNext(); resetAuto(); });
+
+    /* autoplay */
+    function startAuto() {
+      autoTimer = setInterval(goNext, 4000);
+    }
+    function resetAuto() {
+      clearInterval(autoTimer);
+      startAuto();
+    }
+
+    /* pause on hover */
+    slider.closest('.cat-slider-wrap').addEventListener('mouseenter', () => clearInterval(autoTimer));
+    slider.closest('.cat-slider-wrap').addEventListener('mouseleave', startAuto);
+
+    /* drag / swipe */
+    function onDragStart(x) {
+      isDragging = true;
+      dragStartX = x;
+      dragStartScroll = current;
+      slider.style.transition = 'none';
+    }
+    function onDragMove(x) {
+      if (!isDragging) return;
+      const cardW = cards[0].getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(slider).gap) || 20;
+      const delta = dragStartX - x;
+      const base = dragStartScroll * (cardW + gap);
+      slider.style.transform = `translateX(-${base + delta}px)`;
+    }
+    function onDragEnd(x) {
+      if (!isDragging) return;
+      isDragging = false;
+      slider.style.transition = '';
+      const delta = dragStartX - x;
+      const cardW = cards[0].getBoundingClientRect().width;
+      if (Math.abs(delta) > cardW * 0.2) {
+        delta > 0 ? goNext() : goPrev();
+      } else {
+        goTo(current);
+      }
+    }
+
+    slider.addEventListener('mousedown',  e => onDragStart(e.clientX));
+    window.addEventListener('mousemove',  e => { if (isDragging) onDragMove(e.clientX); });
+    window.addEventListener('mouseup',    e => onDragEnd(e.clientX));
+    slider.addEventListener('touchstart', e => onDragStart(e.touches[0].clientX), { passive: true });
+    slider.addEventListener('touchmove',  e => onDragMove(e.touches[0].clientX), { passive: true });
+    slider.addEventListener('touchend',   e => onDragEnd(e.changedTouches[0].clientX));
+
+    /* prevent link click after drag */
+    slider.addEventListener('click', e => {
+      if (Math.abs(dragStartX - (e.clientX || 0)) > 5) e.preventDefault();
+    });
+
+    /* recalc on resize */
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { buildDots(); goTo(Math.min(current, maxIndex())); }, 150);
+    });
+
+    /* init */
+    buildDots();
+    startAuto();
   })();
   </script>
 </body>
