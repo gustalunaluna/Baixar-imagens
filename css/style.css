@@ -62,6 +62,11 @@
   --color-whatsapp:    #25d366;
   --color-whatsapp-dk: #1da851;
 
+  /* Custom easing curves (Emil Kowalski) */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
   /* backwards compat — partes do HTML ainda usam --color-gold */
   --color-gold:        var(--color-accent);
   --color-gold-light:  var(--color-accent-dim);
@@ -194,9 +199,14 @@ p:last-child { margin-bottom: 0; }
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  transition: all var(--transition-base);
+  transition: background 180ms var(--ease-out), color 180ms var(--ease-out),
+              border-color 180ms var(--ease-out), transform 160ms var(--ease-out);
   line-height: 1;
   white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97) !important;
 }
 
 .btn-primary {
@@ -205,11 +215,13 @@ p:last-child { margin-bottom: 0; }
   border: 2px solid transparent;
 }
 
-.btn-primary:hover {
-  background: var(--color-white);
-  color: var(--color-black);
-  border: 2px solid var(--color-accent);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+    border: 2px solid var(--color-accent);
+    transform: translateY(-2px);
+  }
 }
 
 .btn-outline {
@@ -218,10 +230,12 @@ p:last-child { margin-bottom: 0; }
   border: 2px solid var(--color-white);
 }
 
-.btn-outline:hover {
-  background: var(--color-white);
-  color: var(--color-black);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-outline:hover {
+    background: var(--color-white);
+    color: var(--color-black);
+    transform: translateY(-2px);
+  }
 }
 
 .btn-outline-gold {
@@ -230,10 +244,12 @@ p:last-child { margin-bottom: 0; }
   border: 2px solid var(--color-accent);
 }
 
-.btn-outline-gold:hover {
-  background: var(--color-accent);
-  color: var(--color-black);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-outline-gold:hover {
+    background: var(--color-accent);
+    color: var(--color-black);
+    transform: translateY(-2px);
+  }
 }
 
 .btn-whatsapp {
@@ -241,9 +257,11 @@ p:last-child { margin-bottom: 0; }
   color: var(--color-white);
 }
 
-.btn-whatsapp:hover {
-  background: var(--color-whatsapp-dk);
-  transform: translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-whatsapp:hover {
+    background: var(--color-whatsapp-dk);
+    transform: translateY(-2px);
+  }
 }
 
 .btn-sm {
@@ -810,15 +828,21 @@ p:last-child { margin-bottom: 0; }
   border-radius: 0;
   overflow: hidden;
   border: 2px solid transparent;
-  transition: all var(--transition-base);
+  transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out),
+              box-shadow 200ms var(--ease-out);
   display: flex;
   flex-direction: column;
 }
 
-.product-card:hover {
-  border-color: var(--color-black);
-  transform: translateY(-6px);
-  box-shadow: 6px 6px 0 var(--color-accent);
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover {
+    border-color: var(--color-black);
+    transform: translateY(-6px);
+    box-shadow: 6px 6px 0 var(--color-accent);
+  }
+  .product-card:hover .product-img-wrap img {
+    transform: scale(1.06);
+  }
 }
 
 .product-img-wrap {
@@ -832,11 +856,7 @@ p:last-child { margin-bottom: 0; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
-}
-
-.product-card:hover .product-img-wrap img {
-  transform: scale(1.06);
+  transition: transform 400ms var(--ease-out);
 }
 
 .product-img-placeholder {
@@ -2080,7 +2100,107 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
-/* ── 26. Utility / misc ─────────────────────────────────── */
+/* ── 26. Polish — stagger, active states, hover guards ───── */
+
+/* Stagger nos cards de produto ao entrar na viewport */
+.products-grid .product-card.fade-up {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 320ms var(--ease-out), transform 320ms var(--ease-out);
+}
+.products-grid .product-card.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.products-grid .product-card:nth-child(1) { transition-delay: 0ms; }
+.products-grid .product-card:nth-child(2) { transition-delay: 50ms; }
+.products-grid .product-card:nth-child(3) { transition-delay: 100ms; }
+.products-grid .product-card:nth-child(4) { transition-delay: 150ms; }
+.products-grid .product-card:nth-child(5) { transition-delay: 200ms; }
+.products-grid .product-card:nth-child(6) { transition-delay: 250ms; }
+.products-grid .product-card:nth-child(7) { transition-delay: 300ms; }
+.products-grid .product-card:nth-child(8) { transition-delay: 350ms; }
+
+/* Stagger nos cards do slider de categorias */
+.categories-grid .category-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 350ms var(--ease-out), transform 350ms var(--ease-out),
+              border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.categories-grid.stagger-visible .category-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+.categories-grid.stagger-visible .category-card:nth-child(1) { transition-delay: 0ms; }
+.categories-grid.stagger-visible .category-card:nth-child(2) { transition-delay: 55ms; }
+.categories-grid.stagger-visible .category-card:nth-child(3) { transition-delay: 110ms; }
+.categories-grid.stagger-visible .category-card:nth-child(4) { transition-delay: 165ms; }
+.categories-grid.stagger-visible .category-card:nth-child(5) { transition-delay: 220ms; }
+.categories-grid.stagger-visible .category-card:nth-child(6) { transition-delay: 275ms; }
+.categories-grid.stagger-visible .category-card:nth-child(7) { transition-delay: 330ms; }
+.categories-grid.stagger-visible .category-card:nth-child(8) { transition-delay: 385ms; }
+.categories-grid.stagger-visible .category-card:nth-child(9) { transition-delay: 440ms; }
+.categories-grid.stagger-visible .category-card:nth-child(10) { transition-delay: 495ms; }
+.categories-grid.stagger-visible .category-card:nth-child(11) { transition-delay: 550ms; }
+
+/* Hover guards — só dispara em dispositivos com pointer fine */
+@media (hover: hover) and (pointer: fine) {
+  .category-card:hover {
+    border-color: #e8ff00;
+    transform: translateY(-6px) !important;
+    box-shadow: 0 16px 48px rgba(232,255,0,.14);
+  }
+  .category-card:hover .category-thumb img {
+    transform: scale(1.07);
+  }
+}
+
+/* Active press em category-card e product-card */
+.category-card:active { transform: scale(0.98) !important; }
+
+/* Dots hit area */
+.cat-dot {
+  padding: 8px;
+  width: auto;
+  height: auto;
+  border-radius: 99px;
+  background: transparent;
+  position: relative;
+}
+.cat-dot::after {
+  content: '';
+  position: absolute;
+  inset: 50% 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #444;
+  transition: background 200ms ease, width 300ms var(--ease-out);
+}
+.cat-dot.active::after {
+  background: #e8ff00;
+  width: 22px;
+  border-radius: 3px;
+}
+
+/* Slider transition com curva drawer */
+#catSlider {
+  transition: transform 480ms var(--ease-drawer) !important;
+}
+
+/* reduced-motion: remove stagger delays */
+@media (prefers-reduced-motion: reduce) {
+  .products-grid .product-card.fade-up,
+  .categories-grid .category-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── 27. Utility / misc ─────────────────────────────────── */
 .sr-only {
   position: absolute;
   width: 1px;
