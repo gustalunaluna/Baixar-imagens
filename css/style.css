@@ -1738,6 +1738,7 @@ p:last-child { margin-bottom: 0; }
 @media (max-width: 480px) {
   .differentials-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 0;
   }
 
   .differential-card {
