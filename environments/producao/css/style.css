@@ -1917,12 +1917,7 @@ p:last-child { margin-bottom: 0; }
   object-position: center top;
 }
 .hero-split-image::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, #0a0a0a 0%, transparent 18%);
-  z-index: 1;
-  pointer-events: none;
+  display: none;
 }
 .hero-stats-bar {
   display: flex;
@@ -1998,7 +1993,7 @@ p:last-child { margin-bottom: 0; }
     min-height: 55vw;
   }
   .hero-split-image::before {
-    background: linear-gradient(to bottom, transparent 50%, #0a0a0a 100%);
+    display: none;
   }
   .hero-split .scroll-hint { display: flex; }
   .hero-stats-bar { gap: 1rem; }
@@ -2009,15 +2004,7 @@ p:last-child { margin-bottom: 0; }
 
 /* Gradiente suave no rodapé do hero */
 .hero-split::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 180px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(10,10,10,0.6) 70%, rgba(10,10,10,0.9) 100%);
-  z-index: 2;
-  pointer-events: none;
+  display: none;
 }
 
 /* Scroll-driven: seção de diferenciais emerge gradativamente */
