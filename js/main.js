@@ -113,7 +113,7 @@
         catalogCards.forEach(function (card) {
           const cardCat = card.dataset.category;
 
-          if (category === 'all' || cardCat === category) {
+          if (category === 'all' || cardCat.split(' ').indexOf(category) !== -1) {
             card.classList.remove('hidden');
             // Re-trigger fade animation
             card.classList.remove('animate-in');
