@@ -96,112 +96,31 @@
     });
   }
 
-  /* ── 6. Product filter + pagination (produtos.html) ─────── */
+  /* ── 6. Product filter (produtos.html) ─────────────────── */
   const filterBtns   = document.querySelectorAll('.filter-btn');
-  const catalogCards = Array.from(document.querySelectorAll('.catalog-product-card'));
-  const pagination   = document.getElementById('catalog-pagination');
-  const pageNumbers  = document.getElementById('page-numbers');
-  const pagePrev     = document.getElementById('page-prev');
-  const pageNext     = document.getElementById('page-next');
-
-  var ITEMS_PER_PAGE = 12;
-  var currentPage    = 1;
-  var activeFilter   = 'all';
-
-  function getVisible () {
-    return catalogCards.filter(function (card) {
-      var cat = card.dataset.category || '';
-      return activeFilter === 'all' || cat.split(' ').indexOf(activeFilter) !== -1;
-    });
-  }
-
-  function showPage (page) {
-    var visible = getVisible();
-    var total   = Math.ceil(visible.length / ITEMS_PER_PAGE);
-    currentPage = Math.max(1, Math.min(page, total || 1));
-
-    var start = (currentPage - 1) * ITEMS_PER_PAGE;
-    var end   = start + ITEMS_PER_PAGE;
-
-    // Hide all, then show only current page slice
-    catalogCards.forEach(function (card) { card.classList.add('hidden'); });
-    visible.forEach(function (card, i) {
-      if (i >= start && i < end) {
-        card.classList.remove('hidden');
-        card.classList.remove('animate-in');
-        requestAnimationFrame(function () {
-          card.classList.add('fade-up');
-          requestAnimationFrame(function () { card.classList.add('animate-in'); });
-        });
-      }
-    });
-
-    // Prev / Next
-    if (pagePrev) pagePrev.disabled = currentPage <= 1;
-    if (pageNext) pageNext.disabled = currentPage >= total;
-
-    // Page numbers with ellipsis
-    if (pageNumbers) {
-      pageNumbers.innerHTML = '';
-      if (total <= 1) { if (pagination) pagination.style.display = 'none'; return; }
-      if (pagination) pagination.style.display = '';
-
-      var pages = [];
-      if (total <= 7) {
-        for (var i = 1; i <= total; i++) pages.push(i);
-      } else {
-        pages.push(1);
-        if (currentPage > 3) pages.push('…');
-        for (var i = Math.max(2, currentPage - 1); i <= Math.min(total - 1, currentPage + 1); i++) pages.push(i);
-        if (currentPage < total - 2) pages.push('…');
-        pages.push(total);
-      }
-
-      pages.forEach(function (p) {
-        if (p === '…') {
-          var span = document.createElement('span');
-          span.className = 'page-ellipsis';
-          span.textContent = '…';
-          pageNumbers.appendChild(span);
-        } else {
-          var btn = document.createElement('button');
-          btn.className = 'page-num' + (p === currentPage ? ' active' : '');
-          btn.textContent = p;
-          btn.setAttribute('aria-label', 'Página ' + p);
-          if (p !== currentPage) {
-            btn.addEventListener('click', function () {
-              showPage(parseInt(this.textContent, 10));
-              scrollToCatalog();
-            });
-          }
-          pageNumbers.appendChild(btn);
-        }
-      });
-    }
-  }
-
-  function scrollToCatalog () {
-    var grid = document.querySelector('.catalog-grid');
-    if (!grid) return;
-    var headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 80;
-    window.scrollTo({ top: grid.getBoundingClientRect().top + window.scrollY - headerH - 24, behavior: 'smooth' });
-  }
+  const catalogCards = document.querySelectorAll('.catalog-product-card');
 
   if (filterBtns.length && catalogCards.length) {
-    if (pagePrev) pagePrev.addEventListener('click', function () { showPage(currentPage - 1); scrollToCatalog(); });
-    if (pageNext) pageNext.addEventListener('click', function () { showPage(currentPage + 1); scrollToCatalog(); });
-
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
+        var category = this.dataset.filter;
         filterBtns.forEach(function (b) { b.classList.remove('active'); });
         this.classList.add('active');
-        activeFilter = this.dataset.filter;
-        currentPage  = 1;
-        showPage(1);
+        catalogCards.forEach(function (card) {
+          var cat = (card.dataset.category || '');
+          if (category === 'all' || cat.split(' ').indexOf(category) !== -1) {
+            card.classList.remove('hidden');
+            card.classList.remove('animate-in');
+            requestAnimationFrame(function () {
+              card.classList.add('fade-up');
+              requestAnimationFrame(function () { card.classList.add('animate-in'); });
+            });
+          } else {
+            card.classList.add('hidden');
+          }
+        });
       });
     });
-
-    showPage(1); // init
   }
 
   /* ── 7. Scroll hint arrow — hide after scrolling down ─── */

@@ -2264,76 +2264,22 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   }
 }
 
-/* ── Paginação do catálogo ── */
-.catalog-pagination {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  margin-top: 3rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid #e5e5e5;
-}
-.page-btn {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: 1.5px solid #d0d0d0;
-  color: #444;
-  cursor: pointer;
-  transition: border-color 180ms, background 180ms, color 180ms;
-  flex-shrink: 0;
-}
-@media (hover: hover) and (pointer: fine) {
-  .page-btn:not(:disabled):hover {
-    border-color: #0a0a0a;
-    background: #0a0a0a;
-    color: #fff;
-  }
-}
-.page-btn:disabled {
-  opacity: .3;
-  cursor: default;
-}
-.page-numbers {
-  display: flex;
-  align-items: center;
-  gap: .35rem;
-}
-.page-num {
-  min-width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ── Badges de destaque no catálogo ── */
+.catalog-badge {
+  position: absolute;
+  top: .65rem;
+  left: .65rem;
+  z-index: 3;
+  background: #D4FF6A;
+  color: #0D1B2A;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: .9rem;
+  font-size: .72rem;
   font-weight: 700;
-  background: none;
-  border: 1.5px solid transparent;
-  color: #666;
-  cursor: pointer;
-  padding: 0 .25rem;
-  transition: border-color 180ms, background 180ms, color 180ms;
-}
-@media (hover: hover) and (pointer: fine) {
-  .page-num:not(.active):hover {
-    border-color: #ccc;
-    color: #0a0a0a;
-  }
-}
-.page-num.active {
-  border-color: #0a0a0a;
-  background: #0a0a0a;
-  color: #e8ff00;
-  cursor: default;
-}
-.page-ellipsis {
-  color: #aaa;
-  font-size: .85rem;
-  padding: 0 .2rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: .25rem .55rem;
+  border-radius: 2px;
+  pointer-events: none;
   user-select: none;
 }
+
