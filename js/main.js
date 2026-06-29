@@ -134,4 +134,40 @@
   /* ── 8. onerror fallback already inline in HTML ───────── */
   /* (handled via onerror attribute on each img tag)         */
 
+  /* ── 9. Lightbox ─────────────────────────────────────── */
+  var lightbox      = document.getElementById('lightbox');
+  var lightboxImg   = document.getElementById('lightbox-img');
+  var lightboxClose = document.getElementById('lightbox-close');
+
+  function openLightbox (src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox () {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (lightbox) {
+    document.querySelectorAll('.catalog-img-wrap img').forEach(function (img) {
+      img.addEventListener('click', function () {
+        if (this.style.display === 'none') return;
+        openLightbox(this.src, this.alt);
+      });
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+    });
+  }
+
 })();
