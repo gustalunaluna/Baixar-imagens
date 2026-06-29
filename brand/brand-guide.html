@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>LS Confex — Manual de Identidade Visual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0D1B2A;
+    --lime: #D4FF6A;
+    --black: #1A1A1A;
+    --white: #FFFFFF;
+    --gray: #8A9BB0;
+    --light: #F4F6F8;
+  }
+
+  body {
+    font-family: 'Barlow', Arial, sans-serif;
+    background: #111;
+  }
+
+  /* Each page is 1920x1080 */
+  .page {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    display: block;
+  }
+
+  /* PAGE 1 — COVER */
+  .page-cover {
+    background: var(--navy);
+  }
+  .cover-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212,255,106,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,255,106,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .cover-accent-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 8px;
+    background: var(--lime);
+  }
+  .cover-logo-area {
+    position: absolute;
+    left: 160px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .cover-logo-icon {
+    width: 320px;
+    height: 320px;
+  }
+  .cover-text {
+    position: absolute;
+    right: 160px;
+    bottom: 120px;
+  }
+  .cover-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 180px;
+    color: var(--white);
+    line-height: 0.85;
+    letter-spacing: -4px;
+  }
+  .cover-title span {
+    color: var(--lime);
+  }
+  .cover-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--gray);
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    margin-top: 24px;
+  }
+  .cover-year {
+    position: absolute;
+    right: 160px;
+    top: 80px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  .cover-tagline {
+    position: absolute;
+    left: 160px;
+    bottom: 80px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .cover-corner-lines {
+    position: absolute;
+    right: 160px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 400px;
+    background: rgba(212,255,106,0.2);
+  }
+
+  /* PAGE 2 — SÍMBOLO */
+  .page-concept {
+    background: var(--white);
+  }
+  .concept-left {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 760px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .concept-icon-display {
+    width: 440px;
+    height: 440px;
+  }
+  .concept-right {
+    position: absolute;
+    left: 760px; right: 0; top: 0; bottom: 0;
+    padding: 120px 120px 120px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .page-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--lime);
+    background: var(--navy);
+    display: inline-block;
+    padding: 6px 16px;
+    margin-bottom: 40px;
+  }
+  .page-label-dark {
+    color: var(--navy);
+    background: var(--light);
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    color: var(--navy);
+    line-height: 0.9;
+    letter-spacing: -1px;
+    margin-bottom: 40px;
+  }
+  .concept-desc {
+    font-family: 'Barlow', sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #4A5568;
+    max-width: 580px;
+    margin-bottom: 48px;
+  }
+  .concept-pillars {
+    display: flex;
+    gap: 32px;
+    margin-top: 16px;
+  }
+  .pillar {
+    border-left: 3px solid var(--lime);
+    padding: 4px 0 4px 20px;
+  }
+  .pillar-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--navy);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pillar-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+  }
+
+  /* PAGE 3 — VERSÕES DO LOGO */
+  .page-versions {
+    background: var(--light);
+  }
+  .versions-header {
+    position: absolute;
+    top: 80px;
+    left: 120px;
+  }
+  .versions-grid {
+    position: absolute;
+    top: 220px;
+    left: 120px;
+    right: 120px;
+    bottom: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 24px;
+  }
+  .version-cell {
+    background: var(--white);
+    border: 1px solid rgba(13,27,42,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px;
+  }
+  .version-cell.dark {
+    background: var(--navy);
+  }
+  .version-cell.black {
+    background: var(--black);
+  }
+  .version-cell.lime {
+    background: var(--lime);
+  }
+  .version-label {
+    position: absolute;
+    bottom: 20px;
+    left: 24px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .version-label.on-dark {
+    color: rgba(255,255,255,0.4);
+  }
+  .version-label.on-lime {
+    color: rgba(13,27,42,0.5);
+  }
+
+  /* PAGE 4 — COR VARIAÇÕES */
+  .page-colorvar {
+    background: var(--navy);
+  }
+  .colorvar-header {
+    position: absolute;
+    top: 80px;
+    left: 120px;
+  }
+  .colorvar-header .section-title { color: var(--white); }
+  .colorvar-grid {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .cv-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    position: relative;
+  }
+  .cv-cell-label {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* PAGE 5 — PALETA */
+  .page-palette {
+    background: var(--black);
+  }
+  .palette-header {
+    position: absolute;
+    top: 80px;
+    left: 120px;
+  }
+  .palette-header .section-title { color: var(--white); }
+  .swatches {
+    position: absolute;
+    top: 220px;
+    left: 120px;
+    right: 120px;
+    bottom: 80px;
+    display: flex;
+    gap: 24px;
+  }
+  .swatch {
+    flex: 1;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .swatch-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .swatch-hex {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+    opacity: 0.7;
+  }
+  .swatch-rgb {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0.5;
+  }
+  .swatch-use {
+    position: absolute;
+    top: 32px;
+    left: 32px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  /* PAGE 6 — TIPOGRAFIA */
+  .page-type {
+    background: var(--white);
+  }
+  .type-left {
+    position: absolute;
+    left: 120px;
+    top: 0; bottom: 0;
+    width: 780px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+  }
+  .type-display {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 160px;
+    color: var(--navy);
+    line-height: 0.85;
+    letter-spacing: -4px;
+    margin-bottom: 48px;
+  }
+  .type-samples {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .type-sample {
+    border-left: 3px solid var(--lime);
+    padding-left: 20px;
+  }
+  .type-sample-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 4px;
+  }
+  .type-sample-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    color: var(--navy);
+  }
+  .type-right {
+    position: absolute;
+    right: 120px;
+    top: 0; bottom: 0;
+    width: 760px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+    border-left: 1px solid rgba(13,27,42,0.1);
+    padding-left: 80px;
+  }
+  .type-family-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .type-family-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+  .type-weights {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .type-weight-row {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+  }
+  .type-weight-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    width: 120px;
+    flex-shrink: 0;
+  }
+  .type-body-display {
+    font-family: 'Barlow', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #4A5568;
+    margin-top: 40px;
+    max-width: 560px;
+  }
+
+  /* PAGE 7 — ÁREA DE PROTEÇÃO */
+  .page-protection {
+    background: var(--light);
+  }
+  .protection-layout {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+  }
+  .protection-left {
+    width: 900px;
+    padding: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .protection-right {
+    flex: 1;
+    height: 100%;
+    background: var(--white);
+    padding: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 80px;
+  }
+  .exclusion-demo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .exclusion-zone {
+    position: absolute;
+    inset: -40px;
+    border: 2px dashed var(--lime);
+  }
+  .exclusion-label {
+    position: absolute;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: var(--lime);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .exclusion-label.top { top: -30px; left: 0; }
+  .exclusion-label.bottom { bottom: -30px; left: 0; }
+  .protection-spec {
+    font-family: 'Barlow', sans-serif;
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.8;
+  }
+  .protection-spec strong {
+    color: var(--navy);
+    font-weight: 500;
+  }
+  .size-demos {
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+  }
+  .size-demo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .size-demo-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* PAGE 8 — APLICAÇÕES PRODUTOS */
+  .page-products {
+    background: var(--navy);
+  }
+  .products-header {
+    position: absolute;
+    top: 80px;
+    left: 120px;
+  }
+  .products-header .section-title { color: var(--white); }
+  .mockups-grid {
+    position: absolute;
+    top: 220px;
+    left: 120px;
+    right: 120px;
+    bottom: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .mockup-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    position: relative;
+    gap: 24px;
+  }
+  .mockup-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .mockup-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+  }
+
+  /* Hang tag mockup */
+  .hang-tag {
+    width: 100px;
+    background: var(--white);
+    padding: 16px 12px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    position: relative;
+  }
+  .hang-tag::before {
+    content: '';
+    width: 8px; height: 8px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+  }
+  .hang-tag-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--navy);
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  .hang-tag-sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 7px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-align: center;
+  }
+  .hang-tag-line {
+    width: 100%;
+    height: 1px;
+    background: rgba(13,27,42,0.1);
+  }
+  .hang-tag-lime {
+    background: var(--lime);
+    padding: 3px 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  /* Label mockup */
+  .woven-label {
+    width: 140px;
+    height: 60px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .woven-label::before, .woven-label::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 3px;
+    background: var(--lime);
+  }
+  .woven-label::before { left: 0; }
+  .woven-label::after { right: 0; }
+  .woven-ls {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    color: var(--white);
+    letter-spacing: -1px;
+  }
+  .woven-confex {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    color: var(--lime);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* Embossed mockup */
+  .embossed-badge {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #2A2A2A;
+    border: 3px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.8), 0 4px 20px rgba(0,0,0,0.6);
+    position: relative;
+  }
+  .embossed-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: #888;
+    letter-spacing: -1px;
+    text-shadow: 0 1px 0 #333, 0 -1px 0 #666;
+  }
+
+  /* Screen print mockup */
+  .screen-print {
+    width: 130px;
+    height: 130px;
+    background: #1E1E1E;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+  }
+  .screen-print::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.01) 2px,
+      rgba(255,255,255,0.01) 4px
+    );
+  }
+  .screen-print-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    position: relative;
+    z-index: 1;
+  }
+  .sp-ls {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 46px;
+    color: var(--lime);
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+  .sp-confex {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--white);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+
+  /* PAGE 9 — DIGITAL */
+  .page-digital {
+    background: var(--white);
+  }
+  .digital-layout {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .digital-left {
+    background: var(--light);
+    padding: 80px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .digital-right {
+    padding: 80px 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--white);
+  }
+  /* Website preview */
+  .browser-mockup {
+    width: 100%;
+    max-width: 680px;
+    background: var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .browser-bar {
+    background: #1E2E3E;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .browser-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+  .browser-url {
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+    margin-left: 8px;
+    flex: 1;
+  }
+  .browser-content {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    gap: 16px;
+  }
+  /* Instagram mockup */
+  .insta-profile {
+    background: var(--black);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 680px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .insta-header {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .insta-avatar {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: var(--navy);
+    border: 2px solid var(--lime);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--white);
+  }
+  .insta-info { flex: 1; }
+  .insta-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--white);
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+  .insta-handle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+  }
+  .insta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+  .insta-cell {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* PAGE 10 — INCORRETO */
+  .page-incorrect {
+    background: var(--light);
+  }
+  .incorrect-header {
+    position: absolute;
+    top: 80px;
+    left: 120px;
+  }
+  .donts-grid {
+    position: absolute;
+    top: 220px;
+    left: 120px;
+    right: 120px;
+    bottom: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+  }
+  .dont-card {
+    background: var(--white);
+    border: 1px solid rgba(13,27,42,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    position: relative;
+    gap: 16px;
+  }
+  .dont-x {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 28px; height: 28px;
+    background: #FF4444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .dont-label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-align: center;
+    margin-top: 8px;
+  }
+  .dont-example {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+  }
+  .dont-ls-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 48px;
+    color: var(--navy);
+    letter-spacing: -2px;
+  }
+
+  /* Utility */
+  .lime { color: var(--lime); }
+  .white { color: var(--white); }
+  .navy { color: var(--navy); }
+  .gray-text { color: var(--gray); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 1 — COVER -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-cover">
+  <div class="cover-grid"></div>
+  <div class="cover-accent-bar"></div>
+
+  <!-- Large decorative "LS" background -->
+  <div style="position:absolute;right:-40px;top:-80px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:680px;color:rgba(255,255,255,0.025);line-height:1;letter-spacing:-20px;pointer-events:none;user-select:none;">LS</div>
+
+  <!-- Logo icon left -->
+  <div class="cover-logo-area">
+    <svg class="cover-logo-icon" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="120" cy="120" r="108" fill="#FFFFFF"/>
+      <circle cx="120" cy="120" r="108" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+      <circle cx="120" cy="120" r="98" fill="none" stroke="#0D1B2A" stroke-width="2"/>
+      <rect x="38" y="50" width="28" height="112" rx="2" fill="#0D1B2A"/>
+      <rect x="38" y="140" width="82" height="24" rx="2" fill="#0D1B2A"/>
+      <polygon points="80,55 90,28 104,52" fill="#0D1B2A"/>
+      <polygon points="112,42 128,18 140,42" fill="#0D1B2A"/>
+      <ellipse cx="120" cy="75" rx="42" ry="34" fill="#0D1B2A"/>
+      <ellipse cx="148" cy="90" rx="26" ry="20" fill="#0D1B2A"/>
+      <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#0D1B2A"/>
+      <ellipse cx="150" cy="70" rx="12" ry="11" fill="#FFFFFF"/>
+      <circle cx="152" cy="70" r="5" fill="#0D1B2A"/>
+      <circle cx="155" cy="67" r="2" fill="#FFFFFF"/>
+      <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="#0D1B2A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- Vertical divider -->
+  <div class="cover-corner-lines"></div>
+
+  <!-- Text right -->
+  <div class="cover-text">
+    <div class="cover-title">LS<br><span>CON</span><br>FEX</div>
+    <div class="cover-subtitle">Manual de Identidade Visual</div>
+  </div>
+
+  <div class="cover-year">São Paulo — 2025</div>
+  <div class="cover-tagline">Crafted in Brazil · Since 2014</div>
+
+  <!-- Bottom lime line -->
+  <div style="position:absolute;bottom:0;left:8px;right:0;height:4px;background:var(--lime);opacity:0.4;"></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 2 — SÍMBOLO E CONCEITO -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-concept">
+  <div class="concept-left">
+    <svg class="concept-icon-display" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="120" cy="120" r="108" fill="#FFFFFF"/>
+      <circle cx="120" cy="120" r="108" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+      <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+      <rect x="38" y="50" width="28" height="112" rx="2" fill="#0D1B2A"/>
+      <rect x="38" y="140" width="82" height="24" rx="2" fill="#0D1B2A"/>
+      <polygon points="80,55 90,28 104,52" fill="#0D1B2A"/>
+      <polygon points="112,42 128,18 140,42" fill="#0D1B2A"/>
+      <ellipse cx="120" cy="75" rx="42" ry="34" fill="#0D1B2A"/>
+      <ellipse cx="148" cy="90" rx="26" ry="20" fill="#0D1B2A"/>
+      <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#0D1B2A"/>
+      <ellipse cx="150" cy="70" rx="12" ry="11" fill="#FFFFFF"/>
+      <circle cx="152" cy="70" r="5" fill="#0D1B2A"/>
+      <circle cx="155" cy="67" r="2" fill="#FFFFFF"/>
+      <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="#0D1B2A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="concept-right">
+    <div class="page-label">01 — Símbolo e Conceito</div>
+    <div class="section-title">O Símbolo<br>LS Confex</div>
+    <p class="concept-desc">
+      O símbolo da LS Confex une as iniciais <strong>L</strong> e <strong>S</strong> com a silhueta de uma raposa — animal que representa <strong>agilidade, inteligência e precisão</strong>. O corpo da raposa forma naturalmente a curva do "S", enquanto o "L" ancora a composição à esquerda. O formato de badge circular remete ao universo streetwear e aos patches de uniformes militares, reforçando identidade, autenticidade e pertencimento.
+    </p>
+    <div class="concept-pillars">
+      <div class="pillar">
+        <div class="pillar-title">Precisão</div>
+        <div class="pillar-text">Cada costura<br>com exatidão</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">Agilidade</div>
+        <div class="pillar-text">Entrega rápida<br>sem abrir mão</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">Identidade</div>
+        <div class="pillar-text">Sua marca<br>em cada peça</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">Qualidade</div>
+        <div class="pillar-text">10+ anos<br>de expertise</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 3 — VERSÕES DO LOGO -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-versions">
+  <div class="versions-header">
+    <div class="page-label page-label-dark">02 — Versões do Logo</div>
+    <div class="section-title">Variações<br>do Logo</div>
+  </div>
+
+  <div class="versions-grid">
+    <!-- Cell 1: Icon on white -->
+    <div class="version-cell">
+      <svg width="160" height="160" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+        <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2"/>
+        <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+        <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+        <polygon points="80,55 90,28 104,52" fill="white"/>
+        <polygon points="112,42 128,18 140,42" fill="white"/>
+        <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+        <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+        <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="white"/>
+        <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+        <circle cx="152" cy="70" r="5" fill="white"/>
+        <circle cx="155" cy="67" r="2" fill="#0D1B2A"/>
+        <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="version-label">Símbolo — Fundo Claro</div>
+    </div>
+
+    <!-- Cell 2: Horizontal wordmark on dark -->
+    <div class="version-cell dark">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <svg width="80" height="80" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="108" fill="#FFFFFF"/>
+          <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(13,27,42,0.2)" stroke-width="2"/>
+          <rect x="38" y="50" width="28" height="112" rx="2" fill="#0D1B2A"/>
+          <rect x="38" y="140" width="82" height="24" rx="2" fill="#0D1B2A"/>
+          <polygon points="80,55 90,28 104,52" fill="#0D1B2A"/>
+          <polygon points="112,42 128,18 140,42" fill="#0D1B2A"/>
+          <ellipse cx="120" cy="75" rx="42" ry="34" fill="#0D1B2A"/>
+          <ellipse cx="148" cy="90" rx="26" ry="20" fill="#0D1B2A"/>
+          <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#0D1B2A"/>
+          <ellipse cx="150" cy="70" rx="12" ry="11" fill="#FFFFFF"/>
+          <circle cx="152" cy="70" r="5" fill="#0D1B2A"/>
+          <circle cx="155" cy="67" r="2" fill="#FFFFFF"/>
+          <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="#0D1B2A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:52px;color:#FFF;line-height:1;letter-spacing:-1px;">LS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:#D4FF6A;letter-spacing:5px;">CONFEX</div>
+          <div style="font-family:'Barlow',sans-serif;font-size:9px;color:rgba(255,255,255,0.4);letter-spacing:3px;text-transform:uppercase;">CONFECÇÕES</div>
+        </div>
+      </div>
+      <div class="version-label on-dark">Logo Horizontal — Fundo Escuro</div>
+    </div>
+
+    <!-- Cell 3: Vertical on lime -->
+    <div class="version-cell lime">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+        <svg width="90" height="90" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+          <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(212,255,106,0.2)" stroke-width="2"/>
+          <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+          <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+          <polygon points="80,55 90,28 104,52" fill="white"/>
+          <polygon points="112,42 128,18 140,42" fill="white"/>
+          <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+          <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+          <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="white"/>
+          <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+          <circle cx="152" cy="70" r="5" fill="white"/>
+          <circle cx="155" cy="67" r="2" fill="#0D1B2A"/>
+          <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div style="text-align:center;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:44px;color:#0D1B2A;line-height:1;letter-spacing:-1px;">LS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#0D1B2A;letter-spacing:5px;">CONFEX</div>
+        </div>
+      </div>
+      <div class="version-label on-lime">Logo Vertical — Fundo Lima</div>
+    </div>
+
+    <!-- Cell 4: Wordmark only -->
+    <div class="version-cell" style="background:#1A1A1A;">
+      <div style="text-align:center;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:88px;color:#FFFFFF;line-height:0.9;letter-spacing:-3px;">LS</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;color:#D4FF6A;letter-spacing:8px;margin-top:4px;">CONFEX</div>
+        <div style="width:80px;height:2px;background:#D4FF6A;margin:16px auto 0;opacity:0.5;"></div>
+        <div style="font-family:'Barlow',sans-serif;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:4px;text-transform:uppercase;margin-top:12px;">CONFECÇÕES</div>
+      </div>
+      <div class="version-label on-dark">Wordmark — Tipográfico</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 4 — VARIAÇÕES DE COR -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-colorvar">
+  <div class="colorvar-header">
+    <div class="page-label" style="background:rgba(255,255,255,0.1);color:var(--lime);">03 — Variações de Cor</div>
+    <div class="section-title white" style="margin-top:16px;">Versões<br>Cromáticas</div>
+  </div>
+
+  <div class="colorvar-grid">
+    <!-- Navy bg, white logo -->
+    <div class="cv-cell" style="background:#0D1B2A;">
+      <svg width="180" height="180" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="120" cy="120" r="108" fill="#FFFFFF"/>
+        <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(13,27,42,0.1)" stroke-width="2"/>
+        <rect x="38" y="50" width="28" height="112" rx="2" fill="#0D1B2A"/>
+        <rect x="38" y="140" width="82" height="24" rx="2" fill="#0D1B2A"/>
+        <polygon points="80,55 90,28 104,52" fill="#0D1B2A"/>
+        <polygon points="112,42 128,18 140,42" fill="#0D1B2A"/>
+        <ellipse cx="120" cy="75" rx="42" ry="34" fill="#0D1B2A"/>
+        <ellipse cx="148" cy="90" rx="26" ry="20" fill="#0D1B2A"/>
+        <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#0D1B2A"/>
+        <ellipse cx="150" cy="70" rx="12" ry="11" fill="#FFFFFF"/>
+        <circle cx="152" cy="70" r="5" fill="#0D1B2A"/>
+        <circle cx="155" cy="67" r="2" fill="#FFFFFF"/>
+        <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="#0D1B2A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="cv-cell-label" style="color:rgba(255,255,255,0.3);">Principal — Navy</div>
+    </div>
+
+    <!-- Black bg, white logo -->
+    <div class="cv-cell" style="background:#1A1A1A;">
+      <svg width="180" height="180" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="120" cy="120" r="108" fill="#FFFFFF"/>
+        <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(13,27,42,0.1)" stroke-width="2"/>
+        <rect x="38" y="50" width="28" height="112" rx="2" fill="#1A1A1A"/>
+        <rect x="38" y="140" width="82" height="24" rx="2" fill="#1A1A1A"/>
+        <polygon points="80,55 90,28 104,52" fill="#1A1A1A"/>
+        <polygon points="112,42 128,18 140,42" fill="#1A1A1A"/>
+        <ellipse cx="120" cy="75" rx="42" ry="34" fill="#1A1A1A"/>
+        <ellipse cx="148" cy="90" rx="26" ry="20" fill="#1A1A1A"/>
+        <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#1A1A1A"/>
+        <ellipse cx="150" cy="70" rx="12" ry="11" fill="#FFFFFF"/>
+        <circle cx="152" cy="70" r="5" fill="#1A1A1A"/>
+        <circle cx="155" cy="67" r="2" fill="#FFFFFF"/>
+        <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="#1A1A1A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="cv-cell-label" style="color:rgba(255,255,255,0.3);">Versão Preta</div>
+    </div>
+
+    <!-- Lime bg, navy logo -->
+    <div class="cv-cell" style="background:#D4FF6A;">
+      <svg width="180" height="180" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+        <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(212,255,106,0.2)" stroke-width="2"/>
+        <rect x="38" y="50" width="28" height="112" rx="2" fill="#D4FF6A"/>
+        <rect x="38" y="140" width="82" height="24" rx="2" fill="#D4FF6A"/>
+        <polygon points="80,55 90,28 104,52" fill="#D4FF6A"/>
+        <polygon points="112,42 128,18 140,42" fill="#D4FF6A"/>
+        <ellipse cx="120" cy="75" rx="42" ry="34" fill="#D4FF6A"/>
+        <ellipse cx="148" cy="90" rx="26" ry="20" fill="#D4FF6A"/>
+        <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#D4FF6A"/>
+        <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+        <circle cx="152" cy="70" r="5" fill="#D4FF6A"/>
+        <circle cx="155" cy="67" r="2" fill="#0D1B2A"/>
+        <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="#D4FF6A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="cv-cell-label" style="color:rgba(13,27,42,0.4);">Versão Lima</div>
+    </div>
+
+    <!-- White bg, navy logo -->
+    <div class="cv-cell" style="background:#FFFFFF;">
+      <svg width="180" height="180" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+        <circle cx="120" cy="120" r="98" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+        <rect x="38" y="50" width="28" height="112" rx="2" fill="#FFFFFF"/>
+        <rect x="38" y="140" width="82" height="24" rx="2" fill="#FFFFFF"/>
+        <polygon points="80,55 90,28 104,52" fill="#FFFFFF"/>
+        <polygon points="112,42 128,18 140,42" fill="#FFFFFF"/>
+        <ellipse cx="120" cy="75" rx="42" ry="34" fill="#FFFFFF"/>
+        <ellipse cx="148" cy="90" rx="26" ry="20" fill="#FFFFFF"/>
+        <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#FFFFFF"/>
+        <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+        <circle cx="152" cy="70" r="5" fill="#FFFFFF"/>
+        <circle cx="155" cy="67" r="2" fill="#0D1B2A"/>
+        <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="cv-cell-label" style="color:rgba(13,27,42,0.4);">Versão Branca</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 5 — PALETA DE CORES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-palette">
+  <div class="palette-header">
+    <div class="page-label" style="background:rgba(255,255,255,0.06);color:var(--lime);">04 — Paleta de Cores</div>
+    <div class="section-title white" style="margin-top:16px;">Paleta<br>de Cores</div>
+  </div>
+
+  <div class="swatches">
+    <!-- Navy -->
+    <div class="swatch" style="background:#0D1B2A;border:1px solid rgba(255,255,255,0.06);">
+      <div class="swatch-use" style="color:rgba(255,255,255,0.4);">Cor Principal</div>
+      <div class="swatch-name" style="color:#FFFFFF;">Navy<br>Blue</div>
+      <div class="swatch-hex" style="color:rgba(255,255,255,0.6);">#0D1B2A</div>
+      <div class="swatch-rgb" style="color:rgba(255,255,255,0.3);">RGB 13 · 27 · 42</div>
+      <div class="swatch-rgb" style="color:rgba(255,255,255,0.3);margin-top:2px;">CMYK 69 · 36 · 0 · 84</div>
+      <div style="position:absolute;top:32px;right:32px;width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,0.15);"></div>
+    </div>
+
+    <!-- Lime -->
+    <div class="swatch" style="background:#D4FF6A;">
+      <div class="swatch-use" style="color:rgba(13,27,42,0.5);">Cor de Destaque</div>
+      <div class="swatch-name" style="color:#0D1B2A;">Electric<br>Lime</div>
+      <div class="swatch-hex" style="color:rgba(13,27,42,0.7);">#D4FF6A</div>
+      <div class="swatch-rgb" style="color:rgba(13,27,42,0.5);">RGB 212 · 255 · 106</div>
+      <div class="swatch-rgb" style="color:rgba(13,27,42,0.4);margin-top:2px;">CMYK 17 · 0 · 58 · 0</div>
+      <div style="position:absolute;top:32px;right:32px;width:60px;height:60px;border-radius:50%;border:2px solid rgba(13,27,42,0.2);"></div>
+    </div>
+
+    <!-- Near Black -->
+    <div class="swatch" style="background:#1A1A1A;border:1px solid rgba(255,255,255,0.04);">
+      <div class="swatch-use" style="color:rgba(255,255,255,0.3);">Fundo Alternativo</div>
+      <div class="swatch-name" style="color:#FFFFFF;">Carbon<br>Black</div>
+      <div class="swatch-hex" style="color:rgba(255,255,255,0.6);">#1A1A1A</div>
+      <div class="swatch-rgb" style="color:rgba(255,255,255,0.3);">RGB 26 · 26 · 26</div>
+      <div class="swatch-rgb" style="color:rgba(255,255,255,0.3);margin-top:2px;">CMYK 0 · 0 · 0 · 90</div>
+      <div style="position:absolute;top:32px;right:32px;width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,0.08);"></div>
+    </div>
+
+    <!-- White -->
+    <div class="swatch" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.06);">
+      <div class="swatch-use" style="color:rgba(13,27,42,0.4);">Fundo / Texto</div>
+      <div class="swatch-name" style="color:#0D1B2A;">Pure<br>White</div>
+      <div class="swatch-hex" style="color:rgba(13,27,42,0.6);">#FFFFFF</div>
+      <div class="swatch-rgb" style="color:rgba(13,27,42,0.4);">RGB 255 · 255 · 255</div>
+      <div class="swatch-rgb" style="color:rgba(13,27,42,0.3);margin-top:2px;">CMYK 0 · 0 · 0 · 0</div>
+      <div style="position:absolute;top:32px;right:32px;width:60px;height:60px;border-radius:50%;border:2px solid rgba(13,27,42,0.1);"></div>
+    </div>
+
+    <!-- Gray -->
+    <div class="swatch" style="background:#8A9BB0;border:1px solid rgba(255,255,255,0.05);">
+      <div class="swatch-use" style="color:rgba(255,255,255,0.5);">Texto Secundário</div>
+      <div class="swatch-name" style="color:#FFFFFF;">Steel<br>Gray</div>
+      <div class="swatch-hex" style="color:rgba(255,255,255,0.8);">#8A9BB0</div>
+      <div class="swatch-rgb" style="color:rgba(255,255,255,0.5);">RGB 138 · 155 · 176</div>
+      <div class="swatch-rgb" style="color:rgba(255,255,255,0.35);margin-top:2px;">CMYK 22 · 12 · 0 · 31</div>
+      <div style="position:absolute;top:32px;right:32px;width:60px;height:60px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);"></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 6 — TIPOGRAFIA -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-type">
+  <div class="type-left">
+    <div class="page-label page-label-dark">05 — Tipografia</div>
+    <div class="type-display">Aa<br>Bb Cc</div>
+    <div class="type-family-name" style="margin-top:24px;">Barlow Condensed</div>
+    <div class="type-family-subtitle">Display / Headline / Títulos</div>
+    <div class="type-samples">
+      <div class="type-sample">
+        <div class="type-sample-label">Black 900 — Headline</div>
+        <div class="type-sample-text" style="font-weight:900;font-size:40px;line-height:1;letter-spacing:-1px;">LS CONFEX</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-label">Bold 700 — Subtítulo</div>
+        <div class="type-sample-text" style="font-weight:700;font-size:28px;letter-spacing:2px;">BOLSAS E ACESSÓRIOS</div>
+      </div>
+      <div class="type-sample">
+        <div class="type-sample-label">Regular 400 — Corpo Condensed</div>
+        <div class="type-sample-text" style="font-weight:400;font-size:22px;color:#4A5568;">Fabricação B2B desde 2014</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="type-right">
+    <div class="type-family-name">Barlow</div>
+    <div class="type-family-subtitle">Body / Interface / Dados</div>
+    <div class="type-weights">
+      <div class="type-weight-row">
+        <span class="type-weight-label">Light 300</span>
+        <span style="font-family:'Barlow',sans-serif;font-weight:300;font-size:22px;color:#4A5568;">Manufatura sob medida</span>
+      </div>
+      <div class="type-weight-row">
+        <span class="type-weight-label">Regular 400</span>
+        <span style="font-family:'Barlow',sans-serif;font-weight:400;font-size:22px;color:#2D3748;">Manufatura sob medida</span>
+      </div>
+      <div class="type-weight-row">
+        <span class="type-weight-label">Medium 500</span>
+        <span style="font-family:'Barlow',sans-serif;font-weight:500;font-size:22px;color:#1A202C;">Manufatura sob medida</span>
+      </div>
+    </div>
+    <p class="type-body-display">
+      A partir de 30 unidades. Prazo de 25 dias úteis. Personalização total: materiais, recortes, bordados, zíperes e aviamentos. Qualidade premium com preço de fábrica.
+    </p>
+    <div style="margin-top:40px;padding:24px;background:var(--light);border-radius:4px;">
+      <div style="font-family:'Barlow',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:12px;">Caracteres</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:#2D3748;letter-spacing:3px;line-height:1.8;">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+        abcdefghijklmnopqrstuvwxyz<br>
+        0123456789 .,;:!?@#&
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 7 — ÁREA DE PROTEÇÃO -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-protection">
+  <div class="protection-layout">
+    <div class="protection-left">
+      <div class="page-label page-label-dark">06 — Uso Correto</div>
+      <div class="section-title" style="margin-top:24px;">Área de<br>Proteção</div>
+      <p style="font-family:'Barlow',sans-serif;font-size:17px;line-height:1.8;color:#4A5568;margin-top:32px;max-width:480px;">
+        A área de proteção define o espaço mínimo que deve existir ao redor do logo. Nenhum elemento gráfico — texto, imagem ou decoração — deve invadir essa zona.
+      </p>
+      <p style="font-family:'Barlow',sans-serif;font-size:17px;line-height:1.8;color:#4A5568;margin-top:20px;max-width:480px;">
+        A medida da área de proteção é equivalente à <strong style="color:var(--navy);">altura da letra "L"</strong> em cada versão do logo.
+      </p>
+      <div style="margin-top:48px;padding:24px;background:rgba(13,27,42,0.05);border-left:3px solid var(--lime);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--navy);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Tamanho mínimo</div>
+        <div class="protection-spec">
+          <strong>Digital:</strong> 32px de altura<br>
+          <strong>Impressão:</strong> 15mm de diâmetro (ícone)<br>
+          <strong>Bordado:</strong> 25mm de diâmetro mínimo<br>
+          <strong>Serigrafia:</strong> 20mm de diâmetro mínimo
+        </div>
+      </div>
+    </div>
+
+    <div class="protection-right">
+      <!-- Exclusion zone demo -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="font-family:'Barlow',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);">Área de exclusão</div>
+        <div class="exclusion-demo">
+          <div class="exclusion-zone"></div>
+          <svg width="120" height="120" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+            <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+            <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+            <polygon points="80,55 90,28 104,52" fill="white"/>
+            <polygon points="112,42 128,18 140,42" fill="white"/>
+            <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+            <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+            <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="white"/>
+            <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+            <circle cx="152" cy="70" r="5" fill="white"/>
+            <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="exclusion-label top">← Área de proteção →</div>
+          <div style="position:absolute;right:-60px;top:50%;transform:translateY(-50%) rotate(90deg);font-family:'Barlow',sans-serif;font-size:10px;color:#D4FF6A;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;">1× altura</div>
+        </div>
+      </div>
+
+      <!-- Size scale -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="font-family:'Barlow',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);">Escala de tamanhos</div>
+        <div class="size-demos">
+          <div class="size-demo">
+            <svg width="32" height="32" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+              <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+              <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+              <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+              <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+              <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="white"/>
+              <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+              <circle cx="152" cy="70" r="5" fill="white"/>
+            </svg>
+            <span class="size-demo-label">32px</span>
+          </div>
+          <div class="size-demo">
+            <svg width="64" height="64" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+              <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+              <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+              <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+              <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+              <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="white"/>
+              <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+              <circle cx="152" cy="70" r="5" fill="white"/>
+            </svg>
+            <span class="size-demo-label">64px</span>
+          </div>
+          <div class="size-demo">
+            <svg width="120" height="120" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+              <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+              <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+              <polygon points="80,55 90,28 104,52" fill="white"/>
+              <polygon points="112,42 128,18 140,42" fill="white"/>
+              <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+              <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+              <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="white"/>
+              <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+              <circle cx="152" cy="70" r="5" fill="white"/>
+              <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="size-demo-label">120px</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 8 — APLICAÇÕES EM PRODUTOS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-products">
+  <div class="products-header">
+    <div class="page-label" style="background:rgba(255,255,255,0.06);color:var(--lime);">07 — Aplicações</div>
+    <div class="section-title white" style="margin-top:16px;">Em<br>Produtos</div>
+  </div>
+
+  <div class="mockups-grid">
+    <!-- Hang Tag -->
+    <div class="mockup-card">
+      <div class="mockup-visual">
+        <div class="hang-tag">
+          <svg width="56" height="56" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+            <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+            <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+            <polygon points="80,55 90,28 104,52" fill="white"/>
+            <polygon points="112,42 128,18 140,42" fill="white"/>
+            <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+            <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+            <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="white"/>
+            <ellipse cx="150" cy="70" rx="12" ry="11" fill="#0D1B2A"/>
+            <circle cx="152" cy="70" r="5" fill="white"/>
+            <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="hang-tag-title">LS</div>
+          <div class="hang-tag-line"></div>
+          <div class="hang-tag-sub">CONFECÇÕES</div>
+          <div class="hang-tag-lime">CONFEX</div>
+          <div class="hang-tag-sub" style="margin-top:4px;">SÃO PAULO · BRASIL</div>
+        </div>
+      </div>
+      <div class="mockup-label">Tag / Etiqueta</div>
+    </div>
+
+    <!-- Woven Label -->
+    <div class="mockup-card">
+      <div class="mockup-visual" style="flex-direction:column;gap:20px;">
+        <div class="woven-label">
+          <div>
+            <div class="woven-ls">LS</div>
+          </div>
+          <div style="width:1px;height:30px;background:rgba(255,255,255,0.1);"></div>
+          <div>
+            <div class="woven-confex">CONFEX</div>
+            <div style="font-family:'Barlow',sans-serif;font-size:7px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;margin-top:2px;">BRASIL</div>
+          </div>
+        </div>
+        <!-- Navy version -->
+        <div class="woven-label" style="background:#D4FF6A;width:100px;height:40px;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:#0D1B2A;">LS</div>
+          <div style="width:1px;height:20px;background:rgba(13,27,42,0.2);"></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;color:#0D1B2A;letter-spacing:2px;">CONFEX</div>
+        </div>
+      </div>
+      <div class="mockup-label">Etiqueta Tecida</div>
+    </div>
+
+    <!-- Embossed patch -->
+    <div class="mockup-card">
+      <div class="mockup-visual">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+          <!-- Rubber patch -->
+          <div style="width:120px;height:80px;background:#222;border-radius:6px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.05);position:relative;overflow:hidden;">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.01) 3px,rgba(255,255,255,0.01) 4px);"></div>
+            <div style="position:relative;z-index:1;text-align:center;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:30px;color:#888;letter-spacing:-1px;text-shadow:0 1px 0 #333,0 -1px 0 #555;">LS</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:8px;color:#666;letter-spacing:3px;text-shadow:none;">CONFEX</div>
+            </div>
+          </div>
+          <!-- Metal rivet -->
+          <div style="width:50px;height:50px;border-radius:50%;background:radial-gradient(circle at 35% 35%, #ccc, #888 50%, #555);box-shadow:0 2px 8px rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:#333;">LS</div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-label">Patch / Rebite Metálico</div>
+    </div>
+
+    <!-- Screen print -->
+    <div class="mockup-card">
+      <div class="mockup-visual">
+        <div class="screen-print" style="width:160px;height:160px;">
+          <div class="screen-print-content">
+            <svg width="80" height="80" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="120" cy="120" r="108" fill="#D4FF6A"/>
+              <rect x="38" y="50" width="28" height="112" rx="2" fill="#0D1B2A"/>
+              <rect x="38" y="140" width="82" height="24" rx="2" fill="#0D1B2A"/>
+              <polygon points="80,55 90,28 104,52" fill="#0D1B2A"/>
+              <polygon points="112,42 128,18 140,42" fill="#0D1B2A"/>
+              <ellipse cx="120" cy="75" rx="42" ry="34" fill="#0D1B2A"/>
+              <ellipse cx="148" cy="90" rx="26" ry="20" fill="#0D1B2A"/>
+              <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#0D1B2A"/>
+              <ellipse cx="150" cy="70" rx="12" ry="11" fill="#D4FF6A"/>
+              <circle cx="152" cy="70" r="5" fill="#0D1B2A"/>
+              <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187" fill="none" stroke="#0D1B2A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-label">Serigrafia / Silk Screen</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 9 — APLICAÇÕES DIGITAIS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-digital">
+  <div class="digital-layout">
+    <div class="digital-left">
+      <div class="page-label page-label-dark">08 — Digital</div>
+      <div class="section-title" style="margin-top:24px;margin-bottom:40px;">Aplicações<br>Digitais</div>
+
+      <!-- Browser mockup -->
+      <div class="browser-mockup">
+        <div class="browser-bar">
+          <div class="browser-dot" style="background:#FF5F57;"></div>
+          <div class="browser-dot" style="background:#FEBC2E;"></div>
+          <div class="browser-dot" style="background:#28C840;"></div>
+          <div class="browser-url">lsconfex.com.br</div>
+        </div>
+        <div class="browser-content">
+          <!-- Mini website nav simulation -->
+          <div style="width:100%;padding:0 16px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <svg width="28" height="28" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="120" cy="120" r="108" fill="#FFFFFF"/>
+                  <rect x="38" y="50" width="28" height="112" rx="2" fill="#0D1B2A"/>
+                  <rect x="38" y="140" width="82" height="24" rx="2" fill="#0D1B2A"/>
+                  <ellipse cx="120" cy="75" rx="42" ry="34" fill="#0D1B2A"/>
+                  <ellipse cx="148" cy="90" rx="26" ry="20" fill="#0D1B2A"/>
+                  <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#0D1B2A"/>
+                </svg>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#FFF;letter-spacing:2px;">LS CONFEX</span>
+              </div>
+              <div style="display:flex;gap:20px;">
+                <span style="font-family:'Barlow',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);">Produtos</span>
+                <span style="font-family:'Barlow',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);">Sobre</span>
+                <span style="font-family:'Barlow',sans-serif;font-size:11px;color:rgba(255,255,255,0.5);">Contato</span>
+              </div>
+              <div style="background:#D4FF6A;padding:6px 14px;border-radius:2px;">
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:#0D1B2A;letter-spacing:2px;">ORÇAMENTO</span>
+              </div>
+            </div>
+            <div style="padding:20px 0;text-align:center;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;color:#FFF;letter-spacing:-0.5px;margin-bottom:6px;">Sua marca em cada detalhe</div>
+              <div style="font-family:'Barlow',sans-serif;font-size:10px;color:rgba(255,255,255,0.4);">Fábrica de bolsas e acessórios em São Paulo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:28px;font-family:'Barlow',sans-serif;font-size:13px;color:var(--gray);line-height:1.8;">
+        <strong style="color:var(--navy);">Favicon:</strong> Ícone circular (64×64px) com fundo navy e símbolo branco.<br>
+        <strong style="color:var(--navy);">Navbar:</strong> Wordmark horizontal, versão branca sobre navy.<br>
+        <strong style="color:var(--navy);">WhatsApp:</strong> Foto de perfil circular — símbolo branco sobre navy.
+      </div>
+    </div>
+
+    <div class="digital-right">
+      <div style="height:80px;"></div>
+      <!-- Instagram mockup -->
+      <div class="insta-profile">
+        <div class="insta-header">
+          <div class="insta-avatar">LS</div>
+          <div class="insta-info">
+            <div class="insta-name">@lsconfex</div>
+            <div class="insta-handle">lsconfex.com.br · Fabricante B2B · São Paulo</div>
+            <div style="font-family:'Barlow',sans-serif;font-size:11px;color:rgba(255,255,255,0.35);margin-top:4px;">Bolsas · Mochilas · Pochetes · Streetwear</div>
+          </div>
+          <div style="background:#D4FF6A;padding:6px 16px;border-radius:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:#0D1B2A;letter-spacing:2px;">SEGUIR</div>
+        </div>
+        <div class="insta-grid">
+          <div class="insta-cell" style="background:#0D1B2A;color:#D4FF6A;aspect-ratio:1;min-height:90px;">BOLSAS</div>
+          <div class="insta-cell" style="background:#1A2E40;color:#FFF;aspect-ratio:1;min-height:90px;">MOCHILAS</div>
+          <div class="insta-cell" style="background:#D4FF6A;color:#0D1B2A;aspect-ratio:1;min-height:90px;">POCHETES</div>
+          <div class="insta-cell" style="background:#111;color:#D4FF6A;aspect-ratio:1;min-height:90px;">CUSTOM</div>
+          <div class="insta-cell" style="background:#162434;color:#FFF;aspect-ratio:1;min-height:90px;">B2B</div>
+          <div class="insta-cell" style="background:#0D1B2A;color:rgba(255,255,255,0.3);aspect-ratio:1;min-height:90px;">+30 UN.</div>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;font-family:'Barlow',sans-serif;font-size:13px;color:var(--gray);line-height:1.8;">
+        <strong style="color:var(--navy);">Handle sugerido:</strong> @lsconfex em todas as plataformas.<br>
+        <strong style="color:var(--navy);">Avatar:</strong> Símbolo branco sobre navy, sem borda extra.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PAGE 10 — USOS INCORRETOS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page page-incorrect">
+  <div class="incorrect-header">
+    <div class="page-label page-label-dark">09 — Restrições</div>
+    <div class="section-title" style="margin-top:16px;">O que<br>NÃO Fazer</div>
+  </div>
+
+  <div class="donts-grid">
+    <!-- Don't 1: Rotate -->
+    <div class="dont-card">
+      <div class="dont-x">✕</div>
+      <div class="dont-example">
+        <svg width="80" height="80" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="transform:rotate(30deg);opacity:0.6;">
+          <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+          <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+          <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+          <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+          <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+          <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="white"/>
+        </svg>
+      </div>
+      <div class="dont-label">Não rotacionar o logo</div>
+    </div>
+
+    <!-- Don't 2: Distort -->
+    <div class="dont-card">
+      <div class="dont-x">✕</div>
+      <div class="dont-example">
+        <svg width="120" height="60" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" style="opacity:0.6;">
+          <circle cx="120" cy="120" r="108" fill="#0D1B2A"/>
+          <rect x="38" y="50" width="28" height="112" rx="2" fill="white"/>
+          <rect x="38" y="140" width="82" height="24" rx="2" fill="white"/>
+          <ellipse cx="120" cy="75" rx="42" ry="34" fill="white"/>
+          <ellipse cx="148" cy="90" rx="26" ry="20" fill="white"/>
+        </svg>
+      </div>
+      <div class="dont-label">Não distorcer proporções</div>
+    </div>
+
+    <!-- Don't 3: Low contrast -->
+    <div class="dont-card">
+      <div class="dont-x">✕</div>
+      <div class="dont-example">
+        <div style="background:#8A9BB0;padding:16px;border-radius:4px;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:40px;color:#6B7F96;letter-spacing:-1px;">LS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#7A8EA4;letter-spacing:4px;">CONFEX</div>
+        </div>
+      </div>
+      <div class="dont-label">Não usar com baixo contraste</div>
+    </div>
+
+    <!-- Don't 4: Outline/stroke -->
+    <div class="dont-card">
+      <div class="dont-x">✕</div>
+      <div class="dont-example">
+        <div style="text-align:center;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:56px;color:transparent;-webkit-text-stroke:2px #0D1B2A;letter-spacing:-2px;">LS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:transparent;-webkit-text-stroke:1px #0D1B2A;letter-spacing:4px;">CONFEX</div>
+        </div>
+      </div>
+      <div class="dont-label">Não usar versão outline</div>
+    </div>
+
+    <!-- Don't 5: Wrong colors -->
+    <div class="dont-card">
+      <div class="dont-x">✕</div>
+      <div class="dont-example">
+        <div style="text-align:center;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:52px;color:#E53E3E;letter-spacing:-2px;">LS</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#3182CE;letter-spacing:4px;">CONFEX</div>
+        </div>
+      </div>
+      <div class="dont-label">Não alterar as cores da marca</div>
+    </div>
+
+    <!-- Don't 6: Busy background -->
+    <div class="dont-card">
+      <div class="dont-x">✕</div>
+      <div class="dont-example">
+        <div style="position:relative;width:140px;height:80px;background:linear-gradient(135deg,#ff6b6b,#ffd93d,#6bcb77,#4d96ff);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:36px;color:#FFF;letter-spacing:-1px;text-shadow:0 0 8px rgba(0,0,0,0.3);">LS</div>
+        </div>
+      </div>
+      <div class="dont-label">Não usar sobre fundos complexos</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
