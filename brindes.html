@@ -36,18 +36,150 @@
   <style>
     /* ── Hero Brindes ── */
     .brindes-hero {
-      display: block;
-      line-height: 0;
+      position: relative;
+      width: 100%;
+      height: 92vh;
+      min-height: 520px;
+      max-height: 860px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .brindes-hero-bg {
+      position: absolute;
+      inset: 0;
     }
     .brindes-hero-bg img {
       display: block;
       width: 100%;
-      max-height: 75vh;
+      height: 100%;
       object-fit: cover;
-      object-position: center center;
+      object-position: center 30%;
     }
+    /* Gradiente: escuro à esquerda para legibilidade, transparente à direita */
+    .brindes-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(5,8,12,.88) 0%, rgba(5,8,12,.55) 45%, rgba(5,8,12,.1) 100%),
+        linear-gradient(to top,   rgba(5,8,12,.6)  0%, transparent 40%);
+      z-index: 1;
+    }
+    .brindes-hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 0 5rem;
+    }
+    .brindes-hero-inner {
+      max-width: 620px;
+      padding-left: max(2rem, 8vw);
+    }
+    .brindes-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: #e8ff00;
+      margin-bottom: 1rem;
+    }
+    .brindes-hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #e8ff00;
+    }
+    .brindes-hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3rem, 6.5vw, 5.2rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: .95;
+      letter-spacing: -.01em;
+      margin-bottom: 1.25rem;
+    }
+    .brindes-hero-title em {
+      font-style: normal;
+      color: #e8ff00;
+    }
+    .brindes-hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.68);
+      line-height: 1.65;
+      max-width: 400px;
+      margin-bottom: 2.25rem;
+    }
+    .brindes-hero-actions {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .brindes-hero-actions .btn-ghost {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,.35);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .65rem 1.4rem;
+      transition: border-color 200ms, background 200ms;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .brindes-hero-actions .btn-ghost:hover {
+        border-color: #fff;
+        background: rgba(255,255,255,.08);
+      }
+    }
+    /* Badge de evento no canto superior direito */
+    .brindes-hero-badge {
+      position: absolute;
+      top: 2rem;
+      right: max(2rem, 6vw);
+      z-index: 3;
+      background: rgba(232,255,0,.12);
+      border: 1px solid rgba(232,255,0,.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: .6rem 1rem;
+      text-align: center;
+    }
+    .brindes-hero-badge strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: #e8ff00;
+      margin-bottom: .15rem;
+    }
+    .brindes-hero-badge span {
+      font-size: .7rem;
+      color: rgba(255,255,255,.6);
+    }
+
     @media (max-width: 768px) {
-      .brindes-hero-bg img { max-height: none; width: 100%; }
+      .brindes-hero { height: 85vh; max-height: none; align-items: flex-end; }
+      .brindes-hero::before {
+        background:
+          linear-gradient(to top, rgba(5,8,12,.9) 0%, rgba(5,8,12,.5) 55%, rgba(5,8,12,.15) 100%);
+      }
+      .brindes-hero-inner { padding-left: 1.5rem; padding-right: 1.5rem; max-width: 100%; }
+      .brindes-hero-content { padding-bottom: 3rem; }
+      .brindes-hero-badge { display: none; }
     }
 
     /* ── Diferenciais ── */
@@ -335,6 +467,28 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
         <img src="imagens/brindes-hero.png" alt="Kit de brindes corporativos personalizados" width="1400" height="700" fetchpriority="high">
       </picture>
     </div>
+
+    <!-- Badge de destaque -->
+    <div class="brindes-hero-badge">
+      <strong>Brindes Corporativos</strong>
+      <span>A partir de 20 unidades</span>
+    </div>
+
+    <div class="brindes-hero-content">
+      <div class="brindes-hero-inner">
+        <p class="brindes-hero-eyebrow">LS Confecções — São Paulo</p>
+        <h1 class="brindes-hero-title">
+          Sua marca<br>
+          nas mãos de<br>
+          <em>quem importa.</em>
+        </h1>
+        <p class="brindes-hero-sub">Ecobags, mochilas e necessaires com a identidade da sua empresa. Produção nacional, entregue no prazo.</p>
+        <div class="brindes-hero-actions">
+          <a href="obrigado.html?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Quero%20solicitar%20um%20or%C3%A7amento%20de%20brindes%20corporativos." class="btn btn-primary" target="_blank" rel="noopener noreferrer">Solicitar Orçamento</a>
+          <a href="#modelos" class="btn-ghost">Ver Modelos</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ══════════════════════════ DIFERENCIAIS ══════════════════════════ -->
@@ -374,7 +528,7 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
   </section>
 
   <!-- ══════════════════════════ MODELOS DISPONÍVEIS ══════════════════════════ -->
-  <section class="brindes-section">
+  <section class="brindes-section" id="modelos">
     <div class="container">
       <p class="section-label" style="color:#0a0a0a; opacity:.5;">Modelos Disponíveis</p>
       <h2 class="section-title" style="font-family:'Barlow Condensed',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; text-transform:uppercase; color:#0a0a0a; line-height:1.05; margin-bottom:.5rem;">
