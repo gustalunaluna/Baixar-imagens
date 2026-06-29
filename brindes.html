@@ -50,6 +50,24 @@
       position: absolute;
       inset: 0;
     }
+    /* Gradiente mobile — sobreposto à imagem, de baixo para cima */
+    .brindes-hero-bg::after {
+      content: '';
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        #05080c          0%,
+        #05080c          6%,
+        rgba(5,8,12,.95) 16%,
+        rgba(5,8,12,.82) 28%,
+        rgba(5,8,12,.55) 48%,
+        rgba(5,8,12,.2)  68%,
+        rgba(5,8,12,0)   100%
+      );
+      z-index: 1;
+    }
     .brindes-hero-bg img {
       display: block;
       width: 100%;
@@ -193,24 +211,10 @@
       .brindes-hero-bg img {
         object-position: 65% center;
       }
-      /* Gradiente suave da imagem para preto — cobre os 80% inferiores da foto */
-      .brindes-hero::before {
-        background: linear-gradient(
-          to top,
-          #05080c     0%,
-          #05080c     8%,
-          rgba(5,8,12,.95) 18%,
-          rgba(5,8,12,.82) 30%,
-          rgba(5,8,12,.55) 50%,
-          rgba(5,8,12,.2)  70%,
-          rgba(5,8,12,0)   100%
-        );
-        top: auto;
-        height: 80%;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
+      /* Esconde o gradiente desktop (esquerda→direita) */
+      .brindes-hero::before { display: none; }
+      /* Ativa o gradiente mobile (baixo→cima) dentro da imagem */
+      .brindes-hero-bg::after { display: block; }
       /* Conteúdo de texto abaixo da imagem, em fundo preto */
       .brindes-hero-content {
         position: relative;
