@@ -193,12 +193,23 @@
       .brindes-hero-bg img {
         object-position: 65% center;
       }
-      /* Gradiente só no fundo da imagem, para preto */
+      /* Gradiente suave da imagem para preto — cobre os 80% inferiores da foto */
       .brindes-hero::before {
-        background: linear-gradient(to top, #05080c 0%, rgba(5,8,12,.6) 40%, rgba(5,8,12,0) 100%);
+        background: linear-gradient(
+          to top,
+          #05080c     0%,
+          #05080c     8%,
+          rgba(5,8,12,.95) 18%,
+          rgba(5,8,12,.82) 30%,
+          rgba(5,8,12,.55) 50%,
+          rgba(5,8,12,.2)  70%,
+          rgba(5,8,12,0)   100%
+        );
         top: auto;
-        height: 60%;
+        height: 80%;
         bottom: 0;
+        left: 0;
+        right: 0;
       }
       /* Conteúdo de texto abaixo da imagem, em fundo preto */
       .brindes-hero-content {
