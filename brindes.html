@@ -173,14 +173,47 @@
     }
 
     @media (max-width: 768px) {
-      .brindes-hero { height: 85vh; max-height: none; align-items: flex-end; }
-      .brindes-hero-bg img { object-position: 70% center; }
-      .brindes-hero::before {
-        background:
-          linear-gradient(to top, rgba(5,8,12,.92) 0%, rgba(5,8,12,.6) 50%, rgba(5,8,12,.2) 100%);
+      /* No mobile: imagem ocupa topo, texto fica abaixo em fundo preto — igual à página principal */
+      .brindes-hero {
+        height: auto;
+        min-height: unset;
+        max-height: none;
+        flex-direction: column;
+        align-items: stretch;
+        background: #05080c;
       }
-      .brindes-hero-inner { padding-left: 1.5rem; padding-right: 1.5rem; max-width: 100%; }
-      .brindes-hero-content { padding-bottom: 3rem; }
+      .brindes-hero-bg {
+        position: relative;
+        width: 100%;
+        height: 52vw;
+        min-height: 220px;
+        max-height: 380px;
+        flex-shrink: 0;
+      }
+      .brindes-hero-bg img {
+        object-position: 65% center;
+      }
+      /* Gradiente só no fundo da imagem, para preto */
+      .brindes-hero::before {
+        background: linear-gradient(to top, #05080c 0%, rgba(5,8,12,.6) 40%, rgba(5,8,12,0) 100%);
+        top: auto;
+        height: 60%;
+        bottom: 0;
+      }
+      /* Conteúdo de texto abaixo da imagem, em fundo preto */
+      .brindes-hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 2rem 1.5rem 3rem;
+        background: #05080c;
+      }
+      .brindes-hero-inner {
+        padding: 0;
+        max-width: 100%;
+      }
+      .brindes-hero-title {
+        font-size: clamp(2.6rem, 11vw, 3.8rem);
+      }
       .brindes-hero-badge { display: none; }
     }
 
