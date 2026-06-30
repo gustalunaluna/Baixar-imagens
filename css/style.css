@@ -11,3 +11,4 @@
 .product-card:hover .product-img img{transform:scale(1.06)}
 .lead-form-group input:valid:not(:placeholder-shown),.lead-form-group select:valid:not([value=""]),.lead-form-group textarea:valid:not(:placeholder-shown){border-color:rgba(37,211,102,.6)}
 .lead-form-group input:invalid:not(:placeholder-shown):not(:focus),.lead-form-group textarea:invalid:not(:placeholder-shown):not(:focus){border-color:rgba(220,38,38,.5)}
+.footer-logo{display:inline-block;margin-bottom:var(--space-md);font-family:"Barlow Condensed",sans-serif;font-size:1.4rem;font-weight:700;color:#fff;letter-spacing:.02em;text-decoration:none}.footer-logo span{color:var(--color-accent)}.footer-tagline{font-size:.875rem;line-height:1.8;margin-bottom:var(--space-md);color:rgba(255,255,255,.6)}
