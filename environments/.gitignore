@@ -1,8 +1,0 @@
-# Nunca commitar arquivos de ambiente com credenciais reais
-staging/.env.staging.local
-producao/.env.producao
-*.env.local
-
-# Build artifacts
-producao/.next/
-staging/.next/
