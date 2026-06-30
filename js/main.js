@@ -23,12 +23,14 @@
  hamburger.classList.toggle('active');
  nav.classList.toggle('active');
  document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+ hamburger.setAttribute('aria-expanded', nav.classList.contains('active') ? 'true' : 'false');
  });
  navLinks.forEach(function (link) {
  link.addEventListener('click', function () {
  hamburger.classList.remove('active');
  nav.classList.remove('active');
  document.body.style.overflow = '';
+ hamburger.setAttribute('aria-expanded', 'false');
  });
  });
  document.addEventListener('click', function (e) {
@@ -38,6 +40,7 @@
  hamburger.classList.remove('active');
  nav.classList.remove('active');
  document.body.style.overflow = '';
+ hamburger.setAttribute('aria-expanded', 'false');
  }
  });
  }
