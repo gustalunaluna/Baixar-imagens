@@ -39,6 +39,7 @@
   <meta property="og:url" content="https://lsconfex.com.br/brindes.html">
   <meta property="og:title" content="Brindes Corporativos Personalizados | LS Confecções">
   <meta property="og:description" content="Ecobags, mochilas e pochetes personalizadas com a identidade da sua marca. Fabricante B2B em São Paulo. A partir de 20 unidades.">
+  <meta property="og:image:alt" content="LS Confex — Brindes corporativos personalizados">
   <meta property="og:image" content="https://lsconfex.com.br/imagens/og-image.jpg">
 
   <!-- Twitter Card -->
@@ -80,7 +81,6 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
@@ -517,35 +517,25 @@
       .brinde-card-body p { font-size: .75rem; }
       .brinde-card-body .btn { font-size: .6rem; padding: .4rem .5rem; width: 100%; justify-content: center; }
     }
+  
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}.skip-link:focus{position:fixed;top:0;left:0;width:auto;height:auto;padding:12px 24px;background:#D4FF6A;color:#0D1B2A;font-weight:700;font-size:16px;z-index:99999;text-decoration:none;outline:none}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '891991662958124');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+
+  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
   <!-- ══════════════════════════ HEADER ══════════════════════════ -->
   <header class="header" id="header">
     <div class="container header-inner">
-      <a href="index.html" class="logo">LS <span>Confecções</span></a>
+      <a href="index.html" class="logo"><span>LS</span> Confecções</a>
       <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <nav class="nav" id="nav">
+      <nav class="nav" id="nav" aria-label="Navegação principal">
         <ul class="nav-links">
           <li><a href="index.html">Início</a></li>
           <li><a href="produtos.html">Produtos</a></li>
@@ -561,7 +551,7 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
   </header>
 
   <!-- ══════════════════════════ HERO ══════════════════════════ -->
-  <section class="brindes-hero">
+  <section id="main-content" class="brindes-hero">
     <div class="brindes-hero-bg">
       <picture>
         <img src="imagens/aleda%20hero.png" alt="Brindes corporativos personalizados entregues em evento" width="1584" height="672" fetchpriority="high">
@@ -739,7 +729,7 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="index.html" class="logo footer-logo">LS <span>Confecções</span></a>
+        <a href="index.html" class="logo footer-logo"><span>LS</span> Confecções</a>
         <p>Fabricação B2B de bolsas, mochilas e acessórios personalizados para marcas e eventos. São Paulo, SP.</p>
       </div>
       <div class="footer-nav">
@@ -779,11 +769,29 @@ src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
     </div>
     <div class="footer-bottom">
       <div class="container">
-        <p>© 2025 LS Confecções. Todos os direitos reservados.</p>
+        <p>© <span id="footer-year">2025</span> LS Confecções. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js"></script>
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '891991662958124');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=891991662958124&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+  <script>document.getElementById("footer-year")&&(document.getElementById("footer-year").textContent=new Date().getFullYear());</script>
 </body>
 </html>
