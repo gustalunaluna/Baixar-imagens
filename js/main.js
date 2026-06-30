@@ -157,24 +157,28 @@
   var lightbox      = document.getElementById('lightbox');
   var lightboxImg   = document.getElementById('lightbox-img');
   var lightboxClose = document.getElementById('lightbox-close');
+  var lightboxTrigger = null;
 
-  function openLightbox (src, alt) {
+  function openLightbox (src, alt, trigger) {
     lightboxImg.src = src;
     lightboxImg.alt = alt || '';
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
+    lightboxTrigger = trigger || null;
+    if (lightboxClose) lightboxClose.focus();
   }
 
   function closeLightbox () {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    if (lightboxTrigger) { lightboxTrigger.focus(); lightboxTrigger = null; }
   }
 
   if (lightbox) {
     document.querySelectorAll('.catalog-img-wrap img').forEach(function (img) {
       img.addEventListener('click', function () {
         if (this.style.display === 'none') return;
-        openLightbox(this.src, this.alt);
+        openLightbox(this.src, this.alt, this);
       });
     });
 

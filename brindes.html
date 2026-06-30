@@ -86,7 +86,8 @@
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap"></noscript>
 
   <link rel="stylesheet" href="css/style.css">
 
@@ -502,9 +503,14 @@
     /* Linha conectora dos steps — atrás dos números */
     .como-funciona-brindes .steps-grid { position: relative; }
     .como-funciona-brindes .steps-grid::before {
-      top: 26px; /* centraliza na altura do quadrado de 52px */
+      content: '';
+      position: absolute;
+      top: 26px;
+      left: calc(12.5% + 26px);
+      right: calc(12.5% + 26px);
+      height: 2px;
       z-index: 0;
-      background: #ccc;
+      background: #333;
     }
 
     /* ── Responsive ── */
@@ -526,8 +532,6 @@
     .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}.skip-link:focus{position:fixed;top:0;left:0;width:auto;height:auto;padding:12px 24px;background:#D4FF6A;color:#0D1B2A;font-weight:700;font-size:16px;z-index:99999;text-decoration:none;outline:none}
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
-
-  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
