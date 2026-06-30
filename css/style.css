@@ -4,3 +4,10 @@
 @keyframes pulse-green{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.4)}50%{box-shadow:0 4px 36px rgba(37,211,102,.7),0 0 0 8px rgba(37,211,102,.1)}}
 .hero-secondary-link{color:rgba(255,255,255,.7);font-family:'Barlow Condensed',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color 150ms ease}
 .hero-secondary-link:hover{color:#e8ff00}
+
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.btn:active{transform:translateY(0) scale(0.97)!important;box-shadow:0 2px 8px rgba(0,0,0,.10)!important;transition-duration:80ms!important}
+.product-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.14)}
+.product-card:hover .product-img img{transform:scale(1.06)}
+.lead-form-group input:valid:not(:placeholder-shown),.lead-form-group select:valid:not([value=""]),.lead-form-group textarea:valid:not(:placeholder-shown){border-color:rgba(37,211,102,.6)}
+.lead-form-group input:invalid:not(:placeholder-shown):not(:focus),.lead-form-group textarea:invalid:not(:placeholder-shown):not(:focus){border-color:rgba(220,38,38,.5)}
