@@ -752,21 +752,18 @@
       var nome      = form.nome.value.trim();
       var whatsapp  = form.whatsapp.value.trim();
       var interesse = form.interesse.value;
+      var digits    = whatsapp.replace(/\D/g, '');
 
-      if (!nome) { showError('Por favor, informe seu nome ou o nome da sua marca.'); return; }
+      var invalid = [];
+      if (!nome) invalid.push(form.nome);
+      if (!whatsapp || digits.length < 10 || digits.length > 11 || (digits.length === 11 && digits[2] !== '9')) invalid.push(form.whatsapp);
+      if (!interesse) invalid.push(form.interesse);
 
-      if (!whatsapp) { showError('Por favor, informe seu WhatsApp.'); return; }
-      var digits = whatsapp.replace(/\D/g, '');
-      if (digits.length < 10 || digits.length > 11) {
-        showError('Número de WhatsApp inválido. Informe DDD + número (ex: 11 99999-9999).');
+      if (invalid.length) {
+        invalid.forEach(markInvalid);
+        invalid[0].focus();
         return;
       }
-      if (digits.length === 11 && digits[2] !== '9') {
-        showError('Número de celular inválido. O dígito após o DDD deve ser 9.');
-        return;
-      }
-
-      if (!interesse) { showError('Selecione um produto de interesse para continuarmos.'); return; }
 
       btn.disabled = true;
       btnText.textContent = 'Enviando…';
@@ -796,6 +793,20 @@
         btnIcon.style.display = '';
         btnText.textContent = 'Solicitar Orçamento';
       });
+    });
+
+    function markInvalid(field) {
+      if (!field) return;
+      field.classList.remove('field-invalid');
+      void field.offsetWidth;
+      field.classList.add('field-invalid');
+    }
+
+    [form.nome, form.whatsapp, form.interesse].forEach(function (f) {
+      if (!f) return;
+      var clear = function () { f.classList.remove('field-invalid'); };
+      f.addEventListener('input', clear);
+      f.addEventListener('change', clear);
     });
 
     function showError(msg) {
