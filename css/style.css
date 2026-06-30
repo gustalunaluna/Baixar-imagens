@@ -2,8 +2,7 @@
    LS Confecções — style.css
    ============================================================ */
 
-/* ── 1. Google Fonts import ─────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap');
+/* ── 1. Google Fonts — carregado via <link> no HTML (não duplicar aqui) ── */
 
 /* ── Header load animation ─────────────────────────────── */
 @keyframes headerSlideDown {

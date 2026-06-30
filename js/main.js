@@ -102,10 +102,17 @@
 
   if (filterBtns.length && catalogCards.length) {
     filterBtns.forEach(function (btn) {
+      btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+    });
+    filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var category = this.dataset.filter;
-        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+        filterBtns.forEach(function (b) {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
         this.classList.add('active');
+        this.setAttribute('aria-pressed', 'true');
         catalogCards.forEach(function (card) {
           var cat = (card.dataset.category || '');
           if (category === 'all' || cat.split(' ').indexOf(category) !== -1) {
@@ -134,7 +141,19 @@
   /* ── 8. onerror fallback already inline in HTML ───────── */
   /* (handled via onerror attribute on each img tag)         */
 
-  /* ── 9. Lightbox ─────────────────────────────────────── */
+  /* ── 9. Rastreamento WhatsApp ────────────────────────── */
+  document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (typeof gtag === 'function') {
+        gtag('event', 'contact_whatsapp', { event_category: 'engagement', event_label: document.title });
+      }
+      if (typeof fbq === 'function') {
+        fbq('track', 'Contact');
+      }
+    });
+  });
+
+  /* ── 10. Lightbox ─────────────────────────────────────── */
   var lightbox      = document.getElementById('lightbox');
   var lightboxImg   = document.getElementById('lightbox-img');
   var lightboxClose = document.getElementById('lightbox-close');
