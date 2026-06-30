@@ -745,11 +745,24 @@
       e.preventDefault();
       errEl.hidden = true;
 
-      var nome     = form.nome.value.trim();
-      var whatsapp = form.whatsapp.value.trim();
+      var nome      = form.nome.value.trim();
+      var whatsapp  = form.whatsapp.value.trim();
+      var interesse = form.interesse.value;
 
-      if (!nome) { showError('Por favor, informe seu nome.'); return; }
+      if (!nome) { showError('Por favor, informe seu nome ou o nome da sua marca.'); return; }
+
       if (!whatsapp) { showError('Por favor, informe seu WhatsApp.'); return; }
+      var digits = whatsapp.replace(/\D/g, '');
+      if (digits.length < 10 || digits.length > 11) {
+        showError('Número de WhatsApp inválido. Informe DDD + número (ex: 11 99999-9999).');
+        return;
+      }
+      if (digits.length === 11 && digits[2] !== '9') {
+        showError('Número de celular inválido. O dígito após o DDD deve ser 9.');
+        return;
+      }
+
+      if (!interesse) { showError('Selecione um produto de interesse para continuarmos.'); return; }
 
       btn.disabled = true;
       btnText.textContent = 'Enviando…';
