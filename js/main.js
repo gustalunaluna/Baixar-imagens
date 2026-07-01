@@ -108,9 +108,12 @@
  }
  const scrollHint = document.querySelector('.scroll-hint');
  if (scrollHint) {
- window.addEventListener('scroll', function () {
+ var updateScrollHint = function () {
  scrollHint.classList.toggle('hidden', window.scrollY > 80);
- }, { passive: true });
+ };
+ updateScrollHint();
+ window.addEventListener('scroll', updateScrollHint, { passive: true });
+ window.addEventListener('pageshow', updateScrollHint);
  }
  document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
  link.addEventListener('click', function () {
