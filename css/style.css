@@ -50,3 +50,31 @@
 .blog-back a{color:#0a0a0a;font-weight:600;text-decoration:none}
 .blog-back a:hover{text-decoration:underline;text-decoration-color:#e8ff00;text-decoration-thickness:3px}
 @media(max-width:640px){.blog-list-section{padding-block:2.5rem}.blog-grid{gap:1.4rem}.blog-cta{padding:1.6rem 1.2rem}.blog-content p,.blog-content li{font-size:.95rem}}
+
+/* ── Landing pages SEO ── */
+.lp-article{padding-block:calc(var(--header-h,80px) + 2.2rem) 3.5rem;background:#fff}
+.lp-container{max-width:820px}
+.lp-article h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.05;text-transform:uppercase;margin:1rem 0 1.4rem}
+.lp-hero-img{margin:0 0 2rem}
+.lp-hero-img img{width:100%;height:auto;display:block;border-radius:4px}
+.lp-cta{background:#0a0a0a;color:#fff;padding:2.2rem;margin:2.5rem 0 1.5rem;text-align:center}
+.lp-cta h2{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;text-transform:uppercase;margin-bottom:.6rem;line-height:1.1;color:#fff}
+.lp-cta p{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.6;max-width:56ch;margin:0 auto 1.4rem}
+.lp-faq{margin:2.5rem 0}
+.lp-faq>h2{font-family:'Barlow Condensed',sans-serif;font-size:1.7rem;font-weight:700;text-transform:uppercase;margin:0 0 1.2rem}
+.lp-faq-item{border-top:1px solid #eee;padding:1.1rem 0}
+.lp-faq-item h3{font-size:1.02rem;font-weight:600;margin:0 0 .4rem;color:#0a0a0a}
+.lp-faq-item p{font-size:.95rem;line-height:1.65;color:#444;margin:0}
+.lp-related{margin:2.5rem 0 0;border-top:2px solid #e8ff00;padding-top:1.5rem}
+.lp-related h2{font-family:'Barlow Condensed',sans-serif;font-size:1.3rem;font-weight:700;text-transform:uppercase;margin:0 0 .8rem}
+.lp-related ul{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem;padding:0;margin:0}
+.lp-related li a{display:inline-block;background:#f4f4f4;color:#0a0a0a;font-size:.82rem;font-weight:600;padding:.5rem .9rem;border-radius:2px;text-decoration:none;transition:background 200ms}
+.lp-related li a:hover{background:#e8ff00}
+/* ── Mapa do site ── */
+.mapa-section{padding-block:3rem 4rem;background:#fff}
+.mapa-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2.5rem}
+.mapa-col h2{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;margin:0 0 1rem;padding-bottom:.5rem;border-bottom:2px solid #e8ff00}
+.mapa-col ul{list-style:none;padding:0;margin:0}
+.mapa-col li{margin-bottom:.6rem}
+.mapa-col li a{color:#2a2a2a;text-decoration:none;font-size:.95rem}
+.mapa-col li a:hover{color:#0a0a0a;text-decoration:underline;text-decoration-color:#e8ff00;text-decoration-thickness:2px}
