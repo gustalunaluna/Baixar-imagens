@@ -1,5 +1,7 @@
 # Auditoria Completa do Site — LS Confecções
 
+> ✅ **Atualização (01/07/2026):** Todos os itens de prioridade alta e média listados abaixo foram corrigidos e pushados para `claude/optimistic-gauss-7f5apn`. Ver commit "fix: corrige achados da auditoria (SEO, acessibilidade, performance)". A otimização completa de todas as imagens do site (item de prioridade baixa, ~31MB restantes fora as já tratadas) ainda pode ser feita em uma passada futura se desejado.
+
 Data: 2026-07-01 · Páginas auditadas: `index.html`, `produtos.html`, `brindes.html`
 Metodologia: 6 pilares (adaptado do GSD para HTML/CSS estático) + SEO técnico + WCAG 2.1 AA + performance + testes funcionais.
 
