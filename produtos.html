@@ -132,7 +132,7 @@
     <div class="container">
       <a href="index.html" class="logo logo--icon"><img src="imagens/logo-icon.png" alt="LS Confecções" width="40" height="40"></a>
 
-      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
         <span></span>
         <span></span>
         <span></span>
@@ -151,6 +151,7 @@
     </div>
   </header>
 
+  <main>
   <!-- ══════════════════════════════════════════════════════
        PAGE HERO
   ══════════════════════════════════════════════════════ -->
@@ -171,6 +172,8 @@
   ══════════════════════════════════════════════════════ -->
   <section class="section catalog-section">
     <div class="container">
+
+      <h2 class="sr-only">Catálogo de produtos</h2>
 
       <!-- Filter Bar -->
       <div class="filter-bar" role="group" aria-label="Filtrar por categoria">
@@ -194,7 +197,7 @@
 
         <div class="catalog-product-card fade-up" data-category="tote">
           <div class="catalog-img-wrap">
-            <img src="imagens/tote-rosa.png" alt="Tote Bag Listrada Oversized — LS Confecções" width="400" height="400" onerror="this.onerror=null;this.style.display='none';this.parentElement.querySelector('.catalog-img-placeholder').style.display='flex'">
+            <img src="imagens/tote-rosa.jpg" alt="Tote Bag Listrada Oversized — LS Confecções" width="400" height="400" onerror="this.onerror=null;this.style.display='none';this.parentElement.querySelector('.catalog-img-placeholder').style.display='flex'">
             <div class="catalog-img-placeholder" style="display:none">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             </div>
@@ -1237,6 +1240,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- ══════════════════════════════════════════════════════
        FOOTER

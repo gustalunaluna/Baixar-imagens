@@ -246,7 +246,9 @@
     nextBtn.addEventListener('click', () => { goNext(); resetAuto(); });
 
     /* autoplay */
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function startAuto() {
+      if (prefersReducedMotion) return;
       autoTimer = setInterval(goNext, 5500);
     }
     function resetAuto() {
