@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=720, height=1280" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@500;600&display=swap" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 720px; height: 1280px; overflow: hidden; background: #000; }
+      body { font-family: "Barlow", sans-serif; }
+
+      #bg-video { position: absolute; inset: 0; width: 720px; height: 1280px; object-fit: cover; }
+
+      /* subtle navy vignette so type reads over bright beach footage */
+      #grade {
+        position: absolute; inset: 0;
+        background:
+          linear-gradient(180deg, rgba(13,27,42,.55) 0%, rgba(13,27,42,0) 26%, rgba(13,27,42,0) 55%, rgba(13,27,42,.72) 100%);
+      }
+
+      /* top brand tag */
+      #brandtag {
+        position: absolute; top: 54px; left: 0; right: 0;
+        display: flex; align-items: center; justify-content: center; gap: 14px;
+      }
+      #brandtag img { width: 54px; height: 54px; border-radius: 50%; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
+      #brandtag .name {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 900;
+        font-size: 30px; letter-spacing: .22em; color: #fff; text-transform: uppercase;
+        text-shadow: 0 2px 12px rgba(0,0,0,.45);
+      }
+      #brandtag .name b { color: #e8ff00; font-weight: 900; }
+
+      /* headline block — lower third */
+      #headline {
+        position: absolute; left: 44px; right: 44px; bottom: 420px;
+      }
+      .h-line { overflow: hidden; }
+      .h-line span {
+        display: inline-block;
+        font-family: "Barlow Condensed", sans-serif; font-weight: 900;
+        text-transform: uppercase; line-height: .98; letter-spacing: .01em;
+        font-size: 88px; color: #fff;
+        text-shadow: 0 4px 22px rgba(0,0,0,.4);
+      }
+      .h-line .hl {
+        color: #0d1b2a; background: #e8ff00; padding: 0 16px;
+        box-shadow: 0 8px 30px rgba(232,255,0,.25);
+      }
+
+      /* chips row */
+      #chips { position: absolute; left: 44px; bottom: 348px; display: flex; gap: 12px; }
+      .chip {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+        font-size: 26px; letter-spacing: .14em; text-transform: uppercase;
+        color: #fff; background: rgba(13,27,42,.82); border: 1px solid rgba(232,255,0,.55);
+        padding: 10px 18px; border-radius: 999px;
+      }
+
+      /* offer bar */
+      #offer {
+        position: absolute; left: 44px; right: 44px; bottom: 208px;
+        background: #0d1b2a; border-left: 8px solid #e8ff00;
+        padding: 22px 26px; border-radius: 10px;
+        box-shadow: 0 14px 40px rgba(0,0,0,.45);
+      }
+      #offer .big {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 900;
+        font-size: 42px; color: #fff; text-transform: uppercase; line-height: 1.04;
+      }
+      #offer .big b { color: #e8ff00; }
+      #offer .sub { font-size: 22px; color: rgba(255,255,255,.85); margin-top: 6px; font-weight: 500; }
+
+      /* CTA */
+      #cta {
+        position: absolute; left: 44px; right: 44px; bottom: 100px;
+        display: flex; align-items: center; justify-content: center;
+        background: #e8ff00; color: #0d1b2a; border-radius: 12px;
+        padding: 20px 0;
+        font-family: "Barlow Condensed", sans-serif; font-weight: 900;
+        font-size: 38px; letter-spacing: .1em; text-transform: uppercase;
+        box-shadow: 0 12px 34px rgba(232,255,0,.3);
+      }
+
+      /* outro lockup */
+      #outro {
+        position: absolute; inset: 0; background: #0d1b2a;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px;
+      }
+      #outro img { width: 190px; height: 190px; border-radius: 50%; }
+      #outro .name {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 900;
+        font-size: 62px; letter-spacing: .16em; color: #fff; text-transform: uppercase;
+      }
+      #outro .name b { color: #e8ff00; }
+      #outro .site {
+        font-family: "Barlow Condensed", sans-serif; font-weight: 700;
+        font-size: 34px; letter-spacing: .2em; color: #e8ff00;
+      }
+      #outro .rule { width: 120px; height: 6px; background: #e8ff00; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="11.5"
+      data-width="720"
+      data-height="1280"
+    >
+      <video
+        id="bg-video"
+        class="clip"
+        src="assets/bg-video.mp4"
+        data-start="0"
+        data-duration="11.5"
+        data-track-index="0"
+        muted
+        playsinline
+      ></video>
+
+      <audio
+        id="bg-audio"
+        src="assets/bg-video.mov"
+        data-start="0"
+        data-duration="11.5"
+        data-track-index="10"
+        data-volume="0.5"
+      ></audio>
+
+      <div id="grade" class="clip" data-start="0" data-duration="11.5" data-track-index="1"></div>
+
+      <div id="brandtag" class="clip" data-start="0.2" data-duration="9.6" data-track-index="2">
+        <img src="assets/logo-icon.svg" alt="" />
+        <div class="name">LS <b>CONFECÇÕES</b></div>
+      </div>
+
+      <div id="headline" class="clip" data-start="0.9" data-duration="8.9" data-track-index="3">
+        <div class="h-line"><span id="hl1">Sua marca</span></div>
+        <div class="h-line"><span id="hl2" class="hl">no verão</span></div>
+      </div>
+
+      <div id="chips" class="clip" data-start="2.0" data-duration="7.8" data-track-index="4">
+        <div class="chip c1">Bolsas</div>
+        <div class="chip c2">Side bags</div>
+        <div class="chip c3">Necessaires</div>
+      </div>
+
+      <div id="offer" class="clip" data-start="3.4" data-duration="6.4" data-track-index="5">
+        <div class="big">Fabricamos do zero <b>com a sua marca</b></div>
+        <div class="sub">Peça piloto aprovada antes do lote · a partir de 20 peças</div>
+      </div>
+
+      <div id="cta" class="clip" data-start="5.0" data-duration="4.8" data-track-index="6">
+        Chama no WhatsApp
+      </div>
+
+      <div id="outro" class="clip" data-start="9.8" data-duration="1.7" data-track-index="7">
+        <img src="assets/logo-icon-outro.svg" alt="" />
+        <div class="name">LS <b>CONFECÇÕES</b></div>
+        <div class="rule"></div>
+        <div class="site">lsconfex.com.br</div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // brand tag drops in
+      tl.from("#brandtag", { y: -80, opacity: 0, duration: 0.6, ease: "power3.out" }, 0.2);
+
+      // headline lines slide up from their masks
+      tl.from("#hl1", { yPercent: 110, duration: 0.55, ease: "power4.out" }, 0.9);
+      tl.from("#hl2", { yPercent: 110, duration: 0.55, ease: "power4.out" }, 1.1);
+
+      // chips pop in with stagger
+      tl.from(".chip", { y: 26, opacity: 0, scale: 0.9, duration: 0.4, ease: "back.out(2)", stagger: 0.12 }, 2.0);
+
+      // offer bar slides in from left
+      tl.from("#offer", { x: -60, opacity: 0, duration: 0.55, ease: "power3.out" }, 3.4);
+
+      // CTA pops with a bounce, then breathes
+      tl.from("#cta", { scale: 0.7, opacity: 0, duration: 0.5, ease: "back.out(1.8)" }, 5.0);
+      tl.to("#cta", { scale: 1.04, duration: 0.5, ease: "sine.inOut", repeat: 5, yoyo: true }, 5.6);
+
+      // overlays exit before outro
+      tl.to(["#headline", "#chips", "#offer", "#cta", "#brandtag"], {
+        opacity: 0, y: -30, duration: 0.4, ease: "power2.in", stagger: 0.05
+      }, 9.3);
+
+      // outro: navy card wipes up, lockup settles
+      tl.from("#outro", { yPercent: 100, duration: 0.5, ease: "power3.inOut" }, 9.8);
+      tl.from("#outro img", { scale: 0.6, opacity: 0, duration: 0.45, ease: "back.out(1.6)" }, 10.15);
+      tl.from("#outro .name", { y: 24, opacity: 0, duration: 0.4, ease: "power3.out" }, 10.3);
+      tl.from("#outro .rule", { scaleX: 0, duration: 0.35, ease: "power2.out" }, 10.45);
+      tl.from("#outro .site", { y: 18, opacity: 0, duration: 0.4, ease: "power3.out" }, 10.55);
+
+      tl.seek(0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

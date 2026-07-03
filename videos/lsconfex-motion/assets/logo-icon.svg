@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <!-- Background -->
+  <rect width="240" height="240" fill="#0D1B2A"/>
+  <!-- White badge circle -->
+  <circle cx="120" cy="120" r="108" fill="#FFFFFF"/>
+  <!-- Outer ring -->
+  <circle cx="120" cy="120" r="108" fill="none" stroke="#0D1B2A" stroke-width="8"/>
+  <!-- Inner ring decoration -->
+  <circle cx="120" cy="120" r="98" fill="none" stroke="#0D1B2A" stroke-width="2"/>
+
+  <!-- L - vertical bar -->
+  <rect x="38" y="50" width="28" height="112" rx="2" fill="#0D1B2A"/>
+  <!-- L - horizontal bar -->
+  <rect x="38" y="140" width="82" height="24" rx="2" fill="#0D1B2A"/>
+
+  <!-- Fox head silhouette -->
+  <!-- Ear left -->
+  <polygon points="80,55 90,28 104,52" fill="#0D1B2A"/>
+  <!-- Ear right -->
+  <polygon points="112,42 128,18 140,42" fill="#0D1B2A"/>
+  <!-- Main head mass -->
+  <ellipse cx="120" cy="75" rx="42" ry="34" fill="#0D1B2A"/>
+  <!-- Snout/muzzle area -->
+  <ellipse cx="148" cy="90" rx="26" ry="20" fill="#0D1B2A"/>
+  <!-- Neck into body connecting to S -->
+  <path d="M96,100 L96,125 Q108,130 120,128 L142,118 Q162,110 168,92 Q172,78 162,66 Q150,52 130,48 Q110,44 96,56 Z" fill="#0D1B2A"/>
+
+  <!-- Eye - white sclera -->
+  <ellipse cx="150" cy="70" rx="12" ry="11" fill="#FFFFFF"/>
+  <!-- Eye - pupil -->
+  <circle cx="152" cy="70" r="5" fill="#0D1B2A"/>
+  <!-- Eye shine -->
+  <circle cx="155" cy="67" r="2" fill="#FFFFFF"/>
+
+  <!-- S letterform - using fox tail/body shape -->
+  <path d="M138,122 C162,114 176,130 164,146 C152,162 124,158 122,172 C120,184 140,192 158,187"
+        fill="none" stroke="#0D1B2A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
