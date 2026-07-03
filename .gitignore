@@ -9,3 +9,4 @@
 # Node (não é mais usado neste repositório)
 node_modules/
 .claude/
+videos/

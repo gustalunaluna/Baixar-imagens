@@ -111,5 +111,65 @@ Criada em `.xlsx` (Google Sheets) com produtos × material × faixas de quantida
 - Windsor.ai (MCP) desconecta e reconecta com frequência entre turnos — jamais assumir indisponibilidade permanente, sempre checar de novo.
 - As ferramentas de Google Drive (`mcp__Google_Drive__*`) não têm um "update file" — só `create_file` (novo arquivo). Pra "editar" uma planilha do usuário já existente, ou peço pra ele fazer a ação nativa do Sheets (filtro, ordenação — 2 cliques, mais simples e seguro) ou gero uma cópia nova com as melhorias, nunca sobrescrevo em silêncio.
 
-## Estado atual
+## Estado atual (sessão 2)
 Tudo commitado e pushado para `claude/optimistic-gauss-7f5apn` (últimos commits: padronização de domínio pra www, criação das páginas de captura + mapa do site, renomeação de imagens, ajustes de menu). Pendências do lado do usuário: enviar sitemap no Search Console, solicitar indexação das páginas novas, confirmar valor correto da "Mochila Basica" na planilha, decidir se aprova o teste de post turbinado no Instagram.
+
+---
+
+# Sessão 2026-07-03 — Vendas WhatsApp na prática, Ads pós-aumento, prospecção B2B e conteúdo
+
+Sessão focada em operação comercial: condução de conversas reais no WhatsApp, análise dos anúncios após aumento de orçamento, prospecção de marcas de streetwear, análise de SEO/indexação e produção de um motion graphic.
+
+## 1. Playbook de WhatsApp v2 (entregue como PLAYBOOK-WHATSAPP-LS-v2.txt)
+Reestruturado em **Início → Meio → Fim** com variações por cenário. Adições novas desta sessão:
+- **Regra de ouro nº 6**: primeira mensagem curta (máx. 2 linhas + 1 pergunta) — a saudação-bloco antiga parecia bot e espantava leads (relato do usuário: "muitos ignoraram"). 5 variações de abertura humanizada criadas.
+- **Cliente manda só foto sem texto** (caso real: 2 mochilas) → acolhe + confirma que produz + 1 pergunta de segmentação.
+- **Kit de 12 mensagens atípicas** + molde universal (acolhe → apresenta → 1 pergunta).
+- **Cadência de resgate** pra lead que ignora a saudação: mesmo dia / D+1 / D+3, máx. 3 toques.
+- **Produto nunca produzido**: jamais dizer "nunca fizemos" — enquadrar como "fabricação sob medida" + pedir referência/quantidade.
+- **Recomendação de quantidade**: no 1º pedido recomendar o MÍNIMO (20) — fechar > ticket; puxar volume só quando o cliente sinaliza (evento, loja) ou na recompra. Script do 1º drop com 2 produtos (20+20).
+- **Preço lisa × personalizada lado a lado** (caso real do lead Lucas) — ancoragem vende o upgrade sozinha.
+- **Pilotagem paga** (confirmado pelo usuário: piloto é cobrado) → enquadrar como investimento/crédito no lote.
+- **Saídas educadas**: "só queria saber os preços" e "achei bom mas sem condições agora" → acolher, porta aberta, sem desconto.
+- **Regra das 3 tentativas**: parou de insistir no virtual após 3 ofertas (decisão correta do usuário); encerramentos com convite permanente + reativação em 30-60 dias com foto de produção.
+- **Piloto → lote**: nunca entregar piloto sem data de decisão combinada.
+
+## 2. Meta Ads — análise pós-aumento de orçamento (dados reais, via print do Gerenciador)
+- Campanha principal ("mensagens 21/06"), período Máximo: **49 conversas, R$ 2,78/conversa** (melhorou vs R$ 2,92), R$ 136 gastos, orçamento R$ 20/dia, CPC R$ 1,55, 88 cliques → 49 conversas (56% de conversão clique→conversa, excelente). Bônus: +29 seguidores IG, 176 engajamentos.
+- **Funil real medido**: das 49 conversas, **6 viraram pilotos PAGOS** (12,2%) com produção potencial de 210+ peças (lotes de 20-60). Custo por cliente pagante: **R$ 22,70**. O anúncio já se paga na etapa do piloto.
+- Recomendação: escalar gradual (+20% a cada 3-4 dias, R$ 20→24/dia), teto de custo/conversa ~R$ 3,50; gargalo agora é fechar piloto→lote e capacidade de produção, não o anúncio.
+- Orçamento mensal recomendado: **R$ 600-900/mês** no estágio atual; R$ 1.500+ só depois de medir taxa de fechamento.
+- Métricas semanais a anotar: conversas / respostas à saudação / orçamentos / pilotos pagos / lotes / ticket.
+
+## 3. Prospecção B2B — marcas de streetwear (planilha prospeccao-streetwear-br.xlsx)
+- Estratégia de cold email definida: achar decisor (fundador/head de produto), Hunter.io pra padrão de e-mail, e-mail curto pedindo redirecionamento em canais genéricos, follow-up D+4/D+10, terça-quinta de manhã, sem anexo no 1º contato. O **virtual com a logo da marca aplicada** é a arma do 2º e-mail.
+- Planilha com 20 marcas entregue (2 abas: prospecção + pipeline). Decisores CONFIRMADOS: Piet (Pedro Andrade), Class (Eric Cesar/Rafaela Sayuri), Pace (Felipe Matayoshi), BAW (Bruno Karra; grupo Azzas/Arezzo), ÖUS (Rafael/Bruno Narciso). Demais marcados "verificar no LinkedIn".
+- E-mails públicos encontrados: comercial@ous.com.br 🎯, atacado@bawclothing.com.br, contato@pacecompany.com.br, contact@highcompanybr.com, atendimento@sufgang.com.br, atendimento@chronic420.com.br, sac@thugnine.com.br, online@blazesupply.com.br. Piet/Class/Approve só form/WhatsApp.
+- Melhores alvos: 1º ÖUS (não tem bags + canal comercial), 2º Chronic (cultura de atacado), 3º Pace (acessórios é o core), 4º BAW.
+
+## 4. SEO / indexação no Google
+- On-page auditado localmente: **saudável** (20 URLs no sitemap, titles/descriptions/canonicals www corretos, zero noindex, robots.txt ok).
+- **Problema**: site não aparece nas buscas reais — nem busca de marca nem comercial. Concorrente **LS Bolsas (lsbolsas.com.br)**, nome quase idêntico, domina "LS + bolsas" (risco de confusão de marca).
+- Diagnóstico provável: sitemap nunca enviado no Search Console (pendência antiga do usuário) + site novo sem backlinks.
+- Ações passadas ao usuário: Search Console (enviar sitemap + solicitar indexação das principais), criar **Google Business Profile** (impacto rápido pra B2B local), diretórios B2B, reforçar marca "LS Confecções/lsconfex".
+- Semrush apareceu como MCP mas o plano do usuário não inclui acesso (https://www.semrush.com/mcp-access).
+
+## 5. Motion graphic LS Confex (videos/lsconfex-motion/)
+- Criado com HyperFrames a partir de vídeo enviado pelo usuário (praia/moda, 720×1280, 11,6s, origem Pinterest). Render final: `videos/lsconfex-motion/renders/video.mp4` (11,5s, Reels/Stories).
+- Beats: brand tag topo → headline "SUA MARCA / NO VERÃO" (lime) → chips (Bolsas/Side bags/Necessaires) → barra de oferta (piloto + 20 peças) → CTA WhatsApp pulsando → outro navy com logo + site.
+- Aviso dado: footage de terceiro (Pinterest) — ok pra orgânico, evitar em anúncio pago; template pronto pra receber footage real da fábrica.
+- Legendas criadas: versões de venda leve e versões de **autoridade/bastidor** (intenção final do usuário: mostrar produção, não vender).
+
+## 6. Fatos novos do negócio (importantes pro contexto)
+- **A pilotagem é COBRADA** — o funil monetiza na 2ª etapa; 6 pilotos pagos em andamento (40+50+40+60+20 peças + 1 sem qtd definida).
+- Preços reais citados: side bag ripstop R$ 65 (sem bolso) / R$ 80 (com bolsos); pochete R$ 30,50 (lead do 1º drop, ticket ~R$ 2.210).
+- O usuário atende leads em tempo real usando o playbook e reporta resultados (base pro v2).
+- WhatsApp: sem integração direta possível/recomendada — fluxo definido: prints pra dúvidas rápidas + export .txt da conversa pra auditoria completa.
+
+## Notas técnicas desta sessão
+- MCPs conectam/desconectam o tempo todo na sessão (Windsor nunca apareceu; Semrush sem plano MCP; Supermetrics conectado mas com 0 fontes autenticadas — link de login do Facebook Ads foi passado ao usuário). Sempre re-verificar via ToolSearch antes de assumir indisponibilidade.
+- Acesso direto a lsconfex.com.br é bloqueado pela política de rede do sandbox (403 no proxy) — verificação de site ao vivo só via WebSearch/WebFetch (que também pode falhar) ou dados do usuário.
+- HyperFrames: contrato de composição (clips + data-*, timeline GSAP pausada em window.__timelines, mídia como filho direto do root, ids únicos p/ media). Projeto em videos/lsconfex-motion, render via `npx hyperframes render`.
+
+## Estado atual
+Arquivos entregues ao usuário (fora do repo): PLAYBOOK-WHATSAPP-LS-v2.txt, prospeccao-streetwear-br.xlsx, video.mp4 do motion. Pendências do usuário: Search Console + Google Business Profile (SEO zerado sem isso), conectar Facebook Ads no Supermetrics (link já enviado) pra análises futuras, escalar anúncio pra R$ 24/dia se quiser, acompanhar os 6 pilotos até o lote, disparar os primeiros cold emails (começar por ÖUS).
