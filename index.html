@@ -682,15 +682,40 @@
   </section>
 
   <!-- CTA / CONTATO -->
+  <style>
+  /* Redesign da área de orçamento (layout site-teste, cores originais) */
+  #contato.cta-section{background:#0a0a0a;padding-block:6rem}
+  #contato .cta-redesign{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;max-width:1100px;margin:0 auto}
+  #contato .cta-left h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:.98;font-size:clamp(2.2rem,4.6vw,3.4rem);color:#fff;margin:0}
+  #contato .cta-left .lead{color:rgba(255,255,255,.72);font-size:1.1rem;margin:1.1rem 0 1.6rem;max-width:40ch}
+  #contato .cta-left .lead strong{color:#e8ff00}
+  #contato .cta-eyebrow{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.8rem;color:#e8ff00;padding-bottom:.35rem;border-bottom:2px solid #e8ff00;margin-bottom:1.2rem}
+  #contato .cta-list{list-style:none;display:grid;gap:.75rem;padding:0;margin:0}
+  #contato .cta-list li{display:flex;gap:.7rem;align-items:flex-start;color:rgba(255,255,255,.9);font-size:1rem}
+  #contato .cta-list li svg{flex:0 0 auto;color:#e8ff00;margin-top:.2rem}
+  #contato .lead-card{background:#141414;border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:2rem;max-width:none;margin:0}
+  #contato .lead-card .form-head{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;text-transform:uppercase;color:#fff;margin:0 0 .2rem}
+  #contato .lead-card .form-sub{color:rgba(255,255,255,.5);font-size:.92rem;margin-bottom:1.4rem}
+  @media(max-width:880px){#contato .cta-redesign{grid-template-columns:1fr;gap:2.2rem}#contato.cta-section{padding-block:4rem}}
+  </style>
   <section id="contato" class="cta-section">
     <div class="container">
-      <div class="lead-header">
-        <span class="lead-eyebrow">Orçamento Gratuito</span>
-        <h2 class="lead-title">Pronto para criar<br>sua linha exclusiva?</h2>
-        <p class="lead-desc">Preencha o formulário e entraremos em contato em até <strong>24h</strong>. Mínimo de <strong>20 unidades</strong> por pedido.</p>
-      </div>
+      <div class="cta-redesign">
 
-      <div class="lead-card">
+        <div class="cta-left">
+          <span class="cta-eyebrow">Orçamento Gratuito</span>
+          <h2>Pronto para criar<br>sua linha exclusiva?</h2>
+          <p class="lead">Preencha e retornamos em até <strong>24h</strong>. Ou chama direto no WhatsApp.</p>
+          <ul class="cta-list">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Pedido a partir de 20 peças por modelo</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Peça-piloto aprovada antes de rodar o lote</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fabricação nacional · entrega para todo o Brasil</li>
+          </ul>
+        </div>
+
+        <div class="lead-card">
+          <h3 class="form-head">Solicitar orçamento</h3>
+          <p class="form-sub">Resposta em até 24h úteis.</p>
           <form id="leadForm" class="lead-form" novalidate>
             <input type="hidden" name="_subject" value="Novo orçamento — LS Confecções">
             <input type="hidden" name="_template" value="table">
@@ -729,6 +754,8 @@
             <p id="leadError" class="lead-form-error" role="alert" aria-live="assertive" hidden></p>
           </form>
         </div>
+
+      </div><!-- .cta-redesign -->
     </div>
   </section>
 
