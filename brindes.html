@@ -190,6 +190,42 @@
   </section>
 
   <!-- ══════════════════════════ MODELOS DISPONÍVEIS ══════════════════════════ -->
+  <style>
+  /* Design v2 aplicado — paleta preto/cinza/branco/lime (sem azul) */
+
+  /* MODELOS: cards mais limpos, arredondados, com hover (zoom + elevação) */
+  .brindes-section .brinde-card{background:#fff;border:1px solid rgba(10,10,10,.1);border-radius:16px;overflow:hidden;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+  .brindes-section .brinde-card:hover{transform:translateY(-7px);box-shadow:0 26px 54px rgba(10,10,10,.12)}
+  .brindes-section .brinde-card-img{border-radius:0}
+  .brindes-section .brinde-card:hover .brinde-card-img img{transform:scale(1.07)}
+  .brindes-section .brinde-card-badge{border-radius:6px;padding:.3rem .65rem;font-size:.68rem;z-index:2;display:inline-flex;align-items:center;gap:4px}
+  .brindes-section .brinde-card-body{padding:1.3rem}
+  .brindes-section .brinde-card-body h3{font-size:1.22rem}
+  .brindes-section .brinde-card-body p{color:#5c6360;font-size:.9rem}
+  /* mantém os botões atuais, só dá respiro */
+  .brindes-section .brinde-card-body .btn{margin-top:1rem;align-self:flex-start}
+
+  /* COMO FUNCIONA: de faixa clara plana para seção preta com cards + selo lime (estilo v2, sem azul) */
+  .como-funciona-brindes{background:#111}
+  .como-funciona-brindes .section-label{color:#fff!important;opacity:.5}
+  .como-funciona-brindes h2{color:#fff!important}
+  .como-funciona-brindes .steps-grid{gap:1.25rem}
+  .como-funciona-brindes .steps-grid::before{display:none}
+  .como-funciona-brindes .step{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:16px;padding:1.75rem 1.5rem;text-align:left;transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s}
+  .como-funciona-brindes .step:hover{transform:translateY(-6px);border-color:rgba(232,255,0,.4)}
+  .como-funciona-brindes .step-num{width:44px;height:44px;border-radius:10px;font-size:1.15rem;margin:0 0 1rem;border:none;background:#e8ff00;color:#0a0a0a;box-shadow:none}
+  .como-funciona-brindes .step h3{color:#fff;text-align:left}
+  .como-funciona-brindes .step p{color:rgba(255,255,255,.6);text-align:left}
+
+  /* CTA FINAL: layout dividido estilo v2 (botões mantidos como estão) */
+  @media(min-width:820px){
+    .brindes-cta .container{display:grid;grid-template-columns:1.2fr .8fr;gap:2.5rem;align-items:center;text-align:left;max-width:1100px}
+    .brindes-cta h2{margin-bottom:0}
+    .brindes-cta p{margin:1rem 0 0}
+    .brindes-cta-actions{flex-direction:column;align-items:stretch}
+    .brindes-cta-actions .btn{width:100%}
+  }
+  </style>
   <section class="brindes-section" id="modelos">
     <div class="container">
       <p class="section-label" style="color:#0a0a0a; opacity:.5;">Modelos Disponíveis</p>
