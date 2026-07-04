@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brindes Corporativos Personalizados | LS Confecções SP</title>
+<meta name="description" content="Brindes corporativos personalizados: ecobags, mochilas, totes e necessaires com a sua marca. Fábrica B2B em SP. A partir de 20 unidades. Amostra aprovada antes do lote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D1B2A;
+  --navy-800:#12263b;
+  --ink:#0a0a0a;
+  --lime:#e8ff00;          /* paleta ORIGINAL do site */
+  --white:#ffffff;
+  --paper:#F7F8F6;
+  --gray-100:#eef0ee;
+  --gray-600:#5c6360;
+  --line:rgba(13,27,42,.10);
+  --wa:#25d366;
+  --r:14px;
+  --maxw:1200px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.cond{font-family:'Barlow Condensed',sans-serif}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* HEADER */
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;transition:.3s;padding:18px 0}
+.hd.scrolled{background:rgba(13,27,42,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.06);padding:11px 0}
+.hd-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.35rem;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.brand b{color:var(--lime)}
+.brand .mark{width:38px;height:38px;border-radius:50%;background:var(--lime);color:var(--navy);display:grid;place-items:center;font-size:1rem;font-weight:900;letter-spacing:0}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{color:rgba(255,255,255,.82);font-size:.9rem;font-weight:500;transition:color .2s;position:relative}
+.nav a:not(.nav-cta):after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--lime);transition:width .25s var(--ease)}
+.nav a:not(.nav-cta):hover{color:#fff}
+.nav a:not(.nav-cta):hover:after{width:100%}
+.nav a.active{color:var(--lime)}
+.nav-cta{background:var(--lime);color:var(--navy)!important;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.92rem;padding:11px 20px;border-radius:9px;transition:transform .2s var(--ease),box-shadow .2s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(232,255,0,.32)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2.5px;background:#fff;border-radius:2px;transition:.3s}
+
+/* BTN */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;padding:15px 28px;border-radius:11px;cursor:pointer;border:2px solid transparent;transition:transform .2s var(--ease),box-shadow .25s,background .2s,color .2s}
+.btn-primary{background:var(--lime);color:var(--navy)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(232,255,0,.3)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}
+.btn-ghost:hover{border-color:var(--lime);color:var(--lime);transform:translateY(-3px)}
+.link-arrow{display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.95rem;color:#fff;border-bottom:2px solid transparent;transition:.2s}
+.link-arrow:hover{color:var(--lime);border-color:var(--lime)}
+
+/* HERO */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;color:#fff;overflow:hidden;padding:130px 0 80px}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,var(--navy) 30%,rgba(13,27,42,.82) 52%,rgba(13,27,42,.35) 100%)}
+.hero .wrap{position:relative;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.82rem;color:var(--lime);margin-bottom:22px}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(232,255,0,.18)}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:.94;font-size:clamp(2.8rem,6.2vw,5.2rem);letter-spacing:-.01em;max-width:15ch}
+.hero h1 .hl{color:var(--lime)}
+.hero-sub{font-size:1.16rem;color:rgba(255,255,255,.85);margin:24px 0 32px;max-width:46ch}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem;color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(232,255,0,.4);padding:9px 15px;border-radius:999px}
+.chip svg{color:var(--lime)}
+
+/* SECTION SHELL */
+.sec{padding:92px 0}
+.sec-head{max-width:640px;margin-bottom:48px}
+.sec-head.center{margin-inline:auto;text-align:center}
+.eyebrow{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.82rem;color:var(--navy);padding-bottom:6px;border-bottom:2px solid var(--lime);margin-bottom:18px}
+.sec h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:1;font-size:clamp(2rem,4.2vw,3.2rem);letter-spacing:-.01em}
+.sec-head p{color:var(--gray-600);font-size:1.06rem;margin-top:15px}
+
+/* DIFERENCIAIS (corrigido: navy com acentos lime, não faixa 100% lime) */
+.diffs-sec{background:var(--navy);color:#fff}
+.diffs-sec .eyebrow{color:#fff}
+.diffs{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.diff{background:var(--navy-800);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:28px 24px;transition:transform .3s var(--ease),border-color .3s}
+.diff:hover{transform:translateY(-6px);border-color:rgba(232,255,0,.4)}
+.diff .ico{width:50px;height:50px;border-radius:12px;background:rgba(232,255,0,.12);color:var(--lime);display:grid;place-items:center;margin-bottom:18px}
+.diff .ico svg{width:24px;height:24px}
+.diff strong{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;text-transform:uppercase;margin-bottom:6px}
+.diff span{color:rgba(255,255,255,.6);font-size:.92rem}
+
+/* MODELOS */
+.models{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.model{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s}
+.model:hover{transform:translateY(-7px);box-shadow:0 26px 54px rgba(13,27,42,.12)}
+.model-img{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--gray-100)}
+.model-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.model:hover .model-img img{transform:scale(1.07)}
+.badge{position:absolute;top:12px;left:12px;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;color:var(--navy);background:var(--lime);padding:5px 11px;border-radius:6px;display:inline-flex;align-items:center;gap:5px}
+.model-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
+.model-body h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.22rem;text-transform:uppercase;margin-bottom:7px}
+.model-body p{color:var(--gray-600);font-size:.9rem;flex:1}
+.model-link{margin-top:14px;display:inline-flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:.85rem;color:var(--navy);border-bottom:2px solid var(--lime);align-self:flex-start;padding-bottom:2px;transition:gap .2s}
+.model:hover .model-link{gap:12px}
+
+/* PROCESSO */
+.proc-sec{background:var(--paper)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.step{position:relative;padding-top:14px}
+.step .num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.4rem;line-height:1;color:transparent;-webkit-text-stroke:2px var(--navy);opacity:.22;margin-bottom:6px;transition:.3s}
+.step:hover .num{opacity:1;-webkit-text-stroke:2px var(--lime);color:var(--lime)}
+.step h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.28rem;text-transform:uppercase;margin-bottom:8px}
+.step p{color:var(--gray-600);font-size:.95rem}
+.step:before{content:"";position:absolute;top:26px;left:58px;right:-11px;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px)}
+.step:last-child:before{display:none}
+
+/* STATS band */
+.stats{background:var(--lime);color:var(--navy)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:52px 24px}
+.stat{text-align:center}
+.stat .n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.4rem,4.6vw,3.4rem);line-height:1}
+.stat .t{font-weight:600;font-size:.95rem;margin-top:4px}
+.stat+.stat{border-left:1px solid rgba(13,27,42,.14)}
+
+/* CTA FINAL (um único CTA principal) */
+.cta{background:var(--ink);color:#fff;text-align:center;padding:96px 0}
+.cta h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:.98;font-size:clamp(2.2rem,4.8vw,3.6rem)}
+.cta h2 span{color:var(--lime)}
+.cta p{color:rgba(255,255,255,.72);font-size:1.12rem;margin:18px auto 30px;max-width:48ch}
+.cta .cta-row{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
+.cta .link-arrow{color:rgba(255,255,255,.75)}
+
+/* FOOTER */
+.ft{background:var(--navy);color:#fff;padding:66px 0 28px}
+.ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-brand .lg{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:.12em;text-transform:uppercase}
+.ft-brand .lg span{color:var(--lime)}
+.ft-brand p{color:rgba(255,255,255,.6);font-size:.92rem;margin:14px 0 18px;max-width:34ch}
+.ft-soc{display:flex;gap:10px}
+.ft-soc a{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;transition:.2s}
+.ft-soc a:hover{background:var(--lime);color:var(--navy);border-color:var(--lime)}
+.ft-col h4{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1rem;margin-bottom:16px;color:var(--lime)}
+.ft-col ul{list-style:none;display:grid;gap:9px}
+.ft-col a{color:rgba(255,255,255,.72);font-size:.92rem}
+.ft-col a:hover{color:#fff}
+.ft-contact li{display:flex;gap:9px;align-items:flex-start;color:rgba(255,255,255,.72);font-size:.9rem;margin-bottom:11px}
+.ft-contact svg{flex:0 0 auto;color:var(--lime);margin-top:2px}
+.ft-bottom{padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:rgba(255,255,255,.45);font-size:.84rem}
+
+/* WHATSAPP FAB */
+.fab{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;z-index:90;box-shadow:0 12px 30px rgba(37,211,102,.42);transition:transform .25s var(--ease)}
+.fab:hover{transform:scale(1.08)}
+.fab:before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--wa);animation:pulse 2.4s infinite;z-index:-1}
+@keyframes pulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.7);opacity:0}100%{opacity:0}}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .diffs,.models{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step:before{display:none}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);gap:32px}
+  .stat+.stat{border-left:0}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .nav{position:fixed;inset:0 0 0 auto;width:min(80vw,320px);background:var(--navy);flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;padding:40px;transform:translateX(100%);transition:transform .35s var(--ease)}
+  .nav.open{transform:none}
+  .nav a{font-size:1.15rem}
+  .burger{display:flex;z-index:101}
+  .burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+}
+@media(max-width:560px){
+  .diffs,.models,.steps{grid-template-columns:1fr}
+  .sec{padding:60px 0}
+  .hero{min-height:auto;padding:120px 0 64px}
+  .ft-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hd" id="hd">
+  <div class="wrap hd-inner">
+    <a href="../index.html" class="brand"><span class="mark">LS</span>LS <b>Confecções</b></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html">Início</a>
+      <a href="../produtos.html">Catálogo</a>
+      <a href="brindes.html" class="active">Brindes</a>
+      <a href="#processo">Como funciona</a>
+      <a href="#cta" class="nav-cta">Orçamento</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"><img src="../imagens/hero-brindes-corporativos-personalizados.jpg" alt="Brindes corporativos personalizados entregues em evento" fetchpriority="high"></div>
+  <div class="wrap">
+    <span class="hero-eyebrow"><span class="dot"></span>Brindes Corporativos · São Paulo</span>
+    <h1>O brinde certo,<br>com a <span class="hl">sua marca</span>.</h1>
+    <p class="hero-sub">Ecobags, mochilas, totes e necessaires personalizadas — prontas para eventos, feiras e kits corporativos. A partir de 20 unidades, com amostra aprovada antes do lote.</p>
+    <div class="hero-cta">
+      <a href="#cta" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.825 9.825 0 019.881 9.892c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        Pedir orçamento
+      </a>
+      <a href="#modelos" class="link-arrow">Ver modelos →</a>
+    </div>
+    <div class="hero-chips">
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>A partir de 20 unidades</span>
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Silk · bordado · sublimação</span>
+      <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Amostra antes do lote</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS (era faixa 100% lime — agora navy com acentos lime) -->
+<section class="sec diffs-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Por que a LS</span>
+      <h2>Brinde que a sua<br>marca tem orgulho de dar</h2>
+    </div>
+    <div class="diffs">
+      <div class="diff reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <strong>A partir de 20 un.</strong><span>Lotes pequenos ou grandes, com o mesmo cuidado.</span>
+      </div>
+      <div class="diff reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <strong>Entrega no prazo</strong><span>Cronograma fechado com a data do seu evento.</span>
+      </div>
+      <div class="diff reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <strong>Amostra aprovada</strong><span>Você aprova a peça física antes de rodar o lote.</span>
+      </div>
+      <div class="diff reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <strong>Consultoria inclusa</strong><span>Ajudamos a escolher produto, material e técnica.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODELOS -->
+<section class="sec" id="modelos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Modelos</span>
+      <h2>Exemplos para<br>o seu brinde</h2>
+      <p>Ecobags, totes, mochilas e necessaires com a identidade da sua empresa — silk screen, bordado ou sublimação.</p>
+    </div>
+    <div class="models">
+      <div class="model reveal">
+        <div class="model-img"><img src="../imagens/brinde-ecobag-natural.png" alt="Ecobag canvas natural personalizada"><span class="badge">★ Mais pedido</span></div>
+        <div class="model-body"><h3>Ecobag Canvas Natural</h3><p>Canvas cru 100% algodão, grande área de impressão. Ideal para feiras e kits.</p><a href="#cta" class="model-link">Orçar este →</a></div>
+      </div>
+      <div class="model reveal">
+        <div class="model-img"><img src="../imagens/tote-bag-termica-ls-confeccoes.jpg" alt="Tote bag térmica preta"></div>
+        <div class="model-body"><h3>Tote Bag Térmica</h3><p>Fecho em zíper, forro isolante e boa capacidade. Apelo funcional.</p><a href="#cta" class="model-link">Orçar este →</a></div>
+      </div>
+      <div class="model reveal">
+        <div class="model-img"><img src="../imagens/brinde-necessaire.png" alt="Necessaire com visor em PVC"></div>
+        <div class="model-body"><h3>Necessaire com Visor</h3><p>Janela em PVC e zíper robusto. Perfeita para kits de boas-vindas.</p><a href="#cta" class="model-link">Orçar este →</a></div>
+      </div>
+      <div class="model reveal">
+        <div class="model-img"><img src="../imagens/mochila-sport-brinde-ls-confeccoes.jpg" alt="Mochila sport preta e verde"></div>
+        <div class="model-body"><h3>Mochila Sport</h3><p>Nylon resistente, alças ergonômicas. Para academias e patrocínio.</p><a href="#cta" class="model-link">Orçar este →</a></div>
+      </div>
+      <div class="model reveal">
+        <div class="model-img"><img src="../imagens/mochila-executiva-premium-ls-confeccoes.jpg" alt="Mochila executiva premium preta"></div>
+        <div class="model-body"><h3>Mochila Executiva</h3><p>Compartimento para notebook e acabamento premium. Onboarding de alto padrão.</p><a href="#cta" class="model-link">Orçar este →</a></div>
+      </div>
+      <div class="model reveal">
+        <div class="model-img"><img src="../imagens/porta-squeeze-estampado-brinde-corporativo.jpg" alt="Porta squeeze estampado"></div>
+        <div class="model-body"><h3>Porta Squeeze Estampado</h3><p>Bolso para celular, alça transversal e full print. Festivais e eventos esportivos.</p><a href="#cta" class="model-link">Orçar este →</a></div>
+      </div>
+      <div class="model reveal">
+        <div class="model-img"><img src="../imagens/ecobag-bicolor-estampada-brinde-corporativo.jpg" alt="Ecobag bicolor estampada"></div>
+        <div class="model-body"><h3>Ecobag Bicolor</h3><p>Blocos de cor personalizáveis e full print. Alta visibilidade em campanhas.</p><a href="#cta" class="model-link">Orçar este →</a></div>
+      </div>
+      <div class="model reveal">
+        <div class="model-img"><img src="../imagens/mochila-estampada-personalizada-brinde.jpg" alt="Mochila estampada personalizada"></div>
+        <div class="model-body"><h3>Mochila Estampada</h3><p>Canvas com full print exclusivo e zíperes reforçados. Alto impacto visual.</p><a href="#cta" class="model-link">Orçar este →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat reveal"><div class="n" data-target="500" data-prefix="+">+500</div><div class="t">Clientes atendidos</div></div>
+    <div class="stat reveal"><div class="n" data-target="10" data-prefix="+">+10</div><div class="t">Anos de fábrica</div></div>
+    <div class="stat reveal"><div class="n" data-target="25" data-prefix="" data-suffix=" dias">25 dias</div><div class="t">Prazo médio de produção</div></div>
+    <div class="stat reveal"><div class="n" data-target="20" data-prefix="">20</div><div class="t">Unidades mínimas</div></div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="sec proc-sec" id="processo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Do briefing à<br>entrega, simples assim</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><h3>Briefing</h3><p>Você conta a marca, o evento, a quantidade e o prazo. Direto com quem produz.</p></div>
+      <div class="step reveal"><div class="num">02</div><h3>Proposta</h3><p>Enviamos opções de produto, material, técnica de personalização e valores.</p></div>
+      <div class="step reveal"><div class="num">03</div><h3>Amostra</h3><p>Você aprova a arte e a peça física antes de iniciarmos a produção em escala.</p></div>
+      <div class="step reveal"><div class="num">04</div><h3>Entrega</h3><p>Produzimos e entregamos no prazo, embalados e prontos para o seu evento.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta" id="cta">
+  <div class="wrap reveal">
+    <h2>Pronto para surpreender<br><span>seus clientes?</span></h2>
+    <p>Fale com o nosso time e receba uma proposta de brindes feita para a sua marca — resposta rápida, direto no WhatsApp.</p>
+    <div class="cta-row">
+      <a href="https://wa.me/5511999370418?text=Ol%C3%A1%21%20Quero%20um%20or%C3%A7amento%20de%20brindes%20corporativos%20personalizados." class="btn btn-primary" target="_blank" rel="noopener">Solicitar orçamento agora</a>
+      <a href="../produtos.html" class="link-arrow">Ver catálogo completo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="lg">LS <span>Confecções</span></div>
+        <p>Fábrica B2B de bolsas, mochilas e acessórios. Brindes corporativos com a sua marca, a partir de 20 peças. São Paulo, SP.</p>
+        <div class="ft-soc">
+          <a href="https://www.instagram.com/lsconfex" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://wa.me/5511999370418" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.825 9.825 0 019.881 9.892c-.003 5.45-4.437 9.884-9.885 9.884"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Navegação</h4><ul><li><a href="../index.html">Início</a></li><li><a href="../produtos.html">Catálogo</a></li><li><a href="brindes.html">Brindes</a></li><li><a href="#processo">Como funciona</a></li></ul></div>
+      <div class="ft-col"><h4>Catálogo</h4><ul><li><a href="../produtos.html">Mochilas</a></li><li><a href="../produtos.html">Bolsas</a></li><li><a href="../produtos.html">Pochetes</a></li><li><a href="../produtos.html">Ecobags</a></li></ul></div>
+      <div class="ft-col ft-contact"><h4>Contato</h4><ul>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 010 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .35 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.81.57 2.81.7A2 2 0 0122 14z"/></svg><a href="https://wa.me/5511999370418">(11) 99937-0418 · Gustavo</a></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg><a href="mailto:ls_confeccoes@hotmail.com">ls_confeccoes@hotmail.com</a></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg><a href="https://www.instagram.com/lsconfex">@lsconfex</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bottom">
+      <span>© <span id="yr"></span> LS Confecções · Todos os direitos reservados.</span>
+      <span>Cada peça carrega uma marca.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511999370418" class="fab" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.825 9.825 0 019.881 9.892c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+</a>
+
+<script>
+var hd=document.getElementById('hd');
+addEventListener('scroll',function(){hd.classList.toggle('scrolled',scrollY>30)});
+var burger=document.getElementById('burger'),nav=document.getElementById('nav');
+burger.addEventListener('click',function(){burger.classList.toggle('open');nav.classList.toggle('open')});
+nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');nav.classList.remove('open')})});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target,t=+el.dataset.target,pf=el.dataset.prefix||'',sf=el.dataset.suffix||'';cio.unobserve(el);if(rm){el.textContent=pf+t+sf;return}var s=null;function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/1100,1);el.textContent=pf+Math.round((1-Math.pow(1-p,3))*t)+sf;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)})},{threshold:.5});
+document.querySelectorAll('.stat .n').forEach(function(el){cio.observe(el)});
+document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
