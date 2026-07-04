@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LS Confecções — Fábrica de Bolsas e Mochilas com a Sua Marca | SP</title>
+<meta name="description" content="Fábrica B2B de bolsas, mochilas e acessórios streetwear em São Paulo. Sua marca, do zero, a partir de 20 peças. Peça piloto antes do lote. Orçamento no WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D1B2A;
+  --navy-800:#12263b;
+  --ink:#0a0a0a;
+  --lime:#D4FF6A;
+  --lime-bright:#e8ff00;
+  --white:#ffffff;
+  --paper:#F7F8F6;
+  --gray-100:#eef0ee;
+  --gray-400:#9aa2a0;
+  --gray-600:#5c6360;
+  --line:rgba(13,27,42,.10);
+  --wa:#25d366;
+  --r:14px;
+  --maxw:1200px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.cond{font-family:'Barlow Condensed',sans-serif}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ---------- HEADER ---------- */
+.hd{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,box-shadow .3s,padding .3s;padding:18px 0}
+.hd.scrolled{background:rgba(13,27,42,.92);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.06);padding:11px 0}
+.hd-inner{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.35rem;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.brand b{color:var(--lime)}
+.brand .mark{width:38px;height:38px;border-radius:50%;background:var(--lime);color:var(--navy);display:grid;place-items:center;font-size:1rem;font-weight:900;letter-spacing:0}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{color:rgba(255,255,255,.82);font-size:.9rem;font-weight:500;transition:color .2s;position:relative}
+.nav a:not(.nav-cta):after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:2px;background:var(--lime);transition:width .25s var(--ease)}
+.nav a:not(.nav-cta):hover{color:#fff}
+.nav a:not(.nav-cta):hover:after{width:100%}
+.nav-cta{background:var(--lime);color:var(--navy)!important;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.92rem;padding:11px 20px;border-radius:9px;transition:transform .2s var(--ease),box-shadow .2s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(212,255,106,.32)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2.5px;background:#fff;border-radius:2px;transition:.3s}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;background:var(--navy);color:#fff;padding:150px 0 90px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(1200px 500px at 80% -10%,rgba(212,255,106,.14),transparent 60%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.22em;text-transform:uppercase;font-size:.82rem;color:var(--lime);margin-bottom:22px}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(212,255,106,.18)}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:.94;font-size:clamp(2.9rem,6.4vw,5.4rem);letter-spacing:-.01em}
+.hero h1 .out{-webkit-text-stroke:2px var(--lime);color:transparent}
+.hero h1 .hl{color:var(--lime)}
+.hero-sub{font-size:1.16rem;color:rgba(255,255,255,.82);margin:24px 0 8px;max-width:33ch}
+.hero-meta{font-size:1rem;color:rgba(255,255,255,.62);margin-bottom:32px}
+.hero-meta b{color:var(--lime);font-weight:600}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem;padding:16px 30px;border-radius:11px;cursor:pointer;border:2px solid transparent;transition:transform .2s var(--ease),box-shadow .25s,background .2s,color .2s}
+.btn-primary{background:var(--lime);color:var(--navy)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(212,255,106,.30)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.28)}
+.btn-ghost:hover{border-color:var(--lime);color:var(--lime);transform:translateY(-3px)}
+.hero-img-wrap{position:relative}
+.hero-img-wrap img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:20px;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.hero-badge{position:absolute;bottom:-22px;left:-22px;background:var(--lime);color:var(--navy);border-radius:16px;padding:16px 20px;box-shadow:0 20px 44px rgba(0,0,0,.3)}
+.hero-badge .n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;line-height:1}
+.hero-badge .t{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+/* trust bar */
+.trust{border-top:1px solid rgba(255,255,255,.09);margin-top:66px;padding-top:30px;display:flex;align-items:center;gap:38px;flex-wrap:wrap;position:relative}
+.trust .lab{font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.trust .logos{display:flex;gap:34px;align-items:center;flex-wrap:wrap;opacity:.85}
+.trust img{height:26px;width:auto;filter:brightness(0) invert(1);opacity:.7;transition:opacity .2s}
+.trust img:hover{opacity:1}
+.trust .txtlogo{font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,.6);font-size:1rem}
+
+/* ---------- SECTION SHELL ---------- */
+.sec{padding:96px 0}
+.sec-head{max-width:640px;margin-bottom:52px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.eyebrow{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.82rem;color:var(--navy);padding-bottom:6px;border-bottom:2px solid var(--lime);margin-bottom:20px}
+.sec h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:1;font-size:clamp(2.1rem,4.4vw,3.4rem);letter-spacing:-.01em}
+.sec-head p{color:var(--gray-600);font-size:1.08rem;margin-top:16px}
+
+/* ---------- DIFERENCIAIS ---------- */
+.diffs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.diff{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.diff:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(13,27,42,.10);border-color:transparent}
+.diff .ico{width:52px;height:52px;border-radius:12px;background:var(--navy);color:var(--lime);display:grid;place-items:center;margin-bottom:20px;transition:background .3s}
+.diff:hover .ico{background:var(--lime);color:var(--navy)}
+.diff .ico svg{width:26px;height:26px}
+.diff h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;text-transform:uppercase;letter-spacing:.01em;margin-bottom:9px}
+.diff p{color:var(--gray-600);font-size:.96rem}
+
+/* ---------- CATEGORIAS ---------- */
+.cats-sec{background:var(--navy);color:#fff}
+.cats-sec .eyebrow{color:#fff}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cat{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;display:block;background:var(--navy-800)}
+.cat img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);filter:saturate(1.02)}
+.cat:hover img{transform:scale(1.08)}
+.cat:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,27,42,0) 38%,rgba(13,27,42,.86) 100%);z-index:1;transition:background .3s}
+.cat:hover:before{background:linear-gradient(180deg,rgba(13,27,42,.1) 20%,rgba(13,27,42,.9) 100%)}
+.cat-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:18px;display:flex;align-items:flex-end;justify-content:space-between}
+.cat-cap h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;text-transform:uppercase}
+.cat-cap .arw{width:34px;height:34px;border-radius:50%;background:var(--lime);color:var(--navy);display:grid;place-items:center;font-weight:900;transform:translateX(6px);opacity:0;transition:.3s var(--ease)}
+.cat:hover .cat-cap .arw{transform:none;opacity:1}
+.cat--more{background:linear-gradient(140deg,var(--navy-800),#0a1420);border:1.5px solid rgba(212,255,106,.3);display:grid;place-items:center;text-align:center}
+.cat--more .num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.4rem;color:var(--lime);line-height:.9}
+.cat--more .lab{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.82rem;color:rgba(255,255,255,.75);margin-top:6px}
+.cat--more:hover{border-color:var(--lime)}
+
+/* ---------- PRODUTOS ---------- */
+.prods{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.prod{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s}
+.prod:hover{transform:translateY(-7px);box-shadow:0 26px 54px rgba(13,27,42,.12)}
+.prod-img{aspect-ratio:1/1;overflow:hidden;background:var(--gray-100)}
+.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.prod:hover .prod-img img{transform:scale(1.07)}
+.prod-body{padding:18px 18px 22px}
+.prod-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;color:var(--navy);background:var(--lime);padding:3px 10px;border-radius:6px;margin-bottom:10px}
+.prod h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.25rem;text-transform:uppercase;margin-bottom:7px}
+.prod p{color:var(--gray-600);font-size:.9rem}
+
+/* ---------- PROCESSO ---------- */
+.proc-sec{background:var(--paper)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative}
+.step{position:relative;padding-top:14px}
+.step .num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.4rem;line-height:1;color:transparent;-webkit-text-stroke:2px var(--navy);opacity:.22;margin-bottom:6px;transition:.3s}
+.step:hover .num{opacity:1;-webkit-text-stroke:2px var(--lime);color:var(--lime)}
+.step h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.3rem;text-transform:uppercase;margin-bottom:8px}
+.step p{color:var(--gray-600);font-size:.95rem}
+.step:before{content:"";position:absolute;top:26px;left:60px;right:-11px;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 16px)}
+.step:last-child:before{display:none}
+
+/* ---------- STATS ---------- */
+.stats{background:var(--lime);color:var(--navy)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:60px;padding-bottom:60px}
+.stat{text-align:center}
+.stat .n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.6rem,5vw,3.8rem);line-height:1}
+.stat .t{font-weight:600;font-size:.98rem;margin-top:4px}
+.stat+.stat{border-left:1px solid rgba(13,27,42,.14)}
+
+/* ---------- DEPOIMENTOS ---------- */
+.tst-sec{background:var(--navy);color:#fff}
+.tst-sec .eyebrow{color:#fff}
+.tsts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tst{background:var(--navy-800);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:30px 26px;position:relative;transition:transform .3s var(--ease),border-color .3s}
+.tst:hover{transform:translateY(-6px);border-color:rgba(212,255,106,.4)}
+.tst .stars{color:var(--lime);letter-spacing:2px;margin-bottom:14px}
+.tst p{color:rgba(255,255,255,.86);font-size:1rem;margin-bottom:22px}
+.tst .who{display:flex;align-items:center;gap:12px}
+.tst .av{width:46px;height:46px;border-radius:50%;background:var(--lime);color:var(--navy);display:grid;place-items:center;font-family:'Barlow Condensed',sans-serif;font-weight:800}
+.tst .who strong{display:block;font-size:.98rem}
+.tst .who span{font-size:.82rem;color:rgba(255,255,255,.55)}
+
+/* ---------- CTA FORM ---------- */
+.cta{background:var(--ink);color:#fff;padding:96px 0}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.cta h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;line-height:.98;font-size:clamp(2.2rem,4.6vw,3.4rem)}
+.cta .lead{color:rgba(255,255,255,.72);font-size:1.1rem;margin:18px 0 26px;max-width:40ch}
+.cta ul{list-style:none;display:grid;gap:12px}
+.cta li{display:flex;gap:11px;align-items:flex-start;color:rgba(255,255,255,.9);font-size:1rem}
+.cta li svg{flex:0 0 auto;color:var(--lime);margin-top:3px}
+.form-card{background:#141414;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:32px}
+.form-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;text-transform:uppercase;margin-bottom:5px}
+.form-card .fsub{color:rgba(255,255,255,.55);font-size:.92rem;margin-bottom:22px}
+.fg{margin-bottom:15px}
+.fg label{display:block;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;background:#1e1e1e;border:1.5px solid #2c2c2c;border-radius:10px;padding:13px 15px;color:#fff;font-family:inherit;font-size:.98rem;transition:border-color .2s,box-shadow .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--lime);box-shadow:0 0 0 3px rgba(212,255,106,.14)}
+.fg input.bad,.fg select.bad{border-color:#ef4444;animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fbtn{width:100%;margin-top:6px;background:var(--lime);color:var(--navy);border:0;border-radius:11px;padding:16px;font-family:'Barlow Condensed',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:1.08rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:transform .2s var(--ease),box-shadow .2s}
+.fbtn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(212,255,106,.28)}
+.ftiny{text-align:center;font-size:.78rem;color:rgba(255,255,255,.4);margin-top:12px}
+
+/* ---------- FOOTER ---------- */
+.ft{background:var(--navy);color:#fff;padding:70px 0 30px}
+.ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-brand .lg{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;letter-spacing:.12em;text-transform:uppercase}
+.ft-brand .lg span{color:var(--lime)}
+.ft-brand p{color:rgba(255,255,255,.6);font-size:.92rem;margin:14px 0 18px;max-width:34ch}
+.ft-soc{display:flex;gap:10px}
+.ft-soc a{width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;color:#fff;transition:.2s}
+.ft-soc a:hover{background:var(--lime);color:var(--navy);border-color:var(--lime)}
+.ft-col h4{font-family:'Barlow Condensed',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:1rem;margin-bottom:16px;color:var(--lime)}
+.ft-col ul{list-style:none;display:grid;gap:9px}
+.ft-col a{color:rgba(255,255,255,.72);font-size:.92rem;transition:color .2s}
+.ft-col a:hover{color:#fff}
+.ft-contact li{display:flex;gap:9px;align-items:flex-start;color:rgba(255,255,255,.72);font-size:.9rem;margin-bottom:11px}
+.ft-contact svg{flex:0 0 auto;color:var(--lime);margin-top:2px}
+.ft-bottom{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:rgba(255,255,255,.45);font-size:.84rem}
+
+/* ---------- WHATSAPP FAB ---------- */
+.fab{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;z-index:90;box-shadow:0 12px 30px rgba(37,211,102,.42);transition:transform .25s var(--ease)}
+.fab:hover{transform:scale(1.08)}
+.fab:before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--wa);animation:pulse 2.4s infinite;z-index:-1}
+@keyframes pulse{0%{transform:scale(1);opacity:.6}70%{transform:scale(1.7);opacity:0}100%{opacity:0}}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:960px){
+  .hero-grid,.cta-grid{grid-template-columns:1fr;gap:40px}
+  .hero-img-wrap{order:-1;max-width:440px}
+  .diffs,.cats,.prods{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step:before{display:none}
+  .tsts{grid-template-columns:1fr}
+  .stats .wrap{grid-template-columns:repeat(2,1fr);gap:34px}
+  .stat+.stat{border-left:0}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .nav{position:fixed;inset:0 0 0 auto;width:min(80vw,320px);background:var(--navy);flex-direction:column;align-items:flex-start;justify-content:center;gap:26px;padding:40px;transform:translateX(100%);transition:transform .35s var(--ease);box-shadow:-20px 0 60px rgba(0,0,0,.4)}
+  .nav.open{transform:none}
+  .nav a{font-size:1.15rem}
+  .burger{display:flex;z-index:101}
+  .burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+}
+@media(max-width:560px){
+  .diffs,.cats,.prods,.frow{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .sec{padding:66px 0}
+  .hero{padding:130px 0 70px}
+  .ft-grid{grid-template-columns:1fr}
+  .hero-badge{left:12px;bottom:-16px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hd" id="hd">
+  <div class="wrap hd-inner">
+    <a href="#top" class="brand"><span class="mark">LS</span>LS <b>Confecções</b></a>
+    <nav class="nav" id="nav">
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#categorias">Catálogo</a>
+      <a href="#processo">Como funciona</a>
+      <a href="#depoimentos">Clientes</a>
+      <a href="#contato" class="nav-cta">Orçamento</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-eyebrow"><span class="dot"></span>Fábrica em São Paulo · +10 anos</span>
+        <h1>Sua marca.<br><span class="out">Nossa</span> <span class="hl">produção.</span></h1>
+        <p class="hero-sub">Bolsas, mochilas e acessórios streetwear fabricados do zero, com a identidade da sua marca.</p>
+        <p class="hero-meta">A partir de <b>20 peças</b> · peça-piloto aprovada antes do lote · entrega em até <b>25 dias úteis</b>.</p>
+        <div class="hero-cta">
+          <a href="#contato" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.825 9.825 0 019.881 9.892c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+            Pedir orçamento
+          </a>
+          <a href="#categorias" class="btn btn-ghost">Ver catálogo →</a>
+        </div>
+      </div>
+      <div class="hero-img-wrap reveal">
+        <img src="../imagens/hero-fabricante-bolsas-mochilas-personalizadas.jpg" alt="Linha de bolsas, mochilas e acessórios personalizados da LS Confecções" fetchpriority="high">
+        <div class="hero-badge"><div class="n">20</div><div class="t">peças<br>mínimo</div></div>
+      </div>
+    </div>
+
+    <div class="trust reveal">
+      <span class="lab">Já produzimos para</span>
+      <div class="logos">
+        <img src="../imagens/logo-thugnine.png" alt="Thug Nine">
+        <img src="../imagens/logo-bolovo.png" alt="Bolovo">
+        <img src="../imagens/logo-disturb.png" alt="Disturb">
+        <span class="txtlogo">SEABIRD</span>
+        <span class="txtlogo">CARNAN</span>
+        <img src="../imagens/logo-coroa.png" alt="Coroa">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="sec" id="diferenciais">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Por que a LS</span>
+      <h2>Fábrica de verdade,<br>parceira de marca</h2>
+      <p>Sem intermediário, sem importação, sem surpresa. Você fala direto com quem produz.</p>
+    </div>
+    <div class="diffs">
+      <div class="diff reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+        <h3>A partir de 20 peças</h3>
+        <p>Comece sua linha sem travar o caixa. Lote pensado para o primeiro drop de uma marca.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9.53 16.12a3 3 0 00-5.78 1.13 2.25 2.25 0 01-2.4 2.25 4.5 4.5 0 008.4-2.25m0 0a16 16 0 003.39-1.62m-5.04-.02a16 16 0 011.62-3.4m3.42 3.42a16 16 0 004.76-4.65l3.88-5.81a1.15 1.15 0 00-1.6-1.6l-5.81 3.88a16 16 0 00-4.65 4.76m3.42 3.42a6.78 6.78 0 00-3.42-3.42"/></svg></div>
+        <h3>Personalização total</h3>
+        <p>Logo bordado, silk, sublimação, etiqueta, patch e embalagem. Sua identidade em cada detalhe.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <h3>Peça-piloto antes do lote</h3>
+        <p>Você aprova a peça física com a sua marca na mão. Nada é produzido no escuro.</p>
+      </div>
+      <div class="diff reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12.75L11.25 15 15 9.75m-3-7.04A11.96 11.96 0 013.6 6 12 12 0 003 9.75c0 5.59 3.82 10.29 9 11.62 5.18-1.33 9-6.03 9-11.62 0-1.31-.21-2.57-.6-3.75h-.15c-3.2 0-6.1-1.25-8.25-3.29z"/></svg></div>
+        <h3>Garantia de 1 ano</h3>
+        <p>Qualidade que você repassa com confiança ao seu cliente. Fabricação nacional em SP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIAS -->
+<section class="sec cats-sec" id="categorias">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Portfólio</span>
+      <h2>O que a gente fabrica</h2>
+      <p style="color:rgba(255,255,255,.7)">Mais de 50 categorias — do básico ao modelo autoral da sua marca.</p>
+    </div>
+    <div class="cats">
+      <a href="#contato" class="cat reveal"><img src="../imagens/mochila-card.jpg" alt="Mochilas personalizadas"><div class="cat-cap"><h3>Mochilas</h3><span class="arw">→</span></div></a>
+      <a href="#contato" class="cat reveal"><img src="../imagens/pochetes-personalizadas-atacado.jpg" alt="Pochetes personalizadas"><div class="cat-cap"><h3>Pochetes</h3><span class="arw">→</span></div></a>
+      <a href="#contato" class="cat reveal"><img src="../imagens/destaque-slingbag.webp" alt="Sling bags personalizadas"><div class="cat-cap"><h3>Sling Bags</h3><span class="arw">→</span></div></a>
+      <a href="#contato" class="cat reveal"><img src="../imagens/bolsas-personalizadas-b2b-atacado.webp" alt="Bolsas personalizadas"><div class="cat-cap"><h3>Bolsas</h3><span class="arw">→</span></div></a>
+      <a href="#contato" class="cat reveal"><img src="../imagens/ecobag-personalizada-para-brindes-corporativos.jpg" alt="Ecobags personalizadas"><div class="cat-cap"><h3>Ecobags</h3><span class="arw">→</span></div></a>
+      <a href="#contato" class="cat reveal"><img src="../imagens/destaque-shoulder.webp" alt="Shoulder bags personalizadas"><div class="cat-cap"><h3>Shoulder</h3><span class="arw">→</span></div></a>
+      <a href="#contato" class="cat reveal"><img src="../imagens/cooler-bag.jpg" alt="Cooler bags personalizadas"><div class="cat-cap"><h3>Cooler Bag</h3><span class="arw">→</span></div></a>
+      <a href="#contato" class="cat cat--more reveal"><div><div class="num">+50</div><div class="lab">categorias</div></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUTOS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Em destaque</span>
+      <h2>Modelos que fazem sua marca se destacar</h2>
+      <p>Alguns dos mais pedidos — todos produzidos com a sua identidade.</p>
+    </div>
+    <div class="prods">
+      <div class="prod reveal"><div class="prod-img"><img src="../imagens/destaque-slingbag.webp" alt="Sling Bag Graffiti"></div><div class="prod-body"><span class="prod-tag">Sling Bag</span><h3>Sling Graffiti</h3><p>Estampa grafite, fivelas táticas e alça transversal ajustável.</p></div></div>
+      <div class="prod reveal"><div class="prod-img"><img src="../imagens/bolsa-crossbody-puffer-preta-ls-confeccoes.jpg" alt="Crossbody Puffer"></div><div class="prod-body"><span class="prod-tag">Crossbody</span><h3>Crossbody Puffer</h3><p>Nylon acolchoado oversized, zíper oculto e alça extra larga.</p></div></div>
+      <div class="prod reveal"><div class="prod-img"><img src="../imagens/destaque-tote-jeans.webp" alt="Tote Jeans"></div><div class="prod-body"><span class="prod-tag">Tote Bag</span><h3>Tote Jeans</h3><p>Denim premium, costuras aparentes e grande área de marca.</p></div></div>
+      <div class="prod reveal"><div class="prod-img"><img src="../imagens/destaque-pochete.webp" alt="Pochete Clássica"></div><div class="prod-body"><span class="prod-tag">Pochete</span><h3>Pochete Clássica</h3><p>Nylon resistente, três compartimentos e cinto ajustável.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:36px" class="reveal">
+      <a href="#contato" class="btn btn-primary" style="background:var(--navy);color:var(--lime)">Ver catálogo completo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section class="sec proc-sec" id="processo">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Da ideia à entrega<br>em 4 passos</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="num">01</div><h3>Orçamento</h3><p>Manda no WhatsApp o produto, quantidade e referência. Retorno rápido, direto com quem produz.</p></div>
+      <div class="step reveal"><div class="num">02</div><h3>Peça-piloto</h3><p>Definimos modelo, material e aplicação da marca — e você aprova a peça física antes do lote.</p></div>
+      <div class="step reveal"><div class="num">03</div><h3>Produção</h3><p>Fabricação com controle em cada etapa. Prazo de até 25 dias úteis após o piloto aprovado.</p></div>
+      <div class="step reveal"><div class="num">04</div><h3>Entrega</h3><p>Peças embaladas e enviadas para todo o Brasil, prontas para uso ou revenda.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat reveal"><div class="n" data-target="500" data-prefix="+">+500</div><div class="t">Clientes atendidos</div></div>
+    <div class="stat reveal"><div class="n" data-target="10" data-prefix="+">+10</div><div class="t">Anos de fábrica</div></div>
+    <div class="stat reveal"><div class="n" data-target="800" data-prefix="+">+800</div><div class="t">Modelos disponíveis</div></div>
+    <div class="stat reveal"><div class="n" data-target="20" data-prefix="">20</div><div class="t">Peças no pedido mínimo</div></div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="sec tst-sec" id="depoimentos">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Depoimentos</span>
+      <h2>Marcas que confiam na LS</h2>
+    </div>
+    <div class="tsts">
+      <div class="tst reveal"><div class="stars">★★★★★</div><p>"Trabalhamos com a LS há 3 anos nas mochilas da nossa linha de verão. Qualidade impecável e prazo sempre cumprido. Parceiros de verdade."</p><div class="who"><div class="av">MS</div><div><strong>Mariana Souza</strong><span>Diretora Comercial · ModaStyle SP</span></div></div></div>
+      <div class="tst reveal"><div class="stars">★★★★★</div><p>"Precisávamos de brindes para um evento de 200 pessoas e a LS entregou antes do prazo. As pochetes com logo bordado ficaram incríveis."</p><div class="who"><div class="av">RC</div><div><strong>Ricardo Costa</strong><span>Marketing · TechBrasil</span></div></div></div>
+      <div class="tst reveal"><div class="stars">★★★★★</div><p>"Começamos com 20 unidades para testar e hoje fazemos 500 peças por mês. Processo transparente e qualidade consistente."</p><div class="who"><div class="av">AF</div><div><strong>Ana Ferreira</strong><span>Fundadora · Aline Ferreira</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / FORM -->
+<section class="cta" id="contato">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <h2>Pronto para criar<br>sua linha exclusiva?</h2>
+      <p class="lead">Preencha e retornamos em até <strong style="color:var(--lime)">24h</strong>. Ou chama direto no WhatsApp.</p>
+      <ul>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Pedido a partir de 20 peças por modelo</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Peça-piloto aprovada antes de rodar o lote</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>Fabricação nacional · entrega para todo o Brasil</li>
+      </ul>
+    </div>
+    <div class="form-card reveal">
+      <h3>Solicitar orçamento</h3>
+      <p class="fsub">Resposta em até 24h úteis.</p>
+      <form id="lead" novalidate>
+        <div class="frow">
+          <div class="fg"><label for="n">Sua marca / nome *</label><input id="n" name="nome" placeholder="Nome ou marca" autocomplete="name"></div>
+          <div class="fg"><label for="w">WhatsApp *</label><input id="w" name="whatsapp" placeholder="(11) 99999-9999" autocomplete="tel"></div>
+        </div>
+        <div class="fg"><label for="p">Produto de interesse *</label>
+          <select id="p" name="interesse">
+            <option value="">Selecione</option>
+            <option>Mochilas</option><option>Shoulder / Sling Bags</option><option>Pochetes</option>
+            <option>Bolsas</option><option>Ecobags</option><option>Necessaires</option><option>Outros / não sei ainda</option>
+          </select>
+        </div>
+        <div class="fg"><label for="d">O que deseja produzir?</label><textarea id="d" name="descricao" rows="3" placeholder="Produto, quantidade aproximada e personalização..."></textarea></div>
+        <button type="submit" class="fbtn" id="lbtn"><span id="ltxt">Enviar orçamento</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <p class="ftiny">Ao enviar, você concorda em ser contatado pela LS Confecções.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <div class="lg">LS <span>Confecções</span></div>
+        <p>Fábrica B2B de bolsas, mochilas e acessórios streetwear. Sua marca, do zero, a partir de 20 peças. São Paulo, SP.</p>
+        <div class="ft-soc">
+          <a href="https://www.instagram.com/lsconfex" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="https://wa.me/5511999370418" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.825 9.825 0 019.881 9.892c-.003 5.45-4.437 9.884-9.885 9.884"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col"><h4>Navegação</h4><ul><li><a href="#top">Início</a></li><li><a href="#categorias">Categorias</a></li><li><a href="#processo">Como funciona</a></li><li><a href="#depoimentos">Clientes</a></li></ul></div>
+      <div class="ft-col"><h4>Catálogo</h4><ul><li><a href="#categorias">Mochilas</a></li><li><a href="#categorias">Bolsas</a></li><li><a href="#categorias">Pochetes</a></li><li><a href="#categorias">Shoulder Bags</a></li></ul></div>
+      <div class="ft-col ft-contact"><h4>Contato</h4><ul>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 010 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .35 1.9.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.81.57 2.81.7A2 2 0 0122 14z"/></svg><a href="https://wa.me/5511999370418">(11) 99937-0418 · Gustavo</a></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg><a href="mailto:ls_confeccoes@hotmail.com">ls_confeccoes@hotmail.com</a></li>
+        <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg><a href="https://www.instagram.com/lsconfex">@lsconfex</a></li>
+      </ul></div>
+    </div>
+    <div class="ft-bottom">
+      <span>© <span id="yr"></span> LS Confecções · Todos os direitos reservados.</span>
+      <span>Cada peça carrega uma marca.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5511999370418" class="fab" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884a9.825 9.825 0 019.881 9.892c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+</a>
+
+<script>
+// header scroll
+var hd=document.getElementById('hd');
+addEventListener('scroll',function(){hd.classList.toggle('scrolled',scrollY>30)});
+// mobile menu
+var burger=document.getElementById('burger'),nav=document.getElementById('nav');
+burger.addEventListener('click',function(){burger.classList.toggle('open');nav.classList.toggle('open')});
+nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){burger.classList.remove('open');nav.classList.remove('open')})});
+// reveal on scroll
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+// count up
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target,t=+el.dataset.target,pf=el.dataset.prefix||'';cio.unobserve(el);if(rm){el.textContent=pf+t;return}var s=null;function step(ts){if(!s)s=ts;var p=Math.min((ts-s)/1100,1);el.textContent=pf+Math.round((1-Math.pow(1-p,3))*t);if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)})},{threshold:.5});
+document.querySelectorAll('.stat .n').forEach(function(el){cio.observe(el)});
+// year
+document.getElementById('yr').textContent=new Date().getFullYear();
+// form -> whatsapp fallback (site-teste: sem backend, abre WhatsApp com resumo)
+var f=document.getElementById('lead');
+f.addEventListener('submit',function(e){
+  e.preventDefault();
+  var n=f.nome,w=f.whatsapp,p=f.interesse;
+  var bad=[];[['nome',n.value.trim()],['w',w.value.replace(/\D/g,'').length>=10],['p',p.value]].forEach(function(x,i){if(!x[1])bad.push([n,w,p][i])});
+  [n,w,p].forEach(function(el){el.classList.remove('bad')});
+  if(bad.length){bad.forEach(function(el){el.classList.add('bad')});bad[0].focus();return}
+  var msg='Olá, Gustavo! Sou '+n.value.trim()+'. Quero orçamento de '+p.value+'. '+(f.descricao.value.trim()||'')+' Meu WhatsApp: '+w.value.trim();
+  window.open('https://wa.me/5511999370418?text='+encodeURIComponent(msg),'_blank');
+  document.getElementById('ltxt').textContent='Abrindo WhatsApp…';
+});
+[document.getElementById('n'),document.getElementById('w'),document.getElementById('p')].forEach(function(el){el.addEventListener('input',function(){el.classList.remove('bad')});el.addEventListener('change',function(){el.classList.remove('bad')})});
+</script>
+</body>
+</html>
