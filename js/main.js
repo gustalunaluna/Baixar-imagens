@@ -314,3 +314,21 @@
     startAuto();
   })();
 (function(){document.getElementById('footer-year')&&(document.getElementById('footer-year').textContent=new Date().getFullYear());})();
+/* Barra de progresso de leitura — só em artigos de blog */
+(function(){
+  var art = document.querySelector('.blog-article');
+  if(!art) return;
+  var bar = document.createElement('div');
+  bar.className = 'read-progress';
+  bar.setAttribute('aria-hidden','true');
+  document.body.appendChild(bar);
+  function update(){
+    var rect = art.getBoundingClientRect();
+    var total = art.offsetHeight - window.innerHeight;
+    var scrolled = Math.min(Math.max(-rect.top, 0), Math.max(total,0));
+    bar.style.width = (total > 0 ? (scrolled/total*100) : 0) + '%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
