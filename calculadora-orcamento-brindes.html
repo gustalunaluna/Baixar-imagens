@@ -80,7 +80,7 @@
     "@type": "FAQPage",
     "mainEntity": [
       { "@type": "Question", "name": "Quanto devo gastar por brinde corporativo?", "acceptedAnswer": { "@type": "Answer", "text": "Não existe um valor único — depende do público (cliente VIP, colaborador, participante de evento) e do objetivo. Como referência prática: brindes de distribuição em massa costumam ficar até R$ 20 por peça, brindes de relacionamento entre R$ 20 e R$ 45, e brindes institucionais/VIP acima de R$ 45." } },
-      { "@type": "Question", "name": "A personalização entra no valor por peça?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O ideal é já incluir bordado, silk ou sublimação no orçamento por peça, não tratar como custo à parte — isso evita surpresa no fechamento do pedido." } },
+      { "@type": "Question", "name": "A personalização entra no valor por peça?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. O ideal é já incluir bordado, silk ou DTF no orçamento por peça, não tratar como custo à parte. Em peças de ticket baixo, silk ou DTF cabem melhor no orçamento; bordado só compensa a partir de uma faixa de preço maior." } },
       { "@type": "Question", "name": "Como economizar no brinde sem parecer barato?", "acceptedAnswer": { "@type": "Answer", "text": "Aumente o volume do lote (o custo por peça cai), simplifique a arte de personalização (menos cores reduz custo no silk) e escolha um produto de percepção alta mesmo em material intermediário, como ecobag ou nécessaire bem acabada." } }
     ]
   }
@@ -182,13 +182,13 @@
 
       <h2>Faixas de preço por categoria de brinde</h2>
       <table>
-        <tr><th>Faixa</th><th>Valor por peça</th><th>Produtos comuns</th></tr>
-        <tr><td>Econômica</td><td>até R$ 20</td><td><a href="ecobags-personalizadas.html">Ecobag</a>, chaveiro, brinde de distribuição em massa</td></tr>
-        <tr><td>Intermediária</td><td>R$ 20 – R$ 45</td><td><a href="pochetes-personalizadas.html">Pochete</a>, <a href="necessaires-personalizadas.html">nécessaire</a>, ecobag personalizada premium</td></tr>
-        <tr><td>Avançada</td><td>R$ 45 – R$ 90</td><td><a href="blog/mochila-corporativa-personalizada.html">Mochila casual</a>, <a href="bolsas-termicas-personalizadas.html">bolsa térmica</a>, side bag</td></tr>
-        <tr><td>Premium</td><td>acima de R$ 90</td><td><a href="pastas-executivas.html">Pasta executiva</a>, mochila executiva bordada, kit com múltiplas peças</td></tr>
+        <tr><th>Faixa</th><th>Valor por peça</th><th>Produtos comuns</th><th>Técnica</th></tr>
+        <tr><td>Econômica</td><td>até R$ 20</td><td><a href="ecobags-personalizadas.html">Ecobag</a>, porta-chaveiro, porta-moeda, brinde de distribuição em massa</td><td>Silk ou DTF</td></tr>
+        <tr><td>Intermediária</td><td>R$ 20 – R$ 45</td><td><a href="pochetes-personalizadas.html">Pochete</a>, <a href="necessaires-personalizadas.html">nécessaire</a>, carteira, ecobag premium</td><td>Silk ou DTF</td></tr>
+        <tr><td>Avançada</td><td>R$ 45 – R$ 90</td><td><a href="blog/mochila-corporativa-personalizada.html">Mochila casual</a>, <a href="bolsas-termicas-personalizadas.html">bolsa térmica</a>, side bag</td><td>Bordado</td></tr>
+        <tr><td>Premium</td><td>acima de R$ 90</td><td><a href="pastas-executivas.html">Pasta executiva</a>, mochila executiva bordada, kit com múltiplas peças</td><td>Bordado premium</td></tr>
       </table>
-      <p>Essas faixas são referência de mercado e variam conforme material e volume do lote — quanto maior o lote, menor tende a ser o custo por peça dentro de cada faixa. Veja o guia de <a href="blog/bordado-silk-ou-sublimacao.html">bordado, silk ou sublimação</a> para escolher a técnica certa por faixa de orçamento.</p>
+      <p>Essas faixas são referência de mercado e variam conforme material e volume do lote — quanto maior o lote, menor tende a ser o custo por peça dentro de cada faixa. Bordado tem custo de aviamento mais alto e só compensa em peças de ticket maior; em peças mais baratas, <strong>DTF ou silk</strong> entregam boa qualidade de estampa sem pesar no orçamento. Veja o guia de <a href="blog/bordado-silk-ou-sublimacao.html">bordado, silk ou sublimação</a> para mais detalhes.</p>
 
       <h2>Erros comuns ao definir o orçamento</h2>
       <p><strong>Separar personalização do valor da peça</strong> — isso costuma estourar o orçamento no fechamento do pedido. <strong>Não reservar verba para imprevistos</strong> — todo lote grande tem alguma peça de reposição. <strong>Escolher o produto antes de saber o valor por peça</strong> — o caminho certo é o inverso: definir o orçamento, achar a faixa, e só então escolher entre os produtos daquela faixa.</p>
@@ -200,7 +200,7 @@
       </div>
       <div class="calc-faq-item">
         <h3>A personalização entra no valor por peça?</h3>
-        <p>Sim — inclua bordado, silk ou sublimação no orçamento por peça, não como custo à parte, para não ter surpresa no fechamento.</p>
+        <p>Sim — inclua bordado, silk ou DTF no orçamento por peça, não como custo à parte, para não ter surpresa no fechamento. Em peças de ticket baixo, silk ou DTF cabem melhor no orçamento; bordado só compensa a partir de uma faixa de preço maior.</p>
       </div>
       <div class="calc-faq-item">
         <h3>Como economizar sem parecer barato?</h3>
@@ -290,11 +290,11 @@
         return;
       }
       if(peca<20){
-        faixa='Econômica'; tecnica='Silk-screen';
-        msg='🟡 Com '+brl(peca)+' por peça, foque em <strong>ecobag</strong>, chaveiro ou brinde de distribuição em massa. Silk-screen com poucas cores mantém o custo dentro da faixa. Veja opções em <a href="'+links.economica+'">ecobags personalizadas</a>.';
+        faixa='Econômica'; tecnica='Silk ou DTF';
+        msg='🟡 Com '+brl(peca)+' por peça, foque em <strong>ecobag, porta-chaveiro ou porta-moeda</strong>. Bordado é caro demais nessa faixa — silk ou DTF entregam boa estampa sem pesar no orçamento. Veja opções em <a href="'+links.economica+'">ecobags personalizadas</a>.';
       } else if(peca<45){
-        faixa='Intermediária'; tecnica='Silk ou bordado simples';
-        msg='🟢 Com '+brl(peca)+' por peça, dá pra investir em <strong>pochete ou nécessaire</strong> com boa percepção de valor. Bordado simples ou silk em 2-3 cores cabem no orçamento. Veja opções em <a href="'+links.intermediaria+'">pochetes personalizadas</a>.';
+        faixa='Intermediária'; tecnica='Silk ou DTF';
+        msg='🟢 Com '+brl(peca)+' por peça, dá pra investir em <strong>pochete, nécessaire ou carteira</strong> com boa percepção de valor. Silk ou DTF ainda são as técnicas mais econômicas nessa faixa — bordado só compensa a partir da faixa avançada. Veja opções em <a href="'+links.intermediaria+'">pochetes personalizadas</a>.';
       } else if(peca<90){
         faixa='Avançada'; tecnica='Bordado';
         msg='🔥 Com '+brl(peca)+' por peça, o orçamento comporta <strong>mochila casual ou bolsa térmica</strong> com bordado — a técnica que mais valoriza a marca. Veja o guia de <a href="'+links.avancada+'">mochila corporativa personalizada</a>.';
