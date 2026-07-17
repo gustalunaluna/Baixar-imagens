@@ -110,3 +110,9 @@
 .catalog-img-wrap{position:relative}
 .catalog-featured-badge{position:absolute;top:10px;left:10px;background:#e8ff00;color:#0a0a0a;font-weight:700;font-size:11px;padding:4px 11px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.35)}
 .catalog-product-card--featured{border:2px solid #e8ff00;box-shadow:0 10px 34px rgba(232,255,0,.14)}
+
+/* Silhueta de bolsa de mão — marca d'água discreta no footer */
+.footer{position:relative;overflow:hidden}
+.footer > .container{position:relative;z-index:1}
+.footer::after{content:'';position:absolute;right:-18px;bottom:-24px;width:260px;height:286px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 132' fill='none' stroke='%23e8ff00' stroke-width='5' stroke-linejoin='round'%3E%3Cpath d='M20 50 H100 L107 118 a8 8 0 0 1-8 8 H21 a8 8 0 0 1-8-8 Z'/%3E%3Cpath d='M40 52 V42 a20 20 0 0 1 40 0 V52'/%3E%3C/svg%3E") no-repeat center/contain;opacity:.05;pointer-events:none;z-index:0}
+@media(max-width:600px){.footer::after{width:170px;height:187px;right:-14px;bottom:-16px;opacity:.045}}
