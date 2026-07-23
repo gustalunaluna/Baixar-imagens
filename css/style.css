@@ -109,7 +109,7 @@
 @media(max-width:640px){.blog-content p{font-size:1.04rem}.blog-content>p:first-of-type{font-size:1.14rem}.blog-content h2{font-size:1.55rem}.blog-content>p:first-of-type::first-letter{font-size:3rem}}
 .catalog-img-wrap{position:relative}
 .catalog-featured-badge{position:absolute;top:10px;left:10px;background:#e8ff00;color:#0a0a0a;font-weight:700;font-size:11px;padding:4px 11px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;z-index:2;box-shadow:0 2px 8px rgba(0,0,0,.35)}
-.catalog-product-card--featured{border:2px solid #e8ff00;box-shadow:0 10px 34px rgba(232,255,0,.14)}
+.catalog-product-card--featured{border:2px solid #e8ff00;box-shadow:0 10px 34px rgba(232,255,0,.14);order:-1}
 
 /* Silhueta de bolsa de mão — marca d'água discreta no footer */
 .footer{position:relative;overflow:hidden}
