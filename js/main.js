@@ -80,34 +80,96 @@
  }
  const filterBtns = document.querySelectorAll('.filter-btn');
  const catalogCards = document.querySelectorAll('.catalog-product-card');
- if (filterBtns.length && catalogCards.length) {
- filterBtns.forEach(function (btn) {
- btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+ const catalogGrid = document.querySelector('.catalog-grid');
+ const pager = document.getElementById('catalog-pagination');
+ if (filterBtns.length && catalogCards.length && catalogGrid) {
+ var PER_PAGE = 30;
+ var currentCategory = 'all';
+ var currentPage = 1;
+ var isStarred = function (card) {
+ return !!card.querySelector('.catalog-badge, .catalog-featured-badge');
+ };
+ // Ordena uma única vez no DOM: estrelados primeiro, mantendo a ordem relativa.
+ var allCards = Array.prototype.slice.call(catalogCards);
+ var ordered = allCards.filter(isStarred).concat(allCards.filter(function (c) { return !isStarred(c); }));
+ ordered.forEach(function (card) { catalogGrid.appendChild(card); });
+
+ var scrollToCatalog = function () {
+ var sec = document.querySelector('.catalog-section');
+ if (sec) {
+ var y = sec.getBoundingClientRect().top + window.scrollY - 90;
+ window.scrollTo({ top: y, behavior: 'smooth' });
+ }
+ };
+
+ var renderPagination = function (totalPages) {
+ if (!pager) return;
+ pager.innerHTML = '';
+ if (totalPages <= 1) { pager.style.display = 'none'; return; }
+ pager.style.display = '';
+ var makeBtn = function (label, page, opts) {
+ opts = opts || {};
+ var b = document.createElement('button');
+ b.type = 'button';
+ b.className = 'catalog-page-btn' + (opts.active ? ' active' : '');
+ b.innerHTML = label;
+ if (opts.disabled) { b.disabled = true; }
+ if (opts.active) { b.setAttribute('aria-current', 'page'); }
+ if (opts.label) { b.setAttribute('aria-label', opts.label); }
+ b.addEventListener('click', function () {
+ if (opts.disabled) return;
+ currentPage = page;
+ applyView();
+ scrollToCatalog();
  });
- filterBtns.forEach(function (btn) {
- btn.addEventListener('click', function () {
- var category = this.dataset.filter;
- filterBtns.forEach(function (b) {
- b.classList.remove('active');
- b.setAttribute('aria-pressed', 'false');
- });
- this.classList.add('active');
- this.setAttribute('aria-pressed', 'true');
- catalogCards.forEach(function (card) {
+ return b;
+ };
+ pager.appendChild(makeBtn('&lsaquo;', currentPage - 1, { disabled: currentPage === 1, label: 'Página anterior' }));
+ for (var p = 1; p <= totalPages; p++) {
+ pager.appendChild(makeBtn(String(p), p, { active: p === currentPage, label: 'Página ' + p }));
+ }
+ pager.appendChild(makeBtn('&rsaquo;', currentPage + 1, { disabled: currentPage === totalPages, label: 'Próxima página' }));
+ };
+
+ var applyView = function () {
+ var matching = ordered.filter(function (card) {
  var cat = (card.dataset.category || '');
- if (category === 'all' || cat.split(' ').indexOf(category) !== -1) {
+ return currentCategory === 'all' || cat.split(' ').indexOf(currentCategory) !== -1;
+ });
+ var totalPages = Math.max(1, Math.ceil(matching.length / PER_PAGE));
+ if (currentPage > totalPages) { currentPage = totalPages; }
+ var start = (currentPage - 1) * PER_PAGE;
+ var end = start + PER_PAGE;
+ ordered.forEach(function (card) { card.classList.add('hidden'); });
+ matching.slice(start, end).forEach(function (card) {
  card.classList.remove('hidden');
  card.classList.remove('animate-in');
  requestAnimationFrame(function () {
  card.classList.add('fade-up');
  requestAnimationFrame(function () { card.classList.add('animate-in'); });
  });
- } else {
- card.classList.add('hidden');
- }
+ });
+ renderPagination(totalPages);
+ };
+
+ filterBtns.forEach(function (btn) {
+ btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+ });
+ filterBtns.forEach(function (btn) {
+ btn.addEventListener('click', function () {
+ currentCategory = this.dataset.filter;
+ currentPage = 1;
+ filterBtns.forEach(function (b) {
+ b.classList.remove('active');
+ b.setAttribute('aria-pressed', 'false');
+ });
+ this.classList.add('active');
+ this.setAttribute('aria-pressed', 'true');
+ applyView();
  });
  });
- });
+
+ applyView();
  }
  const scrollHint = document.querySelector('.scroll-hint');
  if (scrollHint) {
