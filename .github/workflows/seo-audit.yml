@@ -1,0 +1,31 @@
+name: Auditoria SEO semanal
+
+# Roda a auditoria SEO on-page toda segunda-feira às 09:00 (UTC)
+# e também pode ser disparada manualmente pela aba Actions.
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seo-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Rodar auditoria SEO
+        run: bash scripts/seo-audit.sh | tee relatorio-seo.md
+
+      - name: Publicar relatório no resumo do job
+        run: cat relatorio-seo.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Salvar relatório como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-seo
+          path: relatorio-seo.md
+          retention-days: 90
