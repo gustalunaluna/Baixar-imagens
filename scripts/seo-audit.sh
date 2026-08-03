@@ -106,7 +106,9 @@ if [ -f sitemap.xml ]; then
   for f in $(pages | grep -vE '404|obrigado'); do
     base="${f#./}"
     [ "$base" = "index.html" ] && continue   # raiz entra como /
-    grep -q "$base<" sitemap.xml || { echo "- ⚠️ \`$base\`"; found=1; }
+    # site usa cleanUrls: o sitemap lista as URLs sem .html
+    clean="${base%.html}"
+    grep -q "/${clean}<" sitemap.xml || grep -q "${clean}<" sitemap.xml || { echo "- ⚠️ \`$base\`"; found=1; }
   done
   [ "$found" = 0 ] && echo "- ✅ Todas cobertas."
 else
