@@ -9,6 +9,7 @@
   <link rel="apple-touch-icon" href="favicon.png">
 
   <!-- Google tag (gtag.js) — stub; script real carrega deferido (ver rodapé) -->
+  <script src="/js/consent.js?v=20260805"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -64,7 +65,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="css/style.css?v=20260723d">
+  <link rel="stylesheet" href="css/style.css?v=20260805">
 
   <!-- ── Structured Data: BreadcrumbList ── -->
   <script type="application/ld+json">
@@ -1474,6 +1475,7 @@
       </div>
 
       <div class="footer-bottom">
+        <p class="footer-legal"><a href="/politica-de-privacidade">Política de Privacidade</a><span aria-hidden="true"> · </span><a href="/termos-de-uso">Termos de Uso</a><!-- Para exibir o CNPJ, troque esta linha por: <span aria-hidden="true"> · </span><span class="footer-cnpj">CNPJ: 00.000.000/0001-00</span> --></p>
         <p>&copy; <span id="footer-year">2025</span> LS Confecções. Todos os direitos reservados.</p>
         <p>Cada detalhe importa. Cada peça carrega uma história.</p>
       </div>
@@ -1508,6 +1510,9 @@
       fbq('init','891991662958124');
       fbq('track','PageView');
     }
+    window.LS_loadTracking=loadTracking;
+    // LGPD: so dispara com consentimento (banner em js/consent.js)
+    if(!(window.LS_CONSENT&&window.LS_CONSENT.granted))return;
     var evs=['scroll','mousemove','touchstart','click','keydown'];
     function onFirst(){evs.forEach(function(ev){window.removeEventListener(ev,onFirst)});loadTracking();}
     evs.forEach(function(ev){window.addEventListener(ev,onFirst,{passive:true,once:false})});

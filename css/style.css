@@ -122,3 +122,23 @@
 .catalog-page-btn.active{background:var(--color-accent);border-color:var(--color-accent);color:var(--color-black)}
 .catalog-page-btn:disabled{opacity:.4;cursor:not-allowed}
 @media (max-width:480px){.catalog-page-btn{min-width:40px;height:40px;padding:0 .65rem;font-size:.9rem}}
+
+/* ---- Aviso de cookies (LGPD) ---- */
+.ls-cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:9999;background:var(--color-dark);border-top:2px solid var(--color-accent);box-shadow:0 -8px 32px rgba(0,0,0,.35);transform:translateY(110%);transition:transform .35s var(--ease-out);padding:1rem 0 calc(1rem + env(safe-area-inset-bottom))}
+.ls-cookie-banner.is-visible{transform:translateY(0)}
+.ls-cookie-inner{max-width:1180px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.ls-cookie-text{flex:1 1 340px;margin:0;color:var(--color-gray-light);font-size:.92rem;line-height:1.55}
+.ls-cookie-text a{color:var(--color-accent);text-decoration:underline}
+.ls-cookie-actions{display:flex;gap:.6rem;flex-shrink:0}
+.ls-cookie-btn{font-family:var(--font-heading);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.85rem;padding:.62rem 1.4rem;border-radius:6px;cursor:pointer;border:1px solid transparent;transition:background .2s,color .2s,border-color .2s}
+.ls-cookie-btn--accept{background:var(--color-accent);color:var(--color-black)}
+.ls-cookie-btn--accept:hover{background:var(--color-accent-dim)}
+.ls-cookie-btn--ghost{background:transparent;color:var(--color-gray-light);border-color:#3a3a3a}
+.ls-cookie-btn--ghost:hover{color:var(--color-white);border-color:var(--color-gray)}
+.ls-cookie-btn:focus-visible{outline:2px solid var(--color-accent);outline-offset:2px}
+@media (max-width:640px){.ls-cookie-inner{gap:.9rem}.ls-cookie-actions{width:100%}.ls-cookie-btn{flex:1}}
+@media (prefers-reduced-motion:reduce){.ls-cookie-banner{transition:none}}
+.footer-legal{margin:.35rem 0 0;font-size:.86rem;color:var(--color-gray)}
+.footer-legal a{color:var(--color-gray-light);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:var(--color-accent)}
+.footer-cnpj{white-space:nowrap}
