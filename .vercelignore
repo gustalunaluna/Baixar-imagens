@@ -1,0 +1,27 @@
+# Nada aqui precisa ir para o site publico.
+# Sem este arquivo, TODO o repositorio e servido em lsconfex.com.br.
+
+# Ferramentas e configuracao do agente
+.agents/
+.claude/
+.github/
+
+# Scripts internos de manutencao
+scripts/
+
+# Notas internas de trabalho
+AUDITORIA-SITE.md
+RESUMO-SESSAO.md
+*.md
+!blog/**/*.md
+
+# Versoes de teste (evita conteudo duplicado no Google)
+site-teste/
+
+# Guia de marca interno
+brand/
+
+# Node
+node_modules/
+# package.json/lock ficam de proposito: removê-los muda como a Vercel
+# detecta o projeto, e o ganho de seguranca seria minimo.

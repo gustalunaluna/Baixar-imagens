@@ -1,5 +1,10 @@
 User-agent: *
 Allow: /
 Disallow: /obrigado
+Disallow: /site-teste/
+Disallow: /brand/
+Disallow: /scripts/
+Disallow: /.agents/
+Disallow: /.github/
 
 Sitemap: https://www.lsconfex.com.br/sitemap.xml
