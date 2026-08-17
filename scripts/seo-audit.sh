@@ -130,7 +130,7 @@ echo
 # ── 11. Imagens não-WebP referenciadas ────────────────────────
 echo "## Imagens referenciadas fora do formato WebP"
 echo
-n=$(grep -rhoE 'src="imagens/[^"]+\.(jpg|jpeg|png)"' ./*.html blog/*.html 2>/dev/null | sort -u | wc -l | tr -d ' ')
+n=$(grep -rhoE 'src="(\.\./)?imagens/[^"]+\.(jpg|jpeg|png)"' ./*.html blog/*.html 2>/dev/null | sort -u | wc -l | tr -d ' ')
 if [ "$n" = 0 ]; then echo "- ✅ Todas em WebP."; else echo "- ⚠️ ${n} referência(s) a JPG/PNG (considerar WebP)."; fi
 echo
 
