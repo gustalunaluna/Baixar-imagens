@@ -134,5 +134,21 @@ n=$(grep -rhoE 'src="(\.\./)?imagens/[^"]+\.(jpg|jpeg|png)"' ./*.html blog/*.htm
 if [ "$n" = 0 ]; then echo "- ✅ Todas em WebP."; else echo "- ⚠️ ${n} referência(s) a JPG/PNG (considerar WebP)."; fi
 echo
 
+# ── 12. lastmod do sitemap desatualizado ──────────────────────
+echo "## URLs com \`lastmod\` mais antigo que a última alteração real"
+echo
+found=0
+while read -r url; do
+  p="${url#https://www.lsconfex.com.br}"; p="${p#/}"
+  [ -z "$p" ] && p="index"
+  f="${p}.html"; [ -f "$f" ] || f="$p"; [ -f "$f" ] || continue
+  real=$(git log -1 --format=%ad --date=short -- "$f" 2>/dev/null)
+  lm=$(grep -A2 "<loc>${url}</loc>" sitemap.xml | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -1)
+  [ -n "$real" ] && [ -n "$lm" ] && [ "$real" \> "$lm" ] && {
+    echo "- ⚠️ \`$f\` — sitemap diz $lm, alterada em $real"; found=1; }
+done < <(grep -o '<loc>[^<]*' sitemap.xml | sed 's|<loc>||')
+[ "$found" = 0 ] && echo "- ✅ Todos os \`lastmod\` em dia."
+echo
+
 echo "---"
 echo "_Lembrete: o principal gargalo de ranking segue sendo **autoridade/backlinks** (DR baixo). Este audit cobre on-page; para dados de acesso (cliques, impressões) conceda acesso ao Google Search Console._"
