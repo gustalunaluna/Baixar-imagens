@@ -142,3 +142,37 @@
 .footer-legal a{color:var(--color-gray-light);text-decoration:none;transition:color .2s}
 .footer-legal a:hover{color:var(--color-accent)}
 .footer-cnpj{white-space:nowrap}
+
+/* ===== Correcoes de layout — 18/09/2026 ===== */
+
+/* Cabecalho nao depende mais do JS para ficar visivel.
+   Antes: .header{opacity:0} e so o JS revelava. Se o script
+   falhasse, o site ficava sem logo, sem menu e sem CTA.
+   A mesma animacao e declarada nos dois seletores para que
+   adicionar .header-ready nao reinicie o efeito. */
+.header{opacity:1;animation:headerSlideDown .55s cubic-bezier(.22,.68,0,1.2) both}
+.header.header-ready{animation:headerSlideDown .55s cubic-bezier(.22,.68,0,1.2) both}
+
+@media (max-width:768px){
+  /* .btn tinha white-space:nowrap, e rotulos longos em portugues
+     estouravam a tela, criando rolagem horizontal em 16 paginas. */
+  .btn{white-space:normal;text-align:center;max-width:100%}
+  .btn-lg{padding:1rem 1.5rem;font-size:.875rem;line-height:1.25}
+
+  /* 144px de respiro acima do titulo deixava um vazio grande
+     no topo das paginas internas no celular. */
+  .page-hero{padding-top:calc(var(--header-h) + var(--space-2xl))}
+}
+
+@media (max-width:540px){
+  /* 1fr nao encolhe abaixo do min-content, entao as duas colunas
+     travavam em 195px e estouravam a tela de 390px. */
+  .brindes-diffs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media (max-width:768px){
+  /* A tabela nao cabia em telas estreitas e, como o body recorta
+     a horizontal, a ultima coluna ficava cortada e inalcancavel.
+     Agora ela rola dentro do proprio bloco. */
+  .blog-content table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
