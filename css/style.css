@@ -176,3 +176,8 @@
      Agora ela rola dentro do proprio bloco. */
   .blog-content table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
+
+/* Titulos das colunas do rodape. Eram <h4> logo depois de <h2>, pulando um
+   nivel e poluindo a estrutura de titulos da pagina com "Navegacao" e
+   "Contato". Viraram <p class="footer-title"> com a mesma aparencia. */
+.footer .footer-title{color:#fff;font-family:var(--font-heading);font-size:.8rem;font-weight:800;letter-spacing:.2em;line-height:1.05;margin-bottom:20px;text-transform:uppercase}

@@ -156,13 +156,13 @@ echo
 python3 - <<'PYC'
 import glob,re,subprocess
 ok=True
-for arq,pat in [('css/style.css',r'style\.css\?v=(\d{8})'),('js/main.js',r'main\.js\?v=(\d{8})'),('js/consent.js',r'consent\.js\?v=(\d{8})')]:
+for arq,pat in [('css/style.css',r'style\.css\?v=(\d{8}[a-z]?)'),('js/main.js',r'main\.js\?v=(\d{8}[a-z]?)'),('js/consent.js',r'consent\.js\?v=(\d{8}[a-z]?)')]:
     vs=set()
     for f in glob.glob('*.html')+glob.glob('blog/*.html'):
         vs.update(re.findall(pat,open(f,encoding='utf-8').read()))
     last=subprocess.run(['git','log','-1','--format=%ad','--date=format:%Y%m%d','--',arq],capture_output=True,text=True).stdout.strip()
     if len(vs)>1: print(f"- ⚠️ `{arq}`: páginas pedem versões diferentes {sorted(vs)}"); ok=False
-    elif vs and last and last>max(vs): print(f"- ⚠️ `{arq}` mudou em {last}, mas as páginas pedem `?v={max(vs)}`. Visitantes podem receber a versão antiga do cache."); ok=False
+    elif vs and last and last>max(vs)[:8]: print(f"- ⚠️ `{arq}` mudou em {last}, mas as páginas pedem `?v={max(vs)}`. Visitantes podem receber a versão antiga do cache."); ok=False
 if ok: print("- ✅ Todas as páginas pedem a versão atual de CSS e JS.")
 PYC
 echo

@@ -32,7 +32,7 @@
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:wght@400;500;600&display=swap"></noscript>
 
-  <link rel="stylesheet" href="css/style.css?v=20260923">
+  <link rel="stylesheet" href="css/style.css?v=20260923b">
 
   <title>Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções</title>
   <meta name="description" content="Calculadora gratuita de precificação para marcas de bolsas: descubra preço de venda, margem, markup e lucro do lote. Simule em segundos.">
@@ -46,11 +46,13 @@
   <meta property="og:title" content="Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções">
   <meta property="og:description" content="Ferramenta gratuita: calcule preço de venda, margem, markup e lucro do lote para a sua marca de bolsas e acessórios.">
   <meta property="og:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
+  <meta property="og:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções">
   <meta name="twitter:description" content="Ferramenta gratuita: calcule preço de venda, margem, markup e lucro do lote para a sua marca de bolsas e acessórios.">
   <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
+  <meta name="twitter:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
 
   <script type="application/ld+json">
   {
@@ -76,15 +78,36 @@
   }
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      { "@type": "Question", "name": "Como calcular o preço de venda de um produto?", "acceptedAnswer": { "@type": "Answer", "text": "Some todos os custos por peça (produção, embalagem, impostos e rateio de despesas) e aplique a margem desejada. Uma forma simples: preço de venda = custo ÷ (1 − margem em decimal). Ex.: custo de R$ 50 com margem de 50% resulta em preço de R$ 100." } },
-      { "@type": "Question", "name": "Qual a diferença entre margem e markup?", "acceptedAnswer": { "@type": "Answer", "text": "Markup é quantas vezes você multiplica o custo (ex.: custo R$ 50 vendido a R$ 100 = markup 2x). Margem é o percentual do preço de venda que sobra de lucro (nesse caso, 50%). São medidas diferentes: um markup de 2x equivale a uma margem de 50%." } },
-      { "@type": "Question", "name": "Qual margem de lucro é ideal para uma marca de bolsas?", "acceptedAnswer": { "@type": "Answer", "text": "Depende do posicionamento, mas marcas de moda costumam trabalhar com markup de 2x a 3x sobre o custo (margem de 50% a 67%). Quanto mais forte a marca e o acabamento, maior o preço que o mercado aceita." } }
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Como calcular o preço de venda de um produto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some todos os custos por peça (produção, embalagem, impostos e rateio de despesas) e aplique a margem desejada com a fórmula preço = custo ÷ (1 − margem). Ex.: custo de R$ 50 com margem de 50% resulta em preço de R$ 100."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual a diferença entre margem e markup?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Markup é quantas vezes você multiplica o custo; margem é o percentual do preço de venda que vira lucro. Um markup de 2x equivale a uma margem de 50%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual margem é ideal para uma marca de bolsas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Marcas de moda costumam trabalhar com markup de 2x a 3x (margem de 50% a 67%). Quanto mais forte a marca e o acabamento, maior o preço que o mercado aceita."
+      }
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -224,7 +247,7 @@
           </div>
         </div>
         <div class="footer-nav">
-          <h4>Navegação</h4>
+          <p class="footer-title">Navegação</p>
           <ul>
             <li><a href="/">Início</a></li>
             <li><a href="produtos">Catálogo</a></li>
@@ -234,7 +257,7 @@
           </ul>
         </div>
         <div class="footer-nav">
-          <h4>Ferramentas</h4>
+          <p class="footer-title">Ferramentas</p>
           <ul>
             <li><a href="calculadora-preco-marca">Calculadora de preço</a></li>
             <li><a href="calculadora-orcamento-brindes">Calculadora de orçamento p/ brindes</a></li>
@@ -244,7 +267,7 @@
           </ul>
         </div>
         <div class="footer-contact">
-          <h4>Contato</h4>
+          <p class="footer-title">Contato</p>
           <ul>
             <li><a href="https://wa.me/5511999370418">(11) 99937-0418 — Gustavo</a></li>
             <li><a href="mailto:ls_confeccoes@hotmail.com">ls_confeccoes@hotmail.com</a></li>

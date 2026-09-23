@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /obrigado
 Disallow: /site-teste/
 Disallow: /brand/
 Disallow: /scripts/
