@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
+# Pagina de obrigado: cada botao de orcamento gera um /obrigado?r=... diferente.
+# Sem este bloqueio, robos de auditoria tratam os ~96 enderecos como paginas
+# fracas (noindex, sem descricao, pouco texto). A pagina segue com noindex.
+Disallow: /obrigado
 Disallow: /site-teste/
 Disallow: /brand/
 Disallow: /scripts/
