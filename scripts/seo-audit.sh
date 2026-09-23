@@ -150,5 +150,47 @@ done < <(grep -o '<loc>[^<]*' sitemap.xml | sed 's|<loc>||')
 [ "$found" = 0 ] && echo "- ✅ Todos os \`lastmod\` em dia."
 echo
 
+# ── 13. Cache do CSS: versao ?v= desatualizada ────────────────
+echo "## Versão do CSS em cache"
+echo
+python3 - <<'PYC'
+import glob,re,subprocess
+vs=set()
+for f in glob.glob('*.html')+glob.glob('blog/*.html'):
+    vs.update(re.findall(r'style\.css\?v=(\d{8})',open(f,encoding='utf-8').read()))
+last=subprocess.run(['git','log','-1','--format=%ad','--date=format:%Y%m%d','--','css/style.css'],capture_output=True,text=True).stdout.strip()
+if len(vs)>1: print(f"- ⚠️ Páginas usam versões diferentes do CSS: {sorted(vs)}")
+elif vs and last and last>max(vs): print(f"- ⚠️ `style.css` mudou em {last}, mas as páginas pedem `?v={max(vs)}`. Visitantes podem ver o CSS antigo por até 7 dias.")
+else: print("- ✅ Todas as páginas pedem a versão atual do CSS.")
+PYC
+echo
+
+# ── 14. Cabeçalho diferente do padrão ─────────────────────────
+echo "## Cabeçalho fora do padrão"
+echo
+python3 - <<'PYC'
+import glob,re,collections
+g=collections.defaultdict(list)
+for f in glob.glob('*.html')+glob.glob('blog/*.html'):
+    m=re.search(r'<header class="header".*?</header>',open(f,encoding='utf-8').read(),re.S)
+    if not m: continue
+    h=re.sub(r' class="active"','',m.group(0))
+    # posts ficam em blog/ e usam ../ ; equivale ao caminho da raiz
+    def raiz(x):
+        v=x.group(2)
+        if v.startswith('../'):
+            v=v[3:]
+            v='/' if v=='' else ('/'+v if v.startswith('#') else v)
+        return f'{x.group(1)}="{v}"'
+    h=re.sub(r'(href|src)="([^"]*)"',raiz,h)
+    g[h].append(f)
+if len(g)<=1: print("- ✅ Cabeçalho igual em todas as páginas.")
+else:
+    base=max(g,key=lambda k:len(g[k]))
+    for k,v in g.items():
+        if k!=base: print(f"- ⚠️ Cabeçalho diferente em: {', '.join(sorted(v))}")
+PYC
+echo
+
 echo "---"
 echo "_Lembrete: o principal gargalo de ranking segue sendo **autoridade/backlinks** (DR baixo). Este audit cobre on-page; para dados de acesso (cliques, impressões) conceda acesso ao Google Search Console._"
