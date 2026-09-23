@@ -150,18 +150,20 @@ done < <(grep -o '<loc>[^<]*' sitemap.xml | sed 's|<loc>||')
 [ "$found" = 0 ] && echo "- ✅ Todos os \`lastmod\` em dia."
 echo
 
-# ── 13. Cache do CSS: versao ?v= desatualizada ────────────────
-echo "## Versão do CSS em cache"
+# ── 13. Cache do CSS/JS: versao ?v= desatualizada ─────────────
+echo "## Versão do CSS e JS em cache"
 echo
 python3 - <<'PYC'
 import glob,re,subprocess
-vs=set()
-for f in glob.glob('*.html')+glob.glob('blog/*.html'):
-    vs.update(re.findall(r'style\.css\?v=(\d{8})',open(f,encoding='utf-8').read()))
-last=subprocess.run(['git','log','-1','--format=%ad','--date=format:%Y%m%d','--','css/style.css'],capture_output=True,text=True).stdout.strip()
-if len(vs)>1: print(f"- ⚠️ Páginas usam versões diferentes do CSS: {sorted(vs)}")
-elif vs and last and last>max(vs): print(f"- ⚠️ `style.css` mudou em {last}, mas as páginas pedem `?v={max(vs)}`. Visitantes podem ver o CSS antigo por até 7 dias.")
-else: print("- ✅ Todas as páginas pedem a versão atual do CSS.")
+ok=True
+for arq,pat in [('css/style.css',r'style\.css\?v=(\d{8})'),('js/main.js',r'main\.js\?v=(\d{8})'),('js/consent.js',r'consent\.js\?v=(\d{8})')]:
+    vs=set()
+    for f in glob.glob('*.html')+glob.glob('blog/*.html'):
+        vs.update(re.findall(pat,open(f,encoding='utf-8').read()))
+    last=subprocess.run(['git','log','-1','--format=%ad','--date=format:%Y%m%d','--',arq],capture_output=True,text=True).stdout.strip()
+    if len(vs)>1: print(f"- ⚠️ `{arq}`: páginas pedem versões diferentes {sorted(vs)}"); ok=False
+    elif vs and last and last>max(vs): print(f"- ⚠️ `{arq}` mudou em {last}, mas as páginas pedem `?v={max(vs)}`. Visitantes podem receber a versão antiga do cache."); ok=False
+if ok: print("- ✅ Todas as páginas pedem a versão atual de CSS e JS.")
 PYC
 echo
 

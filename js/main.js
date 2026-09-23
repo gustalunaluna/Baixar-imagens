@@ -404,3 +404,33 @@
   window.addEventListener('resize', update);
   update();
 })();
+/* Imagem que falha ao carregar — substitui os onerror que ficavam no HTML.
+   Cada <img> declara o comportamento em data-fallback:
+     placeholder: esconde a foto e mostra .catalog-img-placeholder do card
+     hide:        so esconde a foto
+     bg:          esconde a foto e escurece o fundo do container */
+(function(){
+  function falhou(img){
+    var modo = img.getAttribute('data-fallback');
+    if(!modo || img.dataset.fallbackApplied) return;
+    img.dataset.fallbackApplied = '1';
+    img.style.display = 'none';
+    if(modo === 'placeholder'){
+      var ph = img.parentElement && img.parentElement.querySelector('.catalog-img-placeholder');
+      if(ph) ph.style.display = 'flex';
+    } else if(modo === 'bg' && img.parentElement){
+      img.parentElement.style.background = '#2a2a2a';
+    }
+  }
+  // fase de captura: o evento error de <img> nao borbulha
+  document.addEventListener('error', function(e){
+    var t = e.target;
+    if(t && t.tagName === 'IMG') falhou(t);
+  }, true);
+  // imagens que ja falharam antes deste script carregar
+  var imgs = document.querySelectorAll('img[data-fallback]');
+  for(var i = 0; i < imgs.length; i++){
+    var im = imgs[i];
+    if(im.complete && im.currentSrc && im.naturalWidth === 0) falhou(im);
+  }
+})();
