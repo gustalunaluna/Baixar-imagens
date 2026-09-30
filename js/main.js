@@ -20,7 +20,7 @@
  requestAnimationFrame(applyHeader);
  }
  window.addEventListener('scroll', onScroll, { passive: true });
- applyHeader();
+ requestAnimationFrame(applyHeader);
  if (hamburger && nav) {
  hamburger.addEventListener('click', function () {
  hamburger.classList.toggle('active');
