@@ -8,5 +8,10 @@
 
 # Node (não é mais usado neste repositório)
 node_modules/
-.claude/
 videos/
+
+# .claude fica de fora, MENOS o settings.json: ele precisa ir para o repositorio
+# porque as sessoes na nuvem clonam o projeto do zero a cada disparo do check-in.
+# Arquivo nao commitado nao existe la, e o check-in volta a pedir permissao.
+.claude/*
+!.claude/settings.json
