@@ -43,6 +43,17 @@
 .blog-content ul{margin:0 0 1.2rem 1.2rem}
 .blog-content li{font-size:1rem;line-height:1.7;color:#2a2a2a;margin-bottom:.5rem}
 .blog-content a{color:#0a0a0a;font-weight:600;text-decoration:underline;text-decoration-color:#e8ff00;text-decoration-thickness:2px;text-underline-offset:2px}
+.blog-content ol{margin:0 0 1.2rem 1.4rem}
+.blog-content ol li{padding-left:.2rem}
+.blog-fontes{margin-top:2.5rem;padding-top:1.4rem;border-top:1px solid #e2e2e2}
+.blog-fontes h2{font-size:1.2rem;margin-top:0}
+.blog-fontes li{font-size:.85rem;line-height:1.55;color:#555;overflow-wrap:anywhere}
+.blog-fontes a{font-weight:500}
+.blog-tabela-wrap{overflow-x:auto;margin:0 0 1.4rem}
+.blog-tabela{width:100%;border-collapse:collapse;font-size:.92rem;min-width:520px}
+.blog-tabela th,.blog-tabela td{padding:.6rem .75rem;border-bottom:1px solid #e2e2e2;text-align:left;vertical-align:top;line-height:1.5}
+.blog-tabela th{background:#0a0a0a;color:#fff;font-weight:600}
+.blog-tabela tbody tr:nth-child(even){background:#f6f6f2}
 .blog-cta{background:#0a0a0a;color:#fff;padding:2.2rem;margin:2.5rem 0 1.5rem;text-align:center}
 .blog-cta h2{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;text-transform:uppercase;margin-bottom:.6rem;line-height:1.1}
 .blog-cta p{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.6;max-width:52ch;margin:0 auto 1.4rem}
