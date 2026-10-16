@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="css/style.css?v=20260930">
 
   <title>Calculadora de Orçamento para Brindes Corporativos | LS Confecções</title>
-  <meta name="description" content="Calculadora gratuita: informe a quantidade e o orçamento e descubra o valor por peça, a faixa de produto ideal e a técnica de personalização.">
+  <meta name="description" content="Calculadora gratuita de orçamento para brindes corporativos: veja o valor disponível por peça, a faixa de produto e a personalização sugerida. Estimativa.">
   <meta name="keywords" content="calculadora de orçamento para brindes, quanto custa brinde corporativo, orçamento brinde por pessoa, quanto gastar em brinde de evento, preço brinde corporativo personalizado">
   <link rel="canonical" href="https://www.lsconfex.com.br/calculadora-orcamento-brindes">
 
@@ -44,13 +44,13 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://www.lsconfex.com.br/calculadora-orcamento-brindes">
   <meta property="og:title" content="Calculadora de Orçamento para Brindes Corporativos | LS Confecções">
-  <meta property="og:description" content="Ferramenta gratuita: informe o número de brindes e o orçamento e descubra o valor por peça, a faixa de produto ideal e a técnica de personalização recomendada.">
+  <meta property="og:description" content="Informe a quantidade e o orçamento e veja o valor disponível por peça, já com reserva de 10%, a faixa de produto e a técnica de personalização sugerida.">
   <meta property="og:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
   <meta property="og:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Calculadora de Orçamento para Brindes Corporativos | LS Confecções">
-  <meta name="twitter:description" content="Ferramenta gratuita: informe o número de brindes e o orçamento e descubra o valor por peça, a faixa de produto ideal e a técnica de personalização recomendada.">
+  <meta name="twitter:description" content="Informe a quantidade e o orçamento e veja o valor disponível por peça, já com reserva de 10%, a faixa de produto e a técnica de personalização sugerida.">
   <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
   <meta name="twitter:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
 
@@ -63,7 +63,7 @@
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
-    "description": "Calculadora gratuita de orçamento para brindes corporativos: valor por peça, faixa de produto e técnica de personalização recomendada a partir do número de brindes e do orçamento disponível.",
+    "description": "Calculadora gratuita de orçamento para brindes corporativos: valor disponível por peça com reserva de 10%, faixa de produto e personalização sugerida. Resultado estimado; o preço real depende de modelo, tecido e quantidade.",
     "publisher": { "@type": "Organization", "name": "LS Confecções", "url": "https://www.lsconfex.com.br/" }
   }
   </script>
@@ -87,7 +87,7 @@
       "name": "Quanto devo gastar por brinde corporativo?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Depende do público e do objetivo. Como referência: brindes de distribuição em massa até R$ 20 por peça, brindes de relacionamento entre R$ 20 e R$ 45, e brindes institucionais/VIP acima de R$ 45."
+        "text": "Depende do público e do objetivo da ação. Como orientação, a calculadora usa três faixas: distribuição em massa até R$ 20 por peça, relacionamento entre R$ 20 e R$ 45, e brindes institucionais acima de R$ 45. O valor real só é definido no orçamento."
       }
     },
     {
@@ -95,15 +95,23 @@
       "name": "A personalização entra no valor por peça?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sim — inclua bordado, silk ou DTF no orçamento por peça, não como custo à parte, para não ter surpresa no fechamento. Em peças de ticket baixo, silk ou DTF cabem melhor no orçamento; bordado só compensa a partir de uma faixa de preço maior."
+        "text": "Sim. Inclua bordado, silk ou DTF no valor por peça, e não como custo à parte. Em peças de valor baixo, silk ou DTF cabem melhor no orçamento; o bordado faz mais sentido nas faixas mais altas."
       }
     },
     {
       "@type": "Question",
-      "name": "Como economizar sem parecer barato?",
+      "name": "Qual a quantidade mínima de brindes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Aumente o volume do lote, simplifique a arte de personalização e escolha um produto de percepção alta (como ecobag ou nécessaire bem acabada) mesmo em faixa de orçamento intermediária."
+        "text": "Na LS Confecções o pedido mínimo é de 20 peças por modelo e cor. Lotes maiores diluem a preparação da produção e tendem a reduzir o custo por peça."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como economizar sem perder a qualidade percebida?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aumente o lote, simplifique a arte da personalização e escolha um produto de uso diário, como ecobag ou nécessaire bem acabada, mesmo na faixa intermediária."
       }
     }
   ]
@@ -166,6 +174,15 @@
     .calc-cta{background:#0a0a0a;color:#fff;text-align:center;padding:2.6rem 1rem}
     .calc-cta h2{color:#e8ff00;font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;margin:0 0 .6rem}
     .calc-cta p{max-width:560px;margin:0 auto 1.2rem;color:#bbbbbb}
+    .calc-hint{font-size:.8rem;color:#5c5c5c;margin:.35rem 0 0;line-height:1.4}
+    .calc-erro{font-size:.85rem;color:#b00020;font-weight:600;margin:.35rem 0 0;line-height:1.4}
+    .calc-in .field:has(input[aria-invalid="true"]){border-color:#b00020}
+    .calc-in .field input:focus-visible{outline:3px solid #0a0a0a;outline-offset:-3px}
+    .calc-content a:focus-visible,.calc-verdict a:focus-visible{outline:3px solid #0a0a0a;outline-offset:2px}
+    .calc-row output{color:inherit}
+    .calc-row .lbl{padding-right:.6rem}
+    .calc-content ul{margin:0 0 1rem;padding-left:1.2rem}
+    .calc-content li{margin:0 0 .4rem}
   </style>
 
   <main id="main-content">
@@ -175,67 +192,94 @@
           <a href="/" style="color:#bbbbbb">Início</a> <span aria-hidden="true">›</span> <span>Calculadora de orçamento para brindes</span>
         </nav>
         <h1>Calculadora de orçamento<br>para <b>brindes corporativos</b></h1>
-        <p>Vai comprar brindes para um evento, kit de onboarding ou ação de marketing? Informe a quantidade e o orçamento disponível e descubra o valor por peça, a faixa de produto ideal e a técnica de personalização recomendada. Ferramenta gratuita.</p>
+        <p>Informe a quantidade de brindes e o orçamento total. A calculadora separa uma reserva de 10% e mostra o valor disponível por peça, a faixa de produto e a técnica de personalização sugerida. Ferramenta gratuita.</p>
       </div>
     </section>
 
     <div class="calc-wrap">
-      <div class="calc-card">
+      <form class="calc-card" id="calc-form" novalidate onsubmit="return false">
         <div class="calc-in">
           <label for="qtd">Quantidade de brindes (peças)</label>
-          <div class="field"><span>un</span><input type="number" id="qtd" inputmode="numeric" placeholder="50" value="50"></div>
+          <div class="field"><span aria-hidden="true">un</span><input type="text" id="qtd" name="qtd" inputmode="numeric" autocomplete="off" placeholder="50" value="50" aria-describedby="qtd-ajuda qtd-erro"></div>
+          <p class="calc-hint" id="qtd-ajuda">Pedido mínimo: 20 peças por modelo e cor.</p>
+          <p class="calc-erro" id="qtd-erro" role="alert" hidden></p>
           <label for="orcamento">Orçamento total disponível (R$)</label>
-          <div class="field"><span>R$</span><input type="number" id="orcamento" inputmode="decimal" placeholder="2.500,00" value="2500"></div>
-          <p class="calc-note">Dica: inclua frete e personalização dentro do orçamento total para o valor por peça sair realista.</p>
+          <div class="field"><span aria-hidden="true">R$</span><input type="text" id="orcamento" name="orcamento" inputmode="decimal" autocomplete="off" placeholder="2.500,00" value="2.500,00" aria-describedby="orcamento-ajuda orcamento-erro"></div>
+          <p class="calc-hint" id="orcamento-ajuda">Inclua personalização, embalagem e frete.</p>
+          <p class="calc-erro" id="orcamento-erro" role="alert" hidden></p>
+          <p class="calc-note">Aceita vírgula ou ponto como separador decimal (ex.: 2.500,00). O resultado é uma estimativa e não substitui o orçamento da fábrica.</p>
         </div>
-        <div class="calc-out" id="out">
-          <div class="calc-row big"><span class="lbl">Valor por peça</span><span class="val" id="r-peca">R$ 50,00</span></div>
-          <div class="calc-row"><span class="lbl">Faixa de produto recomendada</span><span class="val" id="r-faixa" style="font-size:1.15rem">Avançada</span></div>
-          <div class="calc-row"><span class="lbl">Técnica de personalização sugerida</span><span class="val" id="r-tecnica" style="font-size:1.15rem">Bordado</span></div>
-          <div class="calc-row"><span class="lbl">Reserva de 10% p/ imprevistos</span><span class="val" id="r-reserva" style="font-size:1.15rem">R$ 250,00</span></div>
+        <div class="calc-out" id="out" aria-live="polite" aria-atomic="true">
+          <h2 class="sr-only">Resultado</h2>
+          <div class="calc-row"><span class="lbl">Reserva de 10% para imprevistos</span><output class="val" id="r-reserva" for="orcamento" style="font-size:1.15rem">R$ 250,00</output></div>
+          <div class="calc-row big"><span class="lbl">Valor disponível por peça</span><output class="val" id="r-peca" for="qtd orcamento">R$ 45,00</output></div>
+          <div class="calc-row"><span class="lbl">Faixa de produto</span><output class="val" id="r-faixa" style="font-size:1.15rem">Avançada</output></div>
+          <div class="calc-row"><span class="lbl">Personalização sugerida</span><output class="val" id="r-tecnica" style="font-size:1.15rem">Bordado</output></div>
         </div>
-      </div>
+      </form>
     </div>
 
-    <div class="calc-verdict"><div class="box" id="verdict">Preencha os valores acima para ver a recomendação.</div></div>
+    <div class="calc-verdict"><div class="box" id="verdict" aria-live="polite">Preencha os valores acima para ver a recomendação.</div></div>
 
     <div class="calc-content">
-      <h2>Como definir o orçamento de brindes corporativos</h2>
-      <p>A conta básica é simples — <strong>orçamento total ÷ número de brindes = valor por peça</strong> — mas o erro comum é esquecer itens que corroem esse valor: frete, embalagem individual e a própria personalização (bordado, silk ou sublimação). O ideal é já incluir tudo isso no orçamento total antes de dividir pela quantidade, para o valor por peça que sobra para o produto em si ser realista.</p>
-      <p>Guarde também uma reserva de 5% a 10% do orçamento para imprevistos — reposição de peça com defeito, ajuste de arte ou um pedido de última hora. A calculadora já mostra esse valor separado.</p>
+      <h2>Como a calculadora faz a conta</h2>
+      <ul>
+        <li><strong>Reserva</strong> = 10% do orçamento total, separada para reposição de peça, ajuste de arte ou pedido extra.</li>
+        <li><strong>Valor disponível por peça</strong> = (orçamento total − reserva) ÷ quantidade de brindes.</li>
+        <li><strong>Faixa e técnica</strong> são sugeridas a partir do valor por peça, conforme a tabela abaixo.</li>
+      </ul>
+      <p>O valor por peça precisa cobrir o produto, a personalização (bordado, silk ou DTF), a embalagem individual e o frete. Por isso a conta parte do orçamento total já com esses itens incluídos. O Sebrae recomenda o mesmo raciocínio na formação de preço: somar todos os custos antes de chegar ao valor unitário (fontes 1 e 2).</p>
 
-      <h2>Faixas de preço por categoria de brinde</h2>
+      <h2>Faixas usadas pela calculadora</h2>
+      <p>As faixas abaixo são orientativas e servem para direcionar a escolha do produto. Elas não são tabela de preço: o valor real depende do modelo, do tecido, da personalização e da quantidade, e só é definido no orçamento.</p>
+      <div style="overflow-x:auto">
       <table>
-        <tr><th>Faixa</th><th>Valor por peça</th><th>Produtos comuns</th><th>Técnica</th></tr>
-        <tr><td>Econômica</td><td>até R$ 20</td><td><a href="ecobags-personalizadas">Ecobag</a>, porta-chaveiro, porta-moeda, brinde de distribuição em massa</td><td>Silk ou DTF</td></tr>
-        <tr><td>Intermediária</td><td>R$ 20 – R$ 45</td><td><a href="pochetes-personalizadas">Pochete</a>, <a href="necessaires-personalizadas">nécessaire</a>, carteira, ecobag premium</td><td>Silk ou DTF</td></tr>
-        <tr><td>Avançada</td><td>R$ 45 – R$ 90</td><td><a href="blog/mochila-corporativa-personalizada">Mochila casual</a>, <a href="bolsas-termicas-personalizadas">bolsa térmica</a>, side bag</td><td>Bordado</td></tr>
-        <tr><td>Premium</td><td>acima de R$ 90</td><td><a href="pastas-executivas">Pasta executiva</a>, mochila executiva bordada, kit com múltiplas peças</td><td>Bordado premium</td></tr>
+        <caption class="sr-only">Faixas de valor por peça, produtos e técnica de personalização sugerida</caption>
+        <thead><tr><th scope="col">Faixa</th><th scope="col">Valor por peça</th><th scope="col">Produtos comuns</th><th scope="col">Técnica</th></tr></thead>
+        <tbody>
+        <tr><td>Econômica</td><td>até R$ 20</td><td><a href="ecobags-personalizadas">Ecobag</a>, porta-moeda, chaveiro de tecido</td><td>Silk ou DTF</td></tr>
+        <tr><td>Intermediária</td><td>R$ 20 a R$ 45</td><td><a href="pochetes-personalizadas">Pochete</a>, <a href="necessaires-personalizadas">nécessaire</a>, ecobag com bolso e forro</td><td>Silk ou DTF</td></tr>
+        <tr><td>Avançada</td><td>R$ 45 a R$ 90</td><td><a href="blog/mochila-corporativa-personalizada">Mochila casual</a>, <a href="bolsas-termicas-personalizadas">bolsa térmica</a>, bolsa transversal</td><td>Bordado</td></tr>
+        <tr><td>Premium</td><td>acima de R$ 90</td><td><a href="pastas-executivas">Pasta executiva</a>, mochila executiva, kit com mais de uma peça</td><td>Bordado</td></tr>
+        </tbody>
       </table>
-      <p>Essas faixas são referência de mercado e variam conforme material e volume do lote — quanto maior o lote, menor tende a ser o custo por peça dentro de cada faixa. Bordado tem custo de aviamento mais alto e só compensa em peças de ticket maior; em peças mais baratas, <strong>DTF ou silk</strong> entregam boa qualidade de estampa sem pesar no orçamento. Veja o guia de <a href="blog/bordado-silk-ou-sublimacao">bordado, silk ou sublimação</a> para mais detalhes.</p>
+      </div>
+      <p>Na nossa produção, o bordado custa mais por peça que o silk ou o DTF e costuma fazer mais sentido em itens de valor maior. Em peças de valor baixo, silk ou DTF mantêm a arte legível sem consumir o orçamento. Compare as técnicas no guia de <a href="blog/bordado-silk-ou-sublimacao">bordado, silk ou sublimação</a>.</p>
 
       <h2>Erros comuns ao definir o orçamento</h2>
-      <p><strong>Separar personalização do valor da peça</strong> — isso costuma estourar o orçamento no fechamento do pedido. <strong>Não reservar verba para imprevistos</strong> — todo lote grande tem alguma peça de reposição. <strong>Escolher o produto antes de saber o valor por peça</strong> — o caminho certo é o inverso: definir o orçamento, achar a faixa, e só então escolher entre os produtos daquela faixa.</p>
+      <p><strong>Tratar a personalização como custo à parte.</strong> Ela entra no valor por peça; deixá-la de fora estoura o orçamento no fechamento. <strong>Não reservar verba.</strong> Lotes grandes quase sempre pedem alguma reposição. <strong>Escolher o produto antes do valor por peça.</strong> Defina o orçamento, encontre a faixa e só depois escolha entre os produtos dela. Veja outras opções na página de <a href="brindes">brindes corporativos</a>.</p>
 
       <h2>Perguntas frequentes</h2>
       <div class="calc-faq-item">
         <h3>Quanto devo gastar por brinde corporativo?</h3>
-        <p>Depende do público e do objetivo. Como referência: brindes de distribuição em massa até R$ 20 por peça, brindes de relacionamento entre R$ 20 e R$ 45, e brindes institucionais/VIP acima de R$ 45.</p>
+        <p>Depende do público e do objetivo da ação. Como orientação, a calculadora usa três faixas: distribuição em massa até R$ 20 por peça, relacionamento entre R$ 20 e R$ 45, e brindes institucionais acima de R$ 45. O valor real só é definido no orçamento.</p>
       </div>
       <div class="calc-faq-item">
         <h3>A personalização entra no valor por peça?</h3>
-        <p>Sim — inclua bordado, silk ou DTF no orçamento por peça, não como custo à parte, para não ter surpresa no fechamento. Em peças de ticket baixo, silk ou DTF cabem melhor no orçamento; bordado só compensa a partir de uma faixa de preço maior.</p>
+        <p>Sim. Inclua bordado, silk ou DTF no valor por peça, e não como custo à parte. Em peças de valor baixo, silk ou DTF cabem melhor no orçamento; o bordado faz mais sentido nas faixas mais altas.</p>
       </div>
       <div class="calc-faq-item">
-        <h3>Como economizar sem parecer barato?</h3>
-        <p>Aumente o volume do lote, simplifique a arte de personalização e escolha um produto de percepção alta (como ecobag ou nécessaire bem acabada) mesmo em faixa de orçamento intermediária.</p>
+        <h3>Qual a quantidade mínima de brindes?</h3>
+        <p>Na LS Confecções o pedido mínimo é de 20 peças por modelo e cor. Lotes maiores diluem a preparação da produção e tendem a reduzir o custo por peça.</p>
       </div>
+      <div class="calc-faq-item">
+        <h3>Como economizar sem perder a qualidade percebida?</h3>
+        <p>Aumente o lote, simplifique a arte da personalização e escolha um produto de uso diário, como ecobag ou nécessaire bem acabada, mesmo na faixa intermediária.</p>
+      </div>
+
+      <section class="blog-fontes" aria-labelledby="fontes-titulo">
+        <h2 id="fontes-titulo">Fontes</h2>
+        <ol>
+          <li><a href="https://sebraepr.com.br/comunidade/artigo/preco-de-venda-como-calcular" target="_blank" rel="noopener noreferrer">Preço de venda: como calcular</a>, Comunidade Sebrae (Sebrae/PR).</li>
+          <li><a href="https://sebrae.com.br/Sebrae/Portal%20Sebrae/Arquivos/ebook_sebrae_saiba_como_fazer_seu_preco_de_venda.pdf" target="_blank" rel="noopener noreferrer">Saiba como fazer seu preço de venda (e-book)</a>, Sebrae.</li>
+        </ol>
+      </section>
     </div>
 
     <section class="calc-cta">
       <h2>Pronto para produzir o brinde da sua empresa?</h2>
-      <p>Fabricação B2B de brindes corporativos personalizados a partir de 20 unidades, em São Paulo. Fale com nosso comercial e receba uma proposta pela sua faixa de orçamento.</p>
-      <a href="https://wa.me/5511999370418?text=Ol%C3%A1!%20Usei%20a%20calculadora%20de%20or%C3%A7amento%20e%20quero%20uma%20proposta." class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar orçamento no WhatsApp</a>
+      <p>Fabricamos brindes corporativos em tecido a partir de 20 peças por modelo e cor, com fábrica em Guarulhos-SP. Informe a quantidade e a faixa de orçamento e receba uma proposta.</p>
+      <a href="https://wa.me/5511999370418?text=Ol%C3%A1%2C%20usei%20a%20calculadora%20de%20or%C3%A7amento%20de%20brindes%20e%20quero%20uma%20proposta." class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar orçamento no WhatsApp</a>
     </section>
   </main>
 
@@ -292,46 +336,66 @@
 
   <script>
   (function(){
-    var brl=function(n){return n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});};
-    var qtdEl=document.getElementById('qtd'), orcEl=document.getElementById('orcamento');
-    var links={
-      economica:'ecobags-personalizadas.html',
-      intermediaria:'pochetes-personalizadas.html',
-      avancada:'blog/mochila-corporativa-personalizada.html',
-      premium:'pastas-executivas.html'
-    };
+    function parseBR(raw){
+      var s=String(raw==null?'':raw).replace(/R\$|\s| /g,'');
+      if(s==='') return {empty:true,value:NaN};
+      if(s.indexOf(',')>-1){ s=s.replace(/\./g,'').replace(',','.'); }
+      else if(/^-?\d{1,3}(\.\d{3})+$/.test(s)){ s=s.replace(/\./g,''); }
+      if(!/^-?\d+(\.\d+)?$/.test(s)) return {empty:false,value:NaN};
+      return {empty:false,value:Number(s)};
+    }
+    var fmtBRL=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+    function r2(n){return Math.round((n+Number.EPSILON)*100)/100;}
+    function $(id){return document.getElementById(id);}
+    function setErr(id,msg){
+      var inp=$(id), e=$(id+'-erro');
+      if(msg){e.textContent=msg;e.hidden=false;inp.setAttribute('aria-invalid','true');}
+      else{e.textContent='';e.hidden=true;inp.removeAttribute('aria-invalid');}
+    }
+    function readQtd(){
+      var p=parseBR($('qtd').value);
+      if(p.empty) return {err:'Informe a quantidade de brindes.'};
+      if(isNaN(p.value)||p.value!==Math.floor(p.value)) return {err:'Use um número inteiro de peças (ex.: 50).'};
+      if(p.value<=0) return {err:'A quantidade precisa ser maior que zero.'};
+      if(p.value>1e7) return {err:'Quantidade acima do limite da calculadora.'};
+      return {v:p.value};
+    }
+    function readOrc(){
+      var p=parseBR($('orcamento').value);
+      if(p.empty) return {err:'Informe o orçamento total.'};
+      if(isNaN(p.value)) return {err:'Use apenas números, com vírgula para os centavos (ex.: 2.500,00).'};
+      if(p.value<=0) return {err:'O orçamento precisa ser maior que zero.'};
+      if(p.value>1e10) return {err:'Valor acima do limite da calculadora.'};
+      return {v:r2(p.value)};
+    }
+    var FAIXAS=[
+      {max:20,nome:'Econômica',tec:'Silk ou DTF',txt:'Nessa faixa, os produtos mais indicados são <strong>ecobag, porta-moeda ou chaveiro de tecido</strong>, com silk ou DTF. Veja <a href="ecobags-personalizadas">ecobags personalizadas</a>.'},
+      {max:45,nome:'Intermediária',tec:'Silk ou DTF',txt:'Nessa faixa cabem <strong>pochete, nécessaire ou ecobag com bolso e forro</strong>. Silk ou DTF seguem como as técnicas de menor custo. Veja <a href="pochetes-personalizadas">pochetes personalizadas</a>.'},
+      {max:90,nome:'Avançada',tec:'Bordado',txt:'Nessa faixa cabem <strong>mochila casual ou bolsa térmica</strong> com bordado. Veja o guia de <a href="blog/mochila-corporativa-personalizada">mochila corporativa personalizada</a>.'},
+      {max:Infinity,nome:'Premium',tec:'Bordado',txt:'Nessa faixa cabem <strong>pasta executiva, mochila executiva ou um kit com mais de uma peça</strong>. Veja <a href="pastas-executivas">pastas executivas</a>.'}
+    ];
+    var DASH='—';
     function calc(){
-      var qtd=parseInt(qtdEl.value)||0, orc=parseFloat(orcEl.value)||0;
-      var peca=qtd>0?(orc/qtd):0;
-      var reserva=orc*0.10;
-      document.getElementById('r-peca').textContent=brl(peca);
-      document.getElementById('r-reserva').textContent=brl(reserva);
-      var faixa='', tecnica='', v=document.getElementById('verdict'), msg='';
-      if(qtd<=0||orc<=0){
-        document.getElementById('r-faixa').textContent='—';
-        document.getElementById('r-tecnica').textContent='—';
-        msg='Preencha a quantidade e o orçamento para ver a recomendação.';
-        v.innerHTML=msg;
+      var q=readQtd(), o=readOrc(), v=$('verdict');
+      setErr('qtd',q.err); setErr('orcamento',o.err);
+      $('r-reserva').textContent=o.err?DASH:fmtBRL.format(r2(o.v*0.10));
+      if(q.err||o.err){
+        ['r-peca','r-faixa','r-tecnica'].forEach(function(i){$(i).textContent=DASH;});
+        v.textContent='Corrija os campos destacados para ver a recomendação.';
         return;
       }
-      if(peca<20){
-        faixa='Econômica'; tecnica='Silk ou DTF';
-        msg='🟡 Com '+brl(peca)+' por peça, foque em <strong>ecobag, porta-chaveiro ou porta-moeda</strong>. Bordado é caro demais nessa faixa — silk ou DTF entregam boa estampa sem pesar no orçamento. Veja opções em <a href="'+links.economica+'">ecobags personalizadas</a>.';
-      } else if(peca<45){
-        faixa='Intermediária'; tecnica='Silk ou DTF';
-        msg='🟢 Com '+brl(peca)+' por peça, dá pra investir em <strong>pochete, nécessaire ou carteira</strong> com boa percepção de valor. Silk ou DTF ainda são as técnicas mais econômicas nessa faixa — bordado só compensa a partir da faixa avançada. Veja opções em <a href="'+links.intermediaria+'">pochetes personalizadas</a>.';
-      } else if(peca<90){
-        faixa='Avançada'; tecnica='Bordado';
-        msg='🔥 Com '+brl(peca)+' por peça, o orçamento comporta <strong>mochila casual ou bolsa térmica</strong> com bordado — a técnica que mais valoriza a marca. Veja o guia de <a href="'+links.avancada+'">mochila corporativa personalizada</a>.';
-      } else {
-        faixa='Premium'; tecnica='Bordado premium';
-        msg='💎 Com '+brl(peca)+' por peça, dá pra montar um brinde institucional forte: <strong>pasta executiva ou mochila premium bordada</strong>, ou até um kit com mais de uma peça. Veja opções em <a href="'+links.premium+'">pastas executivas</a>.';
-      }
-      document.getElementById('r-faixa').textContent=faixa;
-      document.getElementById('r-tecnica').textContent=tecnica;
+      var reserva=r2(o.v*0.10);
+      var peca=Math.floor(((o.v-reserva)/q.v)*100+1e-9)/100; /* arredonda para baixo: não ultrapassa o orçamento */
+      var f=FAIXAS.filter(function(x){return peca<x.max;})[0];
+      $('r-peca').textContent=fmtBRL.format(peca);
+      $('r-faixa').textContent=f.nome;
+      $('r-tecnica').textContent=f.tec;
+      var msg='Com '+fmtBRL.format(peca)+' por peça (faixa '+f.nome.toLowerCase()+'). '+f.txt;
+      if(q.v<20) msg+=' <strong>Atenção:</strong> o pedido mínimo é de 20 peças por modelo e cor.';
+      msg+=' Valores estimados; o preço real depende de modelo, tecido, personalização e quantidade.';
       v.innerHTML=msg;
     }
-    [qtdEl,orcEl].forEach(function(e){e.addEventListener('input',calc);});
+    ['qtd','orcamento'].forEach(function(id){$(id).addEventListener('input',calc);});
     calc();
   })();
   </script>

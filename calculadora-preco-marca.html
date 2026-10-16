@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="css/style.css?v=20260930">
 
   <title>Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções</title>
-  <meta name="description" content="Calculadora gratuita de precificação para marcas de bolsas: descubra preço de venda, margem, markup e lucro do lote. Simule em segundos.">
+  <meta name="description" content="Calculadora gratuita de preço de venda para marcas de bolsas: calcule lucro, margem, markup e faturamento do lote, com a metodologia explicada passo a passo.">
   <meta name="keywords" content="calculadora de preço de venda, como precificar produto, margem de lucro, markup, precificação marca de bolsas, calcular preço de venda">
   <link rel="canonical" href="https://www.lsconfex.com.br/calculadora-preco-marca">
 
@@ -44,13 +44,13 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://www.lsconfex.com.br/calculadora-preco-marca">
   <meta property="og:title" content="Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções">
-  <meta property="og:description" content="Ferramenta gratuita: calcule preço de venda, margem, markup e lucro do lote para a sua marca de bolsas e acessórios.">
+  <meta property="og:description" content="Calcule lucro, margem, markup e faturamento do lote da sua marca de bolsas e mochilas. Estimativa com fórmulas explicadas e fontes do Sebrae.">
   <meta property="og:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
   <meta property="og:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções">
-  <meta name="twitter:description" content="Ferramenta gratuita: calcule preço de venda, margem, markup e lucro do lote para a sua marca de bolsas e acessórios.">
+  <meta name="twitter:description" content="Calcule lucro, margem, markup e faturamento do lote da sua marca de bolsas e mochilas. Estimativa com fórmulas explicadas e fontes do Sebrae.">
   <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
   <meta name="twitter:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
 
@@ -63,7 +63,7 @@
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
-    "description": "Calculadora gratuita de precificação para marcas de bolsas e acessórios: preço de venda, margem de lucro, markup e lucro do lote.",
+    "description": "Calculadora gratuita de precificação para marcas de bolsas e acessórios: lucro por peça, margem sobre o preço, markup e faturamento do lote. Resultado estimado; o custo real depende de modelo, tecido e quantidade.",
     "publisher": { "@type": "Organization", "name": "LS Confecções", "url": "https://www.lsconfex.com.br/" }
   }
   </script>
@@ -87,7 +87,7 @@
       "name": "Como calcular o preço de venda de um produto?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Some todos os custos por peça (produção, embalagem, impostos e rateio de despesas) e aplique a margem desejada com a fórmula preço = custo ÷ (1 − margem). Ex.: custo de R$ 50 com margem de 50% resulta em preço de R$ 100."
+        "text": "Some todos os custos por peça (produção, embalagem, frete, impostos, comissões e a parcela das despesas fixas) e aplique a margem desejada com a fórmula preço = custo ÷ (1 − margem). Exemplo: custo de R$ 50 com margem de 50% resulta em preço de R$ 100."
       }
     },
     {
@@ -95,15 +95,23 @@
       "name": "Qual a diferença entre margem e markup?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Markup é quantas vezes você multiplica o custo; margem é o percentual do preço de venda que vira lucro. Um markup de 2x equivale a uma margem de 50%."
+        "text": "Markup é o fator que multiplica o custo para chegar ao preço. Margem é o percentual do preço de venda que sobra depois do custo. Um markup de 2,00x equivale a uma margem de 50%."
       }
     },
     {
       "@type": "Question",
-      "name": "Qual margem é ideal para uma marca de bolsas?",
+      "name": "Qual margem usar para uma marca de bolsas?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Marcas de moda costumam trabalhar com markup de 2x a 3x (margem de 50% a 67%). Quanto mais forte a marca e o acabamento, maior o preço que o mercado aceita."
+        "text": "Não existe um número único. A margem precisa cobrir custos fixos, marketing e reinvestimento, e o preço final precisa caber no que o seu público aceita pagar. Use a calculadora para testar cenários e compare com o preço praticado por marcas do mesmo segmento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O resultado é o preço que a fábrica vai cobrar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. A calculadora usa o custo que você informa. O custo de produção depende de modelo, tecido, personalização e quantidade, e só é definido no orçamento. Na LS Confecções o pedido mínimo é de 20 peças por modelo e cor."
       }
     }
   ]
@@ -162,6 +170,15 @@
     .calc-cta{background:#0a0a0a;color:#fff;text-align:center;padding:2.6rem 1rem}
     .calc-cta h2{color:#e8ff00;font-family:'Barlow Condensed',sans-serif;font-size:1.8rem;margin:0 0 .6rem}
     .calc-cta p{max-width:560px;margin:0 auto 1.2rem;color:#bbbbbb}
+    .calc-hint{font-size:.8rem;color:#5c5c5c;margin:.35rem 0 0;line-height:1.4}
+    .calc-erro{font-size:.85rem;color:#b00020;font-weight:600;margin:.35rem 0 0;line-height:1.4}
+    .calc-in .field:has(input[aria-invalid="true"]){border-color:#b00020}
+    .calc-in .field input:focus-visible{outline:3px solid #0a0a0a;outline-offset:-3px}
+    .calc-content a:focus-visible,.calc-verdict a:focus-visible{outline:3px solid #0a0a0a;outline-offset:2px}
+    .calc-row output{color:inherit}
+    .calc-row .lbl{padding-right:.6rem}
+    .calc-content ul{margin:0 0 1rem;padding-left:1.2rem}
+    .calc-content li{margin:0 0 .4rem}
   </style>
 
   <main id="main-content">
@@ -171,63 +188,88 @@
           <a href="/" style="color:#bbbbbb">Início</a> <span aria-hidden="true">›</span> <span>Calculadora de precificação</span>
         </nav>
         <h1>Calculadora de preço e margem<br>para a sua <b>marca de bolsas</b></h1>
-        <p>Vai criar uma marca de bolsas, mochilas ou acessórios? Descubra em segundos o preço de venda ideal, a margem de lucro, o markup e o lucro do seu lote. Ferramenta gratuita.</p>
+        <p>Informe o custo por peça, o preço de venda e o tamanho do lote. A calculadora mostra lucro, margem, markup e faturamento, com as fórmulas explicadas abaixo. Ferramenta gratuita.</p>
       </div>
     </section>
 
     <div class="calc-wrap">
-      <div class="calc-card">
+      <form class="calc-card" id="calc-form" novalidate onsubmit="return false">
         <div class="calc-in">
-          <label for="custo">Custo de produção por peça (R$)</label>
-          <div class="field"><span>R$</span><input type="number" id="custo" inputmode="decimal" placeholder="50,00" value="50"></div>
+          <label for="custo">Custo total por peça (R$)</label>
+          <div class="field"><span aria-hidden="true">R$</span><input type="text" id="custo" name="custo" inputmode="decimal" autocomplete="off" placeholder="50,00" value="50,00" aria-describedby="custo-ajuda custo-erro"></div>
+          <p class="calc-hint" id="custo-ajuda">Produção, embalagem, frete rateado, impostos e parte das despesas fixas.</p>
+          <p class="calc-erro" id="custo-erro" role="alert" hidden></p>
           <label for="preco">Preço de venda por peça (R$)</label>
-          <div class="field"><span>R$</span><input type="number" id="preco" inputmode="decimal" placeholder="150,00" value="150"></div>
+          <div class="field"><span aria-hidden="true">R$</span><input type="text" id="preco" name="preco" inputmode="decimal" autocomplete="off" placeholder="150,00" value="150,00" aria-describedby="preco-erro"></div>
+          <p class="calc-erro" id="preco-erro" role="alert" hidden></p>
           <label for="qtd">Quantidade do lote (peças)</label>
-          <div class="field"><span>un</span><input type="number" id="qtd" inputmode="numeric" placeholder="20" value="20"></div>
-          <p class="calc-note">Dica: no custo, inclua produção, embalagem, impostos e rateio de despesas para o número ser realista.</p>
+          <div class="field"><span aria-hidden="true">un</span><input type="text" id="qtd" name="qtd" inputmode="numeric" autocomplete="off" placeholder="20" value="20" aria-describedby="qtd-ajuda qtd-erro"></div>
+          <p class="calc-hint" id="qtd-ajuda">Pedido mínimo na LS Confecções: 20 peças por modelo e cor.</p>
+          <p class="calc-erro" id="qtd-erro" role="alert" hidden></p>
+          <p class="calc-note">Aceita vírgula ou ponto como separador decimal (ex.: 12,50). O cálculo é uma estimativa e não substitui o orçamento da fábrica.</p>
         </div>
-        <div class="calc-out" id="out">
-          <div class="calc-row"><span class="lbl">Lucro por peça</span><span class="val" id="r-lucro">R$ 100,00</span></div>
-          <div class="calc-row big"><span class="lbl">Margem de lucro</span><span class="val" id="r-margem">67%</span></div>
-          <div class="calc-row"><span class="lbl">Markup</span><span class="val" id="r-markup">3,0x</span></div>
-          <div class="calc-row"><span class="lbl">Faturamento do lote</span><span class="val" id="r-fat">R$ 3.000</span></div>
-          <div class="calc-row"><span class="lbl">Lucro total do lote</span><span class="val" id="r-lucrolote">R$ 2.000</span></div>
+        <div class="calc-out" id="out" aria-live="polite" aria-atomic="true">
+          <h2 class="sr-only">Resultado</h2>
+          <div class="calc-row"><span class="lbl">Lucro por peça</span><output class="val" id="r-lucro" for="custo preco">R$ 100,00</output></div>
+          <div class="calc-row big"><span class="lbl">Margem sobre o preço</span><output class="val" id="r-margem" for="custo preco">66,7%</output></div>
+          <div class="calc-row"><span class="lbl">Markup (multiplicador)</span><output class="val" id="r-markup" for="custo preco">3,00x</output></div>
+          <div class="calc-row"><span class="lbl">Faturamento do lote</span><output class="val" id="r-fat" for="preco qtd">R$ 3.000,00</output></div>
+          <div class="calc-row"><span class="lbl">Lucro bruto do lote</span><output class="val" id="r-lucrolote" for="custo preco qtd">R$ 2.000,00</output></div>
         </div>
-      </div>
+      </form>
     </div>
 
-    <div class="calc-verdict"><div class="box" id="verdict">Preencha os valores acima para ver o resultado.</div></div>
+    <div class="calc-verdict"><div class="box" id="verdict" aria-live="polite">Preencha os valores acima para ver a análise.</div></div>
 
     <div class="calc-content">
-      <h2>Como precificar o produto da sua marca (sem chutar)</h2>
-      <p>Precificar é onde muita marca nova erra — ou coloca preço baixo demais e não sobra lucro, ou alto demais e não vende. A base é simples: você precisa saber o <strong>custo real por peça</strong> e a <strong>margem</strong> que quer manter. Custo real não é só o valor que a fábrica cobra: inclua embalagem, impostos, frete rateado e um pedaço das suas despesas fixas. Com o custo certo em mãos, o preço de venda deixa de ser adivinhação.</p>
-      <p>A conta que a calculadora usa é a de mercado: <strong>preço de venda = custo ÷ (1 − margem)</strong>. Se o seu custo é R$ 50 e você quer 50% de margem, o preço é R$ 100. Quer 67% de margem? O preço vai para R$ 150. Marcas de moda costumam trabalhar com <strong>markup de 2x a 3x</strong> sobre o custo — quanto mais forte a marca e o acabamento, maior o preço que o mercado aceita pagar.</p>
+      <h2>Como a calculadora faz a conta</h2>
+      <p>A ferramenta usa três fórmulas, as mesmas apresentadas nos materiais de formação de preço do Sebrae (fontes 1 e 2):</p>
+      <ul>
+        <li><strong>Lucro por peça</strong> = preço de venda − custo total por peça.</li>
+        <li><strong>Margem</strong> = lucro ÷ preço de venda. É o percentual do preço que sobra depois de pagar o custo.</li>
+        <li><strong>Markup multiplicador</strong> = preço de venda ÷ custo. É o fator que multiplica o custo para chegar ao preço.</li>
+      </ul>
+      <p>Para fazer o caminho inverso, partindo da margem que você quer: <strong>preço = custo ÷ (1 − margem)</strong>. Com custo de R$ 50 e margem de 50%, o preço é R$ 100. Com margem de 60%, o preço sobe para R$ 125.</p>
+      <p>O resultado só é confiável se o custo estiver completo. O Sebrae recomenda somar custos variáveis de produção, custos de venda (impostos sobre a venda, comissões, taxas de cartão e de marketplace) e a parcela dos custos fixos antes de definir o preço, em vez de apenas dobrar ou triplicar o valor pago à fábrica (fonte 2). Se os impostos e comissões incidem sobre o preço de venda, inclua esse percentual no custo ou desconte da margem mostrada aqui.</p>
 
-      <h2>Margem x markup: não confunda</h2>
-      <p>São duas formas de olhar o mesmo número. <strong>Markup</strong> é quantas vezes você multiplica o custo (custo R$ 50 → venda R$ 100 = markup 2x). <strong>Margem</strong> é o percentual do preço de venda que sobra de lucro (nesse caso, 50%). Um markup de 3x equivale a uma margem de 67%. A calculadora mostra os dois pra você não se perder.</p>
+      <h2>Margem e markup medem coisas diferentes</h2>
+      <p>Markup é calculado sobre o custo; margem é calculada sobre o preço. Custo de R$ 50 e venda de R$ 100 dão markup de 2,00x e margem de 50%. Markup de 3,00x corresponde a margem de 66,7%. A margem nunca chega a 100%, enquanto o markup pode crescer sem limite. A calculadora mostra os dois para evitar confusão na hora de negociar com lojistas e revendedores.</p>
 
-      <h2>Volume derruba o custo (e aumenta sua margem)</h2>
-      <p>Na fabricação sob medida, quanto maior o lote, menor o custo por peça — porque a preparação (modelagem, montagem da produção) é diluída em mais unidades. Por isso vale simular cenários: um lote maior pode manter o mesmo preço de venda e aumentar a sua margem. Se você está começando, entenda os fatores em <a href="blog/quanto-custa-fabricar-mochila-personalizada">quanto custa fabricar uma peça personalizada</a> e veja o passo a passo em <a href="blog/como-criar-uma-marca-de-bolsas">como criar uma marca de bolsas do zero</a>.</p>
+      <h2>O que a calculadora não considera</h2>
+      <p>O custo por peça de uma bolsa ou mochila depende do modelo, do tecido, dos aviamentos, da personalização e da quantidade. Lotes maiores diluem a preparação da produção (modelagem, corte, ajuste de máquinas) em mais unidades, e o custo unitário tende a cair. Por isso os números aqui são uma simulação: o custo real só sai com o orçamento da fábrica, depois de definido o modelo. Na LS Confecções o pedido mínimo é de 20 peças por modelo e cor, e a produção do lote começa após a aprovação da peça piloto.</p>
+      <p>Para estimar o custo de fabricação, veja <a href="blog/quanto-custa-fabricar-mochila-personalizada">quanto custa fabricar uma mochila personalizada</a>. Para o planejamento completo, leia <a href="blog/como-criar-uma-marca-de-bolsas">como criar uma marca de bolsas</a> e entenda o modelo de <a href="private-label">private label</a>.</p>
 
       <h2>Perguntas frequentes sobre precificação</h2>
       <div class="calc-faq-item">
         <h3>Como calcular o preço de venda de um produto?</h3>
-        <p>Some todos os custos por peça (produção, embalagem, impostos e rateio de despesas) e aplique a margem desejada com a fórmula preço = custo ÷ (1 − margem). Ex.: custo de R$ 50 com margem de 50% resulta em preço de R$ 100.</p>
+        <p>Some todos os custos por peça (produção, embalagem, frete, impostos, comissões e a parcela das despesas fixas) e aplique a margem desejada com a fórmula preço = custo ÷ (1 − margem). Exemplo: custo de R$ 50 com margem de 50% resulta em preço de R$ 100.</p>
       </div>
       <div class="calc-faq-item">
         <h3>Qual a diferença entre margem e markup?</h3>
-        <p>Markup é quantas vezes você multiplica o custo; margem é o percentual do preço de venda que vira lucro. Um markup de 2x equivale a uma margem de 50%.</p>
+        <p>Markup é o fator que multiplica o custo para chegar ao preço. Margem é o percentual do preço de venda que sobra depois do custo. Um markup de 2,00x equivale a uma margem de 50%.</p>
       </div>
       <div class="calc-faq-item">
-        <h3>Qual margem é ideal para uma marca de bolsas?</h3>
-        <p>Marcas de moda costumam trabalhar com markup de 2x a 3x (margem de 50% a 67%). Quanto mais forte a marca e o acabamento, maior o preço que o mercado aceita.</p>
+        <h3>Qual margem usar para uma marca de bolsas?</h3>
+        <p>Não existe um número único. A margem precisa cobrir custos fixos, marketing e reinvestimento, e o preço final precisa caber no que o seu público aceita pagar. Use a calculadora para testar cenários e compare com o preço praticado por marcas do mesmo segmento.</p>
       </div>
+      <div class="calc-faq-item">
+        <h3>O resultado é o preço que a fábrica vai cobrar?</h3>
+        <p>Não. A calculadora usa o custo que você informa. O custo de produção depende de modelo, tecido, personalização e quantidade, e só é definido no orçamento. Na LS Confecções o pedido mínimo é de 20 peças por modelo e cor.</p>
+      </div>
+
+      <section class="blog-fontes" aria-labelledby="fontes-titulo">
+        <h2 id="fontes-titulo">Fontes</h2>
+        <ol>
+          <li><a href="https://sebraepr.com.br/comunidade/artigo/preco-de-venda-como-calcular" target="_blank" rel="noopener noreferrer">Preço de venda: como calcular</a>, Comunidade Sebrae (Sebrae/PR).</li>
+          <li><a href="https://sebrae.com.br/Sebrae/Portal%20Sebrae/Arquivos/ebook_sebrae_saiba_como_fazer_seu_preco_de_venda.pdf" target="_blank" rel="noopener noreferrer">Saiba como fazer seu preço de venda (e-book)</a>, Sebrae.</li>
+        </ol>
+      </section>
     </div>
 
     <section class="calc-cta">
       <h2>Quer produzir a sua linha com a LS Confecções?</h2>
-      <p>Fabricação B2B de bolsas, mochilas e acessórios personalizados a partir de 20 unidades, com peça piloto antes do lote. Fale com nosso comercial e receba um orçamento.</p>
-      <a href="https://wa.me/5511999370418?text=Ol%C3%A1!%20Usei%20a%20calculadora%20e%20quero%20um%20or%C3%A7amento." class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar orçamento no WhatsApp</a>
+      <p>Fabricamos bolsas, mochilas e acessórios para marcas a partir de 20 peças por modelo e cor, com peça piloto antes do lote. Envie sua referência e receba um orçamento.</p>
+      <a href="https://wa.me/5511999370418?text=Ol%C3%A1%2C%20usei%20a%20calculadora%20de%20pre%C3%A7o%20e%20quero%20um%20or%C3%A7amento." class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar orçamento no WhatsApp</a>
     </section>
   </main>
 
@@ -285,28 +327,67 @@
 
   <script>
   (function(){
-    var brl=function(n){return n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});};
-    var els=['custo','preco','qtd'].map(function(id){return document.getElementById(id);});
+    function parseBR(raw){
+      var s=String(raw==null?'':raw).replace(/R\$|\s| /g,'');
+      if(s==='') return {empty:true,value:NaN};
+      if(s.indexOf(',')>-1){ s=s.replace(/\./g,'').replace(',','.'); }
+      else if(/^-?\d{1,3}(\.\d{3})+$/.test(s)){ s=s.replace(/\./g,''); }
+      if(!/^-?\d+(\.\d+)?$/.test(s)) return {empty:false,value:NaN};
+      return {empty:false,value:Number(s)};
+    }
+    var MAX=1e9;
+    var fmtBRL=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+    var fmtPct=new Intl.NumberFormat('pt-BR',{style:'percent',minimumFractionDigits:1,maximumFractionDigits:1});
+    var fmtX=new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+    function r2(n){return Math.round((n+Number.EPSILON)*100)/100;}
+    function $(id){return document.getElementById(id);}
+    function setErr(id,msg){
+      var inp=$(id), e=$(id+'-erro');
+      if(msg){e.textContent=msg;e.hidden=false;inp.setAttribute('aria-invalid','true');}
+      else{e.textContent='';e.hidden=true;inp.removeAttribute('aria-invalid');}
+    }
+    function readMoney(id,nome){
+      var p=parseBR($(id).value);
+      if(p.empty) return {err:'Informe o '+nome+'.'};
+      if(isNaN(p.value)) return {err:'Use apenas números, com vírgula para os centavos (ex.: 12,50).'};
+      if(p.value<=0) return {err:'O '+nome+' precisa ser maior que zero.'};
+      if(p.value>MAX) return {err:'Valor acima do limite da calculadora.'};
+      return {v:r2(p.value)};
+    }
+    function readQtd(){
+      var p=parseBR($('qtd').value);
+      if(p.empty) return {err:'Informe a quantidade do lote.'};
+      if(isNaN(p.value)||p.value!==Math.floor(p.value)) return {err:'Use um número inteiro de peças (ex.: 50).'};
+      if(p.value<=0) return {err:'A quantidade precisa ser maior que zero.'};
+      if(p.value>1e7) return {err:'Quantidade acima do limite da calculadora.'};
+      return {v:p.value};
+    }
+    var DASH='—';
+    function show(id,t){$(id).textContent=t;}
     function calc(){
-      var custo=parseFloat(els[0].value)||0, preco=parseFloat(els[1].value)||0, qtd=parseInt(els[2].value)||0;
-      var lucro=preco-custo;
-      var margem=preco>0?(lucro/preco):0;
-      var markup=custo>0?(preco/custo):0;
-      var fat=preco*qtd, lucroLote=lucro*qtd;
-      document.getElementById('r-lucro').textContent=brl(lucro);
-      document.getElementById('r-margem').textContent=(margem*100).toFixed(0)+'%';
-      document.getElementById('r-markup').textContent=markup.toFixed(1)+'x';
-      document.getElementById('r-fat').textContent=brl(fat);
-      document.getElementById('r-lucrolote').textContent=brl(lucroLote);
-      var v=document.getElementById('verdict'), msg='';
-      if(custo<=0||preco<=0){ msg='Preencha o custo e o preço de venda para ver a análise.'; }
-      else if(lucro<=0){ msg='⚠️ Atenção: o preço de venda está igual ou abaixo do custo — você não teria lucro. Aumente o preço ou reduza o custo (um lote maior costuma baixar o custo por peça).'; }
-      else if(margem<0.3){ msg='🟡 Margem apertada ('+(margem*100).toFixed(0)+'%). Funciona para volume alto, mas sobra pouco para reinvestir na marca. Marcas de moda costumam mirar 50%+ .'; }
-      else if(margem<0.6){ msg='🟢 Margem saudável ('+(margem*100).toFixed(0)+'%). É um bom ponto de partida para uma marca em crescimento — dá para reinvestir e ainda ter fôlego.'; }
-      else { msg='🔥 Margem forte ('+(margem*100).toFixed(0)+'%). Excelente para construir marca com solidez. Só confirme que o preço está competitivo para o seu público.'; }
+      var c=readMoney('custo','custo'), p=readMoney('preco','preço de venda'), q=readQtd();
+      setErr('custo',c.err); setErr('preco',p.err); setErr('qtd',q.err);
+      var v=$('verdict');
+      if(c.err||p.err){
+        ['r-lucro','r-margem','r-markup','r-fat','r-lucrolote'].forEach(function(i){show(i,DASH);});
+        v.textContent='Corrija os campos destacados para ver a análise.';
+        return;
+      }
+      var custo=c.v, preco=p.v, lucro=r2(preco-custo), margem=lucro/preco, markup=preco/custo;
+      show('r-lucro',fmtBRL.format(lucro));
+      show('r-margem',margem>0.999?'> 99,9%':fmtPct.format(margem));
+      show('r-markup',fmtX.format(markup)+'x');
+      if(q.err){ show('r-fat',DASH); show('r-lucrolote',DASH); }
+      else { show('r-fat',fmtBRL.format(r2(preco*q.v))); show('r-lucrolote',fmtBRL.format(r2(lucro*q.v))); }
+      var m=margem>0.999?'acima de 99,9%':fmtPct.format(margem), msg;
+      if(lucro<=0) msg='Atenção: o preço de venda está igual ou abaixo do custo, então cada peça vendida dá prejuízo. Revise o preço ou o custo.';
+      else if(margem<0.3) msg='Margem de '+m+'. Sobra pouco para cobrir custos fixos, marketing e reinvestimento. Confira se todos os custos de venda (impostos, comissões, taxas) já estão no custo informado.';
+      else if(margem<0.5) msg='Margem de '+m+'. Pode funcionar com custo bem controlado. Confira se impostos e comissões sobre a venda já estão no custo informado.';
+      else msg='Margem de '+m+'. Há espaço para custos fixos e reinvestimento. Compare o preço com marcas do mesmo segmento para confirmar que ele cabe no seu público.';
+      if(!q.err && q.v<20) msg+=' Observação: na LS Confecções o pedido mínimo é de 20 peças por modelo e cor.';
       v.textContent=msg;
     }
-    els.forEach(function(e){e.addEventListener('input',calc);});
+    ['custo','preco','qtd'].forEach(function(id){$(id).addEventListener('input',calc);});
     calc();
   })();
   </script>
