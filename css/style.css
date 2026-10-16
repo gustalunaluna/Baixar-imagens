@@ -192,3 +192,10 @@
    nivel e poluindo a estrutura de titulos da pagina com "Navegacao" e
    "Contato". Viraram <p class="footer-title"> com a mesma aparencia. */
 .footer .footer-title{color:#fff;font-family:var(--font-heading);font-size:.8rem;font-weight:800;letter-spacing:.2em;line-height:1.05;margin-bottom:20px;text-transform:uppercase}
+
+/* Skeleton de carregamento das imagens */
+@keyframes sk-brilho{0%{background-position:150% 0}100%{background-position:-50% 0}}
+img.sk-img{background-color:#e9e9e4;background-image:linear-gradient(100deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.55) 50%,rgba(255,255,255,0) 70%);background-size:200% 100%;background-repeat:no-repeat;animation:sk-brilho 1.3s ease-in-out infinite;color:transparent}
+img.sk-ok{animation:sk-aparecer .35s ease-out}
+@keyframes sk-aparecer{from{opacity:.4}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){img.sk-img{animation:none}img.sk-ok{animation:none}}

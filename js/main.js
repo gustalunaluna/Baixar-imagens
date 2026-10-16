@@ -1,5 +1,16 @@
 (function () {
  'use strict';
+ // Skeleton: brilho animado no lugar das imagens até carregarem
+ (function () {
+ var imgs = document.querySelectorAll('main img, .blog-card img, section img');
+ Array.prototype.forEach.call(imgs, function (img) {
+ if (img.closest('.logo, .footer') || (img.complete && img.naturalWidth)) return;
+ img.classList.add('sk-img');
+ var fim = function () { img.classList.remove('sk-img'); img.classList.add('sk-ok'); };
+ img.addEventListener('load', fim, { once: true });
+ img.addEventListener('error', function () { img.classList.remove('sk-img'); }, { once: true });
+ });
+ })();
  const header = document.querySelector('.header');
  const hamburger = document.querySelector('.hamburger');
  const nav = document.querySelector('.nav');
