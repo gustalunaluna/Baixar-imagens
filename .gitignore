@@ -12,3 +12,4 @@ node_modules/
 videos/
 test-results/
 playwright-report/
+.taste-skill/
