@@ -10,3 +10,5 @@
 node_modules/
 .claude/
 videos/
+test-results/
+playwright-report/
