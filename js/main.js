@@ -445,3 +445,4 @@
     if(im.complete && im.currentSrc && im.naturalWidth === 0) falhou(im);
   }
 })();
+document.querySelectorAll('.catalog-img-wrap img').forEach(function (i) { var f = function () { i.parentElement.style.setProperty('--fundo', 'url("' + (i.currentSrc || i.src) + '")'); }; if (i.complete) f(); else i.addEventListener('load', f, { once: true }); });
