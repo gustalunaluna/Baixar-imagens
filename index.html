@@ -63,7 +63,7 @@
 
   <!-- ── Performance ── -->
   <link rel="dns-prefetch" href="https://wa.me">
-  <link rel="preload" as="image" href="videos/header-costura/poster-mobile.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" fetchpriority="high">
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=20261018">
@@ -158,37 +158,7 @@
   "inLanguage": "pt-BR"
 }
   </script>
-  <style>
-    /* hero: vídeo ocupa a seção inteira e o texto fica por cima */
-    .hero-split{grid-template-columns:1fr;overflow:hidden}
-    .hero-split-image{position:absolute;inset:0;z-index:0;min-height:0}
-    .hero-split-image video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
-    .hero-split-image::before{z-index:2;background:linear-gradient(to right,rgba(10,10,10,.92) 0%,rgba(10,10,10,.75) 32%,rgba(10,10,10,.25) 62%,rgba(10,10,10,.1) 100%)}
-    .hero-split-image::after{content:'';position:absolute;inset:auto 0 0 0;height:22%;z-index:2;pointer-events:none;background:linear-gradient(to top,#0a0a0a,transparent)}
-    .hero-video-blur{position:absolute;inset:0 auto 0 0;width:45%;z-index:1;pointer-events:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);-webkit-mask-image:linear-gradient(to right,#000 30%,transparent 100%);mask-image:linear-gradient(to right,#000 30%,transparent 100%)}
-    .hero-split-content{z-index:3;max-width:760px}
-    @media (max-width:768px){
-      .hero-split{grid-template-rows:auto;min-height:100svh}
-      .hero-split-content{order:0;justify-content:flex-end;padding:calc(var(--header-h) + 3rem) 1.5rem 3rem;min-height:100svh}
-      .hero-split-image video{object-position:center 40%}
-      .hero-split-image::before{background:linear-gradient(to top,rgba(10,10,10,.95) 0%,rgba(10,10,10,.7) 45%,rgba(10,10,10,.25) 100%)}
-      .hero-video-blur{inset:auto 0 0 0;width:auto;height:55%;-webkit-mask-image:linear-gradient(to top,#000 40%,transparent 100%);mask-image:linear-gradient(to top,#000 40%,transparent 100%)}
-    }
-  </style>
-  <script>
-    // garante o play do vídeo do hero (alguns celulares só tocam depois de um toque ou rolagem)
-    document.addEventListener("DOMContentLoaded", function () {
-      var v = document.getElementById("hero-video");
-      if (!v) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); return; }
-      v.muted = true;
-      var tocar = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
-      tocar();
-      v.addEventListener("canplay", tocar, { once: true });
-      document.addEventListener("visibilitychange", function () { if (!document.hidden) tocar(); });
-      ["touchstart", "scroll", "click"].forEach(function (ev) { window.addEventListener(ev, tocar, { once: true, passive: true }); });
-    });
-  </script></head>
+</head>
 <body>
 
   <a href="#inicio" class="skip-link">Pular para o conteúdo principal</a>
@@ -238,14 +208,14 @@
     </div>
 
     <!-- Painel direito: imagem -->
-    <div class="hero-split-image hero-video">
-      <video id="hero-video" autoplay muted loop playsinline preload="auto"
-        poster="videos/header-costura/poster-mobile.jpg"
-        aria-label="Costura de zíper em bolsa de lona na fábrica da LS Confecções">
-        <source src="videos/header-costura/header-full.mp4" type="video/mp4">
-        <source src="videos/header-costura/header-full.webm" type="video/webm">
-      </video>
-      <span class="hero-video-blur" aria-hidden="true"></span>
+    <div class="hero-split-image">
+      <img
+        src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp"
+        alt="Linha completa de bolsas, mochilas e acessórios personalizados LS Confecções"
+        width="850"
+        height="850"
+        fetchpriority="high"
+      >
     </div>
 
     <!-- Seta scroll -->
