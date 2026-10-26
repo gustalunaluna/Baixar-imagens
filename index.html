@@ -165,18 +165,17 @@
     @media (max-width:768px){.hero-split-image video{object-position:center 40%}.hero-video-blur{inset:auto 0 0 0;width:auto;height:38%;-webkit-mask-image:linear-gradient(to top,#000 0%,transparent 100%);mask-image:linear-gradient(to top,#000 0%,transparent 100%)}}
   </style>
   <script>
-    // vídeo do hero entra depois que a página carrega (a foto de capa aparece na hora); sem vídeo para quem pede menos movimento ou economia de dados
-    window.addEventListener("load", function () {
+    // garante o play do vídeo do hero (alguns celulares só tocam depois de um toque ou rolagem)
+    document.addEventListener("DOMContentLoaded", function () {
       var v = document.getElementById("hero-video");
       if (!v) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      if (navigator.connection && navigator.connection.saveData) return;
-      v.querySelectorAll("source[data-src]").forEach(function (s) { s.src = s.getAttribute("data-src"); });
-      v.load();
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { v.removeAttribute("autoplay"); v.pause(); return; }
+      v.muted = true;
+      var tocar = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+      tocar();
+      ["touchstart", "scroll", "click"].forEach(function (ev) { window.addEventListener(ev, tocar, { once: true, passive: true }); });
     });
-  </script>
-</head>
+  </script></head>
 <body>
 
   <a href="#inicio" class="skip-link">Pular para o conteúdo principal</a>
@@ -227,11 +226,11 @@
 
     <!-- Painel direito: imagem -->
     <div class="hero-split-image hero-video">
-      <video id="hero-video" muted loop playsinline preload="none"
+      <video id="hero-video" autoplay muted loop playsinline preload="metadata"
         poster="videos/header-costura/poster-mobile.jpg"
         aria-label="Costura de zíper em bolsa de lona na fábrica da LS Confecções">
-        <source data-src="videos/header-costura/header-mobile.webm" type="video/webm">
-        <source data-src="videos/header-costura/header-mobile.mp4" type="video/mp4">
+        <source src="videos/header-costura/header-mobile.mp4" type="video/mp4">
+        <source src="videos/header-costura/header-mobile.webm" type="video/webm">
       </video>
       <span class="hero-video-blur" aria-hidden="true"></span>
     </div>
