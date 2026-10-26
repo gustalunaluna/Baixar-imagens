@@ -848,6 +848,8 @@
       })
       .then(function (res) { return res.json(); })
       .then(function () {
+        if (typeof gtag === 'function') gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'formulario_home' });
+        if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Formulário da home' });
         form.reset();
         btn.disabled = false;
         btnIcon.style.display = '';
@@ -999,7 +1001,7 @@
     counters.forEach(function (el) { observer.observe(el); });
   })();
   </script>
-  <script src="js/main.js?v=20261016" defer></script>
+  <script src="js/main.js?v=20261025" defer></script>
   <!-- ── Stagger animations via IntersectionObserver ── -->
 
   <!-- ── Categories Slider ── -->

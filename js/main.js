@@ -204,7 +204,15 @@
  gtag('event', 'contact_whatsapp', { event_category: 'engagement', event_label: document.title });
  }
  if (typeof fbq === 'function') {
- fbq('track', 'Contact');
+ fbq('track', 'Contact', { content_name: document.title });
+ }
+ });
+ });
+ // Botões que passam pela página /obrigado: o Contact sai daqui, o Lead sai na /obrigado
+ document.querySelectorAll('a[href^="/obrigado"], a[href^="obrigado"]').forEach(function (link) {
+ link.addEventListener('click', function () {
+ if (typeof fbq === 'function') {
+ fbq('track', 'Contact', { content_name: document.title });
  }
  });
  });
