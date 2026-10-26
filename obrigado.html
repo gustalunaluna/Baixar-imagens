@@ -131,11 +131,21 @@
       const raw = params.get('r') || '';
       const dest = raw.startsWith('https://wa.me/') ? raw : ALLOWED_DEST;
       document.getElementById('waBtn').href = dest;
-      // Abre o WhatsApp assim que o lead for registrado (máx. 0,8 s de espera para não perder a contagem)
-      let foi = false;
+      // Abre o WhatsApp assim que o lead for registrado no Analytics e no Pixel da Meta (máx. 1,5 s de espera)
+      let foi = false, ga = false;
+      let fb = !(window.LS_CONSENT && window.LS_CONSENT.granted); // sem consentimento o Pixel não carrega
       const ir = function () { if (!foi) { foi = true; window.location.replace(dest); } };
-      gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'obrigado_redirect', transport_type: 'beacon', event_callback: ir });
-      setTimeout(ir, 800);
+      const talvez = function () { if (ga && fb) ir(); };
+      gtag('event', 'generate_lead', { event_category: 'engagement', event_label: 'obrigado_redirect', transport_type: 'beacon', event_callback: function () { ga = true; talvez(); } });
+      if (!fb) {
+        const t0 = Date.now();
+        (function esperaPixel () {
+          // callMethod só existe depois que o fbevents.js carregou e processou a fila (PageView e Lead)
+          if (window.fbq && window.fbq.callMethod) setTimeout(function () { fb = true; talvez(); }, 300);
+          else if (Date.now() - t0 < 1500) setTimeout(esperaPixel, 100);
+        })();
+      }
+      setTimeout(ir, 1500);
     </script>
   </main>
 </body>
