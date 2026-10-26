@@ -77,6 +77,27 @@
     requestAnimationFrame(function () { el.classList.add('is-visible'); });
   }
 
+  // Evento da Meta: vai pelo Pixel (navegador) e pela API de Conversões (/api/meta-capi)
+  // com o mesmo event_id, para a Meta não contar duas vezes. Só com consentimento.
+  function cookie(nome) {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + nome + '=([^;]*)'));
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+  window.LS_evento = function (nome, dados) {
+    if (!window.LS_CONSENT.granted) return;
+    dados = dados || {};
+    var id = nome + '.' + Date.now() + '.' + Math.random().toString(36).slice(2, 10);
+    if (typeof window.fbq === 'function') window.fbq('track', nome, dados, { eventID: id });
+    var fbc = cookie('_fbc');
+    var clid = new URLSearchParams(location.search).get('fbclid');
+    if (!fbc && clid) fbc = 'fb.1.' + Date.now() + '.' + clid;
+    var corpo = JSON.stringify({ event_name: nome, event_id: id, event_source_url: location.href, custom_data: dados, fbp: cookie('_fbp'), fbc: fbc });
+    try {
+      if (navigator.sendBeacon) navigator.sendBeacon('/api/meta-capi', corpo);
+      else fetch('/api/meta-capi', { method: 'POST', body: corpo, keepalive: true });
+    } catch (e) { /* o Pixel já registrou pelo navegador */ }
+  };
+
   if (!stored) {
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', buildBanner);

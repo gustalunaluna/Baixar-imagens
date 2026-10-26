@@ -203,16 +203,17 @@
  if (typeof gtag === 'function') {
  gtag('event', 'contact_whatsapp', { event_category: 'engagement', event_label: document.title });
  }
- if (typeof fbq === 'function') {
- fbq('track', 'Contact', { content_name: document.title });
+ // Links /obrigado?r=...wa.me... já mandam o Contact no bloco de baixo
+ if (typeof window.LS_evento === 'function' && !/obrigado/.test(link.getAttribute('href'))) {
+ window.LS_evento('Contact', { content_name: document.title });
  }
  });
  });
  // Botões que passam pela página /obrigado: o Contact sai daqui, o Lead sai na /obrigado
  document.querySelectorAll('a[href^="/obrigado"], a[href^="obrigado"]').forEach(function (link) {
  link.addEventListener('click', function () {
- if (typeof fbq === 'function') {
- fbq('track', 'Contact', { content_name: document.title });
+ if (typeof window.LS_evento === 'function') {
+ window.LS_evento('Contact', { content_name: document.title });
  }
  });
  });

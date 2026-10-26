@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="favicon.png">
 
   <!-- Google tag (gtag.js) — stub; script real carrega deferido (ver rodapé) -->
-  <script src="/js/consent.js?v=20260805"></script>
+  <script src="/js/consent.js?v=20261026"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1522,7 +1522,7 @@
     </button>
   </div>
 
-  <script src="js/main.js?v=20261025c"></script>
+  <script src="js/main.js?v=20261026c"></script>
   <!-- Analytics + Meta Pixel — carregam na 1ª interação ou após 2,5s (não competem com o LCP). Rastreio preservado. -->
   <script>
   (function(){
@@ -1536,7 +1536,7 @@
       gtag('config','G-Q8WG4J3F78');
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
       fbq('init','891991662958124');
-      fbq('track','PageView');
+      if (window.LS_evento) LS_evento('PageView'); else fbq('track','PageView');
     }
     window.LS_loadTracking=loadTracking;
     // LGPD: so dispara com consentimento (banner em js/consent.js)
