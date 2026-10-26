@@ -184,6 +184,8 @@
       v.muted = true;
       var tocar = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
       tocar();
+      v.addEventListener("canplay", tocar, { once: true });
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) tocar(); });
       ["touchstart", "scroll", "click"].forEach(function (ev) { window.addEventListener(ev, tocar, { once: true, passive: true }); });
     });
   </script></head>
@@ -237,10 +239,11 @@
 
     <!-- Painel direito: imagem -->
     <div class="hero-split-image hero-video">
-      <video id="hero-video" autoplay muted loop playsinline preload="metadata"
+      <video id="hero-video" autoplay muted loop playsinline preload="auto"
         poster="videos/header-costura/poster-mobile.jpg"
         aria-label="Costura de zíper em bolsa de lona na fábrica da LS Confecções">
         <source src="videos/header-costura/header-full.mp4" type="video/mp4">
+        <source src="videos/header-costura/header-full.webm" type="video/webm">
       </video>
       <span class="hero-video-blur" aria-hidden="true"></span>
     </div>
