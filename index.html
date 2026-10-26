@@ -63,7 +63,7 @@
 
   <!-- ── Performance ── -->
   <link rel="dns-prefetch" href="https://wa.me">
-  <link rel="preload" as="image" href="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="videos/header-costura/poster-mobile.jpg" fetchpriority="high">
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=20261018">
@@ -158,6 +158,24 @@
   "inLanguage": "pt-BR"
 }
   </script>
+  <style>
+    .hero-split-image video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+    .hero-split-image::before{z-index:2}
+    .hero-video-blur{position:absolute;inset:0 auto 0 0;width:26%;z-index:1;pointer-events:none;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);-webkit-mask-image:linear-gradient(to right,#000 0%,transparent 100%);mask-image:linear-gradient(to right,#000 0%,transparent 100%)}
+    @media (max-width:768px){.hero-split-image video{object-position:center 40%}.hero-video-blur{inset:auto 0 0 0;width:auto;height:38%;-webkit-mask-image:linear-gradient(to top,#000 0%,transparent 100%);mask-image:linear-gradient(to top,#000 0%,transparent 100%)}}
+  </style>
+  <script>
+    // vídeo do hero entra depois que a página carrega (a foto de capa aparece na hora); sem vídeo para quem pede menos movimento ou economia de dados
+    window.addEventListener("load", function () {
+      var v = document.getElementById("hero-video");
+      if (!v) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (navigator.connection && navigator.connection.saveData) return;
+      v.querySelectorAll("source[data-src]").forEach(function (s) { s.src = s.getAttribute("data-src"); });
+      v.load();
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+  </script>
 </head>
 <body>
 
@@ -208,14 +226,14 @@
     </div>
 
     <!-- Painel direito: imagem -->
-    <div class="hero-split-image">
-      <img
-        src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp"
-        alt="Linha completa de bolsas, mochilas e acessórios personalizados LS Confecções"
-        width="850"
-        height="850"
-        fetchpriority="high"
-      >
+    <div class="hero-split-image hero-video">
+      <video id="hero-video" muted loop playsinline preload="none"
+        poster="videos/header-costura/poster-mobile.jpg"
+        aria-label="Costura de zíper em bolsa de lona na fábrica da LS Confecções">
+        <source data-src="videos/header-costura/header-mobile.webm" type="video/webm">
+        <source data-src="videos/header-costura/header-mobile.mp4" type="video/mp4">
+      </video>
+      <span class="hero-video-blur" aria-hidden="true"></span>
     </div>
 
     <!-- Seta scroll -->
