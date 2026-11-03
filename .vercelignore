@@ -25,3 +25,6 @@ brand/
 node_modules/
 # package.json/lock ficam de proposito: removê-los muda como a Vercel
 # detecta o projeto, e o ganho de seguranca seria minimo.
+
+# Videos de trabalho (nao usados no site)
+videos/
