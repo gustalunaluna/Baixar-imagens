@@ -9,7 +9,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google tag (gtag.js): stub; script real carrega deferido (ver rodapé) -->
-  <script src="/js/consent.js?v=20261104"></script>
+  <script src="/js/consent.js?v=20261105"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -551,7 +551,7 @@
   </footer>
 
   <script src="js/main.js?v=20261104"></script>
-  <!-- Analytics + Meta Pixel: carregam na 1ª interação ou após 2,5s (não competem com o LCP). GA4 sempre (Consent Mode v2 negado por padrão); Pixel só com consentimento. -->
+  <!-- Analytics + Meta Pixel: carregam na 1ª interação ou após 2,5s (não competem com o LCP). GA4 e Pixel sempre, sem banner de cookies. -->
   <script>
   (function(){
     var gaOk=false, pxOk=false;
@@ -571,7 +571,7 @@
     }
     function loadTracking(){
       loadGA();
-      // LGPD: Pixel so com consentimento (js/consent.js chama LS_loadTracking ao aceitar)
+      // LS_CONSENT.granted e sempre true (js/consent.js, sem banner)
       if(window.LS_CONSENT&&window.LS_CONSENT.granted)loadPixel();
     }
     window.LS_loadTracking=loadTracking;

@@ -9,7 +9,7 @@
   <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google tag (gtag.js): carregamento ADIADO (loader no fim do body, p/ melhorar LCP) -->
-  <script src="/js/consent.js?v=20261104"></script>
+  <script src="/js/consent.js?v=20261105"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -1014,8 +1014,8 @@
 
   <!-- ── Loader ADIADO de rastreamento: GA4 + Meta Pixel ──
        Carrega na 1ª interação do usuário OU após 2,5s (o que vier primeiro),
-       pra não competir com o LCP. GA4 carrega sempre (Consent Mode v2 começa
-       negado em js/consent.js); o Meta Pixel só com consentimento. -->
+       pra não competir com o LCP. GA4 e Meta Pixel carregam sempre, sem banner de cookies
+       (ver js/consent.js). -->
   <script>
   (function(){
     var gaOk=false, pxOk=false;
@@ -1035,7 +1035,7 @@
     }
     function loadTracking(){
       loadGA();
-      // LGPD: Pixel so com consentimento (banner em js/consent.js chama LS_loadTracking ao aceitar)
+      // LS_CONSENT.granted e sempre true (js/consent.js, sem banner)
       if(window.LS_CONSENT&&window.LS_CONSENT.granted)loadPixel();
     }
     window.LS_loadTracking=loadTracking;
