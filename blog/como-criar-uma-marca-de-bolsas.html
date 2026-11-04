@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="icon" type="image/png" href="../favicon.png">
-  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google tag (gtag.js) -->
-  <script src="/js/consent.js?v=20261026"></script>
-  <script src="/js/pixel.js?v=20261026" defer></script>
+  <script src="/js/consent.js?v=20261104"></script>
+  <script src="/js/pixel.js?v=20261104" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8WG4J3F78"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -22,7 +22,7 @@
   <!-- Vercel Web Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
 
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="Gustavo, LS Confecções">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="geo.region" content="BR-SP">
@@ -32,10 +32,10 @@
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="../css/style.css?v=20261018">
+  <link rel="stylesheet" href="../css/style.css?v=20261104">
 
-  <title>Como Criar uma Marca de Bolsas do Zero | LS Confecções</title>
-  <meta name="description" content="Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, cálculo de preço, lote mínimo de 20 peças, registro no INPI e canais de venda.">
+  <title>Como criar uma marca de bolsas do zero | LS Confecções</title>
+  <meta name="description" content="Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, preço, lote mínimo de 20 peças, registro no INPI e canais de venda.">
   <meta name="keywords" content="como criar marca de bolsas, criar marca de mochilas, marca própria de bolsas, lançar marca de acessórios, fabricante de bolsas para marca própria">
   <link rel="canonical" href="https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas">
 
@@ -44,49 +44,76 @@
   <meta property="og:site_name" content="LS Confecções">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas">
-  <meta property="og:title" content="Como Criar uma Marca de Bolsas do Zero | LS Confecções">
-  <meta property="og:description" content="Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, cálculo de preço, lote mínimo de 20 peças, registro no INPI e canais de venda.">
-  <meta property="og:image" content="https://www.lsconfex.com.br/imagens/bolsa-crossbody-puffer-preta-ls-confeccoes.jpg">
-  <meta property="og:image:alt" content="Bolsa crossbody puffer preta produzida pela LS Confecções para marca própria">
+  <meta property="og:title" content="Como criar uma marca de bolsas do zero | LS Confecções">
+  <meta property="og:description" content="Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, preço, lote mínimo de 20 peças, registro no INPI e canais de venda.">
+  <meta property="og:image" content="https://www.lsconfex.com.br/imagens/og/blog-como-criar-uma-marca-de-bolsas.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Homem usando bolsa crossbody puffer preta, produzida pela LS Confecções para marca própria">
   <meta property="article:published_time" content="2026-07-01">
+  <meta property="article:modified_time" content="2026-11-04">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Como Criar uma Marca de Bolsas do Zero | LS Confecções">
-  <meta name="twitter:description" content="Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, cálculo de preço, lote mínimo de 20 peças, registro no INPI e canais de venda.">
-  <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/bolsa-crossbody-puffer-preta-ls-confeccoes.jpg">
-  <meta name="twitter:image:alt" content="Bolsa crossbody puffer preta produzida pela LS Confecções para marca própria">
+  <meta name="twitter:title" content="Como criar uma marca de bolsas do zero | LS Confecções">
+  <meta name="twitter:description" content="Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, preço, lote mínimo de 20 peças, registro no INPI e canais de venda.">
+  <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/og/blog-como-criar-uma-marca-de-bolsas.jpg">
+  <meta name="twitter:image:alt" content="Homem usando bolsa crossbody puffer preta, produzida pela LS Confecções para marca própria">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Como criar uma marca de bolsas do zero: guia prático",
-    "description": "Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, cálculo de preço, lote mínimo de 20 peças, registro no INPI e canais de venda.",
-    "image": "https://www.lsconfex.com.br/imagens/bolsa-crossbody-puffer-preta-ls-confeccoes.jpg",
-    "datePublished": "2026-07-01",
-    "dateModified": "2026-10-16",
-    "inLanguage": "pt-BR",
-    "author": {
-      "@type": "Person",
-      "name": "Gustavo",
-      "jobTitle": "Comercial",
-      "worksFor": {"@type": "Organization", "name": "LS Confecções", "url": "https://www.lsconfex.com.br/"}
-    },
-    "publisher": { "@type": "Organization", "name": "LS Confecções", "url": "https://www.lsconfex.com.br/" },
-    "mainEntityOfPage": "https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas"
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Como criar uma marca de bolsas do zero: guia prático",
+  "description": "Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, preço, lote mínimo de 20 peças, registro no INPI e canais de venda.",
+  "image": "https://www.lsconfex.com.br/imagens/og/blog-como-criar-uma-marca-de-bolsas.jpg",
+  "datePublished": "2026-07-01",
+  "dateModified": "2026-11-04",
+  "inLanguage": "pt-BR",
+  "author": {
+    "@type": "Person",
+    "name": "Gustavo",
+    "jobTitle": "Responsável comercial",
+    "url": "https://www.lsconfex.com.br/sobre",
+    "worksFor": {
+      "@id": "https://www.lsconfex.com.br/#empresa"
+    }
+  },
+  "publisher": {
+    "@id": "https://www.lsconfex.com.br/#empresa"
+  },
+  "isPartOf": {
+    "@id": "https://www.lsconfex.com.br/#website"
+  },
+  "mainEntityOfPage": "https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas"
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.lsconfex.com.br/" },
-      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.lsconfex.com.br/blog" },
-      { "@type": "ListItem", "position": 3, "name": "Como criar uma marca de bolsas do zero: guia prático", "item": "https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas" }
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://www.lsconfex.com.br/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://www.lsconfex.com.br/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Como criar uma marca de bolsas do zero: guia prático",
+      "item": "https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas"
+    }
+  ]
+}
   </script>
   <script type="application/ld+json">
 {
@@ -169,7 +196,7 @@
         </nav>
         <span class="blog-tag">Empreendedorismo</span>
         <h1>Como criar uma marca de bolsas do zero: guia prático</h1>
-        <p class="blog-meta">Por Gustavo, LS Confecções · 1 de julho de 2026 · 7 min de leitura</p>
+        <p class="blog-meta">Por Gustavo, LS Confecções · <time datetime="2026-07-01">1 de julho de 2026</time> · 7 min de leitura</p>
       </div>
     </section>
     <div class="container blog-article-container blog-article-body">
@@ -181,7 +208,7 @@
       <p>Para criar uma marca de bolsas você não precisa de fábrica, máquinas ou experiência em costura. Precisa de quatro coisas: um público bem definido, um produto bem desenvolvido, um fabricante que produza em lotes pequenos e um plano de venda. O passo a passo abaixo é o mesmo que as marcas que produzem com a LS Confecções seguem, do primeiro rascunho ao segundo lote.</p>
 
       <h2>1. Defina para quem você vai vender</h2>
-      <p>Bolsa atende públicos muito diferentes: streetwear, academia, trabalho, viagem, infantil. Antes de escolher modelo ou tecido, responda três perguntas:</p>
+      <p>Bolsa atende públicos muito diferentes: <a href="../bolsas-streetwear-personalizadas">streetwear</a>, <a href="../bolsas-fitness-academia">academia</a>, trabalho, <a href="../bolsas-de-viagem">viagem</a>, infantil. Antes de escolher modelo ou tecido, responda três perguntas:</p>
       <ul>
         <li><strong>Quem compra:</strong> idade, rotina e onde essa pessoa já compra hoje.</li>
         <li><strong>Por que compra:</strong> estilo, função, identidade com um grupo ou praticidade.</li>
@@ -214,13 +241,13 @@
       <p>Bordado tem acabamento em relevo e boa durabilidade. Silk é econômico para logos de poucas cores em lote. Sublimação permite estampa colorida em poliéster claro. Etiqueta tecida ou emborrachada completa o acabamento. Veja a comparação em <a href="bordado-silk-ou-sublimacao">bordado, silk ou sublimação</a>.</p>
 
       <h3>A peça piloto</h3>
-      <p>Antes do lote, produza uma peça piloto: a primeira unidade física, com a marca aplicada. Ela mostra se medidas, tecido e acabamento estão como você imaginou. Na LS Confecções, a piloto fica pronta em até 15 dias, e o desenvolvimento com amostra custa em média R$ 600, conforme o modelo. Corrigir uma peça custa muito menos que corrigir um lote.</p>
+      <p>Antes do lote, produza uma <a href="peca-piloto-prototipo-de-bolsa">peça piloto</a>: a primeira unidade física, com a marca aplicada. Ela mostra se medidas, tecido e acabamento estão como você imaginou. Na LS Confecções, a piloto fica pronta em até 15 dias, e o desenvolvimento com amostra custa em média R$ 600, conforme o modelo. Corrigir uma peça custa muito menos que corrigir um lote.</p>
 
       <h2>4. Calcule o custo real e o preço</h2>
       <p>O custo por peça inclui mais do que o valor pago à fábrica. Some embalagem, frete, impostos, taxas de marketplace ou maquininha e o investimento em anúncio dividido pelas vendas. O e-book do Sebrae sobre preço de venda organiza o cálculo em etapas: custos, despesas fixas, impostos sobre a venda, margem desejada e, por fim, o markup. O mesmo material alerta que formar preço não é simplesmente dobrar ou triplicar o custo (fonte 3).</p>
 
       <h3>Markup e margem não são a mesma coisa</h3>
-      <p>Markup é o multiplicador aplicado sobre o custo. Margem é a parte do preço de venda que sobra. Veja o mesmo custo com três preços:</p>
+      <p><a href="como-precificar-bolsas-da-sua-marca">Markup</a> é o multiplicador aplicado sobre o custo. Margem é a parte do preço de venda que sobra. Veja o mesmo custo com três preços:</p>
       <div class="blog-tabela-wrap">
         <table class="blog-tabela">
           <thead><tr><th>Custo por peça</th><th>Preço de venda</th><th>Markup</th><th>Margem bruta</th></tr></thead>
@@ -305,7 +332,7 @@
       </div>
       <div class="blog-cta">
         <h2>Pronto para produzir com a LS Confecções?</h2>
-        <p>Fabricação B2B de bolsas, mochilas e acessórios personalizados a partir de 20 unidades, em São Paulo. Fale direto com nosso comercial e receba uma proposta em minutos.</p>
+        <p>Fabricação B2B de bolsas, mochilas e acessórios personalizados a partir de 20 unidades, em Guarulhos (SP). Fale direto com nosso comercial e tenha resposta rápida pelo WhatsApp.</p>
         <a href="https://wa.me/5511999370418?text=Ol%C3%A1!%20Vim%20pelo%20post%20sobre%20criar%20marca%20de%20bolsas%20e%20quero%20um%20or%C3%A7amento." class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Solicitar orçamento
@@ -350,7 +377,7 @@
         <div class="footer-nav">
           <p class="footer-title">Blog</p>
           <ul>
-            <li><a href="../blog/private-label-como-funciona">Private Label</a></li>
+            <li><a href="../private-label">Private Label</a></li>
             <li><a href="../blog/como-criar-uma-marca-de-bolsas">Criar marca de bolsas</a></li>
             <li><a href="../blog/quanto-custa-fabricar-mochila-personalizada">Custo de fabricação</a></li>
             <li><a href="../blog/tipos-de-tecido-para-mochilas">Tecidos para mochilas</a></li>
@@ -384,7 +411,7 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=20261026"></script>
+  <script src="../js/main.js?v=20261104"></script>
 
 </body>
 </html>

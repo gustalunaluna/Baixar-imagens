@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google tag (gtag.js) -->
-  <script src="/js/consent.js?v=20261026"></script>
-  <script src="/js/pixel.js?v=20261026" defer></script>
+  <script src="/js/consent.js?v=20261104"></script>
+  <script src="/js/pixel.js?v=20261104" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8WG4J3F78"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -20,7 +20,7 @@
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="LS Confecções">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="geo.region" content="BR-SP">
@@ -30,10 +30,10 @@
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="css/style.css?v=20261018">
+  <link rel="stylesheet" href="css/style.css?v=20261104">
 
-  <title>Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções</title>
-  <meta name="description" content="Calculadora gratuita de preço de venda para marcas de bolsas: calcule lucro, margem, markup e faturamento do lote, com a metodologia explicada passo a passo.">
+  <title>Calculadora de Preço e Margem para Bolsas | LS Confecções</title>
+  <meta name="description" content="Calculadora grátis de preço de venda para marcas de bolsas: calcule lucro, margem, markup e faturamento do lote, com as fórmulas explicadas.">
   <meta name="keywords" content="calculadora de preço de venda, como precificar produto, margem de lucro, markup, precificação marca de bolsas, calcular preço de venda">
   <link rel="canonical" href="https://www.lsconfex.com.br/calculadora-preco-marca">
 
@@ -41,16 +41,19 @@
   <meta property="og:site_name" content="LS Confecções">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://www.lsconfex.com.br/calculadora-preco-marca">
-  <meta property="og:title" content="Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções">
+  <meta property="og:title" content="Calculadora de Preço e Margem para Bolsas | LS Confecções">
   <meta property="og:description" content="Calcule lucro, margem, markup e faturamento do lote da sua marca de bolsas e mochilas. Estimativa com fórmulas explicadas e fontes do Sebrae.">
   <meta property="og:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
-  <meta property="og:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Mochilas, tote bag e bolsas de tecido penduradas em uma arara, linha de produtos da LS Confecções">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Calculadora de Preço e Margem para Marcas de Bolsas | LS Confecções">
+  <meta name="twitter:title" content="Calculadora de Preço e Margem para Bolsas | LS Confecções">
   <meta name="twitter:description" content="Calcule lucro, margem, markup e faturamento do lote da sua marca de bolsas e mochilas. Estimativa com fórmulas explicadas e fontes do Sebrae.">
   <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
-  <meta name="twitter:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
+  <meta name="twitter:image:alt" content="Mochilas, tote bag e bolsas de tecido penduradas em uma arara, linha de produtos da LS Confecções">
 
   <script type="application/ld+json">
   {
@@ -60,9 +63,9 @@
     "url": "https://www.lsconfex.com.br/calculadora-preco-marca",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+    "isAccessibleForFree": true,
     "description": "Calculadora gratuita de precificação para marcas de bolsas e acessórios: lucro por peça, margem sobre o preço, markup e faturamento do lote. Resultado estimado; o custo real depende de modelo, tecido e quantidade.",
-    "publisher": { "@type": "Organization", "name": "LS Confecções", "url": "https://www.lsconfex.com.br/" }
+    "publisher": { "@id": "https://www.lsconfex.com.br/#empresa", "name": "LS Confecções" }
   }
   </script>
   <script type="application/ld+json">
@@ -235,7 +238,7 @@
 
       <h2>O que a calculadora não considera</h2>
       <p>O custo por peça de uma bolsa ou mochila depende do modelo, do tecido, dos aviamentos, da personalização e da quantidade. Lotes maiores diluem a preparação da produção (modelagem, corte, ajuste de máquinas) em mais unidades, e o custo unitário tende a cair. Por isso os números aqui são uma simulação: o custo real só sai com o orçamento da fábrica, depois de definido o modelo. Na LS Confecções o pedido mínimo é de 20 peças por modelo e cor, e a produção do lote começa após a aprovação da peça piloto.</p>
-      <p>Para estimar o custo de fabricação, veja <a href="blog/quanto-custa-fabricar-mochila-personalizada">quanto custa fabricar uma mochila personalizada</a>. Para o planejamento completo, leia <a href="blog/como-criar-uma-marca-de-bolsas">como criar uma marca de bolsas</a> e entenda o modelo de <a href="private-label">private label</a>.</p>
+      <p>Para estimar o custo de fabricação, veja <a href="blog/quanto-custa-fabricar-mochila-personalizada">quanto custa fabricar uma mochila personalizada</a>. Para o planejamento completo, leia <a href="blog/como-criar-uma-marca-de-bolsas">como criar uma marca de bolsas</a>, veja custo, markup e margem em <a href="blog/como-precificar-bolsas-da-sua-marca">como precificar bolsas da sua marca</a> e entenda o modelo de <a href="private-label">private label</a>.</p>
 
       <h2>Perguntas frequentes sobre precificação</h2>
       <div class="calc-faq-item">
@@ -389,6 +392,6 @@
     calc();
   })();
   </script>
-  <script src="js/main.js?v=20261026"></script>
+  <script src="js/main.js?v=20261104"></script>
 </body>
 </html>

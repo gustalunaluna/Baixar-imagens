@@ -38,6 +38,7 @@
  nav.classList.toggle('active');
  document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
  hamburger.setAttribute('aria-expanded', nav.classList.contains('active') ? 'true' : 'false');
+ if (nav.classList.contains('active')) { var l = nav.querySelector('a'); if (l) setTimeout(function () { l.focus(); }, 50); }
  });
  navLinks.forEach(function (link) {
  link.addEventListener('click', function () {
@@ -56,6 +57,9 @@
  document.body.style.overflow = '';
  hamburger.setAttribute('aria-expanded', 'false');
  }
+ });
+ document.addEventListener('keydown', function (e) {
+ if (e.key === 'Escape' && nav.classList.contains('active')) { hamburger.click(); hamburger.focus(); }
  });
  }
  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
@@ -130,8 +134,10 @@
  b.addEventListener('click', function () {
  if (opts.disabled) return;
  currentPage = page;
- applyView();
+ applyView(true);
  scrollToCatalog();
+ var a = pager.querySelector('[aria-current="page"]');
+ if (a) a.focus({ preventScroll: true });
  });
  return b;
  };
@@ -142,7 +148,7 @@
  pager.appendChild(makeBtn('&rsaquo;', currentPage + 1, { disabled: currentPage === totalPages, label: 'Próxima página' }));
  };
 
- var applyView = function () {
+ var applyView = function (announce) {
  var matching = ordered.filter(function (card) {
  var cat = (card.dataset.category || '');
  return currentCategory === 'all' || cat.split(' ').indexOf(currentCategory) !== -1;
@@ -161,6 +167,11 @@
  });
  });
  renderPagination(totalPages);
+ var st = document.getElementById('catalog-status');
+ if (announce && st) {
+ var ab = document.querySelector('.filter-btn.active');
+ st.textContent = matching.length + ' produtos' + (currentCategory !== 'all' && ab ? ' em ' + ab.textContent.trim() : '') + ', página ' + currentPage + ' de ' + totalPages + '.';
+ }
  };
 
  filterBtns.forEach(function (btn) {
@@ -176,7 +187,7 @@
  });
  this.classList.add('active');
  this.setAttribute('aria-pressed', 'true');
- applyView();
+ applyView(true);
  });
  });
 
@@ -240,6 +251,15 @@
  if (this.style.display === 'none') return;
  openLightbox(this.src, this.alt, this);
  });
+ img.tabIndex = 0;
+ img.setAttribute('role', 'button');
+ img.setAttribute('aria-label', 'Ampliar foto: ' + (img.alt || '').replace(/\s*\|\s*LS Confecções$/, ''));
+ img.addEventListener('keydown', function (e) {
+ if ((e.key === 'Enter' || e.key === ' ') && this.style.display !== 'none') {
+ e.preventDefault();
+ openLightbox(this.src, this.alt, this);
+ }
+ });
  });
  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
  lightbox.addEventListener('click', function (e) {
@@ -247,8 +267,16 @@
  });
  document.addEventListener('keydown', function (e) {
  if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+ if (e.key === 'Tab' && lightbox.classList.contains('active') && lightboxClose) { e.preventDefault(); lightboxClose.focus(); }
  });
  }
+ // Aviso de nova aba para leitor de tela (nada muda na tela)
+ document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
+ var av = ' (abre em nova aba)';
+ if (/nova aba/.test(a.textContent + (a.getAttribute('aria-label') || ''))) return;
+ if (a.hasAttribute('aria-label')) { a.setAttribute('aria-label', a.getAttribute('aria-label') + av); }
+ else { var sp = document.createElement('span'); sp.className = 'sr-only'; sp.textContent = av; a.appendChild(sp); }
+ });
 })();
 
 /* ── Scripts extraídos do HTML (stagger, slider, footer-year) ── */
@@ -289,6 +317,7 @@
     let isDragging = false;
     let dragStartX = 0;
     let dragStartScroll = 0;
+    let moved = false;
 
     function getVisible() {
       const w = window.innerWidth;
@@ -340,6 +369,7 @@
     /* autoplay */
     var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function startAuto() {
+      clearInterval(autoTimer);
       if (prefersReducedMotion) return;
       autoTimer = setInterval(goNext, 5500);
     }
@@ -352,9 +382,22 @@
     slider.closest('.cat-slider-wrap').addEventListener('mouseenter', () => clearInterval(autoTimer));
     slider.closest('.cat-slider-wrap').addEventListener('mouseleave', startAuto);
 
+    /* pause while keyboard focus is inside, and keep the focused card visible */
+    const wrap = slider.closest('.cat-slider-wrap');
+    wrap.addEventListener('focusin', e => {
+      clearInterval(autoTimer);
+      wrap.scrollLeft = 0;
+      const i = cards.indexOf(e.target.closest('.category-card'));
+      if (i > -1 && (i < current || i >= current + Math.floor(getVisible()))) goTo(i);
+    });
+    wrap.addEventListener('focusout', e => {
+      if (!wrap.contains(e.relatedTarget)) resetAuto();
+    });
+
     /* drag / swipe */
     function onDragStart(x) {
       isDragging = true;
+      moved = false;
       dragStartX = x;
       dragStartScroll = current;
       slider.style.transition = 'none';
@@ -362,6 +405,7 @@
     }
     function onDragMove(x) {
       if (!isDragging) return;
+      if (Math.abs(dragStartX - x) > 5) moved = true;
       const cardW = cards[0].getBoundingClientRect().width;
       const gap = parseFloat(getComputedStyle(slider).gap) || 20;
       const delta = dragStartX - x;
@@ -391,7 +435,8 @@
 
     /* prevent link click after drag */
     slider.addEventListener('click', e => {
-      if (Math.abs(dragStartX - (e.clientX || 0)) > 5) e.preventDefault();
+      if (moved && e.detail > 0) e.preventDefault();
+      moved = false;
     });
 
     /* recalc on resize */

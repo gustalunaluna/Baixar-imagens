@@ -69,12 +69,20 @@
       var btn = ev.target.closest('[data-consent]');
       if (!btn) return;
       apply(btn.getAttribute('data-consent'));
+      document.documentElement.style.scrollPaddingBottom = '';
       el.classList.remove('is-visible');
       setTimeout(function () { el.remove(); }, 300);
     });
 
-    document.body.appendChild(el);
-    requestAnimationFrame(function () { el.classList.add('is-visible'); });
+    // Logo depois do link "Pular para o conteúdo": o banner é fixo, então nada muda na tela,
+    // mas quem usa teclado chega a Aceitar/Recusar logo no início da página.
+    var skip = document.querySelector('.skip-link');
+    if (skip && skip.parentNode) skip.parentNode.insertBefore(el, skip.nextSibling);
+    else document.body.insertBefore(el, document.body.firstChild);
+    requestAnimationFrame(function () {
+      el.classList.add('is-visible');
+      document.documentElement.style.scrollPaddingBottom = (el.offsetHeight + 16) + 'px';
+    });
   }
 
   // Evento da Meta: vai pelo Pixel (navegador) e pela API de Conversões (/api/meta-capi)

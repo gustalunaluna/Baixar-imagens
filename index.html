@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Google tag (gtag.js) — carregamento ADIADO (loader no fim do body, p/ melhorar LCP) -->
-  <script src="/js/consent.js?v=20261026"></script>
+  <!-- Google tag (gtag.js): carregamento ADIADO (loader no fim do body, p/ melhorar LCP) -->
+  <script src="/js/consent.js?v=20261104"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -25,10 +25,10 @@
   <script defer src="/_vercel/speed-insights/script.js"></script>
 
   <!-- ── SEO Principal ── -->
-  <title>Fabricante B2B de Bolsas e Mochilas em SP | LS Confecções</title>
-  <meta name="description" content="Fabricante B2B de bolsas, mochilas e acessórios streetwear em São Paulo. Personalização com sua marca a partir de 20 unidades. Peça seu orçamento.">
+  <title>Fábrica de Bolsas e Mochilas Personalizadas | LS Confecções</title>
+  <meta name="description" content="Fábrica de bolsas, mochilas e acessórios personalizados com a sua marca, em Guarulhos (SP). A partir de 20 peças por modelo e cor. Peça seu orçamento.">
   <meta name="keywords" content="fabricante bolsas atacado, mochilas personalizadas B2B, acessórios streetwear fabricação, bolsas personalizadas logo, pochetes atacado São Paulo, confecção bolsas SP, brinde corporativo personalizado, LS Confecções">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="LS Confecções">
   <meta name="theme-color" content="#0a0a0a">
 
@@ -49,28 +49,31 @@
   <meta property="og:site_name" content="LS Confecções">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://www.lsconfex.com.br/">
-  <meta property="og:title" content="LS Confecções | Fabricante B2B de Bolsas, Mochilas e Acessórios Streetwear">
-  <meta property="og:description" content="Fabricante B2B de bolsas, mochilas e acessórios streetwear em São Paulo. Personalização com logo a partir de 20 unidades. Orçamento: (11) 99937-0418.">
+  <meta property="og:title" content="Fábrica de Bolsas e Mochilas Personalizadas | LS Confecções">
+  <meta property="og:description" content="Fábrica de bolsas, mochilas e acessórios personalizados com a sua marca, em Guarulhos (SP). A partir de 20 peças por modelo e cor. Peça seu orçamento.">
   <meta property="og:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
-  <meta property="og:image:alt" content="LS Confecções, Fabricante B2B de bolsas, mochilas e acessórios personalizados em São Paulo">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Mochilas e bolsas personalizadas da LS Confecções penduradas em uma arara">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="LS Confecções | Fabricante B2B de Bolsas, Mochilas e Acessórios">
-  <meta name="twitter:description" content="Fabricante B2B de bolsas, mochilas e acessórios streetwear em São Paulo. Personalização completa com logo a partir de 20 unidades.">
+  <meta name="twitter:title" content="Fábrica de Bolsas e Mochilas Personalizadas | LS Confecções">
+  <meta name="twitter:description" content="Fábrica de bolsas, mochilas e acessórios personalizados com a sua marca, em Guarulhos (SP). A partir de 20 peças por modelo e cor. Peça seu orçamento.">
   <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
-  <meta name="twitter:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
+  <meta name="twitter:image:alt" content="Mochilas e bolsas personalizadas da LS Confecções penduradas em uma arara">
 
   <!-- ── Performance ── -->
   <link rel="dns-prefetch" href="https://wa.me">
   <link rel="preload" as="image" href="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" fetchpriority="high">
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=20261018">
+  <link rel="stylesheet" href="css/style.css?v=20261104">
   <style>/* Home: preserva o rodape original (sem o desenho de bolsa e com links legais em lime) */
   .footer{position:static;overflow:visible}.footer::after{content:none}.footer-legal a{color:#e8ff00}.footer-cnpj{white-space:normal}</style>
 
-  <!-- ── Structured Data: LocalBusiness / Manufacturer ── -->
+  <!-- ── Structured Data: empresa (entidade principal do site) ── -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -78,63 +81,64 @@
     "LocalBusiness",
     "Organization"
   ],
+  "@id": "https://www.lsconfex.com.br/#empresa",
   "name": "LS Confecções",
-  "description": "Fabricante B2B de bolsas, mochilas e acessórios streetwear em São Paulo. Personalização completa a partir de 20 unidades com logo bordado, silk e embalagem exclusiva.",
+  "alternateName": "LS CONFEX",
+  "description": "Fábrica B2B de bolsas, mochilas, pochetes, ecobags, necessaires e acessórios personalizados com a marca do cliente, para private label e brindes corporativos. Pedido mínimo de 20 peças por modelo e cor. Fábrica própria em Guarulhos (SP) e escritório na Vila Carrão, São Paulo (SP).",
   "url": "https://www.lsconfex.com.br/",
   "telephone": "+55-11-99937-0418",
   "email": "ls_confeccoes@hotmail.com",
   "taxID": "32.200.335/0001-40",
   "priceRange": "$$",
-  "openingHours": "Mo-Fr 08:00-18:00",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Rua Biguaçu, 286",
+    "streetAddress": "Rua Biguaçu, 286, Vila Carrão",
     "addressLocality": "São Paulo",
     "addressRegion": "SP",
     "postalCode": "03446-000",
     "addressCountry": "BR"
   },
+  "location": {
+    "@type": "Place",
+    "name": "Fábrica LS Confecções",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Guarulhos",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    }
+  },
   "areaServed": {
     "@type": "Country",
     "name": "Brasil"
   },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+55-11-99937-0418",
+    "email": "ls_confeccoes@hotmail.com",
+    "contactType": "sales",
+    "areaServed": "BR",
+    "availableLanguage": "pt-BR"
+  },
   "sameAs": [
-    "https://www.instagram.com/lsconfex",
-    "https://wa.me/5511999370418"
+    "https://www.instagram.com/lsconfex/"
   ],
   "logo": {
     "@type": "ImageObject",
-    "url": "https://www.lsconfex.com.br/favicon.png"
+    "url": "https://www.lsconfex.com.br/imagens/logo-schema.png",
+    "width": 512,
+    "height": 512
   },
   "image": "https://www.lsconfex.com.br/imagens/og-image.jpg",
-  "foundingDate": "2014",
   "knowsAbout": [
-    "bolsas",
-    "mochilas",
-    "pochetes",
-    "acessórios streetwear",
-    "confecção B2B",
+    "bolsas personalizadas",
+    "mochilas personalizadas",
+    "pochetes personalizadas",
+    "ecobags personalizadas",
+    "private label",
     "brindes corporativos"
   ]
 }
-  </script>
-
-  <!-- ── Structured Data: FAQPage ── -->
-
-  <!-- ── Structured Data: BreadcrumbList ── -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Início",
-        "item": "https://www.lsconfex.com.br/"
-      }
-    ]
-  }
   </script>
 
   <!-- Skeleton leve (para de animar quando a imagem carrega; hero fica fora pra nao atrasar o LCP) -->
@@ -152,10 +156,12 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://www.lsconfex.com.br/#website",
   "name": "LS Confecções",
-  "alternateName": "LS Confex",
+  "alternateName": "LS CONFEX",
   "url": "https://www.lsconfex.com.br/",
-  "inLanguage": "pt-BR"
+  "inLanguage": "pt-BR",
+  "publisher": {"@id": "https://www.lsconfex.com.br/#empresa"}
 }
   </script>
 </head>
@@ -182,7 +188,7 @@
           <li><a href="https://www.lsconfex.com.br/produtos">Catálogo</a></li>
           <li><a href="brindes">Brindes</a></li>
           <li><a href="#como-funciona">Como Funciona</a></li>
-          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="/sobre">Sobre</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
@@ -196,10 +202,10 @@
     <!-- Painel esquerdo: conteúdo -->
     <div class="hero-split-content">
       <h1 class="hero-title">Sua marca.<br><span class="outline">Nossa</span><br><em>produção.</em></h1>
-      <p class="hero-subtitle">Bolsas, mochilas e acessórios com a identidade da sua marca.</p>
-      <p class="hero-subtitle-meta">A partir de <strong class="text-gold">20 unidades</strong>, entrega em até <strong class="text-gold">25 dias úteis</strong>.</p>
+      <p class="hero-subtitle">Bolsas, mochilas e acessórios personalizados com a sua marca.</p>
+      <p class="hero-subtitle-meta">A partir de <strong class="text-gold">20 unidades</strong>, piloto em até 15 dias · produção em até <strong class="text-gold">25 dias úteis</strong>.</p>
       <div class="hero-actions">
-        <a href="obrigado" class="btn btn-primary btn-lg">
+        <a href="obrigado" class="btn btn-primary btn-lg" rel="nofollow">
           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Solicitar orçamento
         </a>
@@ -279,14 +285,14 @@
         <span class="eyebrow">Nosso portfólio</span>
         <h2 style="color:#fff;">Linhas de Produto</h2>
         <span class="divider"></span>
-        <p style="color:rgba(255,255,255,.7);">Do básico ao personalizado, mais de 50 categorias disponíveis para sua marca.</p>
+        <p style="color:rgba(255,255,255,.7);">Mochilas, bolsas, pochetes e ecobags: mais de 50 categorias para a sua marca.</p>
       </div>
       <div class="cat-slider-wrap">
       <div class="categories-grid" id="catSlider">
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Mochilas">
+        <a href="fabricante-de-mochilas-personalizadas" class="category-card fade-up" aria-label="Mochilas: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/mochila-card.webp" alt="Mochilas, fabricação de mochilas personalizadas B2B" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/mochila-card.webp" alt="Mochila preta de nylon usada nas costas" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Mochilas</h3>
@@ -294,9 +300,9 @@
           </div>
         </a>
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Pochetes">
+        <a href="pochetes-personalizadas" class="category-card fade-up" aria-label="Pochetes: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/pochetes-personalizadas-atacado.webp" alt="Pochetes, pochetes personalizadas atacado" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/pochetes-personalizadas-atacado.webp" alt="Pochete azul e verde com fita jacquard e etiqueta de marca, usada transversal" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Pochetes</h3>
@@ -304,9 +310,9 @@
           </div>
         </a>
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Ecobag">
+        <a href="ecobags-personalizadas" class="category-card fade-up" aria-label="Ecobag: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/ecobag-personalizada-para-brindes-corporativos.webp" alt="Ecobag personalizada para brindes corporativos" width="600" height="450" style="object-position: center 30%;" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/ecobag-personalizada-para-brindes-corporativos.webp" alt="Ecobag de algodão cru com estampa vermelha personalizada" srcset="imagens/m/400/ecobag-personalizada-para-brindes-corporativos.webp 400w, imagens/ecobag-personalizada-para-brindes-corporativos.webp 506w" sizes="(max-width: 767px) 50vw, 410px" width="600" height="450" style="object-position: center 30%;" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Ecobag</h3>
@@ -314,9 +320,9 @@
           </div>
         </a>
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Carteiras">
+        <a href="produtos" class="category-card fade-up" aria-label="Carteiras: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/carteira.webp" alt="Carteiras personalizadas B2B" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/carteira.webp" alt="Carteira preta de nylon com logo em silk branco" srcset="imagens/m/400/carteira.webp 400w, imagens/m/800/carteira.webp 800w, imagens/carteira.webp 900w" sizes="(max-width: 767px) 50vw, 410px" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Carteiras</h3>
@@ -324,9 +330,9 @@
           </div>
         </a>
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Sling Bag">
+        <a href="bolsas-streetwear-personalizadas" class="category-card fade-up" aria-label="Sling Bag: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/destaque-slingbag.webp" alt="Sling Bag personalizada B2B" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/destaque-slingbag.webp" alt="Sling bag com estampa grafite preta e branca usada nas costas" srcset="imagens/m/400/destaque-slingbag.webp 400w, imagens/destaque-slingbag.webp 500w" sizes="(max-width: 767px) 50vw, 410px" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Sling Bag</h3>
@@ -334,9 +340,9 @@
           </div>
         </a>
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Malas">
+        <a href="bolsas-de-viagem" class="category-card fade-up" aria-label="Malas: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/malas/malas-de-viagem-personalizadas-b2b.webp" alt="Malas de viagem personalizadas B2B" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/malas/malas-de-viagem-personalizadas-b2b.webp" alt="Bolsa de viagem duffel preta com alça de ombro" srcset="imagens/m/400/malas/malas-de-viagem-personalizadas-b2b.webp 400w, imagens/m/800/malas/malas-de-viagem-personalizadas-b2b.webp 800w, imagens/malas/malas-de-viagem-personalizadas-b2b.webp 1000w" sizes="(max-width: 767px) 50vw, 410px" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Malas</h3>
@@ -344,9 +350,9 @@
           </div>
         </a>
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Bolsas">
+        <a href="fabricante-de-bolsas-personalizadas" class="category-card fade-up" aria-label="Bolsas: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/bolsas-personalizadas-b2b-atacado.webp" alt="Bolsas personalizadas B2B atacado" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/bolsas-personalizadas-b2b-atacado.webp" alt="Bolsa preta de nylon com alça transversal regulável" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Bolsas</h3>
@@ -354,9 +360,9 @@
           </div>
         </a>
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Tabaqueira">
+        <a href="produtos" class="category-card fade-up" aria-label="Tabaqueira: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/tabaqueira-personalizada-b2b.webp" alt="Tabaqueira personalizada B2B" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/tabaqueira-personalizada-b2b.webp" alt="Tabaqueira verde militar com fivela e logo estampado" srcset="imagens/m/400/tabaqueira-personalizada-b2b.webp 400w, imagens/m/800/tabaqueira-personalizada-b2b.webp 800w, imagens/tabaqueira-personalizada-b2b.webp 900w" sizes="(max-width: 767px) 50vw, 410px" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Tabaqueira</h3>
@@ -364,9 +370,9 @@
           </div>
         </a>
 
-        <a href="produtos" class="category-card fade-up" aria-label="Ver modelos de Cooler Bag">
+        <a href="bolsas-termicas-personalizadas" class="category-card fade-up" aria-label="Cooler Bag: ver modelos">
           <div class="category-thumb">
-            <img src="imagens/cooler-bag.webp" alt="Cooler Bag personalizada B2B" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
+            <img src="imagens/cooler-bag.webp" alt="Bolsa térmica cooler bag preta com logo em branco" width="600" height="450" data-fallback="hide" loading="lazy" decoding="async">
           </div>
           <div class="category-info">
             <h3>Cooler Bag</h3>
@@ -374,7 +380,7 @@
           </div>
         </a>
 
-        <a href="/obrigado?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%25C3%25A1%252C%2520Gustavo%21%2520Quero%2520conhecer%2520todas%2520as%2520categorias%2520da%2520LS%2520Confec%25C3%25A7%25C3%25B5es." class="category-card category-card--more fade-up" target="_blank" rel="noopener noreferrer">
+        <a href="/obrigado?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%25C3%25A1%252C%2520Gustavo%21%2520Quero%2520conhecer%2520todas%2520as%2520categorias%2520da%2520LS%2520Confec%25C3%25A7%25C3%25B5es." class="category-card category-card--more fade-up" target="_blank" rel="noopener noreferrer nofollow">
           <div class="category-thumb">
             <div class="more-inner">
               <span class="more-number">+50</span>
@@ -383,7 +389,7 @@
           </div>
           <div class="category-info">
             <h3>E muito mais</h3>
-            <span class="cat-btn">Saiba mais <span class="cat-arrow">→</span></span>
+            <span class="cat-btn">Falar agora <span class="cat-arrow">→</span></span>
           </div>
         </a>
 
@@ -506,7 +512,7 @@
 
       </div>
       <div class="products-cta" style="display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; margin-top:3rem;">
-        <a href="/obrigado?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Gostaria%20de%20falar%20com%20um%20representante." target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:.4rem; background:#0a0a0a; color:#e8ff00; border:1px solid #e8ff00; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.55rem 1.2rem; text-decoration:none; border-radius:6px;">Falar com Representante</a>
+        <a href="/obrigado?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20Gostaria%20de%20falar%20com%20um%20representante." target="_blank" rel="noopener noreferrer nofollow" style="display:inline-flex; align-items:center; gap:.4rem; background:#0a0a0a; color:#e8ff00; border:1px solid #e8ff00; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.55rem 1.2rem; text-decoration:none; border-radius:6px;">Falar com Representante</a>
         <a href="produtos" style="display:inline-flex; align-items:center; background:transparent; color:#555; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.55rem 1.2rem; border:1px solid #ccc; text-decoration:none; border-radius:6px;">Ver Catálogo</a>
         <a href="https://www.instagram.com/lsconfex" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:.4rem; background:transparent; color:#555; font-family:'Barlow Condensed',sans-serif; font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:.55rem 1.2rem; border:1px solid #ccc; text-decoration:none; border-radius:6px;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -536,19 +542,19 @@
         <div class="step-card fade-up">
           <div class="step-number">02</div>
           <h3>Aprovação do Modelo</h3>
-          <p>Definimos juntos o modelo, materiais e aplicação da sua marca. Só iniciamos depois da sua aprovação.</p>
+          <p>Definimos juntos modelo, materiais e aplicação da sua marca e fazemos a peça piloto em até 15 dias. O lote só começa com a sua aprovação.</p>
         </div>
 
         <div class="step-card fade-up">
           <div class="step-number">03</div>
           <h3>Produção com Qualidade</h3>
-          <p>Nossa equipe produz com controle rigoroso em cada etapa. Acompanhamento do início ao fim.</p>
+          <p>Produção em até 25 dias úteis após a aprovação da piloto, com controle de qualidade em cada etapa.</p>
         </div>
 
         <div class="step-card fade-up">
           <div class="step-number">04</div>
           <h3>Entrega no Prazo</h3>
-          <p>Seus produtos embalados e entregues conforme o prazo acordado, prontos para uso ou revenda.</p>
+          <p>Pagamento: 50% de entrada e 50% na entrega. Produtos embalados e enviados no prazo combinado.</p>
         </div>
 
       </div>
@@ -586,7 +592,7 @@
         <span class="eyebrow">Quem confia na gente</span>
         <h2>Clientes que confiam<br>na LS Confecções</h2>
         <span class="divider"></span>
-        <p class="section-sub" style="max-width:520px; margin:1rem auto 0;">Marcas de moda, clubes de futebol e empresas que escolheram qualidade e parceria.</p>
+        <p class="section-sub" style="max-width:520px; margin:1rem auto 0;">Fábrica própria em Guarulhos (SP), produzindo para marcas de moda, clubes de futebol e empresas de todo o Brasil.</p>
       </div>
       <div class="clients-marquee-wrap fade-up">
         <div class="clients-marquee" aria-hidden="false">
@@ -696,7 +702,7 @@
   #contato .lead-card .form-sub{color:rgba(255,255,255,.5);font-size:.92rem;margin-bottom:1.4rem}
   @media(max-width:880px){#contato .cta-redesign{grid-template-columns:1fr;gap:2.2rem}#contato.cta-section{padding-block:4rem}}
   
-/* ===== Correcoes de layout — 18/09/2026 ===== */
+/* ===== Correcoes de layout, 18/09/2026 ===== */
 
 /* Cabecalho nao depende mais do JS para ficar visivel.
    Antes: .header{opacity:0} e so o JS revelava. Se o script
@@ -739,9 +745,9 @@
           <h2>Pronto para criar<br>sua linha exclusiva?</h2>
           <p class="lead">Preencha e retornamos em até <strong>24h</strong>. Ou chama direto no WhatsApp.</p>
           <ul class="cta-list">
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Pedido a partir de 20 peças por modelo</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Pedido a partir de 20 peças por modelo e cor</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Peça-piloto aprovada antes de rodar o lote</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fabricação nacional · entrega para todo o Brasil</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Fábrica em Guarulhos (SP) · entrega para todo o Brasil</li>
           </ul>
         </div>
 
@@ -813,6 +819,7 @@
       var whatsapp  = form.whatsapp.value.trim();
       var interesse = form.interesse.value;
       var digits    = whatsapp.replace(/\D/g, '');
+      if (digits.length >= 12 && digits.indexOf('55') === 0) digits = digits.slice(2);
 
       var invalid = [];
       if (!nome) invalid.push(form.nome);
@@ -821,6 +828,12 @@
 
       if (invalid.length) {
         invalid.forEach(markInvalid);
+        var m = [];
+        if (!nome) m.push('informe seu nome ou marca');
+        if (invalid.indexOf(form.whatsapp) > -1) m.push('informe o WhatsApp com DDD, ex.: (11) 99999-9999');
+        if (!interesse) m.push('escolha o produto de interesse');
+        errEl.hidden = false;
+        errEl.textContent = 'Para enviar, ' + m.join('; ') + '.';
         invalid[0].focus();
         return;
       }
@@ -905,7 +918,7 @@
           <p class="footer-title">Navegação</p>
           <ul>
             <li><a href="/">Início</a></li>
-            <li><a href="/#categorias">Categorias</a></li>
+            <li><a href="private-label">Private Label</a></li>
             <li><a href="/#como-funciona">Como Funciona</a></li>
             <li><a href="/#sobre">Clientes</a></li>
             <li><a href="brindes">Brindes Corporativos</a></li>
@@ -918,10 +931,10 @@
         <div class="footer-nav">
           <p class="footer-title">Catálogo</p>
           <ul>
-            <li><a href="produtos">Mochilas</a></li>
-            <li><a href="produtos">Bolsas</a></li>
-            <li><a href="produtos">Pochetes</a></li>
-            <li><a href="produtos">Shoulder Bags</a></li>
+            <li><a href="fabricante-de-mochilas-personalizadas">Mochilas</a></li>
+            <li><a href="fabricante-de-bolsas-personalizadas">Bolsas</a></li>
+            <li><a href="pochetes-personalizadas">Pochetes</a></li>
+            <li><a href="bolsas-streetwear-personalizadas">Shoulder Bags</a></li>
             <li><a href="produtos">Ver tudo →</a></li>
           </ul>
         </div>
@@ -952,8 +965,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Google Ads Conversion Tag: cole aqui o snippet de conversão do Google Ads -->
 
   <a href="https://wa.me/5511999370418" class="whatsapp-fab" aria-label="Chamar no WhatsApp" target="_blank" rel="noopener noreferrer">
     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -991,7 +1002,7 @@
     counters.forEach(function (el) { observer.observe(el); });
   })();
   </script>
-  <script src="js/main.js?v=20261026" defer></script>
+  <script src="js/main.js?v=20261104" defer></script>
   <!-- ── Stagger animations via IntersectionObserver ── -->
 
   <!-- ── Categories Slider ── -->
@@ -1002,26 +1013,31 @@
 
   <!-- ── Loader ADIADO de rastreamento: GA4 + Meta Pixel ──
        Carrega na 1ª interação do usuário OU após 2,5s (o que vier primeiro),
-       pra não competir com o LCP. Rastreio preservado. -->
+       pra não competir com o LCP. GA4 carrega sempre (Consent Mode v2 começa
+       negado em js/consent.js); o Meta Pixel só com consentimento. -->
   <script>
   (function(){
-    var loaded=false;
-    function loadTracking(){
-      if(loaded)return; loaded=true;
-      // Google Analytics 4
+    var gaOk=false, pxOk=false;
+    function loadGA(){
+      if(gaOk)return; gaOk=true;
       var g=document.createElement('script'); g.async=true;
       g.src='https://www.googletagmanager.com/gtag/js?id=G-Q8WG4J3F78';
       document.head.appendChild(g);
       gtag('js', new Date());
       gtag('config','G-Q8WG4J3F78');
-      // Meta Pixel
+    }
+    function loadPixel(){
+      if(pxOk)return; pxOk=true;
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
       fbq('init','891991662958124');
       if (window.LS_evento) LS_evento('PageView'); else fbq('track','PageView');
     }
+    function loadTracking(){
+      loadGA();
+      // LGPD: Pixel so com consentimento (banner em js/consent.js chama LS_loadTracking ao aceitar)
+      if(window.LS_CONSENT&&window.LS_CONSENT.granted)loadPixel();
+    }
     window.LS_loadTracking=loadTracking;
-    // LGPD: so dispara com consentimento (banner em js/consent.js)
-    if(!(window.LS_CONSENT&&window.LS_CONSENT.granted))return;
     var evs=['scroll','mousemove','touchstart','click','keydown'];
     function onFirst(){evs.forEach(function(ev){window.removeEventListener(ev,onFirst)});loadTracking();}
     evs.forEach(function(ev){window.addEventListener(ev,onFirst,{passive:true,once:false})});

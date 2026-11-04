@@ -5,6 +5,14 @@
 .agents/
 .claude/
 .github/
+.taste-skill/
+.gitignore
+
+# Testes automatizados e lockfile de skills (nao sao conteudo do site)
+tests/
+test-results/
+playwright.config.js
+skills-lock.json
 
 # Scripts internos de manutencao
 scripts/

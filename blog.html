@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google tag (gtag.js) -->
-  <script src="/js/consent.js?v=20261026"></script>
-  <script src="/js/pixel.js?v=20261026" defer></script>
+  <script src="/js/consent.js?v=20261104"></script>
+  <script src="/js/pixel.js?v=20261104" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8WG4J3F78"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -22,7 +22,7 @@
   <!-- Vercel Web Analytics -->
   <script defer src="/_vercel/insights/script.js"></script>
 
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="LS Confecções">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="geo.region" content="BR-SP">
@@ -32,7 +32,7 @@
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="css/style.css?v=20261018">
+  <link rel="stylesheet" href="css/style.css?v=20261104">
 
   <title>Blog | Produção de Bolsas e Mochilas | LS Confecções</title>
   <meta name="description" content="Guias práticos sobre fabricação de bolsas e mochilas personalizadas: private label, custos de produção, tecidos e como criar sua marca do zero.">
@@ -44,79 +44,85 @@
   <meta property="og:site_name" content="LS Confecções">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://www.lsconfex.com.br/blog">
-  <meta property="og:title" content="Blog, Produção de Bolsas e Mochilas | LS Confecções">
-  <meta property="og:description" content="Guias práticos sobre fabricação de bolsas e mochilas personalizadas: private label, custos, tecidos e criação de marca.">
+  <meta property="og:title" content="Blog | Produção de Bolsas e Mochilas | LS Confecções">
+  <meta property="og:description" content="Guias práticos sobre fabricação de bolsas e mochilas personalizadas: private label, custos de produção, tecidos e como criar sua marca do zero.">
   <meta property="og:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
-  <meta property="og:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Mochilas, tote bag e bolsas transversais penduradas em arara, linha fabricada pela LS Confecções">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Blog, Produção de Bolsas e Mochilas | LS Confecções">
-  <meta name="twitter:description" content="Guias práticos sobre fabricação de bolsas e mochilas personalizadas: private label, custos, tecidos e criação de marca.">
+  <meta name="twitter:title" content="Blog | Produção de Bolsas e Mochilas | LS Confecções">
+  <meta name="twitter:description" content="Guias práticos sobre fabricação de bolsas e mochilas personalizadas: private label, custos de produção, tecidos e como criar sua marca do zero.">
   <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
-  <meta name="twitter:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
+  <meta name="twitter:image:alt" content="Mochilas, tote bag e bolsas transversais penduradas em arara, linha fabricada pela LS Confecções">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Blog LS Confecções",
-    "description": "Guias práticos sobre fabricação de bolsas, mochilas e acessórios personalizados.",
-    "url": "https://www.lsconfex.com.br/blog",
-    "inLanguage": "pt-BR",
-    "publisher": { "@type": "Organization", "name": "LS Confecções", "url": "https://www.lsconfex.com.br/" }
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "https://www.lsconfex.com.br/blog#blog",
+  "name": "Blog LS Confecções",
+  "description": "Guias práticos sobre fabricação de bolsas, mochilas e acessórios personalizados.",
+  "url": "https://www.lsconfex.com.br/blog",
+  "inLanguage": "pt-BR",
+  "publisher": {
+    "@id": "https://www.lsconfex.com.br/#empresa"
+  },
+  "isPartOf": {
+    "@id": "https://www.lsconfex.com.br/#website"
   }
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "url": "https://www.lsconfex.com.br/blog/ecobag-ou-sacola-plastica-impacto-ambiental", "name": "Ecobag ou sacola plástica: o que dizem os estudos de ciclo de vida" },
-      { "@type": "ListItem", "position": 2, "url": "https://www.lsconfex.com.br/blog/denier-e-gramatura-tecidos-mochila", "name": "Denier e gramatura: o que significam 420D, 600D e 1680D no tecido da mochila" },
-      { "@type": "ListItem", "position": 3, "url": "https://www.lsconfex.com.br/blog/como-precificar-bolsas-da-sua-marca", "name": "Como precificar bolsas e mochilas da sua marca: custo, markup e margem" },
-      { "@type": "ListItem", "position": 4, "url": "https://www.lsconfex.com.br/blog/licitacao-de-mochilas-e-bolsas-como-funciona", "name": "Licitação de mochilas e bolsas: como órgãos públicos compram" },
-      { "@type": "ListItem", "position": 5, "url": "https://www.lsconfex.com.br/blog/kit-boas-vindas-funcionarios-onboarding", "name": "Kit de boas-vindas para novos funcionários: o que incluir e como planejar" },
-      { "@type": "ListItem", "position": 6, "url": "https://www.lsconfex.com.br/blog/brindes-de-fim-de-ano-para-empresas", "name": "Brindes de fim de ano para empresas: o que dar e quando pedir" },
-      { "@type": "ListItem", "position": 7, "url": "https://www.lsconfex.com.br/blog/sacochila-personalizada", "name": "Sacochila personalizada: o brinde que mais rende por real investido" },
-      { "@type": "ListItem", "position": 8, "url": "https://www.lsconfex.com.br/blog/bolsa-termica-personalizada-guia", "name": "Bolsa térmica personalizada: materiais, tamanhos e como escolher" },
-      { "@type": "ListItem", "position": 9, "url": "https://www.lsconfex.com.br/blog/brindes-para-clientes-como-escolher", "name": "Brindes para clientes: como escolher o que realmente é usado" },
-      { "@type": "ListItem", "position": 10, "url": "https://www.lsconfex.com.br/blog/peca-piloto-prototipo-de-bolsa", "name": "Peça-piloto: como desenvolver o protótipo da sua bolsa" },
-      { "@type": "ListItem", "position": 11, "url": "https://www.lsconfex.com.br/blog/bolsas-streetwear-guia", "name": "Bolsas streetwear: os modelos que toda label precisa (e como produzir)" },
-      { "@type": "ListItem", "position": 12, "url": "https://www.lsconfex.com.br/blog/brindes-para-corrida-de-rua", "name": "Brindes para corrida de rua: 8 ideias que os corredores realmente usam" },
-      { "@type": "ListItem", "position": 13, "url": "https://www.lsconfex.com.br/blog/ecobag-personalizada-guia", "name": "Ecobag personalizada: o guia completo para brindes e marcas" },
-      { "@type": "ListItem", "position": 14, "url": "https://www.lsconfex.com.br/blog/bordado-silk-ou-sublimacao", "name": "Bordado, silk ou sublimação: qual a melhor personalização para sua marca" },
-      { "@type": "ListItem", "position": 15, "url": "https://www.lsconfex.com.br/blog/pochete-personalizada-guia", "name": "Pochete personalizada: modelos, materiais e quando vale a pena" },
-      { "@type": "ListItem", "position": 16, "url": "https://www.lsconfex.com.br/blog/mochila-corporativa-personalizada", "name": "Mochila personalizada para empresa: como escolher para brindes e kits" },
-      { "@type": "ListItem", "position": 17, "url": "https://www.lsconfex.com.br/blog/private-label-como-funciona", "name": "Private Label: como funciona a fabricação para sua marca" },
-      { "@type": "ListItem", "position": 18, "url": "https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas", "name": "Como criar uma marca de bolsas do zero: guia prático" },
-      { "@type": "ListItem", "position": 19, "url": "https://www.lsconfex.com.br/blog/quanto-custa-fabricar-mochila-personalizada", "name": "Quanto custa fabricar uma mochila personalizada?" },
-      { "@type": "ListItem", "position": 20, "url": "https://www.lsconfex.com.br/blog/tipos-de-tecido-para-mochilas", "name": "Tipos de tecido para mochilas: qual escolher para sua marca" }
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "url": "https://www.lsconfex.com.br/blog/ecobag-ou-sacola-plastica-impacto-ambiental", "name": "Ecobag ou sacola plástica: o que dizem os estudos de ciclo de vida"},
+    {"@type": "ListItem", "position": 2, "url": "https://www.lsconfex.com.br/blog/denier-e-gramatura-tecidos-mochila", "name": "Denier e gramatura: o que significam 420D, 600D e 1680D no tecido da mochila"},
+    {"@type": "ListItem", "position": 3, "url": "https://www.lsconfex.com.br/blog/como-precificar-bolsas-da-sua-marca", "name": "Como precificar bolsas e mochilas da sua marca: custo, markup e margem"},
+    {"@type": "ListItem", "position": 4, "url": "https://www.lsconfex.com.br/blog/licitacao-de-mochilas-e-bolsas-como-funciona", "name": "Licitação de mochilas e bolsas: como órgãos públicos compram"},
+    {"@type": "ListItem", "position": 5, "url": "https://www.lsconfex.com.br/blog/kit-boas-vindas-funcionarios-onboarding", "name": "Kit de boas-vindas para novos funcionários: o que incluir e como planejar"},
+    {"@type": "ListItem", "position": 6, "url": "https://www.lsconfex.com.br/blog/brindes-de-fim-de-ano-para-empresas", "name": "Brindes de fim de ano para empresas: o que dar e quando pedir"},
+    {"@type": "ListItem", "position": 7, "url": "https://www.lsconfex.com.br/blog/sacochila-personalizada", "name": "Sacochila personalizada: quando vale a pena como brinde"},
+    {"@type": "ListItem", "position": 8, "url": "https://www.lsconfex.com.br/blog/bolsa-termica-personalizada-guia", "name": "Bolsa térmica personalizada: materiais, tamanhos e como escolher"},
+    {"@type": "ListItem", "position": 9, "url": "https://www.lsconfex.com.br/blog/brindes-para-clientes-como-escolher", "name": "Brindes para clientes: como escolher o que realmente é usado"},
+    {"@type": "ListItem", "position": 10, "url": "https://www.lsconfex.com.br/blog/peca-piloto-prototipo-de-bolsa", "name": "Peça-piloto: como desenvolver o protótipo da sua bolsa"},
+    {"@type": "ListItem", "position": 11, "url": "https://www.lsconfex.com.br/blog/bolsas-streetwear-guia", "name": "Bolsas streetwear: os modelos que toda label precisa (e como produzir)"},
+    {"@type": "ListItem", "position": 12, "url": "https://www.lsconfex.com.br/blog/brindes-para-corrida-de-rua", "name": "Brindes para corrida de rua: 8 ideias que os corredores realmente usam"},
+    {"@type": "ListItem", "position": 13, "url": "https://www.lsconfex.com.br/blog/ecobag-personalizada-guia", "name": "Ecobag personalizada: o guia completo para brindes e marcas"},
+    {"@type": "ListItem", "position": 14, "url": "https://www.lsconfex.com.br/blog/bordado-silk-ou-sublimacao", "name": "Bordado, silk ou sublimação: qual a melhor personalização para sua marca"},
+    {"@type": "ListItem", "position": 15, "url": "https://www.lsconfex.com.br/blog/pochete-personalizada-guia", "name": "Pochete personalizada: modelos, materiais e quando vale a pena"},
+    {"@type": "ListItem", "position": 16, "url": "https://www.lsconfex.com.br/blog/mochila-corporativa-personalizada", "name": "Mochila personalizada para empresa: como escolher para brindes e kits"},
+    {"@type": "ListItem", "position": 17, "url": "https://www.lsconfex.com.br/blog/private-label-como-funciona", "name": "Private Label: como funciona a fabricação para sua marca"},
+    {"@type": "ListItem", "position": 18, "url": "https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas", "name": "Como criar uma marca de bolsas do zero: guia prático"},
+    {"@type": "ListItem", "position": 19, "url": "https://www.lsconfex.com.br/blog/quanto-custa-fabricar-mochila-personalizada", "name": "Quanto custa fabricar uma mochila personalizada?"},
+    {"@type": "ListItem", "position": 20, "url": "https://www.lsconfex.com.br/blog/tipos-de-tecido-para-mochilas", "name": "Tipos de tecido para mochilas: qual escolher para sua marca"}
+  ]
+}
   </script>
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "url": "https://www.lsconfex.com.br/blog/private-label-como-funciona", "name": "Private Label: como funciona a fabricação para sua marca" },
-      { "@type": "ListItem", "position": 2, "url": "https://www.lsconfex.com.br/blog/como-criar-uma-marca-de-bolsas", "name": "Como criar uma marca de bolsas do zero: guia prático" },
-      { "@type": "ListItem", "position": 3, "url": "https://www.lsconfex.com.br/blog/quanto-custa-fabricar-mochila-personalizada", "name": "Quanto custa fabricar uma mochila personalizada?" },
-      { "@type": "ListItem", "position": 4, "url": "https://www.lsconfex.com.br/blog/tipos-de-tecido-para-mochilas", "name": "Tipos de tecido para mochilas: qual escolher para sua marca" },
-      { "@type": "ListItem", "position": 5, "url": "https://www.lsconfex.com.br/blog/brindes-para-corrida-de-rua", "name": "Brindes para corrida de rua: 8 ideias que os corredores usam" },
-      { "@type": "ListItem", "position": 6, "url": "https://www.lsconfex.com.br/blog/ecobag-personalizada-guia", "name": "Ecobag personalizada: o guia completo para brindes e marcas" },
-      { "@type": "ListItem", "position": 7, "url": "https://www.lsconfex.com.br/blog/bordado-silk-ou-sublimacao", "name": "Bordado, silk ou sublimação: qual a melhor personalização" },
-      { "@type": "ListItem", "position": 8, "url": "https://www.lsconfex.com.br/blog/pochete-personalizada-guia", "name": "Pochete personalizada: modelos, materiais e quando vale a pena" },
-      { "@type": "ListItem", "position": 9, "url": "https://www.lsconfex.com.br/blog/mochila-corporativa-personalizada", "name": "Mochila corporativa personalizada: como escolher para brindes e kits" },
-      { "@type": "ListItem", "position": 10, "url": "https://www.lsconfex.com.br/blog/bolsas-streetwear-guia", "name": "Bolsas streetwear: os modelos que toda label precisa" },
-      { "@type": "ListItem", "position": 11, "url": "https://www.lsconfex.com.br/blog/peca-piloto-prototipo-de-bolsa", "name": "Peça-piloto: como desenvolver o protótipo da sua bolsa" },
-      { "@type": "ListItem", "position": 12, "url": "https://www.lsconfex.com.br/blog/brindes-de-fim-de-ano-para-empresas", "name": "Brindes de fim de ano para empresas: o que dar e quando pedir" },
-      { "@type": "ListItem", "position": 13, "url": "https://www.lsconfex.com.br/blog/bolsa-termica-personalizada-guia", "name": "Bolsa térmica personalizada: materiais, tamanhos e como escolher" },
-      { "@type": "ListItem", "position": 14, "url": "https://www.lsconfex.com.br/blog/brindes-para-clientes-como-escolher", "name": "Brindes para clientes: como escolher o que realmente é usado" },
-      { "@type": "ListItem", "position": 15, "url": "https://www.lsconfex.com.br/blog/sacochila-personalizada", "name": "Sacochila personalizada: o brinde que mais rende por real investido" }
-    ]
-  }
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://www.lsconfex.com.br/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://www.lsconfex.com.br/blog"
+    }
+  ]
+}
   </script>
 </head>
 <body>
@@ -156,128 +162,128 @@
       <h2 class="sr-only">Artigos do blog</h2>
       <div class="blog-grid">
         <article class="blog-card fade-up">
-          <a href="blog/ecobag-ou-sacola-plastica-impacto-ambiental" class="blog-card-img">
-            <img src="imagens/ecobag-personalizada-para-brindes-corporativos.webp" alt="Ecobag de algodão personalizada com logo, produzida como brinde corporativo pela LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/ecobag-ou-sacola-plastica-impacto-ambiental" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/ecobag-personalizada-para-brindes-corporativos.webp" alt="Pessoa carregando ecobag de algodão cru estampada no ombro" width="480" height="320" fetchpriority="high">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Sustentabilidade</span>
             <h2><a href="blog/ecobag-ou-sacola-plastica-impacto-ambiental">Ecobag ou sacola plástica: o que dizem os estudos de ciclo de vida</a></h2>
             <p>Quantas vezes uma ecobag precisa ser usada para compensar a sacola plástica? Veja os números da UK Environment Agency e da Danish EPA e o que pedir no brinde.</p>
-            <p class="blog-meta">16 de outubro de 2026 · 6 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 6 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/denier-e-gramatura-tecidos-mochila" class="blog-card-img">
+          <a href="blog/denier-e-gramatura-tecidos-mochila" class="blog-card-img" tabindex="-1" aria-hidden="true">
             <img src="imagens/mochila-tricolor-urbana-ls-confeccoes.webp" alt="Mochila urbana tricolor em tecido sintético, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Materiais</span>
             <h2><a href="blog/denier-e-gramatura-tecidos-mochila">Denier e gramatura: o que significam 420D, 600D e 1680D no tecido da mochila</a></h2>
             <p>Entenda 420D, 600D, 1680D, gramatura em g/m² e onças da lona. Veja como ler a ficha técnica do tecido e o que pedir ao fornecedor antes de produzir mochilas.</p>
-            <p class="blog-meta">16 de outubro de 2026 · 5 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/como-precificar-bolsas-da-sua-marca" class="blog-card-img">
-            <img src="imagens/destaque-mochila-executiva-b2b.webp" alt="Mochila executiva preta produzida em private label pela LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/como-precificar-bolsas-da-sua-marca" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/destaque-mochila-executiva-b2b.webp" srcset="imagens/m/400/destaque-mochila-executiva-b2b.webp 400w, imagens/m/800/destaque-mochila-executiva-b2b.webp 800w, imagens/destaque-mochila-executiva-b2b.webp 853w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Mochila executiva preta produzida em private label pela LS Confecções" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Negócios</span>
             <h2><a href="blog/como-precificar-bolsas-da-sua-marca">Como precificar bolsas e mochilas da sua marca: custo, markup e margem</a></h2>
             <p>Monte o preço de venda das bolsas da sua marca com custo real, impostos, taxas do canal, markup e margem. Exemplo numérico passo a passo, com base no Sebrae.</p>
-            <p class="blog-meta">16 de outubro de 2026 · 5 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/licitacao-de-mochilas-e-bolsas-como-funciona" class="blog-card-img">
-            <img src="imagens/mochila-estampada-personalizada-brinde.webp" alt="Mochila estampada personalizada em poliéster, modelo usado em kits e brindes, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/licitacao-de-mochilas-e-bolsas-como-funciona" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/mochila-estampada-personalizada-brinde.webp" alt="Mochila estampada colorida em poliéster, modelo usado em kits e brindes" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Licitações</span>
             <h2><a href="blog/licitacao-de-mochilas-e-bolsas-como-funciona">Licitação de mochilas e bolsas: como órgãos públicos compram</a></h2>
             <p>Como prefeituras e órgãos públicos compram mochilas, bolsas e kits pela Lei 14.133/2021: pregão eletrônico, PNCP, especificação técnica, amostra e entrega.</p>
-            <p class="blog-meta">16 de outubro de 2026 · 5 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/kit-boas-vindas-funcionarios-onboarding" class="blog-card-img">
-            <img src="imagens/hero-brindes-corporativos-personalizados.webp" alt="Brindes corporativos personalizados da LS Confecções, com mochila, bolsas e necessaire com logo" width="480" height="320" loading="lazy">
+          <a href="blog/kit-boas-vindas-funcionarios-onboarding" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/hero-brindes-corporativos-personalizados.webp" alt="Participantes de evento corporativo segurando uma sacola vermelha personalizada" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/kit-boas-vindas-funcionarios-onboarding">Kit de boas-vindas para novos funcionários: o que incluir e como planejar</a></h2>
             <p>Monte o kit de boas-vindas (welcome kit) para novos colaboradores: itens úteis, prazos, quantidades e personalização, com mochila, necessaire e ecobag da marca.</p>
-            <p class="blog-meta">16 de outubro de 2026 · 5 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/brindes-de-fim-de-ano-para-empresas" class="blog-card-img">
-            <img src="imagens/brinde-fim-de-ano-tote-termica.webp" alt="Tote bag térmica personalizada para brinde de fim de ano | LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/brindes-de-fim-de-ano-para-empresas" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/brinde-fim-de-ano-tote-termica.webp" alt="Tote bag térmica preta para brinde de fim de ano, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/brindes-de-fim-de-ano-para-empresas">Brindes de fim de ano para empresas: o que dar e quando pedir</a></h2>
             <p>Brindes de fim de ano que clientes e equipe usam: ideias por público, preços de referência de 2026 e o calendário real para receber em dezembro.</p>
-            <p class="blog-meta">23 de setembro de 2026 · 7 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-09-23">23 de setembro de 2026</time> · 7 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/sacochila-personalizada" class="blog-card-img">
-            <img src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" alt="Sacochila personalizada e mochilas fabricadas pela LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/sacochila-personalizada" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" alt="Mochilas, ecobag, pochete e bolsas fabricadas pela LS Confecções expostas em estúdio" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
-            <h2><a href="blog/sacochila-personalizada">Sacochila personalizada: o brinde que mais rende por real investido</a></h2>
+            <h2><a href="blog/sacochila-personalizada">Sacochila personalizada: quando vale a pena como brinde</a></h2>
             <p>Guia da sacochila personalizada (mochila saco): tecidos, reforços, técnicas de personalização, pedido mínimo e prazo. Onde ela funciona melhor como brinde.</p>
-            <p class="blog-meta">5 de agosto de 2026 · 5 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/bolsa-termica-personalizada-guia" class="blog-card-img">
-            <img src="imagens/tote-bag-termica-ls-confeccoes.webp" alt="Bolsa térmica tote personalizada com forro isolante | LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/bolsa-termica-personalizada-guia" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/tote-bag-termica-ls-confeccoes.webp" alt="Bolsa térmica tote preta com forro isolante, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Produtos</span>
             <h2><a href="blog/bolsa-termica-personalizada-guia">Bolsa térmica personalizada: materiais, tamanhos e como escolher</a></h2>
             <p>Como funciona a bolsa térmica personalizada: camadas isolantes, forro, tamanhos, personalização e cuidados com o alimento. O que checar antes do pedido.</p>
-            <p class="blog-meta">5 de agosto de 2026 · 5 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/brindes-para-clientes-como-escolher" class="blog-card-img">
-            <img src="imagens/hero-brindes-corporativos-personalizados.webp" alt="Brindes corporativos personalizados para clientes | LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/brindes-para-clientes-como-escolher" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/hero-brindes-corporativos-personalizados.webp" alt="Participantes de evento corporativo com sacola vermelha personalizada recebida como brinde" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/brindes-para-clientes-como-escolher">Brindes para clientes: como escolher o que realmente é usado</a></h2>
             <p>Como escolher brindes para clientes que não vão para a gaveta: critérios de uso, perfil de quem recebe, orçamento, prazo e um alerta fiscal.</p>
-            <p class="blog-meta">5 de agosto de 2026 · 6 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 6 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/peca-piloto-prototipo-de-bolsa" class="blog-card-img">
-            <img src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" alt="Desenvolvimento de peça-piloto e protótipo de bolsa personalizada | LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/peca-piloto-prototipo-de-bolsa" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" alt="Mochilas, ecobag, pochete e bolsas fabricadas pela LS Confecções em exposição" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Desenvolvimento</span>
             <h2><a href="blog/peca-piloto-prototipo-de-bolsa">Peça-piloto: como desenvolver o protótipo da sua bolsa</a></h2>
             <p>O que é a peça piloto, o que ela valida e como funciona o protótipo de bolsa na LS Confecções: piloto em até 15 dias, custo médio de R$ 600, sem desenho técnico.</p>
-            <p class="blog-meta">23 de julho de 2026 · 5 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-07-23">23 de julho de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/bolsas-streetwear-guia" class="blog-card-img">
-            <img src="imagens/mochilas/mochila-slim-casual-ls-confeccoes.webp" alt="Shoulder bag streetwear usada no dia a dia | LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/bolsas-streetwear-guia" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/mochilas/mochila-slim-casual-ls-confeccoes.webp" srcset="imagens/m/400/mochilas/mochila-slim-casual-ls-confeccoes.webp 400w, imagens/m/800/mochilas/mochila-slim-casual-ls-confeccoes.webp 800w, imagens/mochilas/mochila-slim-casual-ls-confeccoes.webp 900w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Shoulder bag streetwear vinho usada a tiracolo no dia a dia" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Streetwear</span>
             <h2><a href="blog/bolsas-streetwear-guia">Bolsas streetwear: os modelos que toda label precisa (e como produzir)</a></h2>
             <p>Shoulder bag, pochete, tote, mochila roll-top, sling e gym bag: modelos streetwear, materiais indicados e como produzir com marca própria a partir de 20 peças.</p>
-            <p class="blog-meta"></span><a href="/termos-de-uso">Termos de Uso</a><span aria-hidden="true"> · </span><span class="footer-cnpj">CNPJ: 32.200.335/0001-40</span></p>
+            <p class="blog-meta"><time datetime="2026-07-14">14 de julho de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="bolsas-streetwear-personalizadas" class="blog-card-img">
+          <a href="bolsas-streetwear-personalizadas" class="blog-card-img" tabindex="-1" aria-hidden="true">
             <img src="imagens/pochete-street-ls-confeccoes.webp" alt="Pochete streetwear personalizada fabricada pela LS Confecções" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
@@ -288,102 +294,102 @@
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/brindes-para-corrida-de-rua" class="blog-card-img">
-            <img src="imagens/mochila-sport-brinde-ls-confeccoes.webp" alt="Mochila saco esportiva personalizada como brinde para corrida de rua" width="480" height="320" loading="lazy">
+          <a href="blog/brindes-para-corrida-de-rua" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/mochila-sport-brinde-ls-confeccoes.webp" srcset="imagens/m/400/mochila-sport-brinde-ls-confeccoes.webp 400w, imagens/m/800/mochila-sport-brinde-ls-confeccoes.webp 800w, imagens/mochila-sport-brinde-ls-confeccoes.webp 900w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Mochila esportiva preta e verde com cordão elástico frontal, opção de brinde para corrida de rua" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/brindes-para-corrida-de-rua">Brindes para corrida de rua: 8 ideias que os corredores realmente usam</a></h2>
             <p>Sacochila, pochete, ecobag e outras peças para kit de corrida de rua: o que os corredores usam, quanto custa e quando pedir. Fábrica em SP, desde 20 peças.</p>
-            <p class="blog-meta"></span><a href="/termos-de-uso">Termos de Uso</a><span aria-hidden="true"> · </span><span class="footer-cnpj">CNPJ: 32.200.335/0001-40</span></p>
+            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 6 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/ecobag-personalizada-guia" class="blog-card-img">
-            <img src="imagens/brinde-ecobag-natural.webp" alt="Ecobag de algodão cru lisa, pronta para personalização | LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/ecobag-personalizada-guia" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/brinde-ecobag-natural.webp" alt="Ecobag de algodão cru lisa, pronta para personalização com a marca" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/ecobag-personalizada-guia">Ecobag personalizada: o guia completo para brindes e marcas</a></h2>
             <p>Guia da ecobag personalizada: algodão cru, lona, RPET, tamanhos, alças e técnicas de estampa. Saiba escolher a ecobag certa para brinde ou para vender.</p>
-            <p class="blog-meta"></span><a href="/termos-de-uso">Termos de Uso</a><span aria-hidden="true"> · </span><span class="footer-cnpj">CNPJ: 32.200.335/0001-40</span></p>
+            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/bordado-silk-ou-sublimacao" class="blog-card-img">
-            <img src="imagens/mochila-estampada-personalizada-brinde.webp" alt="Mochila com logo aplicado mostrando técnica de personalização de marca" width="480" height="320" loading="lazy">
+          <a href="blog/bordado-silk-ou-sublimacao" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/mochila-estampada-personalizada-brinde.webp" alt="Mochila com estampa colorida full print, exemplo de personalização de marca" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Personalização</span>
             <h2><a href="blog/bordado-silk-ou-sublimacao">Bordado, silk ou sublimação: qual a melhor personalização para sua marca</a></h2>
             <p>Compare bordado, silk screen e sublimação em bolsas e mochilas: custo, durabilidade, tipo de arte e tecido compatível. Guia prático de quem fabrica.</p>
-            <p class="blog-meta"></span><a href="/termos-de-uso">Termos de Uso</a><span aria-hidden="true"> · </span><span class="footer-cnpj">CNPJ: 32.200.335/0001-40</span></p>
+            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/pochete-personalizada-guia" class="blog-card-img">
-            <img src="imagens/pochete-cotele-caramelo-ls-confeccoes.webp" alt="Pochete personalizada em cotelê caramelo fabricada pela LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/pochete-personalizada-guia" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/pochete-cotele-caramelo-ls-confeccoes.webp" srcset="imagens/m/400/pochete-cotele-caramelo-ls-confeccoes.webp 400w, imagens/m/800/pochete-cotele-caramelo-ls-confeccoes.webp 800w, imagens/pochete-cotele-caramelo-ls-confeccoes.webp 900w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Pochete personalizada em cotelê caramelo fabricada pela LS Confecções" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Produtos</span>
             <h2><a href="blog/pochete-personalizada-guia">Pochete personalizada: modelos, materiais e quando vale a pena</a></h2>
             <p>Pochete personalizada para marca própria e brinde: modelos, tamanhos, tecidos, aviamentos, personalização, prazos e quando a peça vale a pena.</p>
-            <p class="blog-meta"></span><a href="/termos-de-uso">Termos de Uso</a><span aria-hidden="true"> · </span><span class="footer-cnpj">CNPJ: 32.200.335/0001-40</span></p>
+            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/mochila-corporativa-personalizada" class="blog-card-img">
-            <img src="imagens/destaque-mochila-executiva-b2b.webp" alt="Mochila executiva corporativa personalizada para brindes e kits de empresa" width="480" height="320" loading="lazy">
+          <a href="blog/mochila-corporativa-personalizada" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/destaque-mochila-executiva-b2b.webp" srcset="imagens/m/400/destaque-mochila-executiva-b2b.webp 400w, imagens/m/800/destaque-mochila-executiva-b2b.webp 800w, imagens/destaque-mochila-executiva-b2b.webp 853w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Mochila executiva preta com área para a logo, para brindes e kits de empresa" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/mochila-corporativa-personalizada">Mochila personalizada para empresa: como escolher para brindes e kits</a></h2>
             <p>Como escolher a mochila personalizada para empresa: modelos, tecidos, conforto, personalização, quantidade e prazo para brindes, kits e integração.</p>
-            <p class="blog-meta"></span><a href="/termos-de-uso">Termos de Uso</a><span aria-hidden="true"> · </span><span class="footer-cnpj">CNPJ: 32.200.335/0001-40</span></p>
+            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/private-label-como-funciona" class="blog-card-img">
+          <a href="blog/private-label-como-funciona" class="blog-card-img" tabindex="-1" aria-hidden="true">
             <img src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" alt="Linha de bolsas e mochilas produzidas em private label pela LS Confecções" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Private Label</span>
             <h2><a href="blog/private-label-como-funciona">Private Label: como funciona a fabricação para sua marca</a></h2>
             <p>Como funciona o private label de bolsas e mochilas: briefing, peça piloto em até 15 dias, mínimo de 20 peças, produção em até 25 dias úteis e registro de marca.</p>
-            <p class="blog-meta">1 de julho de 2026 · 6 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 6 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/como-criar-uma-marca-de-bolsas" class="blog-card-img">
+          <a href="blog/como-criar-uma-marca-de-bolsas" class="blog-card-img" tabindex="-1" aria-hidden="true">
             <img src="imagens/bolsa-crossbody-puffer-preta-ls-confeccoes.webp" alt="Bolsa crossbody puffer preta produzida pela LS Confecções para marca própria" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Empreendedorismo</span>
             <h2><a href="blog/como-criar-uma-marca-de-bolsas">Como criar uma marca de bolsas do zero: guia prático</a></h2>
             <p>Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, cálculo de preço, lote mínimo de 20 peças, registro no INPI e canais de venda.</p>
-            <p class="blog-meta">1 de julho de 2026 · 7 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 7 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/quanto-custa-fabricar-mochila-personalizada" class="blog-card-img">
-            <img src="imagens/mochila-tricolor-urbana-ls-confeccoes.webp" alt="Mochila urbana tricolor personalizada | LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/quanto-custa-fabricar-mochila-personalizada" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/mochila-tricolor-urbana-ls-confeccoes.webp" alt="Mochila urbana tricolor em tecido sintético, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Produção</span>
             <h2><a href="blog/quanto-custa-fabricar-mochila-personalizada">Quanto custa fabricar uma mochila personalizada?</a></h2>
             <p>O que define o preço de uma mochila personalizada: modelo, tecido, personalização e lote. Faixas de pedidos reais de 2026 e como pedir um orçamento preciso.</p>
-            <p class="blog-meta">1 de julho de 2026 · 6 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 6 min de leitura</p>
           </div>
         </article>
         <article class="blog-card fade-up">
-          <a href="blog/tipos-de-tecido-para-mochilas" class="blog-card-img">
-            <img src="imagens/mochila-basquete.webp" alt="Mochila esportiva em nylon resistente | LS Confecções" width="480" height="320" loading="lazy">
+          <a href="blog/tipos-de-tecido-para-mochilas" class="blog-card-img" tabindex="-1" aria-hidden="true">
+            <img src="imagens/mochila-basquete.webp" srcset="imagens/m/400/mochila-basquete.webp 400w, imagens/m/800/mochila-basquete.webp 800w, imagens/mochila-basquete.webp 900w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Mochila esportiva preta com compartimentos para bola e tênis" width="480" height="320" loading="lazy">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Materiais</span>
             <h2><a href="blog/tipos-de-tecido-para-mochilas">Tipos de tecido para mochilas: qual escolher para sua marca</a></h2>
             <p>Nylon, poliéster, lona, cordura ou sarja: compare resistência, peso, custo e personalização de cada tecido antes de fechar a produção da sua mochila.</p>
-            <p class="blog-meta">1 de julho de 2026 · 5 min de leitura</p>
+            <p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 5 min de leitura</p>
           </div>
         </article>
       </div>
@@ -424,7 +430,7 @@
         <div class="footer-nav">
           <p class="footer-title">Blog</p>
           <ul>
-            <li><a href="blog/private-label-como-funciona">Private Label</a></li>
+            <li><a href="private-label">Private Label</a></li>
             <li><a href="blog/como-criar-uma-marca-de-bolsas">Criar marca de bolsas</a></li>
             <li><a href="blog/quanto-custa-fabricar-mochila-personalizada">Custo de fabricação</a></li>
             <li><a href="blog/tipos-de-tecido-para-mochilas">Tecidos para mochilas</a></li>
@@ -458,7 +464,7 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=20261026"></script>
+  <script src="js/main.js?v=20261104"></script>
 
 </body>
 </html>

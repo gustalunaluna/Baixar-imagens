@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!-- Google tag (gtag.js) -->
-  <script src="/js/consent.js?v=20261026"></script>
-  <script src="/js/pixel.js?v=20261026" defer></script>
+  <script src="/js/consent.js?v=20261104"></script>
+  <script src="/js/pixel.js?v=20261104" defer></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q8WG4J3F78"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -20,7 +20,7 @@
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="author" content="LS Confecções">
   <meta name="theme-color" content="#0a0a0a">
   <meta name="geo.region" content="BR-SP">
@@ -30,9 +30,9 @@
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="css/style.css?v=20261018">
+  <link rel="stylesheet" href="css/style.css?v=20261104">
 
-  <title>Calculadora de Orçamento para Brindes Corporativos | LS Confecções</title>
+  <title>Calculadora de Brindes Corporativos | LS Confecções</title>
   <meta name="description" content="Calculadora gratuita de orçamento para brindes corporativos: veja o valor disponível por peça, a faixa de produto e a personalização sugerida. Estimativa.">
   <meta name="keywords" content="calculadora de orçamento para brindes, quanto custa brinde corporativo, orçamento brinde por pessoa, quanto gastar em brinde de evento, preço brinde corporativo personalizado">
   <link rel="canonical" href="https://www.lsconfex.com.br/calculadora-orcamento-brindes">
@@ -41,16 +41,19 @@
   <meta property="og:site_name" content="LS Confecções">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://www.lsconfex.com.br/calculadora-orcamento-brindes">
-  <meta property="og:title" content="Calculadora de Orçamento para Brindes Corporativos | LS Confecções">
+  <meta property="og:title" content="Calculadora de Brindes Corporativos | LS Confecções">
   <meta property="og:description" content="Informe a quantidade e o orçamento e veja o valor disponível por peça, já com reserva de 10%, a faixa de produto e a técnica de personalização sugerida.">
   <meta property="og:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
-  <meta property="og:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Mochilas, tote bag e bolsas de tecido penduradas em uma arara, linha de produtos da LS Confecções">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Calculadora de Orçamento para Brindes Corporativos | LS Confecções">
+  <meta name="twitter:title" content="Calculadora de Brindes Corporativos | LS Confecções">
   <meta name="twitter:description" content="Informe a quantidade e o orçamento e veja o valor disponível por peça, já com reserva de 10%, a faixa de produto e a técnica de personalização sugerida.">
   <meta name="twitter:image" content="https://www.lsconfex.com.br/imagens/og-image.jpg">
-  <meta name="twitter:image:alt" content="LS Confecções, fábrica de bolsas, mochilas e acessórios personalizados em São Paulo">
+  <meta name="twitter:image:alt" content="Mochilas, tote bag e bolsas de tecido penduradas em uma arara, linha de produtos da LS Confecções">
 
   <script type="application/ld+json">
   {
@@ -60,9 +63,9 @@
     "url": "https://www.lsconfex.com.br/calculadora-orcamento-brindes",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+    "isAccessibleForFree": true,
     "description": "Calculadora gratuita de orçamento para brindes corporativos: valor disponível por peça com reserva de 10%, faixa de produto e personalização sugerida. Resultado estimado; o preço real depende de modelo, tecido e quantidade.",
-    "publisher": { "@type": "Organization", "name": "LS Confecções", "url": "https://www.lsconfex.com.br/" }
+    "publisher": { "@id": "https://www.lsconfex.com.br/#empresa", "name": "LS Confecções" }
   }
   </script>
   <script type="application/ld+json">
@@ -85,7 +88,7 @@
       "name": "Quanto devo gastar por brinde corporativo?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Depende do público e do objetivo da ação. Como orientação, a calculadora usa três faixas: distribuição em massa até R$ 20 por peça, relacionamento entre R$ 20 e R$ 45, e brindes institucionais acima de R$ 45. O valor real só é definido no orçamento."
+        "text": "Depende do público e do objetivo da ação. Como orientação, a calculadora usa quatro faixas: até R$ 20 por peça para distribuição em massa, de R$ 20 a R$ 45 para relacionamento, de R$ 45 a R$ 90 para brindes de maior valor e acima de R$ 90 para kits e itens premium. O valor real só é definido no orçamento."
       }
     },
     {
@@ -109,7 +112,7 @@
       "name": "Como economizar sem perder a qualidade percebida?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Aumente o lote, simplifique a arte da personalização e escolha um produto de uso diário, como ecobag ou nécessaire bem acabada, mesmo na faixa intermediária."
+        "text": "Aumente o lote, simplifique a arte da personalização e escolha um produto de uso diário, como ecobag ou necessaire bem acabada, mesmo na faixa intermediária."
       }
     }
   ]
@@ -236,8 +239,8 @@
         <thead><tr><th scope="col">Faixa</th><th scope="col">Valor por peça</th><th scope="col">Produtos comuns</th><th scope="col">Técnica</th></tr></thead>
         <tbody>
         <tr><td>Econômica</td><td>até R$ 20</td><td><a href="ecobags-personalizadas">Ecobag</a>, porta-moeda, chaveiro de tecido</td><td>Silk ou DTF</td></tr>
-        <tr><td>Intermediária</td><td>R$ 20 a R$ 45</td><td><a href="pochetes-personalizadas">Pochete</a>, <a href="necessaires-personalizadas">nécessaire</a>, ecobag com bolso e forro</td><td>Silk ou DTF</td></tr>
-        <tr><td>Avançada</td><td>R$ 45 a R$ 90</td><td><a href="blog/mochila-corporativa-personalizada">Mochila casual</a>, <a href="bolsas-termicas-personalizadas">bolsa térmica</a>, bolsa transversal</td><td>Bordado</td></tr>
+        <tr><td>Intermediária</td><td>R$ 20 a R$ 45</td><td><a href="pochetes-personalizadas">Pochete</a>, <a href="necessaires-personalizadas">necessaire</a>, ecobag com bolso e forro</td><td>Silk ou DTF</td></tr>
+        <tr><td>Avançada</td><td>R$ 45 a R$ 90</td><td><a href="fabricante-de-mochilas-personalizadas">Mochila casual</a>, <a href="bolsas-termicas-personalizadas">bolsa térmica</a>, bolsa transversal</td><td>Bordado</td></tr>
         <tr><td>Premium</td><td>acima de R$ 90</td><td><a href="pastas-executivas">Pasta executiva</a>, mochila executiva, kit com mais de uma peça</td><td>Bordado</td></tr>
         </tbody>
       </table>
@@ -250,7 +253,7 @@
       <h2>Perguntas frequentes</h2>
       <div class="calc-faq-item">
         <h3>Quanto devo gastar por brinde corporativo?</h3>
-        <p>Depende do público e do objetivo da ação. Como orientação, a calculadora usa três faixas: distribuição em massa até R$ 20 por peça, relacionamento entre R$ 20 e R$ 45, e brindes institucionais acima de R$ 45. O valor real só é definido no orçamento.</p>
+        <p>Depende do público e do objetivo da ação. Como orientação, a calculadora usa quatro faixas: até R$ 20 por peça para distribuição em massa, de R$ 20 a R$ 45 para relacionamento, de R$ 45 a R$ 90 para brindes de maior valor e acima de R$ 90 para kits e itens premium. O valor real só é definido no orçamento.</p>
       </div>
       <div class="calc-faq-item">
         <h3>A personalização entra no valor por peça?</h3>
@@ -262,7 +265,7 @@
       </div>
       <div class="calc-faq-item">
         <h3>Como economizar sem perder a qualidade percebida?</h3>
-        <p>Aumente o lote, simplifique a arte da personalização e escolha um produto de uso diário, como ecobag ou nécessaire bem acabada, mesmo na faixa intermediária.</p>
+        <p>Aumente o lote, simplifique a arte da personalização e escolha um produto de uso diário, como ecobag ou necessaire bem acabada, mesmo na faixa intermediária.</p>
       </div>
 
       <section class="blog-fontes" aria-labelledby="fontes-titulo">
@@ -276,7 +279,7 @@
 
     <section class="calc-cta">
       <h2>Pronto para produzir o brinde da sua empresa?</h2>
-      <p>Fabricamos brindes corporativos em tecido a partir de 20 peças por modelo e cor, com fábrica em Guarulhos-SP. Informe a quantidade e a faixa de orçamento e receba uma proposta.</p>
+      <p>Fabricamos brindes corporativos em tecido a partir de 20 peças por modelo e cor, com fábrica própria em Guarulhos (SP). Informe a quantidade e a faixa de orçamento e receba uma proposta.</p>
       <a href="https://wa.me/5511999370418?text=Ol%C3%A1%2C%20usei%20a%20calculadora%20de%20or%C3%A7amento%20de%20brindes%20e%20quero%20uma%20proposta." class="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Solicitar orçamento no WhatsApp</a>
     </section>
   </main>
@@ -368,7 +371,7 @@
     }
     var FAIXAS=[
       {max:20,nome:'Econômica',tec:'Silk ou DTF',txt:'Nessa faixa, os produtos mais indicados são <strong>ecobag, porta-moeda ou chaveiro de tecido</strong>, com silk ou DTF. Veja <a href="ecobags-personalizadas">ecobags personalizadas</a>.'},
-      {max:45,nome:'Intermediária',tec:'Silk ou DTF',txt:'Nessa faixa cabem <strong>pochete, nécessaire ou ecobag com bolso e forro</strong>. Silk ou DTF seguem como as técnicas de menor custo. Veja <a href="pochetes-personalizadas">pochetes personalizadas</a>.'},
+      {max:45,nome:'Intermediária',tec:'Silk ou DTF',txt:'Nessa faixa cabem <strong>pochete, necessaire ou ecobag com bolso e forro</strong>. Silk ou DTF seguem como as técnicas de menor custo. Veja <a href="pochetes-personalizadas">pochetes personalizadas</a>.'},
       {max:90,nome:'Avançada',tec:'Bordado',txt:'Nessa faixa cabem <strong>mochila casual ou bolsa térmica</strong> com bordado. Veja o guia de <a href="blog/mochila-corporativa-personalizada">mochila corporativa personalizada</a>.'},
       {max:Infinity,nome:'Premium',tec:'Bordado',txt:'Nessa faixa cabem <strong>pasta executiva, mochila executiva ou um kit com mais de uma peça</strong>. Veja <a href="pastas-executivas">pastas executivas</a>.'}
     ];
@@ -397,6 +400,6 @@
     calc();
   })();
   </script>
-  <script src="js/main.js?v=20261026"></script>
+  <script src="js/main.js?v=20261104"></script>
 </body>
 </html>
