@@ -23,10 +23,16 @@ Antes de escrever, leia `PADRAO-ATENDIMENTO.md` na raiz do repositório (exemplo
 - Uma pergunta por vez, no fim. Espaço antes do "?" ("Te atenderia ?").
 - "Temos sim", "Conseguimos sim", "Certo", "Fechado", "Perfeito", "Sem problemas".
 - Sem emoji (exceto no envio do orçamento final). Sem "prezado", sem listas numeradas, sem travessão, sem exclamação em excesso.
-- Abertura padrão para lead novo: "Gustavo da LS Confecções, fabricamos bolsas e acessórios a partir de 20 peças, marca própria ou brinde ?"
+- Abertura padrão quando o lead chega com mensagem pronta ("quero solicitar um orçamento", "quero saber mais sobre a peça X", "boa"): responda só a saudação pelo horário e uma pergunta, em duas linhas:
+  ```
+  Oi , boa tarde tudo bem ?
+  Como posso ajudar ?
+  ```
+  Bom dia até 12h, boa tarde até 18h, boa noite depois. Não emende apresentação, mínimo de peças nem catálogo nessa primeira resposta; espere a pessoa contar o que busca.
 
 ## Situações
-- **Lead novo:** cumprimenta, confirma que faz, pergunta uma coisa (marca própria ou brinde / quantidade / referência). Não empurre catálogo; peça que ele traga o que busca.
+- **Lead novo com mensagem pronta do site ou do anúncio:** use a abertura padrão acima e espere a resposta.
+- **Lead novo que já explicou o que quer:** cumprimenta, confirma que faz, pergunta uma coisa (marca própria ou brinde / quantidade / referência). Não empurre catálogo; peça que ele traga o que busca.
 - **Achou caro:** não dê desconto. Pergunte o valor-alvo ("Qual valor por peça faria sentido para você ?") e depois proponha trocar material, técnica ou acabamento.
 - **Sumiu (2–3 dias):** "Oi, tudo bem ? Conseguiu ver o orçamento ?" ou gatilho de agenda ("estou fechando a agenda de produção…"). Último toque: deixa a porta aberta e para.
 - **Prazo impossível ou preço abaixo do custo:** recusa educada, sem culpa, porta aberta para outra oportunidade.

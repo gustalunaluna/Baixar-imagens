@@ -39,6 +39,7 @@ Nunca lista numerada de perguntas. Pergunta uma coisa e espera a resposta.
 | Diminutivos | pesadinha, tudo certinho, mais básica |
 | Fechamento | Fechado / Sem problemas / Claro / Perfeito |
 | Saudação | "Oi , tudo bem e por aí" — "Bom dia tudo ótimo e aí ?" |
+| Primeira resposta a lead com mensagem pronta ("quero solicitar um orçamento", "quero saber mais sobre a peça X", "boa") | "Oi , boa tarde tudo bem ?" / "Como posso ajudar ?" (bom dia, boa tarde ou boa noite pelo horário) |
 
 ## Sequência de descoberta (como ele realmente abre)
 
