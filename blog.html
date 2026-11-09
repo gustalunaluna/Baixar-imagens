@@ -124,6 +124,24 @@
   ]
 }
   </script>
+<style>
+.blog-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.6rem}
+.blog-card{border:1px solid #ececec;border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(0,0,0,.10)}
+.blog-card-img{background:#f3f3f1;aspect-ratio:3/2}
+.blog-card-img img{transition:transform .5s ease}
+.blog-card:hover .blog-card-img img{transform:scale(1.04)}
+.blog-card-body{padding:1.25rem 1.35rem 1.35rem;gap:.6rem}
+.blog-card-body .blog-tag{align-self:flex-start;margin:0;border-radius:999px;padding:.28rem .75rem}
+.blog-card-body h2{font-size:1.38rem}
+.blog-card-body p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.blog-card-rodape{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin-top:auto;padding-top:.8rem;border-top:1px solid #f0f0f0}
+.blog-card-rodape .blog-meta{display:block;-webkit-line-clamp:unset;font-size:.8rem;color:#777;margin:0}
+.blog-card-mais{flex:none;font-weight:700;font-size:.85rem;color:#0a0a0a;text-decoration:none;padding:.35rem .8rem;border-radius:999px;background:#f3f3f1;transition:background .2s}
+.blog-card:hover .blog-card-mais{background:#e8ff00}
+@media(max-width:1023px){.blog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.blog-grid{grid-template-columns:1fr;gap:1.2rem}}
+</style>
 </head>
 <body>
 
@@ -163,233 +181,233 @@
       <div class="blog-grid">
         <article class="blog-card fade-up">
           <a href="blog/ecobag-ou-sacola-plastica-impacto-ambiental" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/ecobag-personalizada-para-brindes-corporativos.webp" alt="Pessoa carregando ecobag de algodão cru estampada no ombro" width="480" height="320" fetchpriority="high">
+            <img src="imagens/blog/ecobag-ou-sacola-plastica-impacto-ambiental.webp" srcset="imagens/blog/ecobag-ou-sacola-plastica-impacto-ambiental-480.webp 480w, imagens/blog/ecobag-ou-sacola-plastica-impacto-ambiental.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Ecobag de algodão cru natural" width="960" height="640" fetchpriority="high" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Sustentabilidade</span>
             <h2><a href="blog/ecobag-ou-sacola-plastica-impacto-ambiental">Ecobag ou sacola plástica: o que dizem os estudos de ciclo de vida</a></h2>
             <p>Quantas vezes uma ecobag precisa ser usada para compensar a sacola plástica? Veja os números da UK Environment Agency e da Danish EPA e o que pedir no brinde.</p>
-            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 6 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 6 min de leitura</p><a href="blog/ecobag-ou-sacola-plastica-impacto-ambiental" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/denier-e-gramatura-tecidos-mochila" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/mochila-tricolor-urbana-ls-confeccoes.webp" alt="Mochila urbana tricolor em tecido sintético, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/denier-e-gramatura-tecidos-mochila.webp" srcset="imagens/blog/denier-e-gramatura-tecidos-mochila-480.webp 480w, imagens/blog/denier-e-gramatura-tecidos-mochila.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Mochila esportiva em tecido técnico com compartimentos para bola e tênis" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Materiais</span>
             <h2><a href="blog/denier-e-gramatura-tecidos-mochila">Denier e gramatura: o que significam 420D, 600D e 1680D no tecido da mochila</a></h2>
             <p>Entenda 420D, 600D, 1680D, gramatura em g/m² e onças da lona. Veja como ler a ficha técnica do tecido e o que pedir ao fornecedor antes de produzir mochilas.</p>
-            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p><a href="blog/denier-e-gramatura-tecidos-mochila" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/como-precificar-bolsas-da-sua-marca" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/destaque-mochila-executiva-b2b.webp" srcset="imagens/m/400/destaque-mochila-executiva-b2b.webp 400w, imagens/m/800/destaque-mochila-executiva-b2b.webp 800w, imagens/destaque-mochila-executiva-b2b.webp 853w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Mochila executiva preta produzida em private label pela LS Confecções" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/como-precificar-bolsas-da-sua-marca.webp" srcset="imagens/blog/como-precificar-bolsas-da-sua-marca-480.webp 480w, imagens/blog/como-precificar-bolsas-da-sua-marca.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Linha de bolsas e mochilas de uma marca expostas na parede" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Negócios</span>
             <h2><a href="blog/como-precificar-bolsas-da-sua-marca">Como precificar bolsas e mochilas da sua marca: custo, markup e margem</a></h2>
             <p>Monte o preço de venda das bolsas da sua marca com custo real, impostos, taxas do canal, markup e margem. Exemplo numérico passo a passo, com base no Sebrae.</p>
-            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p><a href="blog/como-precificar-bolsas-da-sua-marca" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/licitacao-de-mochilas-e-bolsas-como-funciona" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/mochila-estampada-personalizada-brinde.webp" alt="Mochila estampada colorida em poliéster, modelo usado em kits e brindes" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/licitacao-de-mochilas-e-bolsas-como-funciona.webp" srcset="imagens/blog/licitacao-de-mochilas-e-bolsas-como-funciona-480.webp 480w, imagens/blog/licitacao-de-mochilas-e-bolsas-como-funciona.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Mochila escolar estampada personalizada" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Licitações</span>
             <h2><a href="blog/licitacao-de-mochilas-e-bolsas-como-funciona">Licitação de mochilas e bolsas: como órgãos públicos compram</a></h2>
             <p>Como prefeituras e órgãos públicos compram mochilas, bolsas e kits pela Lei 14.133/2021: pregão eletrônico, PNCP, especificação técnica, amostra e entrega.</p>
-            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p><a href="blog/licitacao-de-mochilas-e-bolsas-como-funciona" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/kit-boas-vindas-funcionarios-onboarding" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/hero-brindes-corporativos-personalizados.webp" alt="Participantes de evento corporativo segurando uma sacola vermelha personalizada" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/kit-boas-vindas-funcionarios-onboarding.webp" srcset="imagens/blog/kit-boas-vindas-funcionarios-onboarding-480.webp 480w, imagens/blog/kit-boas-vindas-funcionarios-onboarding.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Mochila executiva preta com espaço para o logo da empresa" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/kit-boas-vindas-funcionarios-onboarding">Kit de boas-vindas para novos funcionários: o que incluir e como planejar</a></h2>
             <p>Monte o kit de boas-vindas (welcome kit) para novos colaboradores: itens úteis, prazos, quantidades e personalização, com mochila, necessaire e ecobag da marca.</p>
-            <p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-10-16">16 de outubro de 2026</time> · 5 min de leitura</p><a href="blog/kit-boas-vindas-funcionarios-onboarding" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/brindes-de-fim-de-ano-para-empresas" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/brinde-fim-de-ano-tote-termica.webp" alt="Tote bag térmica preta para brinde de fim de ano, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/brindes-de-fim-de-ano-para-empresas.webp" srcset="imagens/blog/brindes-de-fim-de-ano-para-empresas-480.webp 480w, imagens/blog/brindes-de-fim-de-ano-para-empresas.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Pessoas recebendo sacola personalizada como brinde em evento" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/brindes-de-fim-de-ano-para-empresas">Brindes de fim de ano para empresas: o que dar e quando pedir</a></h2>
             <p>Brindes de fim de ano que clientes e equipe usam: ideias por público, preços de referência de 2026 e o calendário real para receber em dezembro.</p>
-            <p class="blog-meta"><time datetime="2026-09-23">23 de setembro de 2026</time> · 7 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-09-23">23 de setembro de 2026</time> · 7 min de leitura</p><a href="blog/brindes-de-fim-de-ano-para-empresas" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/sacochila-personalizada" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" alt="Mochilas, ecobag, pochete e bolsas fabricadas pela LS Confecções expostas em estúdio" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/sacochila-personalizada.webp" srcset="imagens/blog/sacochila-personalizada-480.webp 480w, imagens/blog/sacochila-personalizada.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Saquinho de algodão cru com cordão e logo personalizado" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/sacochila-personalizada">Sacochila personalizada: quando vale a pena como brinde</a></h2>
             <p>Guia da sacochila personalizada (mochila saco): tecidos, reforços, técnicas de personalização, pedido mínimo e prazo. Onde ela funciona melhor como brinde.</p>
-            <p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 5 min de leitura</p><a href="blog/sacochila-personalizada" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/bolsa-termica-personalizada-guia" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/tote-bag-termica-ls-confeccoes.webp" alt="Bolsa térmica tote preta com forro isolante, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/bolsa-termica-personalizada-guia.webp" srcset="imagens/blog/bolsa-termica-personalizada-guia-480.webp 480w, imagens/blog/bolsa-termica-personalizada-guia.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Bolsa térmica preta com forro aluminizado" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Produtos</span>
             <h2><a href="blog/bolsa-termica-personalizada-guia">Bolsa térmica personalizada: materiais, tamanhos e como escolher</a></h2>
             <p>Como funciona a bolsa térmica personalizada: camadas isolantes, forro, tamanhos, personalização e cuidados com o alimento. O que checar antes do pedido.</p>
-            <p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 5 min de leitura</p><a href="blog/bolsa-termica-personalizada-guia" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/brindes-para-clientes-como-escolher" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/hero-brindes-corporativos-personalizados.webp" alt="Participantes de evento corporativo com sacola vermelha personalizada recebida como brinde" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/brindes-para-clientes-como-escolher.webp" srcset="imagens/blog/brindes-para-clientes-como-escolher-480.webp 480w, imagens/blog/brindes-para-clientes-como-escolher.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Necessaire preta com visor transparente para brinde" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/brindes-para-clientes-como-escolher">Brindes para clientes: como escolher o que realmente é usado</a></h2>
             <p>Como escolher brindes para clientes que não vão para a gaveta: critérios de uso, perfil de quem recebe, orçamento, prazo e um alerta fiscal.</p>
-            <p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 6 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-08-05">5 de agosto de 2026</time> · 6 min de leitura</p><a href="blog/brindes-para-clientes-como-escolher" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/peca-piloto-prototipo-de-bolsa" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" alt="Mochilas, ecobag, pochete e bolsas fabricadas pela LS Confecções em exposição" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/peca-piloto-prototipo-de-bolsa.webp" srcset="imagens/blog/peca-piloto-prototipo-de-bolsa-480.webp 480w, imagens/blog/peca-piloto-prototipo-de-bolsa.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Mochila color block desenvolvida sob medida" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Desenvolvimento</span>
             <h2><a href="blog/peca-piloto-prototipo-de-bolsa">Peça-piloto: como desenvolver o protótipo da sua bolsa</a></h2>
             <p>O que é a peça piloto, o que ela valida e como funciona o protótipo de bolsa na LS Confecções: piloto em até 15 dias, custo médio de R$ 600, sem desenho técnico.</p>
-            <p class="blog-meta"><time datetime="2026-07-23">23 de julho de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-23">23 de julho de 2026</time> · 5 min de leitura</p><a href="blog/peca-piloto-prototipo-de-bolsa" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/bolsas-streetwear-guia" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/mochilas/mochila-slim-casual-ls-confeccoes.webp" srcset="imagens/m/400/mochilas/mochila-slim-casual-ls-confeccoes.webp 400w, imagens/m/800/mochilas/mochila-slim-casual-ls-confeccoes.webp 800w, imagens/mochilas/mochila-slim-casual-ls-confeccoes.webp 900w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Shoulder bag streetwear vinho usada a tiracolo no dia a dia" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/bolsas-streetwear-guia.webp" srcset="imagens/blog/bolsas-streetwear-guia-480.webp 480w, imagens/blog/bolsas-streetwear-guia.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Modelo usando shoulder bag streetwear" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Streetwear</span>
             <h2><a href="blog/bolsas-streetwear-guia">Bolsas streetwear: os modelos que toda label precisa (e como produzir)</a></h2>
             <p>Shoulder bag, pochete, tote, mochila roll-top, sling e gym bag: modelos streetwear, materiais indicados e como produzir com marca própria a partir de 20 peças.</p>
-            <p class="blog-meta"><time datetime="2026-07-14">14 de julho de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-14">14 de julho de 2026</time> · 5 min de leitura</p><a href="blog/bolsas-streetwear-guia" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="bolsas-streetwear-personalizadas" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/pochete-street-ls-confeccoes.webp" alt="Pochete streetwear personalizada fabricada pela LS Confecções" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/bolsas-streetwear-personalizadas.webp" srcset="imagens/blog/bolsas-streetwear-personalizadas-480.webp 480w, imagens/blog/bolsas-streetwear-personalizadas.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Pochete streetwear preta com etiqueta da marca" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Fabricação</span>
             <h2><a href="bolsas-streetwear-personalizadas">Fabricante de bolsas streetwear personalizadas</a></h2>
             <p>Shoulder bag, crossbody, pochete e mochila urbana com a marca da sua label, a partir de 20 unidades. Conheça a nossa linha streetwear.</p>
-            <p class="blog-meta">Linha de fabricação</p>
+            <div class="blog-card-rodape"><p class="blog-meta">Linha de fabricação</p><a href="bolsas-streetwear-personalizadas" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/brindes-para-corrida-de-rua" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/cinto-corrida-brinde-ls-confeccoes.webp" srcset="imagens/m/400/cinto-corrida-brinde-ls-confeccoes.webp 400w, imagens/m/800/cinto-corrida-brinde-ls-confeccoes.webp 800w, imagens/cinto-corrida-brinde-ls-confeccoes.webp 900w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Cinto de corrida preto com zíper verde-limão, porta-squeeze lateral e logo do evento, brinde para corrida de rua" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/brindes-para-corrida-de-rua.webp" srcset="imagens/blog/brindes-para-corrida-de-rua-480.webp 480w, imagens/blog/brindes-para-corrida-de-rua.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Cinto de corrida preto com porta-squeeze lateral" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/brindes-para-corrida-de-rua">Brindes para corrida de rua: 8 ideias que os corredores realmente usam</a></h2>
             <p>Sacochila, pochete, ecobag e outras peças para kit de corrida de rua: o que os corredores usam, quanto custa e quando pedir. Fábrica em SP, desde 20 peças.</p>
-            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 6 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 6 min de leitura</p><a href="blog/brindes-para-corrida-de-rua" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/ecobag-personalizada-guia" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/brinde-ecobag-natural.webp" alt="Ecobag de algodão cru lisa, pronta para personalização com a marca" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/ecobag-personalizada-guia.webp" srcset="imagens/blog/ecobag-personalizada-guia-480.webp 480w, imagens/blog/ecobag-personalizada-guia.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Ecobag de algodão cru lisa" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/ecobag-personalizada-guia">Ecobag personalizada: o guia completo para brindes e marcas</a></h2>
             <p>Guia da ecobag personalizada: algodão cru, lona, RPET, tamanhos, alças e técnicas de estampa. Saiba escolher a ecobag certa para brinde ou para vender.</p>
-            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p><a href="blog/ecobag-personalizada-guia" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/bordado-silk-ou-sublimacao" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/mochila-estampada-personalizada-brinde.webp" alt="Mochila com estampa colorida full print, exemplo de personalização de marca" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/bordado-silk-ou-sublimacao.webp" srcset="imagens/blog/bordado-silk-ou-sublimacao-480.webp 480w, imagens/blog/bordado-silk-ou-sublimacao.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Porta-squeeze com estampa sublimada colorida" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Personalização</span>
             <h2><a href="blog/bordado-silk-ou-sublimacao">Bordado, silk ou sublimação: qual a melhor personalização para sua marca</a></h2>
             <p>Compare bordado, silk screen e sublimação em bolsas e mochilas: custo, durabilidade, tipo de arte e tecido compatível. Guia prático de quem fabrica.</p>
-            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p><a href="blog/bordado-silk-ou-sublimacao" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/pochete-personalizada-guia" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/pochete-cotele-caramelo-ls-confeccoes.webp" srcset="imagens/m/400/pochete-cotele-caramelo-ls-confeccoes.webp 400w, imagens/m/800/pochete-cotele-caramelo-ls-confeccoes.webp 800w, imagens/pochete-cotele-caramelo-ls-confeccoes.webp 900w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Pochete personalizada em cotelê caramelo fabricada pela LS Confecções" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/pochete-personalizada-guia.webp" srcset="imagens/blog/pochete-personalizada-guia-480.webp 480w, imagens/blog/pochete-personalizada-guia.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Pochete de veludo cotelê caramelo com patch" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Produtos</span>
             <h2><a href="blog/pochete-personalizada-guia">Pochete personalizada: modelos, materiais e quando vale a pena</a></h2>
             <p>Pochete personalizada para marca própria e brinde: modelos, tamanhos, tecidos, aviamentos, personalização, prazos e quando a peça vale a pena.</p>
-            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p><a href="blog/pochete-personalizada-guia" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/mochila-corporativa-personalizada" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/destaque-mochila-executiva-b2b.webp" srcset="imagens/m/400/destaque-mochila-executiva-b2b.webp 400w, imagens/m/800/destaque-mochila-executiva-b2b.webp 800w, imagens/destaque-mochila-executiva-b2b.webp 853w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Mochila executiva preta com área para a logo, para brindes e kits de empresa" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/mochila-corporativa-personalizada.webp" srcset="imagens/blog/mochila-corporativa-personalizada-480.webp 480w, imagens/blog/mochila-corporativa-personalizada.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Mochila executiva preta com entrada USB" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Brindes</span>
             <h2><a href="blog/mochila-corporativa-personalizada">Mochila personalizada para empresa: como escolher para brindes e kits</a></h2>
             <p>Como escolher a mochila personalizada para empresa: modelos, tecidos, conforto, personalização, quantidade e prazo para brindes, kits e integração.</p>
-            <p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-08">8 de julho de 2026</time> · 5 min de leitura</p><a href="blog/mochila-corporativa-personalizada" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/private-label-como-funciona" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/hero-fabricante-bolsas-mochilas-personalizadas.webp" alt="Linha de bolsas e mochilas produzidas em private label pela LS Confecções" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/private-label-como-funciona.webp" srcset="imagens/blog/private-label-como-funciona-480.webp 480w, imagens/blog/private-label-como-funciona.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Bolsas e mochilas de marca própria fabricadas pela LS Confecções" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Private Label</span>
             <h2><a href="blog/private-label-como-funciona">Private Label: como funciona a fabricação para sua marca</a></h2>
             <p>Como funciona o private label de bolsas e mochilas: briefing, peça piloto em até 15 dias, mínimo de 20 peças, produção em até 25 dias úteis e registro de marca.</p>
-            <p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 6 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 6 min de leitura</p><a href="blog/private-label-como-funciona" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/como-criar-uma-marca-de-bolsas" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/bolsa-crossbody-puffer-preta-ls-confeccoes.webp" alt="Bolsa crossbody puffer preta produzida pela LS Confecções para marca própria" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/como-criar-uma-marca-de-bolsas.webp" srcset="imagens/blog/como-criar-uma-marca-de-bolsas-480.webp 480w, imagens/blog/como-criar-uma-marca-de-bolsas.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Bolsa crossbody puffer preta usada no ombro" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Empreendedorismo</span>
             <h2><a href="blog/como-criar-uma-marca-de-bolsas">Como criar uma marca de bolsas do zero: guia prático</a></h2>
             <p>Passo a passo para criar uma marca de bolsas: público, identidade, peça piloto, cálculo de preço, lote mínimo de 20 peças, registro no INPI e canais de venda.</p>
-            <p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 7 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 7 min de leitura</p><a href="blog/como-criar-uma-marca-de-bolsas" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/quanto-custa-fabricar-mochila-personalizada" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/mochila-tricolor-urbana-ls-confeccoes.webp" alt="Mochila urbana tricolor em tecido sintético, fabricada pela LS Confecções" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/quanto-custa-fabricar-mochila-personalizada.webp" srcset="imagens/blog/quanto-custa-fabricar-mochila-personalizada-480.webp 480w, imagens/blog/quanto-custa-fabricar-mochila-personalizada.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Mochila preta clássica personalizada" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Produção</span>
             <h2><a href="blog/quanto-custa-fabricar-mochila-personalizada">Quanto custa fabricar uma mochila personalizada?</a></h2>
             <p>O que define o preço de uma mochila personalizada: modelo, tecido, personalização e lote. Faixas de pedidos reais de 2026 e como pedir um orçamento preciso.</p>
-            <p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 6 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 6 min de leitura</p><a href="blog/quanto-custa-fabricar-mochila-personalizada" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
         <article class="blog-card fade-up">
           <a href="blog/tipos-de-tecido-para-mochilas" class="blog-card-img" tabindex="-1" aria-hidden="true">
-            <img src="imagens/mochila-basquete.webp" srcset="imagens/m/400/mochila-basquete.webp 400w, imagens/m/800/mochila-basquete.webp 800w, imagens/mochila-basquete.webp 900w" sizes="(max-width: 767px) calc(100vw - 50px), 361px" alt="Mochila esportiva preta com compartimentos para bola e tênis" width="480" height="320" loading="lazy">
+            <img src="imagens/blog/tipos-de-tecido-para-mochilas.webp" srcset="imagens/blog/tipos-de-tecido-para-mochilas-480.webp 480w, imagens/blog/tipos-de-tecido-para-mochilas.webp 960w" sizes="(max-width: 767px) calc(100vw - 50px), (max-width: 1100px) 50vw, 380px" alt="Mochila tricolor em tecidos combinados" width="960" height="640" loading="lazy" decoding="async">
           </a>
           <div class="blog-card-body">
             <span class="blog-tag">Materiais</span>
             <h2><a href="blog/tipos-de-tecido-para-mochilas">Tipos de tecido para mochilas: qual escolher para sua marca</a></h2>
             <p>Nylon, poliéster, lona, cordura ou sarja: compare resistência, peso, custo e personalização de cada tecido antes de fechar a produção da sua mochila.</p>
-            <p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 5 min de leitura</p>
+            <div class="blog-card-rodape"><p class="blog-meta"><time datetime="2026-07-01">1 de julho de 2026</time> · 5 min de leitura</p><a href="blog/tipos-de-tecido-para-mochilas" class="blog-card-mais" aria-hidden="true" tabindex="-1">Ler &rarr;</a></div>
           </div>
         </article>
       </div>
