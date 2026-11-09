@@ -1,0 +1,173 @@
+@font-face{font-family:"Barlow Condensed";font-weight:700;src:url(../../fonts/barlow-condensed-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Barlow Condensed";font-weight:900;src:url(../../fonts/barlow-condensed-latin-900-normal.woff2) format("woff2")}
+@font-face{font-family:Barlow;font-weight:400;src:url(../../fonts/barlow-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:Barlow;font-weight:500;src:url(../../fonts/barlow-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:Barlow;font-weight:600;src:url(../../fonts/barlow-latin-600-normal.woff2) format("woff2")}
+@page{size:210mm 297mm;margin:0}
+:root{--preto:#0a0a0a;--lima:#e8ff00;--papel:#f4f4f1;--cinza:#6b6b66;--linha:#e2e2dc}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:Barlow,sans-serif;color:var(--preto);font-size:9.6pt;line-height:1.5;background:#888}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:var(--papel);padding:16mm 15mm 17mm;display:flex;flex-direction:column;page-break-after:always;break-after:page}
+h1,h2,h3{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;line-height:.98;letter-spacing:.005em}
+small{font-size:7.2pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cinza);display:block}
+.rod{position:absolute;left:15mm;right:15mm;bottom:8mm;display:flex;justify-content:space-between;font-size:6.6pt;color:var(--cinza);border-top:.25mm solid var(--linha);padding-top:2.4mm}
+.rod b{color:var(--preto);font-weight:600}
+.cab{margin-bottom:8mm;position:relative}
+.cab small{margin-bottom:2.5mm}
+.cab small::before{content:"";display:inline-block;width:7mm;height:1.2mm;background:var(--lima);margin-right:2.5mm;vertical-align:middle;outline:.2mm solid var(--preto)}
+.cab h2{font-size:30pt;font-weight:900;max-width:150mm}
+.lead{font-size:11.5pt;line-height:1.5;font-weight:500}
+.lead.estreito{max-width:150mm;margin-bottom:7mm;font-size:10.5pt;font-weight:400;color:#333}
+
+/* Capa */
+.escura{background:var(--preto);color:#fff;padding:0}
+.capa-topo{display:flex;align-items:center;gap:3mm;padding:15mm 15mm 0}
+.capa-topo img{width:11mm;height:11mm}
+.capa-topo span{font-family:"Barlow Condensed";font-weight:900;font-size:17pt;letter-spacing:.04em}
+.capa-topo em{font-style:normal;margin-left:auto;font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;color:#aaa}
+.capa-titulo{padding:17mm 15mm 10mm}
+.capa-titulo small{color:var(--lima);margin-bottom:5mm}
+.capa-titulo h1{font-size:54pt;font-weight:900;max-width:170mm}
+.capa-titulo h1 b{color:var(--lima)}
+.capa-titulo p{margin-top:6mm;font-size:12pt;color:#d0d0d0;max-width:120mm;line-height:1.45}
+.capa-foto{flex:1;background-size:cover;background-position:center 30%;position:relative}
+.capa-foto::before{content:"";position:absolute;inset:0;background:linear-gradient(#0a0a0a 0%,rgba(10,10,10,0) 22%,rgba(10,10,10,0) 80%,#0a0a0a 100%)}
+.capa-base{display:flex;justify-content:space-between;padding:6mm 15mm 10mm;font-size:7.5pt;letter-spacing:.16em;text-transform:uppercase;color:#bbb}
+.capa-base span:first-child{color:var(--lima)}
+
+/* Quem somos */
+.duas{display:grid;grid-template-columns:1fr 70mm;gap:9mm}
+.texto p{margin-bottom:3.6mm;color:#2c2c2a}
+.texto .lead{color:var(--preto)}
+.foto-alta{background-size:cover;background-position:center;border-radius:2.5mm;min-height:100mm}
+.pessoas{display:grid;grid-template-columns:1fr 1fr;gap:5mm;margin-top:5mm;border-top:.25mm solid var(--linha);padding-top:4mm}
+.pessoas b{display:block;font-family:"Barlow Condensed";font-size:14pt;text-transform:uppercase}
+.pessoas span{font-size:8.4pt;color:var(--cinza);line-height:1.4;display:block}
+.numeros{display:grid;grid-template-columns:repeat(4,1fr);background:var(--preto);color:#fff;border-radius:2.5mm;margin-top:8mm}
+.numeros div{padding:6mm 5mm;border-right:.25mm solid #2a2a2a}
+.numeros div:last-child{border:0}
+.numeros b{display:block;font-family:"Barlow Condensed";font-weight:900;font-size:27pt;line-height:1;color:var(--lima)}
+.numeros span{font-size:8pt;color:#c9c9c9;line-height:1.35;display:block;margin-top:1.5mm}
+.confiam{margin-top:auto;padding-top:7mm}
+.confiam .logos{display:flex;align-items:center;justify-content:space-between;gap:5mm;background:#fff;border-radius:2.5mm;padding:5mm 7mm;margin:3mm 0}
+.confiam .logos img{height:11mm;width:auto;max-width:24mm;object-fit:contain}
+.confiam p{font-size:8.4pt;color:var(--cinza)}
+
+/* O que fazemos */
+.frentes{display:grid;grid-template-columns:repeat(3,1fr);gap:5mm}
+.frentes article{background:#fff;border-radius:2.5mm;padding:7mm 6mm}
+.frentes i{font-style:normal;font-family:"Barlow Condensed";font-weight:900;font-size:13pt;background:var(--lima);padding:.6mm 2.2mm;border-radius:1mm}
+.frentes h3{font-size:20pt;font-weight:900;margin:4mm 0 3mm}
+.frentes p{font-size:9pt;color:#333;margin-bottom:4mm}
+.frentes ul{list-style:none;border-top:.25mm solid var(--linha);padding-top:3mm}
+.frentes li{font-size:8.4pt;padding-left:4mm;position:relative;margin-bottom:1.6mm;color:#333}
+.frentes li::before{content:"";position:absolute;left:0;top:1.9mm;width:1.8mm;height:1.8mm;background:var(--lima);outline:.2mm solid var(--preto);border-radius:50%}
+.faixa-foto{flex:1;margin-top:7mm;border-radius:2.5mm;background-size:cover;background-position:center 35%;position:relative;display:flex;align-items:flex-end;min-height:70mm;overflow:hidden}
+.faixa-foto::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(10,10,10,0) 30%,rgba(10,10,10,.82))}
+.faixa-foto div{position:relative;padding:8mm;color:#fff}
+.faixa-foto small{color:var(--lima);margin-bottom:2mm}
+.faixa-foto p{font-family:"Barlow Condensed";font-weight:700;text-transform:uppercase;font-size:21pt;line-height:1.05;max-width:120mm}
+
+/* Materiais */
+.bloco{background:#fff;border-radius:2.5mm;padding:7mm;margin-bottom:5mm}
+.bloco h3{font-size:16pt;font-weight:900;margin-bottom:4mm}
+.chips{display:flex;flex-wrap:wrap;gap:1.8mm}
+.chips span{border:.25mm solid var(--preto);border-radius:10mm;padding:.9mm 3.2mm;font-size:8.4pt;font-weight:500}
+.nota{margin-top:4mm;font-size:8.8pt;color:var(--cinza);max-width:160mm}
+.tecnicas{display:grid;grid-template-columns:1fr 1fr;gap:0 9mm}
+.tecnicas div{display:grid;grid-template-columns:36mm 1fr;gap:3mm;padding:2.6mm 0;border-bottom:.25mm solid var(--linha);font-size:8.8pt}
+.tecnicas b{font-weight:600}
+.tecnicas span{color:#444}
+.bloco.destaque{background:var(--preto);color:#fff;margin-top:auto;margin-bottom:0}
+.bloco.destaque h3{color:var(--lima)}
+.defs{display:grid;grid-template-columns:repeat(4,1fr);gap:5mm}
+.defs b{display:block;font-family:"Barlow Condensed";font-size:13pt;text-transform:uppercase}
+.defs span{font-size:8.2pt;color:#c9c9c9;line-height:1.4;display:block}
+
+/* Processo */
+.passos{list-style:none}
+.passos li{display:grid;grid-template-columns:17mm 1fr 44mm;gap:4mm;align-items:center;padding:5.2mm 0;border-bottom:.25mm solid var(--linha)}
+.passos li:first-child{border-top:.25mm solid var(--linha)}
+.passos i{font-style:normal;font-family:"Barlow Condensed";font-weight:900;font-size:27pt;line-height:1}
+.passos h3{font-size:15pt;font-weight:700;margin-bottom:1mm}
+.passos p{font-size:8.8pt;color:#444;max-width:98mm}
+.passos span{justify-self:end;text-align:right;font-size:8pt;font-weight:600;background:var(--lima);padding:1.1mm 3mm;border-radius:10mm}
+.condicoes{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;margin-top:8mm}
+.condicoes div{background:#fff;border-radius:2.5mm;padding:5mm}
+.condicoes b{display:block;font-family:"Barlow Condensed";font-weight:900;font-size:17pt;text-transform:uppercase;line-height:1.05;margin:1.5mm 0 1mm}
+.condicoes span{font-size:8pt;color:var(--cinza);line-height:1.35;display:block}
+.garantia{margin-top:auto;background:var(--preto);color:#fff;border-radius:2.5mm;padding:9mm;display:grid;grid-template-columns:58mm 1fr;gap:8mm;align-items:center}
+.g-num b{font-family:"Barlow Condensed";font-weight:900;font-size:52pt;line-height:.9;display:block;color:var(--lima);text-transform:uppercase}
+.g-num span{font-size:8pt;letter-spacing:.16em;text-transform:uppercase;color:#bbb}
+.garantia h3{font-size:16pt;font-weight:700;margin-bottom:2.5mm;line-height:1.05}
+.garantia p{font-size:8.8pt;color:#c9c9c9}
+
+/* Índice */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;flex:1;grid-auto-rows:1fr;margin-bottom:2mm}
+.tiles a{background:#fff;border-radius:2.5mm;overflow:hidden;display:flex;flex-direction:column}
+.t-img{flex:1;background-size:cover;background-position:center;min-height:40mm}
+.t-txt{padding:4mm}
+.t-txt i{font-style:normal;font-size:7pt;font-weight:600;letter-spacing:.14em;color:var(--cinza)}
+.t-txt b{display:block;font-family:"Barlow Condensed";font-weight:900;font-size:15pt;text-transform:uppercase;line-height:1.02;margin:.6mm 0 1mm}
+.t-txt span{font-size:7.6pt;color:var(--cinza)}
+.tiles .t-cta{background:var(--lima);padding:5mm;justify-content:flex-end}
+.t-cta small{color:var(--preto)}
+.t-cta b{display:block;font-family:"Barlow Condensed";font-weight:900;font-size:17pt;text-transform:uppercase;line-height:1.02;margin:2mm 0 3mm}
+.t-cta span{font-size:8pt;font-weight:600}
+
+/* Linhas */
+.cab.linha{margin-bottom:6mm}
+.cab.linha h2{font-size:34pt}
+.cab.linha em{font-style:normal;color:#9a9a94;margin-left:2mm}
+.fantasma{position:absolute;right:-2mm;top:-9mm;font-family:"Barlow Condensed";font-weight:900;font-size:92pt;line-height:1;color:#e6e6e1;z-index:0}
+.cab.linha small,.cab.linha h2{position:relative;z-index:1}
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:4.5mm}
+.grade figure{background:#fff;border-radius:2.5mm;overflow:hidden;display:flex;flex-direction:column}
+.ph{height:50mm;background:#ecece8;overflow:hidden}
+.ph.claro{background:#fff}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph.claro img{object-fit:contain;padding:2.5mm}
+figcaption{padding:3.4mm 4mm 4mm;border-top:.25mm solid var(--linha)}
+figcaption b{display:block;font-family:"Barlow Condensed";font-weight:700;font-size:12.5pt;text-transform:uppercase;line-height:1.05;margin-bottom:1.2mm}
+figcaption span{font-size:7.5pt;line-height:1.38;color:#555;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;height:4.14em}
+.painel{flex:1;margin-top:5mm;margin-bottom:1mm;border-radius:2.5mm;background:var(--preto);color:#fff;display:grid;grid-template-columns:1fr 1.15fr;overflow:hidden;min-height:38mm}
+.p-esq{padding:7mm;position:relative;display:flex;flex-direction:column;justify-content:flex-end;background:linear-gradient(rgba(10,10,10,.35),rgba(10,10,10,.9)),var(--f) center/cover}
+.p-esq small{color:var(--lima);margin-bottom:2mm}
+.p-esq p{font-size:9pt;line-height:1.45;color:#eee}
+.p-dir{padding:7mm;display:flex;flex-direction:column;justify-content:space-between;gap:5mm}
+.painel small{color:#9a9a94;margin-bottom:2mm}
+.painel .chips span{border-color:#555;color:#fff;font-size:7.8pt}
+.p-info{display:grid;grid-template-columns:1fr 1fr;gap:5mm;border-top:.25mm solid #2a2a2a;padding-top:4mm}
+.p-info b{font-family:"Barlow Condensed";font-weight:700;font-size:13pt;text-transform:uppercase;line-height:1.08;color:var(--lima);display:block}
+
+/* Contracapa */
+.fim{padding:30mm 15mm 0}
+.fim small{color:var(--lima);margin-bottom:5mm}
+.fim h2{font-size:56pt;font-weight:900}
+.fim h2 b{color:var(--lima)}
+.fim p{margin-top:7mm;font-size:12pt;color:#d0d0d0;max-width:125mm;line-height:1.45}
+.contato{margin:auto 15mm 14mm;display:grid;grid-template-columns:62mm 1fr;gap:12mm;align-items:end}
+.qr{background:var(--lima);border-radius:2.5mm;padding:5mm;color:var(--preto)}
+.qr img{width:100%;display:block}
+.qr span{display:block;font-size:8pt;font-weight:600;line-height:1.35;margin-top:3mm}
+.contato dl{display:grid;grid-template-columns:26mm 1fr;border-top:.25mm solid #2a2a2a}
+.contato dt,.contato dd{padding:3.4mm 0;border-bottom:.25mm solid #2a2a2a}
+.contato dt{font-size:7.2pt;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#9a9a94;padding-top:4.2mm}
+.contato dd{font-size:11pt;font-weight:500}
+
+/* Ajustes */
+.duas{flex:1}
+.texto p{font-size:10.4pt;line-height:1.55;margin-bottom:4.5mm}
+.texto .lead{font-size:13pt;line-height:1.45;margin-bottom:6mm}
+.pessoas{margin-top:8mm;padding-top:5mm}
+.confiam{margin-top:7mm;padding-top:0}
+.t-img.claro{background-size:86%;background-repeat:no-repeat;background-color:#fff}
+.tiles a{border:.25mm solid var(--linha)}
+.grade.compacta .ph{height:39mm}
+.grade.compacta figcaption span{-webkit-line-clamp:2;height:6.3mm}
+.tecnicas div{font-size:9.4pt;padding:3.4mm 0}
+.bloco{padding:8mm 7mm}
+.grade.quatro{grid-template-columns:repeat(4,1fr);gap:4mm}
+.grade.quatro .ph{height:42.5mm}
+.grade.quatro figcaption b{font-size:11.5pt}
