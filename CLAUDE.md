@@ -25,6 +25,15 @@ HTML estático sem template: cabeçalho, rodapé e botão de WhatsApp (`wa.me/55
 - Não leia o projeto inteiro. Use este mapa, depois `grep -n` e leia só o trecho da página envolvida.
 - Para mudança repetida em várias páginas, faça por script (sed/python) e confira com grep, em vez de abrir página por página.
 
+## Padrão dos artigos do blog (modelo: guias da Printi)
+Piloto aplicado em `blog/tipos-de-tecido-para-mochilas.html` (estilos no `<style>` da própria página).
+1. Introdução curta e, logo depois, caixa "Leia também" com 3 artigos internos (`.leia-tambem`).
+2. Um H2 em forma de pergunta ("Quais são os tipos de...?") com cada opção em H3: descrição, "Melhor uso" e ficha (`.ficha-tecido`: ponto forte, atenção, personalização).
+3. Tabela comparativa (`.blog-tabela`).
+4. H2 "Como escolher...?" com cada critério em H3.
+5. "Produtos relacionados" com 4 cartões para páginas de produto (`.produtos-relacionados`), antes das perguntas frequentes.
+6. Perguntas frequentes, fontes e o bloco final de WhatsApp. Uma imagem real por item quando houver; sem foto real, ícone, nunca foto de outro produto.
+
 ## Regras do site
 - Não mude o visual sem pedido explícito. Não comprima a logo do topo. Não altere as fotos de clientes publicadas.
 - Não invente dados, números, depoimentos ou preços. Depoimentos da home ficam como estão.
