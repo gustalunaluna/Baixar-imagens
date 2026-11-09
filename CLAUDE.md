@@ -9,6 +9,22 @@ Site estático (HTML/CSS/JS) em lsconfex.com.br, hospedado na Vercel. Fábrica d
 - PNG na raiz é ignorado pelo `.gitignore`: use `git add -f`.
 - `.vercelignore` exclui `.claude/`, `*.md`, `tests/` e `scripts/` do deploy.
 
+## Mapa do site
+HTML estático sem template: cabeçalho, rodapé e botão de WhatsApp (`wa.me/5511999370418`) se repetem em cada página. Mudança neles = editar as 24 páginas da raiz e as 20 do blog. URLs saem sem `.html` (`vercel.json`).
+- Home e institucionais: `index.html`, `sobre.html`, `produtos.html` (catálogo), `private-label.html`, `brindes.html`, `blog.html`, `mapa-do-site.html`, `sitemap.xml`, `robots.txt`, `llms.txt`.
+- Páginas de produto (SEO): `fabricante-de-bolsas-personalizadas`, `fabricante-de-mochilas-personalizadas`, `bolsas-termicas-personalizadas`, `ecobags-personalizadas`, `necessaires-personalizadas`, `pochetes-personalizadas`, `malotes-personalizados`, `pastas-executivas`, `bolsas-de-viagem`, `bolsas-fitness-academia`, `bolsas-streetwear-personalizadas` (todas `.html` na raiz).
+- Ferramentas: `calculadora-preco-marca.html`, `calculadora-orcamento-brindes.html`.
+- Sistema: `obrigado.html` (passagem para o WhatsApp, dispara o Lead), `404.html`, `politica-de-privacidade.html`, `termos-de-uso.html`.
+- Blog: `blog/*.html` (20 artigos); capas em `imagens/og/`.
+- Estilo e scripts: `css/style.css` (minificado, poucas linhas longas: procure com grep, não leia inteiro), `js/main.js` (interações e eventos de clique), `js/consent.js` (Consent Mode, no `<head>`), `js/pixel.js` (Meta Pixel), `api/meta-capi.js` (API de Conversões da Meta, função da Vercel).
+- Imagens: `imagens/` (fotos em `.webp` com `.jpg` de reserva; subpastas por linha: `mochilas/`, `malas/`, `pochetes/`, `sholderbags/`, `og/`). Fontes em `fonts/`. Marca em `brand/`.
+- Fora do ar ou internos: `site-teste/` (rascunhos, bloqueado no robots), `tests/site.spec.js` (Playwright, `npm test`), `scripts/seo-audit.sh`.
+- Documentos de apoio (só abrir se a tarefa pedir): `PADRAO-ATENDIMENTO.md` (conversas reais, base da skill `responder-lead`), `AUDITORIA-SITE.md` e `RESUMO-SESSAO.md` (histórico de julho/2026, podem estar desatualizados).
+
+## Como trabalhar (economia)
+- Não leia o projeto inteiro. Use este mapa, depois `grep -n` e leia só o trecho da página envolvida.
+- Para mudança repetida em várias páginas, faça por script (sed/python) e confira com grep, em vez de abrir página por página.
+
 ## Regras do site
 - Não mude o visual sem pedido explícito. Não comprima a logo do topo. Não altere as fotos de clientes publicadas.
 - Não invente dados, números, depoimentos ou preços. Depoimentos da home ficam como estão.
@@ -27,6 +43,7 @@ Site estático (HTML/CSS/JS) em lsconfex.com.br, hospedado na Vercel. Fábrica d
 
 ## Skills
 - Mantidas de propósito: atendimento (`responder-lead`, `captar-clientes`, `analisar-edital`), SEO e texto (`seo*`, `schema`, `ai-seo`, `copywriting`, `copy-editing`, `link-building`), Instagram (`ig-*`) e design do site (`design-taste-frontend`, `frontend-design`).
+- `brandkit` (só um aviso de mudança), `cold-email` (repetia `captar-clientes`) e `directory-submissions` (repetia `link-building`) também foram removidas para encurtar a lista carregada em toda sessão.
 - Skills de vídeo e variantes de design foram removidas e estão só no histórico do git (commit anterior a esta limpeza).
 
 ## task-observer
