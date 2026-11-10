@@ -101,6 +101,8 @@
  var PER_PAGE = 30;
  var currentCategory = 'all';
  var currentPage = 1;
+ var currentTerm = '';
+ var normalizar = function (t) { return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, ' ').trim(); };
  var isStarred = function (card) {
  return !!card.querySelector('.catalog-badge, .catalog-featured-badge');
  };
@@ -151,8 +153,13 @@
  var applyView = function (announce) {
  var matching = ordered.filter(function (card) {
  var cat = (card.dataset.category || '');
- return currentCategory === 'all' || cat.split(' ').indexOf(currentCategory) !== -1;
+ if (currentCategory !== 'all' && cat.split(' ').indexOf(currentCategory) === -1) return false;
+ if (!currentTerm) return true;
+ if (!card._busca) card._busca = normalizar(card.textContent);
+ return currentTerm.split(' ').every(function (t) { return card._busca.indexOf(t) !== -1; });
  });
+ var vazio = document.getElementById('catalog-vazio');
+ if (vazio) vazio.hidden = matching.length > 0;
  var totalPages = Math.max(1, Math.ceil(matching.length / PER_PAGE));
  if (currentPage > totalPages) { currentPage = totalPages; }
  var start = (currentPage - 1) * PER_PAGE;
@@ -170,7 +177,7 @@
  var st = document.getElementById('catalog-status');
  if (announce && st) {
  var ab = document.querySelector('.filter-btn.active');
- st.textContent = matching.length + ' produtos' + (currentCategory !== 'all' && ab ? ' em ' + ab.textContent.trim() : '') + ', página ' + currentPage + ' de ' + totalPages + '.';
+ st.textContent = matching.length + ' produtos' + (currentTerm ? ' para "' + currentTerm + '"' : '') + (currentCategory !== 'all' && ab ? ' em ' + ab.textContent.trim() : '') + ', página ' + currentPage + ' de ' + totalPages + '.';
  }
  };
 
@@ -191,6 +198,24 @@
  });
  });
 
+ var busca = document.getElementById('catalog-busca');
+ if (busca) {
+ var buscaTimer;
+ busca.addEventListener('input', function () {
+ clearTimeout(buscaTimer);
+ buscaTimer = setTimeout(function () {
+ currentTerm = normalizar(busca.value);
+ currentPage = 1;
+ applyView(true);
+ }, 150);
+ });
+ var limpar = document.getElementById('catalog-limpar');
+ if (limpar) limpar.addEventListener('click', function () {
+ busca.value = ''; currentTerm = ''; currentCategory = 'all'; currentPage = 1;
+ filterBtns.forEach(function (b) { var on = b.dataset.filter === 'all'; b.classList.toggle('active', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+ applyView(true); busca.focus();
+ });
+ }
  applyView();
  }
  const scrollHint = document.querySelector('.scroll-hint');

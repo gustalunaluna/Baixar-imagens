@@ -66,7 +66,7 @@
   <link rel="dns-prefetch" href="https://wa.me">
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=20261104">
+  <link rel="stylesheet" href="css/style.css?v=20261110">
 
   <!-- ── Structured Data: BreadcrumbList ── -->
   <script type="application/ld+json">
@@ -631,6 +631,13 @@
 
       <h2 class="sr-only">Catálogo de produtos</h2>
 
+      <!-- Busca por nome -->
+      <div class="catalog-busca">
+        <label for="catalog-busca" class="sr-only">Buscar modelo pelo nome</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="catalog-busca" placeholder="Buscar modelo pelo nome (ex.: tote, pochete, duffle)" autocomplete="off" enterkeyhint="search">
+      </div>
+
       <!-- Filter Bar -->
       <div class="filter-bar" role="group" aria-label="Filtrar por categoria">
         <button class="filter-btn active" data-filter="all" aria-label="Todas as categorias">Todas</button>
@@ -647,6 +654,11 @@
         <button class="filter-btn" data-filter="outros" aria-label="Filtrar: Outros produtos">Outros</button>
       </div>
       <p id="catalog-status" class="sr-only" role="status"></p>
+
+      <div id="catalog-vazio" class="catalog-vazio" hidden>
+        <p>Nenhum modelo encontrado com esse nome.</p>
+        <p>Produzimos também sob medida: <a href="/obrigado?r=https%3A%2F%2Fwa.me%2F5511999370418%3Ftext%3DOl%C3%A1%21%20N%C3%A3o%20achei%20o%20modelo%20que%20procuro%20no%20cat%C3%A1logo." target="_blank" rel="noopener noreferrer nofollow">fale com a gente no WhatsApp</a> ou <button type="button" id="catalog-limpar">ver todos os modelos</button>.</p>
+      </div>
 
       <!-- Product Grid -->
       <div class="catalog-grid">
@@ -2048,7 +2060,7 @@
     </button>
   </div>
 
-  <script src="js/main.js?v=20261104"></script>
+  <script src="js/main.js?v=20261110"></script>
   <!-- GA4 carrega sempre na 1ª interação ou após 2,5s Meta Pixel também, sem banner de cookies. -->
   <script>
   (function(){
