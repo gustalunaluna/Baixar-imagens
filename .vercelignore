@@ -35,5 +35,4 @@ node_modules/
 # detecta o projeto, e o ganho de seguranca seria minimo.
 
 # Videos de trabalho (nao usados no site)
-videos/lsconfex-motion/
-videos/header-costura/
+videos/
