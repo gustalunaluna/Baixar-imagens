@@ -66,7 +66,7 @@
 
   <!-- ── Performance ── -->
   <link rel="dns-prefetch" href="https://wa.me">
-  <link rel="preload" as="image" href="videos/header-costura/poster-mobile.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="videos/hero-maquina/poster.jpg" fetchpriority="high">
   <link rel="preload" href="/fonts/barlow-condensed-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/barlow-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css?v=20261104">
@@ -170,6 +170,8 @@
     .hero-split{grid-template-columns:1fr;overflow:hidden}
     .hero-split-image{position:absolute;inset:0;z-index:0;min-height:0}
     .hero-split-image video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+    .hero-video-fade{display:none}
+    @media (min-width:769px){.hero-split-image{background:#0a0a0a}.hero-split-image video{left:auto;width:min(48%,720px);object-position:center 40%}.hero-video-fade{display:block;position:absolute;top:0;bottom:0;z-index:1;pointer-events:none;width:280px;right:calc(min(48%,720px) - 280px);background:linear-gradient(to right,#0a0a0a 0%,rgba(10,10,10,.7) 35%,rgba(10,10,10,0) 100%)}}
     .hero-split-image::before{z-index:2;background:linear-gradient(to right,rgba(10,10,10,.92) 0%,rgba(10,10,10,.75) 32%,rgba(10,10,10,.25) 62%,rgba(10,10,10,.1) 100%)}
     .hero-split-image::after{content:'';position:absolute;inset:auto 0 0 0;height:22%;z-index:2;pointer-events:none;background:linear-gradient(to top,#0a0a0a,transparent)}
     .hero-video-blur{position:absolute;inset:0 auto 0 0;width:45%;z-index:1;pointer-events:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);-webkit-mask-image:linear-gradient(to right,#000 30%,transparent 100%);mask-image:linear-gradient(to right,#000 30%,transparent 100%)}
@@ -247,13 +249,12 @@
     <!-- Painel direito: imagem -->
     <div class="hero-split-image hero-video">
       <video id="hero-video" autoplay muted loop playsinline preload="auto"
-        poster="videos/header-costura/poster-mobile.jpg"
-        aria-label="Costura de zíper em bolsa de lona na fábrica da LS Confecções">
-        <source src="videos/header-costura/header-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
-        <source src="videos/header-costura/header-mobile.webm" type="video/webm" media="(max-width: 768px)">
-        <source src="videos/header-costura/header-full.mp4" type="video/mp4">
-        <source src="videos/header-costura/header-full.webm" type="video/webm">
+        poster="videos/hero-maquina/poster.jpg"
+        aria-label="Costureira passando o tecido na máquina de costura da LS Confecções">
+        <source src="videos/hero-maquina/hero.webm" type="video/webm">
+        <source src="videos/hero-maquina/hero.mp4" type="video/mp4">
       </video>
+      <span class="hero-video-fade" aria-hidden="true"></span>
       <span class="hero-video-blur" aria-hidden="true"></span>
     </div>
 
