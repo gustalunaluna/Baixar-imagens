@@ -524,3 +524,16 @@
     if(im.complete && im.currentSrc && im.naturalWidth === 0) falhou(im);
   }
 })();
+
+/* Botão flutuante do Instagram (todas as páginas) */
+(function () {
+ if (document.querySelector('.instagram-fab')) return;
+ var a = document.createElement('a');
+ a.href = 'https://www.instagram.com/lsconfex';
+ a.className = 'instagram-fab' + (document.querySelector('.whatsapp-fab') ? ' com-whats' : '');
+ a.target = '_blank'; a.rel = 'noopener noreferrer';
+ a.setAttribute('aria-label', 'Ver o Instagram @lsconfex');
+ a.innerHTML = '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>';
+ a.addEventListener('click', function () { if (typeof gtag === 'function') gtag('event', 'click_instagram', { event_category: 'engagement', event_label: document.title }); });
+ document.body.appendChild(a);
+})();
