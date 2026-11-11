@@ -587,6 +587,7 @@
     .page-hero-foto-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;z-index:0}
     .page-hero-foto::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.45) 45%,rgba(10,10,10,.85) 100%)}
     .page-hero-foto .container{position:relative;z-index:1}
+    .eyebrow-ls{display:none}
     /* Abertura do catálogo: a foto ocupa a tela e encolhe até o fundo do topo */
     .cat-intro{position:fixed;inset:0;z-index:999;pointer-events:none}
     .cat-intro .ci-fundo{position:absolute;inset:0;background:#0a0a0a}
@@ -603,7 +604,9 @@
     .catalog-section{padding-top:40px}
     @media (min-width:769px){
       .page-hero-foto{min-height:min(48vh,440px)}
-      .page-hero-foto .eyebrow{display:none}
+      .page-hero-foto .eyebrow,.page-hero-foto .h1-nosso{display:none}
+      .page-hero-foto .eyebrow-ls{display:block;color:#e8ff00;font-family:var(--font-heading,inherit);font-weight:700;font-size:20px;letter-spacing:.35em;margin-bottom:14px}
+      .page-hero-foto h1{font-size:clamp(72px,7.5vw,112px);line-height:.9;letter-spacing:.02em}
       .page-hero-foto-bg{object-position:center 30%}
     }
   </style>
@@ -649,7 +652,8 @@
     <img src="imagens/hero-catalogo-floresta-ls-confeccoes.webp" srcset="imagens/m/800/hero-catalogo-floresta-ls-confeccoes.webp 800w, imagens/hero-catalogo-floresta-ls-confeccoes.webp 1170w" sizes="100vw" class="page-hero-foto-bg" alt="Pessoa usando bolsa tote marrom no ombro em meio a uma floresta de bambu" width="1170" height="1473" fetchpriority="high" decoding="async">
     <div class="container">
       <span class="eyebrow">B2B · Fabricação Personalizada</span>
-      <h1>Nosso Catálogo</h1>
+      <span class="eyebrow-ls" aria-hidden="true">LS CONFEX</span>
+      <h1><span class="h1-nosso">Nosso </span>Catálogo</h1>
       <p>
         Explore a linha completa. Todos os modelos são personalizáveis
         com a sua marca, a partir de 20 unidades por modelo e cor.
