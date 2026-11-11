@@ -599,13 +599,12 @@
     .page-hero-foto .container>*{transition:opacity .6s ease,transform .7s cubic-bezier(.2,.9,.2,1)}
     .page-hero-foto .container>*:nth-child(2){transition-delay:.12s}
     .page-hero-foto .container>*:nth-child(3){transition-delay:.24s}
-    @media (max-width:768px){.page-hero-foto{min-height:70vh}.page-hero-foto-bg{object-position:center 40%}}
+    @media (max-width:768px){.page-hero-foto{min-height:56vh}.page-hero-foto-bg{object-position:center 35%}}
+    .catalog-section{padding-top:40px}
     @media (min-width:769px){
-      .page-hero-foto{text-align:left;justify-content:flex-start}
-      .page-hero-foto .container{width:100%}
-      .page-hero-foto .container>*{max-width:560px;margin-left:0}
-      .page-hero-foto-bg{left:auto;right:0;width:55%;object-position:center 42%}
-      .page-hero-foto::after{background:linear-gradient(90deg,#0a0a0a 0%,#0a0a0a 42%,rgba(10,10,10,.55) 62%,rgba(10,10,10,.15) 100%),linear-gradient(0deg,rgba(10,10,10,.6),transparent 30%)}
+      .page-hero-foto{min-height:min(48vh,440px)}
+      .page-hero-foto .eyebrow{display:none}
+      .page-hero-foto-bg{object-position:center 30%}
     }
   </style>
   <script>
