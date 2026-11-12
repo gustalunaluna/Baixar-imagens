@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://www.lsconfex.com.br/blog</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -249,6 +249,36 @@
   <url>
     <loc>https://www.lsconfex.com.br/blog/kit-boas-vindas-funcionarios-onboarding</loc>
     <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lsconfex.com.br/blog/tote-bag-listrada-personalizada</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lsconfex.com.br/blog/porta-garrafa-personalizado</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lsconfex.com.br/blog/shoulder-bag-personalizada</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lsconfex.com.br/blog/duffle-bag-personalizada</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.lsconfex.com.br/blog/mochila-color-block-personalizada</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
