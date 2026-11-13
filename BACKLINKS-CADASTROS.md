@@ -15,7 +15,7 @@ Use sempre exatamente os mesmos dados. Nome, endereço e telefone divergentes en
 | Campo | Valor |
 |---|---|
 | Nome | LS Confecções |
-| CNPJ | 32.200.335/0001-40 |
+| CNPJ | 34.201.807/0001-04 |
 | Endereço | Rua Biguaçu, 286, Vila Carrão, São Paulo, SP, 03446-000 (escritório; a fábrica fica em Guarulhos) |
 | Telefone / WhatsApp | (11) 99937-0418 |
 | E-mail | ls_confeccoes@hotmail.com |

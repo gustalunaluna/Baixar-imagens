@@ -6,7 +6,7 @@ description: Analisa edital de licitação (PDF, link ou texto) para a LS Confec
 # Analisar edital – LS Confecções
 
 ## Contexto da empresa
-- ME/EPP (confirmar), CNPJ 32.200.335/0001-40, fábrica em Guarulhos-SP, costura terceirizada.
+- ME/EPP (confirmar), CNPJ 34.201.807/0001-04, fábrica em Guarulhos-SP, costura terceirizada.
 - Faz bolsas, mochilas, ecobags, pochetes, necessaires, kits. **Não** faz couro nem PU.
 - Mínimo comercial 20 peças (em licitação vale a quantidade do edital).
 - Produção normal: piloto até 15 dias + lote até 25 dias úteis. Editais costumam exigir 15–30 dias **sem piloto**: este é o maior risco.
