@@ -24,7 +24,7 @@ Use sempre exatamente os mesmos dados. Nome, endereço e telefone divergentes en
 | Horário | Segunda a sexta, 8h às 18h |
 | Desde | 2017 |
 | Categoria | Fábrica de bolsas e mochilas / Confecção / Brindes personalizados |
-| Logo | `brand/logo-icon.svg`, `brand/logo-horizontal.svg`, `favicon.png` |
+| Logo | `brand/logo-ls.svg`, `brand/logo-ls-512.png`, `favicon.png` |
 
 ### Descrições (use uma diferente em cada site)
 
